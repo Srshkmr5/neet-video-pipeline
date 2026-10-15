@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Visual Physics 3D Simulation — Projectile Motion & Live Formula Decomposition</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    body { margin: 0; background-color: #020408; color: #f8fafc; font-family: ui-sans-serif, system-ui, sans-serif; overflow: hidden; }
+    canvas { display: block; width: 100%; height: 100vh; }
+    .glass-card { background: rgba(10, 15, 26, 0.88); backdrop-filter: blur(14px); border: 1px solid rgba(56, 189, 248, 0.25); }
+    .glow-cyan { text-shadow: 0 0 10px rgba(56, 189, 248, 0.6); }
+    .glow-gold { text-shadow: 0 0 10px rgba(250, 204, 21, 0.6); }
+    .glow-green { text-shadow: 0 0 10px rgba(74, 222, 128, 0.6); }
+    input[type=range] { accent-color: #38bdf8; }
+  </style>
+</head>
+<body class="bg-[#020408] text-white">
+
+  <!-- Canvas viewport -->
+  <canvas id="simCanvas"></canvas>
+
+  <!-- Top Floating Header Badge -->
+  <div class="absolute top-4 left-4 flex items-center space-x-3 pointer-events-none">
+    <div class="px-3 py-1 bg-slate-900/90 border border-sky-400/40 rounded-lg text-sky-400 font-mono font-bold text-xs tracking-wider">
+      P11-C02-T03-V02
+    </div>
+    <div class="px-2.5 py-1 bg-emerald-950/80 border border-emerald-500/50 rounded-lg text-emerald-400 font-mono font-bold text-xs">
+      04/14
+    </div>
+    <div class="px-2.5 py-1 bg-purple-950/80 border border-purple-500/50 rounded-lg text-purple-400 font-mono font-bold text-xs">
+      3D VISUAL PHYSICS LAB
+    </div>
+    <h1 class="text-white font-bold text-sm tracking-wide hidden sm:block">
+      The Max Height Arc — Live Dynamic Formula Decomposition
+    </h1>
+  </div>
+
+  <!-- Left Floating Hero Formula Decomposition Card -->
+  <div class="absolute top-16 left-4 glass-card rounded-2xl p-4 shadow-2xl space-y-3.5 max-w-sm border border-sky-500/30">
+    <div class="flex items-center justify-between border-b border-slate-700/60 pb-2">
+      <div class="flex items-center space-x-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse"></span>
+        <span class="text-xs font-mono font-bold text-amber-300 tracking-wider">GOVERNING FORMULA ENGINE</span>
+      </div>
+      <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">LIVE SOLVER</span>
+    </div>
+
+    <!-- 1. Maximum Height Equation & Live Substitution -->
+    <div class="bg-slate-900/80 rounded-xl p-3 border border-amber-500/30 space-y-1.5">
+      <div class="flex justify-between items-center text-xs text-slate-400">
+        <span class="font-semibold text-slate-200">Maximum Height (H_max):</span>
+        <span class="font-mono text-[11px] text-amber-400">At Apex vy = 0</span>
+      </div>
+      <!-- Symbolic formula -->
+      <div class="text-xs font-mono text-slate-400 text-center py-0.5 bg-slate-950/60 rounded">
+        H_max = (v₀² · sin²θ) / (2g)
+      </div>
+      <!-- Live substituted numbers -->
+      <div class="text-xs font-mono text-center tracking-tight text-slate-200 py-1 border-t border-slate-800/80">
+        = (<span id="calcV0" class="text-sky-400 font-bold">25</span>² · sin²(<span id="calcTheta" class="text-amber-400 font-bold">53°</span>)) / (2 · 9.8)
+      </div>
+      <!-- Calculated arithmetic step -->
+      <div class="flex items-center justify-between text-xs font-mono pt-1 border-t border-slate-800/80">
+        <span class="text-slate-400">= (<span id="calcV0Sq" class="text-sky-300">625</span> · <span id="calcSinSq" class="text-amber-300">0.638</span>) / 19.6</span>
+        <span class="text-sm font-bold text-amber-400 glow-gold" id="calcHmaxResult">= 20.4 m</span>
+      </div>
+    </div>
+
+    <!-- 2. Range & Time of Flight live readouts -->
+    <div class="grid grid-cols-2 gap-2 text-xs font-mono">
+      <div class="bg-slate-900/60 rounded-xl p-2.5 border border-sky-500/20">
+        <div class="text-[11px] text-slate-400">Range (R):</div>
+        <div class="text-[10px] text-slate-500 py-0.5">(v₀² · sin 2θ) / g</div>
+        <div class="text-sm font-bold text-sky-400 glow-cyan mt-1" id="calcRangeResult">59.7 m</div>
+      </div>
+      <div class="bg-slate-900/60 rounded-xl p-2.5 border border-emerald-500/20">
+        <div class="text-[11px] text-slate-400">Flight Time (T):</div>
+        <div class="text-[10px] text-slate-500 py-0.5">(2 v₀ sin θ) / g</div>
+        <div class="text-sm font-bold text-emerald-400 glow-green mt-1" id="calcTimeResult">4.08 s</div>
+      </div>
+    </div>
+
+    <!-- 3. NEET Trap Alert Warning -->
+    <div id="trapBox" class="p-2.5 rounded-xl bg-rose-950/40 border border-rose-500/40 text-[11px] flex items-start space-x-2">
+      <span class="text-rose-400 text-sm">⚠️</span>
+      <div class="text-slate-300">
+        <span class="font-bold text-rose-400">NEET Trap:</span> Launch angle θ MUST be from horizontal. If given relative to vertical, replace sin²θ with cos²θ!
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Right Live Physics Telemetry -->
+  <div class="absolute top-4 right-4 glass-card rounded-2xl p-3.5 shadow-2xl space-y-2.5 text-xs font-mono max-w-xs">
+    <div class="flex justify-between items-center border-b border-slate-700/60 pb-1.5">
+      <span class="text-slate-400">BODY VELOCITY TELEMETRY</span>
+      <span class="text-emerald-400 font-bold">REAL-TIME</span>
+    </div>
+    <div class="space-y-1.5 text-[11px]">
+      <div class="flex justify-between">
+        <span class="text-slate-400">Horizontal vx (Constant):</span>
+        <span id="teleVx" class="text-emerald-400 font-bold">15.0 m/s</span>
+      </div>
+      <div class="flex justify-between">
+        <span class="text-slate-400">Current vy (Live):</span>
+        <span id="teleVy" class="text-amber-400 font-bold">19.9 m/s</span>
+      </div>
+      <div class="flex justify-between">
+        <span class="text-slate-400">Total Speed |v|:</span>
+        <span id="teleSpeed" class="text-sky-400 font-bold">25.0 m/s</span>
+      </div>
+      <div class="flex justify-between">
+        <span class="text-slate-400">Current Height y(t):</span>
+        <span id="teleHeight" class="text-yellow-400 font-bold">0.0 m</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Floating Interactive Controls with Conceptual Presets -->
+  <div class="absolute bottom-5 left-1/2 transform -translate-x-1/2 glass-card rounded-2xl p-4 shadow-2xl flex flex-col gap-3 text-xs max-w-4xl w-[92%] sm:w-auto">
+    <!-- Row 1: High Yield Conceptual Presets -->
+    <div class="flex flex-wrap items-center gap-2 border-b border-slate-700/60 pb-2.5">
+      <span class="text-slate-400 font-mono text-[11px] font-semibold">NEET PRESETS:</span>
+      <button onclick="setPreset(25, 45)" class="px-2.5 py-1 bg-sky-950/80 hover:bg-sky-900 border border-sky-500/40 rounded-lg text-sky-300 font-mono transition cursor-pointer">
+        🎯 Max Range (θ = 45°)
+      </button>
+      <button onclick="setPreset(25, 89)" class="px-2.5 py-1 bg-amber-950/80 hover:bg-amber-900 border border-amber-500/40 rounded-lg text-amber-300 font-mono transition cursor-pointer">
+        ⬆️ Max Height (θ ≈ 90°)
+      </button>
+      <button onclick="setPreset(25, 53)" class="px-2.5 py-1 bg-emerald-950/80 hover:bg-emerald-900 border border-emerald-500/40 rounded-lg text-emerald-300 font-mono transition cursor-pointer">
+        📐 Standard 53° (3-4-5 Triangle)
+      </button>
+      <button onclick="toggleComplementary()" id="compBtn" class="px-2.5 py-1 bg-purple-950/80 hover:bg-purple-900 border border-purple-500/40 rounded-lg text-purple-300 font-mono transition cursor-pointer">
+        🔄 Complementary (30° vs 60°)
+      </button>
+    </div>
+
+    <!-- Row 2: Sliders & Actions -->
+    <div class="flex flex-wrap items-center justify-between gap-5">
+      <div class="flex items-center space-x-3">
+        <label class="text-slate-300 font-medium">Launch Velocity (v₀):</label>
+        <input type="range" id="v0Slider" min="10" max="40" value="25" class="w-28 cursor-pointer">
+        <span id="v0Display" class="text-sky-400 font-mono font-bold w-12 text-right">25 m/s</span>
+      </div>
+
+      <div class="flex items-center space-x-3">
+        <label class="text-slate-300 font-medium">Launch Angle (θ):</label>
+        <input type="range" id="thetaSlider" min="15" max="89" value="53" class="w-28 cursor-pointer">
+        <span id="thetaDisplay" class="text-amber-400 font-mono font-bold w-10 text-right">53°</span>
+      </div>
+
+      <div class="flex items-center space-x-2">
+        <button id="resetBtn" class="px-3.5 py-1.5 bg-sky-600 hover:bg-sky-500 rounded-lg text-white font-semibold transition cursor-pointer shadow-lg shadow-sky-600/30">
+          ▶ Relaunch
+        </button>
+        <button id="toggleVectorsBtn" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded-lg text-slate-200 transition cursor-pointer">
+          Toggle Vectors
+        </button>
+        <button id="recordBtn" onclick="toggleRecording()" class="px-3 py-1.5 bg-rose-950/80 hover:bg-rose-900 border border-rose-500/50 rounded-lg text-rose-300 font-semibold transition cursor-pointer flex items-center gap-1.5 shadow-lg shadow-rose-950/40">
+          <span id="recordDot" class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
+          <span id="recordLabel">🎥 Export 60FPS Video</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Orbit Hint -->
+  <div class="absolute bottom-5 right-5 text-[11px] font-mono text-slate-400 pointer-events-none hidden md:block">
+    🖱️ Drag mouse to orbit 3D camera • Scroll to zoom
+  </div>
+
+  <script>
+    const canvas = document.getElementById("simCanvas");
+    const ctx = canvas.getContext("2d");
+
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+
+    window.addEventListener("resize", () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    });
+
+    // Physics parameters
+    let v0 = 25;
+    let thetaDeg = 53;
+    let g = 9.8;
+    let showVectors = true;
+    let isComplementaryMode = false;
+
+    // Camera 3D parameters (Spherical)
+    let camRotX = 0.35; // Elevation pitch
+    let camRotY = -0.75; // Azimuth yaw
+    let camDist = 72;
+    let isDragging = false;
+    let prevMouseX = 0;
+    let prevMouseY = 0;
+
+    // Simulation animation state
+    let simTime = 0;
+
+    // Mouse Orbit Controls
+    canvas.addEventListener("mousedown", (e) => {
+      isDragging = true;
+      prevMouseX = e.clientX;
+      prevMouseY = e.clientY;
+    });
+
+    window.addEventListener("mouseup", () => { isDragging = false; });
+
+    canvas.addEventListener("mousemove", (e) => {
+      if (!isDragging) return;
+      const dx = e.clientX - prevMouseX;
+      const dy = e.clientY - prevMouseY;
+      camRotY += dx * 0.008;
+      camRotX = Math.max(-0.2, Math.min(1.4, camRotX + dy * 0.008));
+      prevMouseX = e.clientX;
+      prevMouseY = e.clientY;
+    });
+
+    canvas.addEventListener("wheel", (e) => {
+      camDist = Math.max(30, Math.min(160, camDist + e.deltaY * 0.05));
+    });
+
+    // Sliders & Elements
+    const v0Slider = document.getElementById("v0Slider");
+    const v0Display = document.getElementById("v0Display");
+    const thetaSlider = document.getElementById("thetaSlider");
+    const thetaDisplay = document.getElementById("thetaDisplay");
+    const resetBtn = document.getElementById("resetBtn");
+    const toggleVectorsBtn = document.getElementById("toggleVectorsBtn");
+
+    function updateLiveDecomposition() {
+      const rad = thetaDeg * Math.PI / 180;
+      const sinVal = Math.sin(rad);
+      const sinSqVal = sinVal * sinVal;
+      const v0Sq = v0 * v0;
+      const hMax = (v0Sq * sinSqVal) / (2 * g);
+      const range = (v0Sq * Math.sin(2 * rad)) / g;
+      const tTotal = (2 * v0 * sinVal) / g;
+
+      // Update Formula Decomposition Card
+      document.getElementById("calcV0").textContent = v0;
+      document.getElementById("calcTheta").textContent = `${thetaDeg}°`;
+      document.getElementById("calcV0Sq").textContent = v0Sq.toFixed(0);
+      document.getElementById("calcSinSq").textContent = sinSqVal.toFixed(3);
+      document.getElementById("calcHmaxResult").textContent = `= ${hMax.toFixed(1)} m`;
+      document.getElementById("calcRangeResult").textContent = `${range.toFixed(1)} m`;
+      document.getElementById("calcTimeResult").textContent = `${tTotal.toFixed(2)} s`;
+    }
+
+    v0Slider.addEventListener("input", (e) => {
+      v0 = parseFloat(e.target.value);
+      v0Display.textContent = `${v0} m/s`;
+      updateLiveDecomposition();
+      simTime = 0;
+    });
+
+    thetaSlider.addEventListener("input", (e) => {
+      thetaDeg = parseFloat(e.target.value);
+      thetaDisplay.textContent = `${thetaDeg}°`;
+      updateLiveDecomposition();
+      simTime = 0;
+    });
+
+    resetBtn.addEventListener("click", () => { simTime = 0; });
+    toggleVectorsBtn.addEventListener("click", () => { showVectors = !showVectors; });
+
+    function setPreset(v, t) {
+      v0 = v;
+      thetaDeg = t;
+      v0Slider.value = v;
+      thetaSlider.value = t;
+      v0Display.textContent = `${v} m/s`;
+      thetaDisplay.textContent = `${t}°`;
+      isComplementaryMode = false;
+      updateLiveDecomposition();
+      simTime = 0;
+    }
+
+    let compToggle = false;
+    function toggleComplementary() {
+      compToggle = !compToggle;
+      setPreset(25, compToggle ? 30 : 60);
+      document.getElementById("compBtn").classList.toggle("border-purple-400", compToggle);
+    }
+
+    // Initialize decomposition
+    updateLiveDecomposition();
+
+    // 3D Perspective Projection
+    function project3D(x, y, z) {
+      const cosY = Math.cos(camRotY);
+      const sinY = Math.sin(camRotY);
+      const x1 = x * cosY - z * sinY;
+      const z1 = x * sinY + z * cosY;
+
+      const cosX = Math.cos(camRotX);
+      const sinX = Math.sin(camRotX);
+      const y2 = y * cosX - z1 * sinX;
+      const z2 = y * sinX + z1 * cosX;
+
+      const depth = z2 + camDist;
+      if (depth <= 1) return null;
+
+      const fov = 680;
+      const scale = fov / depth;
+      const screenX = width / 2 + (x1 + 10) * scale;
+      const screenY = height / 2 - (y2 - 6) * scale;
+
+      return { x: screenX, y: screenY, scale: scale, depth: depth };
+    }
+
+    // Render loop
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+
+      // Background subtle vignette
+      const bgGrad = ctx.createRadialGradient(width/2, height/2, 100, width/2, height/2, width*0.8);
+      bgGrad.addColorStop(0, "#080c16");
+      bgGrad.addColorStop(1, "#020408");
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, width, height);
+
+      // Physics variables
+      const rad = thetaDeg * Math.PI / 180;
+      const vx = v0 * Math.cos(rad);
+      const vy0 = v0 * Math.sin(rad);
+      const tTotal = (2 * vy0) / g;
+      const hMax = (vy0 * vy0) / (2 * g);
+      const range = vx * tTotal;
+
+      // Draw 3D Ground Grid (in X-Z plane)
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = "rgba(30, 41, 59, 0.75)";
+      for (let gx = -10; gx <= 75; gx += 10) {
+        const p1 = project3D(gx, 0, -25);
+        const p2 = project3D(gx, 0, 25);
+        if (p1 && p2) {
+          ctx.beginPath();
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.stroke();
+        }
+      }
+      for (let gz = -25; gz <= 25; gz += 10) {
+        const p1 = project3D(-10, 0, gz);
+        const p2 = project3D(75, 0, gz);
+        if (p1 && p2) {
+          ctx.beginPath();
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.stroke();
+        }
+      }
+
+      // Draw Launch Apparatus (Base & Barrel)
+      const basePt = project3D(0, 0, 0);
+      const barrelPt = project3D(Math.cos(rad) * 4.5, Math.sin(rad) * 4.5, 0);
+      if (basePt && barrelPt) {
+        ctx.beginPath();
+        ctx.arc(basePt.x, basePt.y, 7 * basePt.scale, 0, Math.PI * 2);
+        ctx.fillStyle = "#334155";
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.moveTo(basePt.x, basePt.y);
+        ctx.lineTo(barrelPt.x, barrelPt.y);
+        ctx.strokeStyle = "#64748b";
+        ctx.lineWidth = 6 * basePt.scale;
+        ctx.stroke();
+      }
+
+      // Draw Full Parabolic Trajectory Path (Glowing Neon Cyan Ribbon)
+      ctx.beginPath();
+      ctx.lineWidth = 3.5;
+      ctx.strokeStyle = "rgba(56, 189, 248, 0.9)";
+      ctx.shadowColor = "#38bdf8";
+      ctx.shadowBlur = 12;
+
+      let started = false;
+      const steps = 60;
+      for (let i = 0; i <= steps; i++) {
+        const t = (i / steps) * tTotal;
+        const px = vx * t;
+        const py = vy0 * t - 0.5 * g * t * t;
+        const pt = project3D(px, Math.max(0, py), 0);
+        if (pt) {
+          if (!started) { ctx.moveTo(pt.x, pt.y); started = true; }
+          else { ctx.lineTo(pt.x, pt.y); }
+        }
+      }
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      // Draw Apex Marker & Dashed Drop Line
+      const apexT = tTotal / 2;
+      const apexX = vx * apexT;
+      const apexY = hMax;
+      const pApex = project3D(apexX, apexY, 0);
+      const pGroundApex = project3D(apexX, 0, 0);
+
+      if (pApex && pGroundApex) {
+        ctx.save();
+        ctx.setLineDash([4, 4]);
+        ctx.strokeStyle = "#facc15";
+        ctx.lineWidth = 1.8;
+        ctx.beginPath();
+        ctx.moveTo(pApex.x, pApex.y);
+        ctx.lineTo(pGroundApex.x, pGroundApex.y);
+        ctx.stroke();
+        ctx.restore();
+
+        // Apex Gold Dot
+        ctx.beginPath();
+        ctx.arc(pApex.x, pApex.y, 4.5, 0, Math.PI * 2);
+        ctx.fillStyle = "#facc15";
+        ctx.fill();
+
+        // Floating H_max Label
+        ctx.fillStyle = "#facc15";
+        ctx.font = "bold 13px ui-monospace";
+        ctx.fillText(`H_max = ${hMax.toFixed(1)}m`, pApex.x + 8, pApex.y - 8);
+      }
+
+      // Update simulation time
+      simTime += 0.024;
+      if (simTime > tTotal + 0.8) simTime = 0; // Loop flight
+
+      const curT = Math.min(simTime, tTotal);
+      const curX = vx * curT;
+      const curY = Math.max(0, vy0 * curT - 0.5 * g * curT * curT);
+      const curVy = vy0 - g * curT;
+      const curSpeed = Math.sqrt(vx * vx + curVy * curVy);
+
+      // Update top-right live telemetry
+      document.getElementById("teleVx").textContent = `${vx.toFixed(1)} m/s`;
+      document.getElementById("teleVy").textContent = `${curVy.toFixed(1)} m/s`;
+      document.getElementById("teleSpeed").textContent = `${curSpeed.toFixed(1)} m/s`;
+      document.getElementById("teleHeight").textContent = `${curY.toFixed(1)} m`;
+
+      const pBall = project3D(curX, curY, 0);
+
+      // Draw Dynamic 3D Vectors Attached to Ball
+      if (pBall && showVectors) {
+        const vScale = 0.35;
+
+        // 1. Horizontal Velocity Vector (vx) -> GREEN (Constant length)
+        const pVx = project3D(curX + vx * vScale, curY, 0);
+        if (pVx) {
+          ctx.beginPath();
+          ctx.moveTo(pBall.x, pBall.y);
+          ctx.lineTo(pVx.x, pVx.y);
+          ctx.strokeStyle = "#4ade80";
+          ctx.lineWidth = 3;
+          ctx.stroke();
+          // Arrowhead
+          ctx.fillStyle = "#4ade80";
+          ctx.beginPath();
+          ctx.arc(pVx.x, pVx.y, 3.5, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.font = "bold 11px ui-monospace";
+          ctx.fillText("vx (const)", pVx.x + 5, pVx.y);
+        }
+
+        // 2. Vertical Velocity Vector (vy) -> AMBER (Shrinks to 0 at apex!)
+        const pVy = project3D(curX, curY + curVy * vScale, 0);
+        if (pVy && Math.abs(curVy) > 0.4) {
+          ctx.beginPath();
+          ctx.moveTo(pBall.x, pBall.y);
+          ctx.lineTo(pVy.x, pVy.y);
+          ctx.strokeStyle = curVy > 0 ? "#fbbf24" : "#f87171";
+          ctx.lineWidth = 3;
+          ctx.stroke();
+          // Arrowhead
+          ctx.fillStyle = curVy > 0 ? "#fbbf24" : "#f87171";
+          ctx.beginPath();
+          ctx.arc(pVy.x, pVy.y, 3.5, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.font = "bold 11px ui-monospace";
+          ctx.fillText(curVy > 0 ? "vy (rising)" : "vy (falling)", pVy.x + 5, pVy.y);
+        }
+
+        // 3. Gravity Vector (g) -> CORAL RED
+        const pG = project3D(curX, curY - 3.8, 0);
+        if (pG) {
+          ctx.beginPath();
+          ctx.moveTo(pBall.x, pBall.y);
+          ctx.lineTo(pG.x, pG.y);
+          ctx.strokeStyle = "#f87171";
+          ctx.lineWidth = 2;
+          ctx.stroke();
+          ctx.font = "bold 10px ui-monospace";
+          ctx.fillStyle = "#f87171";
+          ctx.fillText("g = 9.8", pG.x - 14, pG.y);
+        }
+      }
+
+      // Draw Glowing Physical Projectile Sphere
+      if (pBall) {
+        ctx.save();
+        ctx.shadowColor = "#facc15";
+        ctx.shadowBlur = 18;
+        ctx.beginPath();
+        const ballRadius = Math.max(4.5, 8.5 * pBall.scale);
+        ctx.arc(pBall.x, pBall.y, ballRadius, 0, Math.PI * 2);
+        
+        // Metallic sphere shading gradient
+        const sphereGrad = ctx.createRadialGradient(
+          pBall.x - ballRadius*0.3, pBall.y - ballRadius*0.3, 1,
+          pBall.x, pBall.y, ballRadius
+        );
+        sphereGrad.addColorStop(0, "#fffbeb");
+        sphereGrad.addColorStop(0.4, "#facc15");
+        sphereGrad.addColorStop(1, "#b45309");
+        ctx.fillStyle = sphereGrad;
+        ctx.fill();
+        ctx.restore();
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    // --- 60 FPS IN-BROWSER SIMULATION RECORDER ---
+    let mediaRecorder = null;
+    let recordedChunks = [];
+
+    function toggleRecording() {
+      const dot = document.getElementById("recordDot");
+      const label = document.getElementById("recordLabel");
+      const btn = document.getElementById("recordBtn");
+
+      if (mediaRecorder && mediaRecorder.state === "recording") {
+        mediaRecorder.stop();
+        dot.className = "w-2 h-2 rounded-full bg-rose-500 animate-pulse";
+        label.innerText = "🎥 Export 60FPS Video";
+        btn.className = "px-3 py-1.5 bg-rose-950/80 hover:bg-rose-900 border border-rose-500/50 rounded-lg text-rose-300 font-semibold transition cursor-pointer flex items-center gap-1.5 shadow-lg shadow-rose-950/40";
+        return;
+      }
+
+      recordedChunks = [];
+      const stream = canvas.captureStream(60);
+      const mime = MediaRecorder.isTypeSupported("video/webm;codecs=vp9") ? "video/webm;codecs=vp9" : "video/webm";
+      mediaRecorder = new MediaRecorder(stream, { mimeType: mime });
+
+      mediaRecorder.ondataavailable = (e) => {
+        if (e.data.size > 0) recordedChunks.push(e.data);
+      };
+
+      mediaRecorder.onstop = () => {
+        const blob = new Blob(recordedChunks, { type: mime });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `neet_3d_simulation_${Math.round(v0)}mps_${Math.round(thetaDeg)}deg_60fps.webm`;
+        a.click();
+        URL.revokeObjectURL(url);
+      };
+
+      mediaRecorder.start();
+      dot.className = "w-2 h-2 rounded-full bg-emerald-400 animate-ping";
+      label.innerText = "⏹ Stop & Save Video";
+      btn.className = "px-3 py-1.5 bg-emerald-950/90 hover:bg-emerald-900 border border-emerald-500/60 rounded-lg text-emerald-300 font-semibold transition cursor-pointer flex items-center gap-1.5 shadow-lg shadow-emerald-950/50";
+
+      // Automatically trigger a clean relaunch to capture pristine flight
+      simTime = 0;
+    }
+
+    animate();
+  </script>
+</body>
+</html>

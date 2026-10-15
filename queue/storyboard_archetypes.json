@@ -1,0 +1,52 @@
+{
+  "version": "1.0",
+  "design_system": "Obsidian-Neon Minimalist HUD",
+  "core_principles": {
+    "background": "#000000 (Pure Obsidian Void / OLED Zero-Fatigue)",
+    "anti_distraction_rule": "Strict prohibition of realistic CGI environments (no cars, streetlamps, trees, asphalt). Objects are abstract illuminated masses, particles, and glowing vectors.",
+    "vector_standard": {
+      "velocity": "#38BDF8 (Sky Cyan)",
+      "acceleration": "#F59E0B (Amber Gold)",
+      "forces": "#F43F5E (Crimson Coral)",
+      "energy_and_bio": "#10B981 (Mint Emerald)",
+      "grid_lines": "#1E293B (Subtle Slate)"
+    }
+  },
+  "archetypes": {
+    "ARCHETYPE_1": {
+      "name": "Kinetic Vector Stage",
+      "code": "KINETIC_STAGE",
+      "best_for": ["Kinematics", "Projectile Motion", "Circular Motion", "Gravitation", "Magnetism", "Optics"],
+      "layout": "Full 3D Stage (100% canvas) with subtle isometric grid floor, floating telemetry HUD (top-left), glowing particle actor with vector arrows, and bottom exam anchor pill.",
+      "hud_elements": ["Time Elapsed (t)", "Velocity Components (vx, vy)", "Height / Position (y, x)", "Apex / Boundary Flags"]
+    },
+    "ARCHETYPE_2": {
+      "name": "Dual-Pane Orthogonal Split",
+      "code": "ORTHOGONAL_SPLIT",
+      "best_for": ["Motion in Straight Line", "s-t and v-t Curves", "SHM & Oscillations", "AC Circuits", "Thermodynamics P-V Diagrams"],
+      "layout": "50/50 vertical division: Left pane displays abstract 1D/2D physical simulation; Right pane displays synchronized real-time plotted graph curve with shaded definite integral areas.",
+      "hud_elements": ["Slope Indicator (dv/dt = a)", "Shaded Area Indicator (∫v dt = Δx)", "Tracking Dot Coordinates"]
+    },
+    "ARCHETYPE_3": {
+      "name": "Molecular Micro-Reactor",
+      "code": "MOLECULAR_REACTOR",
+      "best_for": ["Solutions & Osmosis", "Chemical Kinetics", "Gas Laws", "DNA Replication Fork", "Enzyme Kinetics"],
+      "layout": "Microscopic chamber with semi-permeable or molecular boundaries, floating luminescent atomic particles/spheres with velocity collision paths, and reaction condition telemetry.",
+      "hud_elements": ["Temperature (T)", "Concentrations (C1, C2)", "Osmotic / Gas Pressure (π, P)", "Reaction Step Indicator"]
+    },
+    "ARCHETYPE_4": {
+      "name": "Formula Deconstruction HUD",
+      "code": "FORMULA_DECONSTRUCTION",
+      "best_for": ["High-Yield Formulas", "PYQ Calculation Drills", "NCERT Line Traps", "Unit & Dimension Checks"],
+      "layout": "Hero equation centered with dynamic variable illumination, downward glowing bracket annotations for parameter conditions, and full-width amber NEET trap warning banner at bottom.",
+      "hud_elements": ["Hero Equation", "Parameter Condition Brackets", "NEET Trap Warning Banner", "PYQ Frequency Pill"]
+    },
+    "ARCHETYPE_5": {
+      "name": "Master Neural Constellation",
+      "code": "NEURAL_CONSTELLATION",
+      "best_for": ["Macro 10-Minute Movie Opening (Act 1)", "Macro 10-Minute Movie Climax (Act 5)", "Chapter Syllabus GPS"],
+      "layout": "Deep-space 3D holographic neural constellation map showing all 8 to 15 chapter concept nodes interconnected with glowing fiber paths, spotlighting 'YOU ARE HERE'.",
+      "hud_elements": ["Chapter Title & Number", "Interactive Concept Nodes", "Active Node Spotlight", "Course Global Progress"]
+    }
+  }
+}

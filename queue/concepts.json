@@ -1,0 +1,1059 @@
+{
+  "concepts": [
+    {
+      "videoId": "P11-C04-T02-V03",
+      "prompt_version": "v1",
+      "serialTitle": "The Max Height Arc",
+      "subject": "Physics",
+      "grade": 11,
+      "templateName": "FormulaWithGraph",
+      "dimension": "2d",
+      "beats": [
+        {
+          "id": "settle",
+          "tier": "settle",
+          "repeat": 1
+        },
+        {
+          "id": "hook",
+          "tier": "context",
+          "repeat": 1
+        },
+        {
+          "id": "concept",
+          "tier": "critical",
+          "repeat": 2
+        },
+        {
+          "id": "trap",
+          "tier": "critical",
+          "repeat": 1
+        },
+        {
+          "id": "capsule",
+          "tier": "standard",
+          "repeat": 1
+        },
+        {
+          "id": "release",
+          "tier": "release",
+          "repeat": 1
+        }
+      ],
+      "parameters": {
+        "latexFormula": "H_{\\max} = \\frac{v_0^2 \\sin^2\\theta}{2g}",
+        "plainFormula": "H_max = (v_0^2 * sin^2(θ)) / (2g)",
+        "trapWarning": "Confusing total velocity being zero with only vertical velocity component being zero at top of trajectory.",
+        "graphPlot": "3*x - 0.5*x**2",
+        "xRange": [
+          0,
+          6
+        ],
+        "yRange": [
+          0,
+          5
+        ],
+        "ncertCitation": "NCERT Class 11 Part 1, Ch 4, Page 78",
+        "ncertRule": "At maximum height, the vertical component of velocity is zero while horizontal velocity remains v0*cos(theta).",
+        "authorNuance": "HCV Ch 3: Speed at the top is not zero; it equals v0*cos(theta). Kinetic energy is minimum but non-zero.",
+        "pyqBadge": "High Yield | PYQ: 2017, 2019, 2024"
+      },
+      "locales": {
+        "en": {
+          "title": "The Max Height Arc",
+          "narration": "Welcome to Projectile Motion. Today we master The Max Height Arc. According to NCERT: At maximum height, the vertical component of velocity is zero while horizontal velocity remains v0*cos(theta). The primary formula is: H max = (v naught squared * sin^2(θ)) / (2g). Notice this crucial insight: HCV Ch 3: Speed at the top is not zero; it equals v0*cos(theta). Kinetic energy is minimum but non-zero. Pay special attention to this NEET trap point: Confusing total velocity being zero with only vertical velocity component being zero at top of trajectory. Keep this core relationship firmly in mind to secure top marks in NEET.",
+          "trapPoint": "Confusing total velocity being zero with only vertical velocity component being zero at top of trajectory.",
+          "pyqBadge": "High Yield | PYQ: 2017, 2019, 2024"
+        },
+        "hi": {
+          "title": "The Max Height Arc",
+          "narration": "Projectile Motion में आपका स्वागत है। आज हम समझेंगे: The Max Height Arc। एनसीईआरटी के अनुसार: At maximum height, the vertical component of velocity is zero while horizontal velocity remains v0*cos(theta). इसका मुख्य सूत्र है: H_max = (v_0^2 * sin^2(θ)) / (2g)। विशेष ध्यान देने योग्य बात: HCV Ch 3: Speed at the top is not zero; it equals v0*cos(theta). Kinetic energy is minimum but non-zero. नीट परीक्षा की मुख्य भूल या ट्रैप पॉइंट: Confusing total velocity being zero with only vertical velocity component being zero at top of trajectory. इस महत्वपूर्ण संबंध को हमेशा याद रखें।",
+          "trapPoint": "Confusing total velocity being zero with only vertical velocity component being zero at top of trajectory.",
+          "pyqBadge": "उच्च अंक | विगत वर्ष: 2017, 2019, 2024"
+        },
+        "ta": {
+          "title": "The Max Height Arc",
+          "narration": "Projectile Motion பகுதிக்கு உங்களை வரவேற்கிறோம். இன்று நாம் The Max Height Arc பற்றிய அடிப்படைக் கருத்தைக் காண்போம். என்சிஇஆர்டி விதிப்படி: At maximum height, the vertical component of velocity is zero while horizontal velocity remains v0*cos(theta). இதன் முதன்மைச் சூத்திரம்: H_max = (v_0^2 * sin^2(θ)) / (2g). முக்கியமாக கவனிக்க வேண்டிய குறிப்பு: HCV Ch 3: Speed at the top is not zero; it equals v0*cos(theta). Kinetic energy is minimum but non-zero. நீட் தேர்வில் மாணவர்கள் செய்யும் பொதுவான தவறு அல்லது பொறி: Confusing total velocity being zero with only vertical velocity component being zero at top of trajectory. இந்த முக்கிய சமன்பாட்டை மனதில் உறுதிப்படுத்திக் கொள்ளுங்கள்.",
+          "trapPoint": "Confusing total velocity being zero with only vertical velocity component being zero at top of trajectory.",
+          "pyqBadge": "முக்கிய வினா | PYQ: 2017, 2019, 2024"
+        }
+      }
+    },
+    {
+      "videoId": "P11-C04-T02-V01",
+      "prompt_version": "v1",
+      "serialTitle": "Time of Flight",
+      "subject": "Physics",
+      "grade": 11,
+      "templateName": "FormulaWithGraph",
+      "dimension": "2d",
+      "beats": [
+        {
+          "id": "settle",
+          "tier": "settle",
+          "repeat": 1
+        },
+        {
+          "id": "hook",
+          "tier": "context",
+          "repeat": 1
+        },
+        {
+          "id": "concept",
+          "tier": "critical",
+          "repeat": 2
+        },
+        {
+          "id": "trap",
+          "tier": "critical",
+          "repeat": 1
+        },
+        {
+          "id": "capsule",
+          "tier": "standard",
+          "repeat": 1
+        },
+        {
+          "id": "release",
+          "tier": "release",
+          "repeat": 1
+        }
+      ],
+      "parameters": {
+        "latexFormula": "T = \\frac{2v_0 \\sin\\theta}{g}",
+        "plainFormula": "T = (2 * v_0 * sin(θ)) / g",
+        "trapWarning": "Question specifies angle with vertical axis instead of horizontal (swapping sin with cos).",
+        "graphPlot": "3*x - 0.5*x**2",
+        "xRange": [
+          0,
+          6
+        ],
+        "yRange": [
+          0,
+          5
+        ],
+        "ncertCitation": "NCERT Class 11 Part 1, Ch 4, Page 78",
+        "ncertRule": "Time of flight is determined purely by the vertical component of initial velocity.",
+        "authorNuance": "HCV Ch 3: The horizontal velocity component vx has zero acceleration and does not affect the time spent in the air.",
+        "pyqBadge": "High Yield | PYQ: 2016, 2018, 2021"
+      },
+      "locales": {
+        "en": {
+          "title": "Time of Flight",
+          "narration": "Welcome to Projectile Motion. Today we master Time of Flight. According to NCERT: Time of flight is determined purely by the vertical component of initial velocity. The primary formula is: T = (2 * v naught squared * sin(θ)) / g. Notice this crucial insight: HCV Ch 3: The horizontal velocity component vx has zero acceleration and does not affect the time spent in the air. Pay special attention to this NEET trap point: Question specifies angle with vertical axis instead of horizontal (swapping sin with cos). Keep this core relationship firmly in mind to secure top marks in NEET.",
+          "trapPoint": "Question specifies angle with vertical axis instead of horizontal (swapping sin with cos).",
+          "pyqBadge": "High Yield | PYQ: 2016, 2018, 2021"
+        },
+        "hi": {
+          "title": "Time of Flight",
+          "narration": "Projectile Motion में आपका स्वागत है। आज हम समझेंगे: Time of Flight। एनसीईआरटी के अनुसार: Time of flight is determined purely by the vertical component of initial velocity. इसका मुख्य सूत्र है: T = (2 * v_0 * sin(θ)) / g। विशेष ध्यान देने योग्य बात: HCV Ch 3: The horizontal velocity component vx has zero acceleration and does not affect the time spent in the air. नीट परीक्षा की मुख्य भूल या ट्रैप पॉइंट: Question specifies angle with vertical axis instead of horizontal (swapping sin with cos). इस महत्वपूर्ण संबंध को हमेशा याद रखें।",
+          "trapPoint": "Question specifies angle with vertical axis instead of horizontal (swapping sin with cos).",
+          "pyqBadge": "उच्च अंक | विगत वर्ष: 2016, 2018, 2021"
+        },
+        "ta": {
+          "title": "Time of Flight",
+          "narration": "Projectile Motion பகுதிக்கு உங்களை வரவேற்கிறோம். இன்று நாம் Time of Flight பற்றிய அடிப்படைக் கருத்தைக் காண்போம். என்சிஇஆர்டி விதிப்படி: Time of flight is determined purely by the vertical component of initial velocity. இதன் முதன்மைச் சூத்திரம்: T = (2 * v_0 * sin(θ)) / g. முக்கியமாக கவனிக்க வேண்டிய குறிப்பு: HCV Ch 3: The horizontal velocity component vx has zero acceleration and does not affect the time spent in the air. நீட் தேர்வில் மாணவர்கள் செய்யும் பொதுவான தவறு அல்லது பொறி: Question specifies angle with vertical axis instead of horizontal (swapping sin with cos). இந்த முக்கிய சமன்பாட்டை மனதில் உறுதிப்படுத்திக் கொள்ளுங்கள்.",
+          "trapPoint": "Question specifies angle with vertical axis instead of horizontal (swapping sin with cos).",
+          "pyqBadge": "முக்கிய வினா | PYQ: 2016, 2018, 2021"
+        }
+      }
+    },
+    {
+      "videoId": "P11-C04-T02-V02",
+      "prompt_version": "v1",
+      "serialTitle": "Horizontal Range and Complementary Angles",
+      "subject": "Physics",
+      "grade": 11,
+      "templateName": "FormulaWithGraph",
+      "dimension": "2d",
+      "beats": [
+        {
+          "id": "settle",
+          "tier": "settle",
+          "repeat": 1
+        },
+        {
+          "id": "hook",
+          "tier": "context",
+          "repeat": 1
+        },
+        {
+          "id": "concept",
+          "tier": "critical",
+          "repeat": 2
+        },
+        {
+          "id": "trap",
+          "tier": "critical",
+          "repeat": 1
+        },
+        {
+          "id": "capsule",
+          "tier": "standard",
+          "repeat": 1
+        },
+        {
+          "id": "release",
+          "tier": "release",
+          "repeat": 1
+        }
+      ],
+      "parameters": {
+        "latexFormula": "R = \\frac{v_0^2 \\sin(2\\theta)}{g}",
+        "plainFormula": "R = (v_0^2 * sin(2θ)) / g",
+        "trapWarning": "Assuming time of flight and maximum height are also equal when ranges are equal for complementary angles.",
+        "graphPlot": "3*x - 0.5*x**2",
+        "xRange": [
+          0,
+          6
+        ],
+        "yRange": [
+          0,
+          5
+        ],
+        "ncertCitation": "NCERT Class 11 Part 1, Ch 4, Page 79",
+        "ncertRule": "Horizontal range is identical for complementary projection angles theta and (90 - theta) at the same initial speed.",
+        "authorNuance": "HCV Ch 3: Although ranges are equal for theta and 90-theta, maximum heights and times of flight are strictly unequal.",
+        "pyqBadge": "High Yield | PYQ: 2017, 2020, 2023"
+      },
+      "locales": {
+        "en": {
+          "title": "Horizontal Range and Complementary Angles",
+          "narration": "Welcome to Projectile Motion. Today we master Horizontal Range and Complementary Angles. According to NCERT: Horizontal range is identical for complementary projection angles theta and (90 - theta) at the same initial speed. The primary formula is: R = (v naught squared * sin(2θ)) / g. Notice this crucial insight: HCV Ch 3: Although ranges are equal for theta and 90-theta, maximum heights and times of flight are strictly unequal. Pay special attention to this NEET trap point: Assuming time of flight and maximum height are also equal when ranges are equal for complementary angles. Keep this core relationship firmly in mind to secure top marks in NEET.",
+          "trapPoint": "Assuming time of flight and maximum height are also equal when ranges are equal for complementary angles.",
+          "pyqBadge": "High Yield | PYQ: 2017, 2020, 2023"
+        },
+        "hi": {
+          "title": "Horizontal Range and Complementary Angles",
+          "narration": "Projectile Motion में आपका स्वागत है। आज हम समझेंगे: Horizontal Range and Complementary Angles। एनसीईआरटी के अनुसार: Horizontal range is identical for complementary projection angles theta and (90 - theta) at the same initial speed. इसका मुख्य सूत्र है: R = (v_0^2 * sin(2θ)) / g। विशेष ध्यान देने योग्य बात: HCV Ch 3: Although ranges are equal for theta and 90-theta, maximum heights and times of flight are strictly unequal. नीट परीक्षा की मुख्य भूल या ट्रैप पॉइंट: Assuming time of flight and maximum height are also equal when ranges are equal for complementary angles. इस महत्वपूर्ण संबंध को हमेशा याद रखें।",
+          "trapPoint": "Assuming time of flight and maximum height are also equal when ranges are equal for complementary angles.",
+          "pyqBadge": "उच्च अंक | विगत वर्ष: 2017, 2020, 2023"
+        },
+        "ta": {
+          "title": "Horizontal Range and Complementary Angles",
+          "narration": "Projectile Motion பகுதிக்கு உங்களை வரவேற்கிறோம். இன்று நாம் Horizontal Range and Complementary Angles பற்றிய அடிப்படைக் கருத்தைக் காண்போம். என்சிஇஆர்டி விதிப்படி: Horizontal range is identical for complementary projection angles theta and (90 - theta) at the same initial speed. இதன் முதன்மைச் சூத்திரம்: R = (v_0^2 * sin(2θ)) / g. முக்கியமாக கவனிக்க வேண்டிய குறிப்பு: HCV Ch 3: Although ranges are equal for theta and 90-theta, maximum heights and times of flight are strictly unequal. நீட் தேர்வில் மாணவர்கள் செய்யும் பொதுவான தவறு அல்லது பொறி: Assuming time of flight and maximum height are also equal when ranges are equal for complementary angles. இந்த முக்கிய சமன்பாட்டை மனதில் உறுதிப்படுத்திக் கொள்ளுங்கள்.",
+          "trapPoint": "Assuming time of flight and maximum height are also equal when ranges are equal for complementary angles.",
+          "pyqBadge": "முக்கிய வினா | PYQ: 2017, 2020, 2023"
+        }
+      }
+    },
+    {
+      "videoId": "P11-C04-T02-V04",
+      "prompt_version": "v1",
+      "serialTitle": "Equation of Trajectory",
+      "subject": "Physics",
+      "grade": 11,
+      "templateName": "FormulaWithGraph",
+      "dimension": "2d",
+      "beats": [
+        {
+          "id": "settle",
+          "tier": "settle",
+          "repeat": 1
+        },
+        {
+          "id": "hook",
+          "tier": "context",
+          "repeat": 1
+        },
+        {
+          "id": "concept",
+          "tier": "critical",
+          "repeat": 2
+        },
+        {
+          "id": "trap",
+          "tier": "critical",
+          "repeat": 1
+        },
+        {
+          "id": "capsule",
+          "tier": "standard",
+          "repeat": 1
+        },
+        {
+          "id": "release",
+          "tier": "release",
+          "repeat": 1
+        }
+      ],
+      "parameters": {
+        "latexFormula": "y = x\\tan\\theta - \\frac{gx^2}{2v_0^2\\cos^2\\theta}",
+        "plainFormula": "y = x*tan(θ) - (g*x^2) / (2*v_0^2*cos^2(θ))",
+        "trapWarning": "Confusing tan(theta) factor with cot(theta) when comparing experimental trajectory equations.",
+        "graphPlot": "3*x - 0.5*x**2",
+        "xRange": [
+          0,
+          6
+        ],
+        "yRange": [
+          0,
+          5
+        ],
+        "ncertCitation": "NCERT Class 11 Part 1, Ch 4, Page 77",
+        "ncertRule": "The trajectory of a projectile is parabolic in nature, relating vertical coordinate y to horizontal coordinate x.",
+        "authorNuance": "HCV Ch 3: Alternative formulation y = x*tan(theta)*(1 - x/R) simplifies range-based NEET problems instantly.",
+        "pyqBadge": "High Yield | PYQ: 2018, 2022, 2025"
+      },
+      "locales": {
+        "en": {
+          "title": "Equation of Trajectory",
+          "narration": "Welcome to Projectile Motion. Today we master Equation of Trajectory. According to NCERT: The trajectory of a projectile is parabolic in nature, relating vertical coordinate y to horizontal coordinate x. The primary formula is: y = x*tan(θ) - (g*x^2) / (2*v naught squared*cos^2(θ)). Notice this crucial insight: HCV Ch 3: Alternative formulation y = x*tan(theta)*(1 - x/R) simplifies range-based NEET problems instantly. Pay special attention to this NEET trap point: Confusing tan(theta) factor with cot(theta) when comparing experimental trajectory equations. Keep this core relationship firmly in mind to secure top marks in NEET.",
+          "trapPoint": "Confusing tan(theta) factor with cot(theta) when comparing experimental trajectory equations.",
+          "pyqBadge": "High Yield | PYQ: 2018, 2022, 2025"
+        },
+        "hi": {
+          "title": "Equation of Trajectory",
+          "narration": "Projectile Motion में आपका स्वागत है। आज हम समझेंगे: Equation of Trajectory। एनसीईआरटी के अनुसार: The trajectory of a projectile is parabolic in nature, relating vertical coordinate y to horizontal coordinate x. इसका मुख्य सूत्र है: y = x*tan(θ) - (g*x^2) / (2*v_0^2*cos^2(θ))। विशेष ध्यान देने योग्य बात: HCV Ch 3: Alternative formulation y = x*tan(theta)*(1 - x/R) simplifies range-based NEET problems instantly. नीट परीक्षा की मुख्य भूल या ट्रैप पॉइंट: Confusing tan(theta) factor with cot(theta) when comparing experimental trajectory equations. इस महत्वपूर्ण संबंध को हमेशा याद रखें।",
+          "trapPoint": "Confusing tan(theta) factor with cot(theta) when comparing experimental trajectory equations.",
+          "pyqBadge": "उच्च अंक | विगत वर्ष: 2018, 2022, 2025"
+        },
+        "ta": {
+          "title": "Equation of Trajectory",
+          "narration": "Projectile Motion பகுதிக்கு உங்களை வரவேற்கிறோம். இன்று நாம் Equation of Trajectory பற்றிய அடிப்படைக் கருத்தைக் காண்போம். என்சிஇஆர்டி விதிப்படி: The trajectory of a projectile is parabolic in nature, relating vertical coordinate y to horizontal coordinate x. இதன் முதன்மைச் சூத்திரம்: y = x*tan(θ) - (g*x^2) / (2*v_0^2*cos^2(θ)). முக்கியமாக கவனிக்க வேண்டிய குறிப்பு: HCV Ch 3: Alternative formulation y = x*tan(theta)*(1 - x/R) simplifies range-based NEET problems instantly. நீட் தேர்வில் மாணவர்கள் செய்யும் பொதுவான தவறு அல்லது பொறி: Confusing tan(theta) factor with cot(theta) when comparing experimental trajectory equations. இந்த முக்கிய சமன்பாட்டை மனதில் உறுதிப்படுத்திக் கொள்ளுங்கள்.",
+          "trapPoint": "Confusing tan(theta) factor with cot(theta) when comparing experimental trajectory equations.",
+          "pyqBadge": "முக்கிய வினா | PYQ: 2018, 2022, 2025"
+        }
+      }
+    },
+    {
+      "videoId": "P11-C04-T03-V01",
+      "prompt_version": "v1",
+      "serialTitle": "Centripetal Acceleration",
+      "subject": "Physics",
+      "grade": 11,
+      "templateName": "VectorDiagram",
+      "dimension": "2d",
+      "beats": [
+        {
+          "id": "settle",
+          "tier": "settle",
+          "repeat": 1
+        },
+        {
+          "id": "hook",
+          "tier": "context",
+          "repeat": 1
+        },
+        {
+          "id": "concept",
+          "tier": "critical",
+          "repeat": 2
+        },
+        {
+          "id": "trap",
+          "tier": "critical",
+          "repeat": 1
+        },
+        {
+          "id": "capsule",
+          "tier": "standard",
+          "repeat": 1
+        },
+        {
+          "id": "release",
+          "tier": "release",
+          "repeat": 1
+        }
+      ],
+      "parameters": {
+        "latexFormula": "a_c = \\frac{v^2}{r} = \\omega^2 r",
+        "plainFormula": "a_c = v^2 / r = omega^2 * r",
+        "trapWarning": "Assuming acceleration is zero because speed is constant in uniform circular motion.",
+        "graphPlot": "3*x - 0.5*x**2",
+        "xRange": [
+          0,
+          6
+        ],
+        "yRange": [
+          0,
+          5
+        ],
+        "ncertCitation": "NCERT Class 11 Part 1, Ch 4, Page 81",
+        "ncertRule": "Acceleration in uniform circular motion always points radially inward toward the center of the circle.",
+        "authorNuance": "HCV Ch 7: Speed is constant but velocity continuously changes direction; therefore acceleration is non-zero and perpendicular to velocity.",
+        "pyqBadge": "High Yield | PYQ: 2016, 2019, 2022",
+        "vectorMagnitudes": [
+          5,
+          4,
+          3
+        ],
+        "vectorAngles": [
+          0,
+          90,
+          45
+        ]
+      },
+      "locales": {
+        "en": {
+          "title": "Centripetal Acceleration",
+          "narration": "Welcome to Uniform Circular Motion. Today we master Centripetal Acceleration. According to NCERT: Acceleration in uniform circular motion always points radially inward toward the center of the circle. The primary formula is: a_c = v^2 / r = omega^2 * r. Notice this crucial insight: HCV Ch 7: Speed is constant but velocity continuously changes direction; therefore acceleration is non-zero and perpendicular to velocity. Pay special attention to this NEET trap point: Assuming acceleration is zero because speed is constant in uniform circular motion. Keep this core relationship firmly in mind to secure top marks in NEET.",
+          "trapPoint": "Assuming acceleration is zero because speed is constant in uniform circular motion.",
+          "pyqBadge": "High Yield | PYQ: 2016, 2019, 2022"
+        },
+        "hi": {
+          "title": "Centripetal Acceleration",
+          "narration": "Uniform Circular Motion में आपका स्वागत है। आज हम समझेंगे: Centripetal Acceleration। एनसीईआरटी के अनुसार: Acceleration in uniform circular motion always points radially inward toward the center of the circle. इसका मुख्य सूत्र है: a_c = v^2 / r = omega^2 * r। विशेष ध्यान देने योग्य बात: HCV Ch 7: Speed is constant but velocity continuously changes direction; therefore acceleration is non-zero and perpendicular to velocity. नीट परीक्षा की मुख्य भूल या ट्रैप पॉइंट: Assuming acceleration is zero because speed is constant in uniform circular motion. इस महत्वपूर्ण संबंध को हमेशा याद रखें।",
+          "trapPoint": "Assuming acceleration is zero because speed is constant in uniform circular motion.",
+          "pyqBadge": "उच्च अंक | विगत वर्ष: 2016, 2019, 2022"
+        },
+        "ta": {
+          "title": "Centripetal Acceleration",
+          "narration": "Uniform Circular Motion பகுதிக்கு உங்களை வரவேற்கிறோம். இன்று நாம் Centripetal Acceleration பற்றிய அடிப்படைக் கருத்தைக் காண்போம். என்சிஇஆர்டி விதிப்படி: Acceleration in uniform circular motion always points radially inward toward the center of the circle. இதன் முதன்மைச் சூத்திரம்: a_c = v^2 / r = omega^2 * r. முக்கியமாக கவனிக்க வேண்டிய குறிப்பு: HCV Ch 7: Speed is constant but velocity continuously changes direction; therefore acceleration is non-zero and perpendicular to velocity. நீட் தேர்வில் மாணவர்கள் செய்யும் பொதுவான தவறு அல்லது பொறி: Assuming acceleration is zero because speed is constant in uniform circular motion. இந்த முக்கிய சமன்பாட்டை மனதில் உறுதிப்படுத்திக் கொள்ளுங்கள்.",
+          "trapPoint": "Assuming acceleration is zero because speed is constant in uniform circular motion.",
+          "pyqBadge": "முக்கிய வினா | PYQ: 2016, 2019, 2022"
+        }
+      }
+    },
+    {
+      "videoId": "P11-C02-T01-V01",
+      "prompt_version": "v1",
+      "serialTitle": "Position-Time Graphs",
+      "subject": "Physics",
+      "grade": 11,
+      "templateName": "FormulaWithGraph",
+      "dimension": "2d",
+      "seq_chapter": 1,
+      "total_chapter_videos": 14,
+      "seq_subject": 9,
+      "total_subject_videos": 234,
+      "seq_global": 9,
+      "total_global_videos": 665,
+      "prev_video_id": null,
+      "next_video_id": "P11-C02-T02-V01",
+      "next_video_title": "Resolution of Vectors",
+      "beats": [
+        {
+          "id": "settle",
+          "tier": "settle",
+          "repeat": 1
+        },
+        {
+          "id": "hook",
+          "tier": "context",
+          "repeat": 1
+        },
+        {
+          "id": "concept",
+          "tier": "critical",
+          "repeat": 2
+        },
+        {
+          "id": "trap",
+          "tier": "critical",
+          "repeat": 1
+        },
+        {
+          "id": "capsule",
+          "tier": "standard",
+          "repeat": 1
+        },
+        {
+          "id": "release",
+          "tier": "release",
+          "repeat": 1
+        }
+      ],
+      "parameters": {
+        "latexFormula": "v = \\frac{dx}{dt}",
+        "plainFormula": "v = dx / dt",
+        "trapWarning": "Confusing slope of x-t graph (velocity) with slope of v-t graph (acceleration).",
+        "graphPlot": "3*x - 0.5*x**2",
+        "xRange": [
+          0,
+          6
+        ],
+        "yRange": [
+          0,
+          5
+        ],
+        "ncertCitation": "NCERT Class 11 Part 1, Ch 3, Page 43",
+        "ncertRule": "Slope of the position-time curve represents instantaneous velocity.",
+        "authorNuance": "HCV Ch 3: Negative slope indicates velocity in opposite direction, not necessarily deceleration.",
+        "pyqBadge": "High Yield | PYQ: 2016, 2019, 2021",
+        "neetUnit": "UNIT 2: KINEMATICS",
+        "seqChapterStr": "Video 1 of 14 in Kinematics"
+      },
+      "locales": {
+        "en": {
+          "title": "Position-Time Graphs",
+          "narration": "Welcome to Straight Line Motion. Today we master Position-Time Graphs. According to NCERT: Slope of the position-time curve represents instantaneous velocity. The primary formula is: v = dx / dt. Notice this crucial insight: HCV Ch 3: Negative slope indicates velocity in opposite direction, not necessarily deceleration. Pay special attention to this NEET trap point: Confusing slope of x-t graph (velocity) with slope of v-t graph (acceleration). Keep this core relationship firmly in mind to secure top marks in NEET. Up next in video 2: Resolution of Vectors.",
+          "trapPoint": "Confusing slope of x-t graph (velocity) with slope of v-t graph (acceleration).",
+          "pyqBadge": "High Yield | PYQ: 2016, 2019, 2021"
+        },
+        "hi": {
+          "title": "Position-Time Graphs",
+          "narration": "Straight Line Motion में आपका स्वागत है। आज हम समझेंगे: Position-Time Graphs। एनसीईआरटी के अनुसार: Slope of the position-time curve represents instantaneous velocity. इसका मुख्य सूत्र है: v = dx / dt। विशेष ध्यान देने योग्य बात: HCV Ch 3: Negative slope indicates velocity in opposite direction, not necessarily deceleration. नीट परीक्षा की मुख्य भूल या ट्रैप पॉइंट: Confusing slope of x-t graph (velocity) with slope of v-t graph (acceleration). इस महत्वपूर्ण संबंध को हमेशा याद रखें। अगला वीडियो: Resolution of Vectors।",
+          "trapPoint": "Confusing slope of x-t graph (velocity) with slope of v-t graph (acceleration).",
+          "pyqBadge": "उच्च अंक | विगत वर्ष: 2016, 2019, 2021"
+        },
+        "ta": {
+          "title": "Position-Time Graphs",
+          "narration": "Straight Line Motion பகுதிக்கு உங்களை வரவேற்கிறோம். இன்று நாம் Position-Time Graphs பற்றிய அடிப்படைக் கருத்தைக் காண்போம். என்சிஇஆர்டி விதிப்படி: Slope of the position-time curve represents instantaneous velocity. இதன் முதன்மைச் சூத்திரம்: v = dx / dt. முக்கியமாக கவனிக்க வேண்டிய குறிப்பு: HCV Ch 3: Negative slope indicates velocity in opposite direction, not necessarily deceleration. நீட் தேர்வில் மாணவர்கள் செய்யும் பொதுவான தவறு அல்லது பொறி: Confusing slope of x-t graph (velocity) with slope of v-t graph (acceleration). இந்த முக்கிய சமன்பாட்டை மனதில் உறுதிப்படுத்திக் கொள்ளுங்கள். அடுத்த காணொளி: Resolution of Vectors.",
+          "trapPoint": "Confusing slope of x-t graph (velocity) with slope of v-t graph (acceleration).",
+          "pyqBadge": "முக்கிய வினா | PYQ: 2016, 2019, 2021"
+        }
+      }
+    },
+    {
+      "videoId": "P11-C02-T02-V01",
+      "prompt_version": "v1",
+      "serialTitle": "Resolution of Vectors",
+      "subject": "Physics",
+      "grade": 11,
+      "templateName": "VectorDiagram",
+      "dimension": "2d",
+      "seq_chapter": 2,
+      "total_chapter_videos": 14,
+      "seq_subject": 10,
+      "total_subject_videos": 234,
+      "seq_global": 10,
+      "total_global_videos": 665,
+      "prev_video_id": null,
+      "next_video_id": "P11-C02-T03-V01",
+      "next_video_title": "Time of Flight",
+      "beats": [
+        {
+          "id": "settle",
+          "tier": "settle",
+          "repeat": 1
+        },
+        {
+          "id": "hook",
+          "tier": "context",
+          "repeat": 1
+        },
+        {
+          "id": "concept",
+          "tier": "critical",
+          "repeat": 2
+        },
+        {
+          "id": "trap",
+          "tier": "critical",
+          "repeat": 1
+        },
+        {
+          "id": "capsule",
+          "tier": "standard",
+          "repeat": 1
+        },
+        {
+          "id": "release",
+          "tier": "release",
+          "repeat": 1
+        }
+      ],
+      "parameters": {
+        "latexFormula": "\\vec{A} = A_x\\hat{i} + A_y\\hat{j}",
+        "plainFormula": "A = Ax i + Ay j",
+        "trapWarning": "Assigning cosine to vertical axis when angle was given with horizontal.",
+        "graphPlot": "3*x - 0.5*x**2",
+        "xRange": [
+          0,
+          6
+        ],
+        "yRange": [
+          0,
+          5
+        ],
+        "ncertCitation": "NCERT Class 11 Part 1, Ch 4, Page 67",
+        "ncertRule": "Any 2D vector can be resolved into two mutually perpendicular orthogonal components.",
+        "authorNuance": "HCV Ch 2: Components of a vector behave independently along x and y coordinates.",
+        "pyqBadge": "High Yield | PYQ: 2017, 2020, 2023",
+        "neetUnit": "UNIT 2: KINEMATICS",
+        "seqChapterStr": "Video 2 of 14 in Kinematics",
+        "vectorMagnitudes": [
+          5,
+          4,
+          3
+        ],
+        "vectorAngles": [
+          0,
+          90,
+          45
+        ]
+      },
+      "locales": {
+        "en": {
+          "title": "Resolution of Vectors",
+          "narration": "Welcome to Vectors. Today we master Resolution of Vectors. According to NCERT: Any 2D vector can be resolved into two mutually perpendicular orthogonal components. The primary formula is: A = Ax i + Ay j. Notice this crucial insight: HCV Ch 2: Components of a vector behave independently along x and y coordinates. Pay special attention to this NEET trap point: Assigning cosine to vertical axis when angle was given with horizontal. Keep this core relationship firmly in mind to secure top marks in NEET. Up next in video 3: Time of Flight.",
+          "trapPoint": "Assigning cosine to vertical axis when angle was given with horizontal.",
+          "pyqBadge": "High Yield | PYQ: 2017, 2020, 2023"
+        },
+        "hi": {
+          "title": "Resolution of Vectors",
+          "narration": "Vectors में आपका स्वागत है। आज हम समझेंगे: Resolution of Vectors। एनसीईआरटी के अनुसार: Any 2D vector can be resolved into two mutually perpendicular orthogonal components. इसका मुख्य सूत्र है: A = Ax i + Ay j। विशेष ध्यान देने योग्य बात: HCV Ch 2: Components of a vector behave independently along x and y coordinates. नीट परीक्षा की मुख्य भूल या ट्रैप पॉइंट: Assigning cosine to vertical axis when angle was given with horizontal. इस महत्वपूर्ण संबंध को हमेशा याद रखें। अगला वीडियो: Time of Flight।",
+          "trapPoint": "Assigning cosine to vertical axis when angle was given with horizontal.",
+          "pyqBadge": "उच्च अंक | विगत वर्ष: 2017, 2020, 2023"
+        },
+        "ta": {
+          "title": "Resolution of Vectors",
+          "narration": "Vectors பகுதிக்கு உங்களை வரவேற்கிறோம். இன்று நாம் Resolution of Vectors பற்றிய அடிப்படைக் கருத்தைக் காண்போம். என்சிஇஆர்டி விதிப்படி: Any 2D vector can be resolved into two mutually perpendicular orthogonal components. இதன் முதன்மைச் சூத்திரம்: A = Ax i + Ay j. முக்கியமாக கவனிக்க வேண்டிய குறிப்பு: HCV Ch 2: Components of a vector behave independently along x and y coordinates. நீட் தேர்வில் மாணவர்கள் செய்யும் பொதுவான தவறு அல்லது பொறி: Assigning cosine to vertical axis when angle was given with horizontal. இந்த முக்கிய சமன்பாட்டை மனதில் உறுதிப்படுத்திக் கொள்ளுங்கள். அடுத்த காணொளி: Time of Flight.",
+          "trapPoint": "Assigning cosine to vertical axis when angle was given with horizontal.",
+          "pyqBadge": "முக்கிய வினா | PYQ: 2017, 2020, 2023"
+        }
+      }
+    },
+    {
+      "videoId": "P11-C02-T03-V01",
+      "prompt_version": "v1",
+      "serialTitle": "Time of Flight",
+      "subject": "Physics",
+      "grade": 11,
+      "templateName": "FormulaWithGraph",
+      "dimension": "2d",
+      "seq_chapter": 3,
+      "total_chapter_videos": 14,
+      "seq_subject": 11,
+      "total_subject_videos": 234,
+      "seq_global": 11,
+      "total_global_videos": 665,
+      "prev_video_id": null,
+      "next_video_id": "P11-C02-T03-V02",
+      "next_video_title": "The Max Height Arc",
+      "beats": [
+        {
+          "id": "settle",
+          "tier": "settle",
+          "repeat": 1
+        },
+        {
+          "id": "hook",
+          "tier": "context",
+          "repeat": 1
+        },
+        {
+          "id": "concept",
+          "tier": "critical",
+          "repeat": 2
+        },
+        {
+          "id": "trap",
+          "tier": "critical",
+          "repeat": 1
+        },
+        {
+          "id": "capsule",
+          "tier": "standard",
+          "repeat": 1
+        },
+        {
+          "id": "release",
+          "tier": "release",
+          "repeat": 1
+        }
+      ],
+      "parameters": {
+        "latexFormula": "T = \\frac{2v_0 \\sin\\theta}{g}",
+        "plainFormula": "T = (2 * v_0 * sin(θ)) / g",
+        "trapWarning": "Question specifies angle with vertical axis instead of horizontal (swapping sin with cos).",
+        "graphPlot": "3*x - 0.5*x**2",
+        "xRange": [
+          0,
+          6
+        ],
+        "yRange": [
+          0,
+          5
+        ],
+        "ncertCitation": "NCERT Class 11 Part 1, Ch 4, Page 78",
+        "ncertRule": "Time of flight is determined purely by the vertical component of initial velocity.",
+        "authorNuance": "HCV Ch 3: The horizontal velocity component vx has zero acceleration and does not affect the time spent in the air.",
+        "pyqBadge": "High Yield | PYQ: 2016, 2018, 2021",
+        "neetUnit": "UNIT 2: KINEMATICS",
+        "seqChapterStr": "Video 3 of 14 in Kinematics"
+      },
+      "locales": {
+        "en": {
+          "title": "Time of Flight",
+          "narration": "Welcome to Projectile Motion. Today we master Time of Flight. According to NCERT: Time of flight is determined purely by the vertical component of initial velocity. The primary formula is: T = (2 * v naught squared * sin(θ)) / g. Notice this crucial insight: HCV Ch 3: The horizontal velocity component vx has zero acceleration and does not affect the time spent in the air. Pay special attention to this NEET trap point: Question specifies angle with vertical axis instead of horizontal (swapping sin with cos). Keep this core relationship firmly in mind to secure top marks in NEET. Up next in video 4: The Max Height Arc.",
+          "trapPoint": "Question specifies angle with vertical axis instead of horizontal (swapping sin with cos).",
+          "pyqBadge": "High Yield | PYQ: 2016, 2018, 2021"
+        },
+        "hi": {
+          "title": "Time of Flight",
+          "narration": "Projectile Motion में आपका स्वागत है। आज हम समझेंगे: Time of Flight। एनसीईआरटी के अनुसार: Time of flight is determined purely by the vertical component of initial velocity. इसका मुख्य सूत्र है: T = (2 * v_0 * sin(θ)) / g। विशेष ध्यान देने योग्य बात: HCV Ch 3: The horizontal velocity component vx has zero acceleration and does not affect the time spent in the air. नीट परीक्षा की मुख्य भूल या ट्रैप पॉइंट: Question specifies angle with vertical axis instead of horizontal (swapping sin with cos). इस महत्वपूर्ण संबंध को हमेशा याद रखें। अगला वीडियो: The Max Height Arc।",
+          "trapPoint": "Question specifies angle with vertical axis instead of horizontal (swapping sin with cos).",
+          "pyqBadge": "उच्च अंक | विगत वर्ष: 2016, 2018, 2021"
+        },
+        "ta": {
+          "title": "Time of Flight",
+          "narration": "Projectile Motion பகுதிக்கு உங்களை வரவேற்கிறோம். இன்று நாம் Time of Flight பற்றிய அடிப்படைக் கருத்தைக் காண்போம். என்சிஇஆர்டி விதிப்படி: Time of flight is determined purely by the vertical component of initial velocity. இதன் முதன்மைச் சூத்திரம்: T = (2 * v_0 * sin(θ)) / g. முக்கியமாக கவனிக்க வேண்டிய குறிப்பு: HCV Ch 3: The horizontal velocity component vx has zero acceleration and does not affect the time spent in the air. நீட் தேர்வில் மாணவர்கள் செய்யும் பொதுவான தவறு அல்லது பொறி: Question specifies angle with vertical axis instead of horizontal (swapping sin with cos). இந்த முக்கிய சமன்பாட்டை மனதில் உறுதிப்படுத்திக் கொள்ளுங்கள். அடுத்த காணொளி: The Max Height Arc.",
+          "trapPoint": "Question specifies angle with vertical axis instead of horizontal (swapping sin with cos).",
+          "pyqBadge": "முக்கிய வினா | PYQ: 2016, 2018, 2021"
+        }
+      }
+    },
+    {
+      "videoId": "P11-C02-T03-V02",
+      "prompt_version": "v1",
+      "serialTitle": "The Max Height Arc",
+      "subject": "Physics",
+      "grade": 11,
+      "templateName": "FormulaWithGraph",
+      "dimension": "2d",
+      "seq_chapter": 4,
+      "total_chapter_videos": 14,
+      "seq_subject": 12,
+      "total_subject_videos": 234,
+      "seq_global": 12,
+      "total_global_videos": 665,
+      "prev_video_id": null,
+      "next_video_id": "P11-C02-T03-V03",
+      "next_video_title": "Horizontal Range and Complementary Angles",
+      "beats": [
+        {
+          "id": "settle",
+          "tier": "settle",
+          "repeat": 1
+        },
+        {
+          "id": "hook",
+          "tier": "context",
+          "repeat": 1
+        },
+        {
+          "id": "concept",
+          "tier": "critical",
+          "repeat": 2
+        },
+        {
+          "id": "trap",
+          "tier": "critical",
+          "repeat": 1
+        },
+        {
+          "id": "capsule",
+          "tier": "standard",
+          "repeat": 1
+        },
+        {
+          "id": "release",
+          "tier": "release",
+          "repeat": 1
+        }
+      ],
+      "parameters": {
+        "latexFormula": "H_{\\max} = \\frac{v_0^2 \\sin^2\\theta}{2g}",
+        "plainFormula": "H_max = (v_0^2 * sin^2(θ)) / (2g)",
+        "trapWarning": "Confusing total velocity being zero with only vertical velocity component being zero at top of trajectory.",
+        "graphPlot": "3*x - 0.5*x**2",
+        "xRange": [
+          0,
+          6
+        ],
+        "yRange": [
+          0,
+          5
+        ],
+        "ncertCitation": "NCERT Class 11 Part 1, Ch 4, Page 78",
+        "ncertRule": "At maximum height, the vertical component of velocity is zero while horizontal velocity remains v0*cos(theta).",
+        "authorNuance": "HCV Ch 3: Speed at the top is not zero; it equals v0*cos(theta). Kinetic energy is minimum but non-zero.",
+        "pyqBadge": "High Yield | PYQ: 2017, 2019, 2024",
+        "neetUnit": "UNIT 2: KINEMATICS",
+        "seqChapterStr": "Video 4 of 14 in Kinematics"
+      },
+      "locales": {
+        "en": {
+          "title": "The Max Height Arc",
+          "narration": "Welcome to Projectile Motion. Today we master The Max Height Arc. According to NCERT: At maximum height, the vertical component of velocity is zero while horizontal velocity remains v0*cos(theta). The primary formula is: H max = (v naught squared * sin^2(θ)) / (2g). Notice this crucial insight: HCV Ch 3: Speed at the top is not zero; it equals v0*cos(theta). Kinetic energy is minimum but non-zero. Pay special attention to this NEET trap point: Confusing total velocity being zero with only vertical velocity component being zero at top of trajectory. Keep this core relationship firmly in mind to secure top marks in NEET. Up next in video 5: Horizontal Range and Complementary Angles.",
+          "trapPoint": "Confusing total velocity being zero with only vertical velocity component being zero at top of trajectory.",
+          "pyqBadge": "High Yield | PYQ: 2017, 2019, 2024"
+        },
+        "hi": {
+          "title": "The Max Height Arc",
+          "narration": "Projectile Motion में आपका स्वागत है। आज हम समझेंगे: The Max Height Arc। एनसीईआरटी के अनुसार: At maximum height, the vertical component of velocity is zero while horizontal velocity remains v0*cos(theta). इसका मुख्य सूत्र है: H_max = (v_0^2 * sin^2(θ)) / (2g)। विशेष ध्यान देने योग्य बात: HCV Ch 3: Speed at the top is not zero; it equals v0*cos(theta). Kinetic energy is minimum but non-zero. नीट परीक्षा की मुख्य भूल या ट्रैप पॉइंट: Confusing total velocity being zero with only vertical velocity component being zero at top of trajectory. इस महत्वपूर्ण संबंध को हमेशा याद रखें। अगला वीडियो: Horizontal Range and Complementary Angles।",
+          "trapPoint": "Confusing total velocity being zero with only vertical velocity component being zero at top of trajectory.",
+          "pyqBadge": "उच्च अंक | विगत वर्ष: 2017, 2019, 2024"
+        },
+        "ta": {
+          "title": "The Max Height Arc",
+          "narration": "Projectile Motion பகுதிக்கு உங்களை வரவேற்கிறோம். இன்று நாம் The Max Height Arc பற்றிய அடிப்படைக் கருத்தைக் காண்போம். என்சிஇஆர்டி விதிப்படி: At maximum height, the vertical component of velocity is zero while horizontal velocity remains v0*cos(theta). இதன் முதன்மைச் சூத்திரம்: H_max = (v_0^2 * sin^2(θ)) / (2g). முக்கியமாக கவனிக்க வேண்டிய குறிப்பு: HCV Ch 3: Speed at the top is not zero; it equals v0*cos(theta). Kinetic energy is minimum but non-zero. நீட் தேர்வில் மாணவர்கள் செய்யும் பொதுவான தவறு அல்லது பொறி: Confusing total velocity being zero with only vertical velocity component being zero at top of trajectory. இந்த முக்கிய சமன்பாட்டை மனதில் உறுதிப்படுத்திக் கொள்ளுங்கள். அடுத்த காணொளி: Horizontal Range and Complementary Angles.",
+          "trapPoint": "Confusing total velocity being zero with only vertical velocity component being zero at top of trajectory.",
+          "pyqBadge": "முக்கிய வினா | PYQ: 2017, 2019, 2024"
+        }
+      }
+    },
+    {
+      "videoId": "P11-C02-T03-V03",
+      "prompt_version": "v1",
+      "serialTitle": "Horizontal Range and Complementary Angles",
+      "subject": "Physics",
+      "grade": 11,
+      "templateName": "FormulaWithGraph",
+      "dimension": "2d",
+      "seq_chapter": 5,
+      "total_chapter_videos": 14,
+      "seq_subject": 13,
+      "total_subject_videos": 234,
+      "seq_global": 13,
+      "total_global_videos": 665,
+      "prev_video_id": null,
+      "next_video_id": "P11-C02-T03-V04",
+      "next_video_title": "Equation of Trajectory",
+      "beats": [
+        {
+          "id": "settle",
+          "tier": "settle",
+          "repeat": 1
+        },
+        {
+          "id": "hook",
+          "tier": "context",
+          "repeat": 1
+        },
+        {
+          "id": "concept",
+          "tier": "critical",
+          "repeat": 2
+        },
+        {
+          "id": "trap",
+          "tier": "critical",
+          "repeat": 1
+        },
+        {
+          "id": "capsule",
+          "tier": "standard",
+          "repeat": 1
+        },
+        {
+          "id": "release",
+          "tier": "release",
+          "repeat": 1
+        }
+      ],
+      "parameters": {
+        "latexFormula": "R = \\frac{v_0^2 \\sin(2\\theta)}{g}",
+        "plainFormula": "R = (v_0^2 * sin(2θ)) / g",
+        "trapWarning": "Assuming time of flight and maximum height are also equal when ranges are equal for complementary angles.",
+        "graphPlot": "3*x - 0.5*x**2",
+        "xRange": [
+          0,
+          6
+        ],
+        "yRange": [
+          0,
+          5
+        ],
+        "ncertCitation": "NCERT Class 11 Part 1, Ch 4, Page 79",
+        "ncertRule": "Horizontal range is identical for complementary projection angles theta and (90 - theta) at the same initial speed.",
+        "authorNuance": "HCV Ch 3: Although ranges are equal for theta and 90-theta, maximum heights and times of flight are strictly unequal.",
+        "pyqBadge": "High Yield | PYQ: 2017, 2020, 2023",
+        "neetUnit": "UNIT 2: KINEMATICS",
+        "seqChapterStr": "Video 5 of 14 in Kinematics"
+      },
+      "locales": {
+        "en": {
+          "title": "Horizontal Range and Complementary Angles",
+          "narration": "Welcome to Projectile Motion. Today we master Horizontal Range and Complementary Angles. According to NCERT: Horizontal range is identical for complementary projection angles theta and (90 - theta) at the same initial speed. The primary formula is: R = (v naught squared * sin(2θ)) / g. Notice this crucial insight: HCV Ch 3: Although ranges are equal for theta and 90-theta, maximum heights and times of flight are strictly unequal. Pay special attention to this NEET trap point: Assuming time of flight and maximum height are also equal when ranges are equal for complementary angles. Keep this core relationship firmly in mind to secure top marks in NEET. Up next in video 6: Equation of Trajectory.",
+          "trapPoint": "Assuming time of flight and maximum height are also equal when ranges are equal for complementary angles.",
+          "pyqBadge": "High Yield | PYQ: 2017, 2020, 2023"
+        },
+        "hi": {
+          "title": "Horizontal Range and Complementary Angles",
+          "narration": "Projectile Motion में आपका स्वागत है। आज हम समझेंगे: Horizontal Range and Complementary Angles। एनसीईआरटी के अनुसार: Horizontal range is identical for complementary projection angles theta and (90 - theta) at the same initial speed. इसका मुख्य सूत्र है: R = (v_0^2 * sin(2θ)) / g। विशेष ध्यान देने योग्य बात: HCV Ch 3: Although ranges are equal for theta and 90-theta, maximum heights and times of flight are strictly unequal. नीट परीक्षा की मुख्य भूल या ट्रैप पॉइंट: Assuming time of flight and maximum height are also equal when ranges are equal for complementary angles. इस महत्वपूर्ण संबंध को हमेशा याद रखें। अगला वीडियो: Equation of Trajectory।",
+          "trapPoint": "Assuming time of flight and maximum height are also equal when ranges are equal for complementary angles.",
+          "pyqBadge": "उच्च अंक | विगत वर्ष: 2017, 2020, 2023"
+        },
+        "ta": {
+          "title": "Horizontal Range and Complementary Angles",
+          "narration": "Projectile Motion பகுதிக்கு உங்களை வரவேற்கிறோம். இன்று நாம் Horizontal Range and Complementary Angles பற்றிய அடிப்படைக் கருத்தைக் காண்போம். என்சிஇஆர்டி விதிப்படி: Horizontal range is identical for complementary projection angles theta and (90 - theta) at the same initial speed. இதன் முதன்மைச் சூத்திரம்: R = (v_0^2 * sin(2θ)) / g. முக்கியமாக கவனிக்க வேண்டிய குறிப்பு: HCV Ch 3: Although ranges are equal for theta and 90-theta, maximum heights and times of flight are strictly unequal. நீட் தேர்வில் மாணவர்கள் செய்யும் பொதுவான தவறு அல்லது பொறி: Assuming time of flight and maximum height are also equal when ranges are equal for complementary angles. இந்த முக்கிய சமன்பாட்டை மனதில் உறுதிப்படுத்திக் கொள்ளுங்கள். அடுத்த காணொளி: Equation of Trajectory.",
+          "trapPoint": "Assuming time of flight and maximum height are also equal when ranges are equal for complementary angles.",
+          "pyqBadge": "முக்கிய வினா | PYQ: 2017, 2020, 2023"
+        }
+      }
+    },
+    {
+      "videoId": "P11-C02-T03-V04",
+      "prompt_version": "v1",
+      "serialTitle": "Equation of Trajectory",
+      "subject": "Physics",
+      "grade": 11,
+      "templateName": "FormulaWithGraph",
+      "dimension": "2d",
+      "seq_chapter": 6,
+      "total_chapter_videos": 14,
+      "seq_subject": 14,
+      "total_subject_videos": 234,
+      "seq_global": 14,
+      "total_global_videos": 665,
+      "prev_video_id": null,
+      "next_video_id": "P11-C02-T04-V01",
+      "next_video_title": "Centripetal Acceleration",
+      "beats": [
+        {
+          "id": "settle",
+          "tier": "settle",
+          "repeat": 1
+        },
+        {
+          "id": "hook",
+          "tier": "context",
+          "repeat": 1
+        },
+        {
+          "id": "concept",
+          "tier": "critical",
+          "repeat": 2
+        },
+        {
+          "id": "trap",
+          "tier": "critical",
+          "repeat": 1
+        },
+        {
+          "id": "capsule",
+          "tier": "standard",
+          "repeat": 1
+        },
+        {
+          "id": "release",
+          "tier": "release",
+          "repeat": 1
+        }
+      ],
+      "parameters": {
+        "latexFormula": "y = x\\tan\\theta - \\frac{gx^2}{2v_0^2\\cos^2\\theta}",
+        "plainFormula": "y = x*tan(θ) - (g*x^2) / (2*v_0^2*cos^2(θ))",
+        "trapWarning": "Confusing tan(theta) factor with cot(theta) when comparing experimental trajectory equations.",
+        "graphPlot": "3*x - 0.5*x**2",
+        "xRange": [
+          0,
+          6
+        ],
+        "yRange": [
+          0,
+          5
+        ],
+        "ncertCitation": "NCERT Class 11 Part 1, Ch 4, Page 77",
+        "ncertRule": "The trajectory of a projectile is parabolic in nature, relating vertical coordinate y to horizontal coordinate x.",
+        "authorNuance": "HCV Ch 3: Alternative formulation y = x*tan(theta)*(1 - x/R) simplifies range-based NEET problems instantly.",
+        "pyqBadge": "High Yield | PYQ: 2018, 2022, 2025",
+        "neetUnit": "UNIT 2: KINEMATICS",
+        "seqChapterStr": "Video 6 of 14 in Kinematics"
+      },
+      "locales": {
+        "en": {
+          "title": "Equation of Trajectory",
+          "narration": "Welcome to Projectile Motion. Today we master Equation of Trajectory. According to NCERT: The trajectory of a projectile is parabolic in nature, relating vertical coordinate y to horizontal coordinate x. The primary formula is: y = x*tan(θ) - (g*x^2) / (2*v naught squared*cos^2(θ)). Notice this crucial insight: HCV Ch 3: Alternative formulation y = x*tan(theta)*(1 - x/R) simplifies range-based NEET problems instantly. Pay special attention to this NEET trap point: Confusing tan(theta) factor with cot(theta) when comparing experimental trajectory equations. Keep this core relationship firmly in mind to secure top marks in NEET. Up next in video 7: Centripetal Acceleration.",
+          "trapPoint": "Confusing tan(theta) factor with cot(theta) when comparing experimental trajectory equations.",
+          "pyqBadge": "High Yield | PYQ: 2018, 2022, 2025"
+        },
+        "hi": {
+          "title": "Equation of Trajectory",
+          "narration": "Projectile Motion में आपका स्वागत है। आज हम समझेंगे: Equation of Trajectory। एनसीईआरटी के अनुसार: The trajectory of a projectile is parabolic in nature, relating vertical coordinate y to horizontal coordinate x. इसका मुख्य सूत्र है: y = x*tan(θ) - (g*x^2) / (2*v_0^2*cos^2(θ))। विशेष ध्यान देने योग्य बात: HCV Ch 3: Alternative formulation y = x*tan(theta)*(1 - x/R) simplifies range-based NEET problems instantly. नीट परीक्षा की मुख्य भूल या ट्रैप पॉइंट: Confusing tan(theta) factor with cot(theta) when comparing experimental trajectory equations. इस महत्वपूर्ण संबंध को हमेशा याद रखें। अगला वीडियो: Centripetal Acceleration।",
+          "trapPoint": "Confusing tan(theta) factor with cot(theta) when comparing experimental trajectory equations.",
+          "pyqBadge": "उच्च अंक | विगत वर्ष: 2018, 2022, 2025"
+        },
+        "ta": {
+          "title": "Equation of Trajectory",
+          "narration": "Projectile Motion பகுதிக்கு உங்களை வரவேற்கிறோம். இன்று நாம் Equation of Trajectory பற்றிய அடிப்படைக் கருத்தைக் காண்போம். என்சிஇஆர்டி விதிப்படி: The trajectory of a projectile is parabolic in nature, relating vertical coordinate y to horizontal coordinate x. இதன் முதன்மைச் சூத்திரம்: y = x*tan(θ) - (g*x^2) / (2*v_0^2*cos^2(θ)). முக்கியமாக கவனிக்க வேண்டிய குறிப்பு: HCV Ch 3: Alternative formulation y = x*tan(theta)*(1 - x/R) simplifies range-based NEET problems instantly. நீட் தேர்வில் மாணவர்கள் செய்யும் பொதுவான தவறு அல்லது பொறி: Confusing tan(theta) factor with cot(theta) when comparing experimental trajectory equations. இந்த முக்கிய சமன்பாட்டை மனதில் உறுதிப்படுத்திக் கொள்ளுங்கள். அடுத்த காணொளி: Centripetal Acceleration.",
+          "trapPoint": "Confusing tan(theta) factor with cot(theta) when comparing experimental trajectory equations.",
+          "pyqBadge": "முக்கிய வினா | PYQ: 2018, 2022, 2025"
+        }
+      }
+    },
+    {
+      "videoId": "P11-C02-T04-V01",
+      "prompt_version": "v1",
+      "serialTitle": "Centripetal Acceleration",
+      "subject": "Physics",
+      "grade": 11,
+      "templateName": "VectorDiagram",
+      "dimension": "2d",
+      "seq_chapter": 7,
+      "total_chapter_videos": 14,
+      "seq_subject": 15,
+      "total_subject_videos": 234,
+      "seq_global": 15,
+      "total_global_videos": 665,
+      "prev_video_id": null,
+      "next_video_id": "P11-C02-T04-V02",
+      "next_video_title": "Banking of Roads",
+      "beats": [
+        {
+          "id": "settle",
+          "tier": "settle",
+          "repeat": 1
+        },
+        {
+          "id": "hook",
+          "tier": "context",
+          "repeat": 1
+        },
+        {
+          "id": "concept",
+          "tier": "critical",
+          "repeat": 2
+        },
+        {
+          "id": "trap",
+          "tier": "critical",
+          "repeat": 1
+        },
+        {
+          "id": "capsule",
+          "tier": "standard",
+          "repeat": 1
+        },
+        {
+          "id": "release",
+          "tier": "release",
+          "repeat": 1
+        }
+      ],
+      "parameters": {
+        "latexFormula": "a_c = \\frac{v^2}{r} = \\omega^2 r",
+        "plainFormula": "a_c = v^2 / r = omega^2 * r",
+        "trapWarning": "Assuming acceleration is zero because speed is constant in uniform circular motion.",
+        "graphPlot": "3*x - 0.5*x**2",
+        "xRange": [
+          0,
+          6
+        ],
+        "yRange": [
+          0,
+          5
+        ],
+        "ncertCitation": "NCERT Class 11 Part 1, Ch 4, Page 81",
+        "ncertRule": "Acceleration in uniform circular motion always points radially inward toward the center of the circle.",
+        "authorNuance": "HCV Ch 7: Speed is constant but velocity continuously changes direction; therefore acceleration is non-zero and perpendicular to velocity.",
+        "pyqBadge": "High Yield | PYQ: 2016, 2019, 2022",
+        "neetUnit": "UNIT 2: KINEMATICS",
+        "seqChapterStr": "Video 7 of 14 in Kinematics",
+        "vectorMagnitudes": [
+          5,
+          4,
+          3
+        ],
+        "vectorAngles": [
+          0,
+          90,
+          45
+        ]
+      },
+      "locales": {
+        "en": {
+          "title": "Centripetal Acceleration",
+          "narration": "Welcome to Uniform Circular Motion. Today we master Centripetal Acceleration. According to NCERT: Acceleration in uniform circular motion always points radially inward toward the center of the circle. The primary formula is: a_c = v^2 / r = omega^2 * r. Notice this crucial insight: HCV Ch 7: Speed is constant but velocity continuously changes direction; therefore acceleration is non-zero and perpendicular to velocity. Pay special attention to this NEET trap point: Assuming acceleration is zero because speed is constant in uniform circular motion. Keep this core relationship firmly in mind to secure top marks in NEET. Up next in video 8: Banking of Roads.",
+          "trapPoint": "Assuming acceleration is zero because speed is constant in uniform circular motion.",
+          "pyqBadge": "High Yield | PYQ: 2016, 2019, 2022"
+        },
+        "hi": {
+          "title": "Centripetal Acceleration",
+          "narration": "Uniform Circular Motion में आपका स्वागत है। आज हम समझेंगे: Centripetal Acceleration। एनसीईआरटी के अनुसार: Acceleration in uniform circular motion always points radially inward toward the center of the circle. इसका मुख्य सूत्र है: a_c = v^2 / r = omega^2 * r। विशेष ध्यान देने योग्य बात: HCV Ch 7: Speed is constant but velocity continuously changes direction; therefore acceleration is non-zero and perpendicular to velocity. नीट परीक्षा की मुख्य भूल या ट्रैप पॉइंट: Assuming acceleration is zero because speed is constant in uniform circular motion. इस महत्वपूर्ण संबंध को हमेशा याद रखें। अगला वीडियो: Banking of Roads।",
+          "trapPoint": "Assuming acceleration is zero because speed is constant in uniform circular motion.",
+          "pyqBadge": "उच्च अंक | विगत वर्ष: 2016, 2019, 2022"
+        },
+        "ta": {
+          "title": "Centripetal Acceleration",
+          "narration": "Uniform Circular Motion பகுதிக்கு உங்களை வரவேற்கிறோம். இன்று நாம் Centripetal Acceleration பற்றிய அடிப்படைக் கருத்தைக் காண்போம். என்சிஇஆர்டி விதிப்படி: Acceleration in uniform circular motion always points radially inward toward the center of the circle. இதன் முதன்மைச் சூத்திரம்: a_c = v^2 / r = omega^2 * r. முக்கியமாக கவனிக்க வேண்டிய குறிப்பு: HCV Ch 7: Speed is constant but velocity continuously changes direction; therefore acceleration is non-zero and perpendicular to velocity. நீட் தேர்வில் மாணவர்கள் செய்யும் பொதுவான தவறு அல்லது பொறி: Assuming acceleration is zero because speed is constant in uniform circular motion. இந்த முக்கிய சமன்பாட்டை மனதில் உறுதிப்படுத்திக் கொள்ளுங்கள். அடுத்த காணொளி: Banking of Roads.",
+          "trapPoint": "Assuming acceleration is zero because speed is constant in uniform circular motion.",
+          "pyqBadge": "முக்கிய வினா | PYQ: 2016, 2019, 2022"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+# NEET UG Video Engine - Template Registry
+# Derived from MASTER_BLUEPRINT.md v1.1 Section 10 & 3D Extension Specification
+
+templates:
+  # =========================================================================
+  # 2D TEMPLATES (MVP / Active in Phase 1-4)
+  # =========================================================================
+  FormulaWithGraph:
+    dimension: "2d"
+    render_time_multiplier: 1.0
+    description: "Displays a physics formula alongside a coordinated 2D plot/trajectory with callouts and distractor trap analysis"
+    subject: "Physics"
+    params:
+      - latexFormula
+      - trapWarning
+      - graphPlot
+      - xRange
+      - yRange
+    beats:
+      - settle
+      - context
+      - critical
+      - standard
+      - release
+    max_seconds: 360
+
+  VectorDiagram:
+    dimension: "2d"
+    render_time_multiplier: 1.0
+    description: "Vector resolution, orthogonal components, and resultant forces"
+    subject: "Physics"
+    params:
+      - vectorMagnitudes
+      - vectorAngles
+      - trapWarning
+    beats:
+      - settle
+      - context
+      - critical
+      - standard
+      - release
+    max_seconds: 360
+
+  DerivationStep:
+    dimension: "2d"
+    render_time_multiplier: 1.0
+    description: "Step-by-step mathematical derivation with equation transformations"
+    subject: "Physics"
+    params:
+      - derivationSteps
+      - trapWarning
+    beats:
+      - settle
+      - critical
+      - standard
+      - release
+    max_seconds: 420
+
+  WaveDiagram:
+    dimension: "2d"
+    render_time_multiplier: 1.0
+    description: "Wave kinematics, phase differences, nodes, and antinodes"
+    subject: "Physics"
+    params:
+      - waveFunction
+      - wavelength
+      - frequency
+      - trapWarning
+    beats:
+      - settle
+      - context
+      - critical
+      - release
+    max_seconds: 360
+
+  TwoColumnCompare:
+    dimension: "2d"
+    render_time_multiplier: 1.0
+    description: "Side-by-side comparison of contrasting physics or chemistry concepts"
+    subject: "All"
+    params:
+      - columnLeftTitle
+      - columnRightTitle
+      - comparisons
+      - trapWarning
+    beats:
+      - settle
+      - critical
+      - standard
+      - release
+    max_seconds: 360
+
+  # =========================================================================
+  # 3D EXTENSION TEMPLATES (Declared in Phase 1, Built in Phase 5)
+  # =========================================================================
+  MoleculeConformer3D:
+    dimension: "3d"
+    render_time_multiplier: 3.5
+    description: "Chemistry 3D: Conformer rotations, stereocenters, and orbital geometries via RDKit/ThreeDScene"
+    subject: "Chemistry"
+    params:
+      - smilesString
+      - chiralCenters
+      - trapWarning
+    beats:
+      - settle
+      - context
+      - critical
+      - standard
+      - release
+    max_seconds: 420
+
+  DNAHelix3D:
+    dimension: "3d"
+    render_time_multiplier: 3.5
+    description: "Biology 3D: Double helix structure, major/minor grooves, and base pairing via Mol*/ThreeDScene"
+    subject: "Biology"
+    params:
+      - sequence
+      - highlightedFeature
+      - trapWarning
+    beats:
+      - settle
+      - context
+      - critical
+      - standard
+      - release
+    max_seconds: 420
+
+  MagneticField3D:
+    dimension: "3d"
+    render_time_multiplier: 3.5
+    description: "Physics 3D: Helical charged particle trajectories and 3D Lorentz force vector fields"
+    subject: "Physics"
+    params:
+      - magneticFieldVector
+      - particleVelocity
+      - trapWarning
+    beats:
+      - settle
+      - context
+      - critical
+      - standard
+      - release
+    max_seconds: 420

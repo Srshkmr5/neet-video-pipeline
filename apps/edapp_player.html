@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEET UG EdApp — The Triad Player Experience</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body { background-color: #090D16; color: #F8FAFC; font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; }
+    .glass-panel { background: rgba(15, 23, 42, 0.82); backdrop-filter: blur(16px); border: 1px solid rgba(56, 189, 248, 0.18); }
+    .tab-active { background: #0284C7; color: #FFFFFF; box-shadow: 0 0 15px rgba(2, 132, 199, 0.5); }
+    .tab-inactive { background: #1E293B; color: #94A3B8; }
+    .tab-inactive:hover { background: #334155; color: #F8FAFC; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0B0F19; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+  </style>
+</head>
+<body class="h-screen flex flex-col overflow-hidden bg-[#090D16]">
+
+  <!-- Top Global Navigation Bar -->
+  <header class="h-14 border-b border-slate-800 bg-[#0B0F19]/95 px-4 flex items-center justify-between z-20 shrink-0">
+    <div class="flex items-center space-x-3">
+      <button id="toggleSidebarBtn" class="text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-slate-800 transition">
+        <i class="fa-solid fa-bars text-lg"></i>
+      </button>
+      <div class="flex items-center space-x-2">
+        <span class="w-3 h-3 rounded-full bg-sky-400 animate-pulse"></span>
+        <span class="font-bold text-base tracking-wide bg-gradient-to-r from-sky-400 to-indigo-400 bg-clip-text text-transparent">
+          NEET UG MASTERCLASS
+        </span>
+      </div>
+      <span class="hidden md:inline-block text-xs font-mono px-2 py-0.5 rounded bg-slate-800 text-sky-300 border border-sky-500/30">
+        PHYSICS • CLASS 11
+      </span>
+    </div>
+
+    <!-- Center Mode Indicator -->
+    <div class="flex items-center space-x-2 bg-slate-900 border border-slate-700/60 rounded-xl p-1 text-xs">
+      <button id="modeMicroBtn" class="px-3 py-1 rounded-lg font-semibold bg-sky-600 text-white transition">
+        ⚡ Micro-Concept (60s)
+      </button>
+      <button id="modeMacroBtn" class="px-3 py-1 rounded-lg font-semibold text-slate-400 hover:text-white transition">
+        🎬 Full Chapter Movie (15m)
+      </button>
+    </div>
+
+    <!-- Right User / PYQ Stats -->
+    <div class="flex items-center space-x-3">
+      <div class="hidden sm:flex items-center space-x-2 text-xs font-mono bg-amber-950/40 border border-amber-500/30 px-2.5 py-1 rounded-lg text-amber-400">
+        <i class="fa-solid fa-trophy"></i>
+        <span>NEET TARGET: 720/720</span>
+      </div>
+      <button class="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-xs font-bold text-sky-400">
+        11P
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Body Layout: Drawer + Player Stage -->
+  <div class="flex-1 flex overflow-hidden relative">
+
+    <!-- Left Sidebar: Chapter Video Drawer (Collapsible) -->
+    <aside id="sidebar" class="w-80 border-r border-slate-800 bg-[#0B0F19] flex flex-col shrink-0 transition-all duration-300 z-10">
+      <div class="p-3 border-b border-slate-800 bg-slate-900/60 flex items-center justify-between">
+        <div>
+          <div class="text-[11px] font-mono uppercase text-sky-400 font-semibold tracking-wider">UNIT 2: KINEMATICS</div>
+          <div class="text-sm font-bold text-white">Motion in a Plane</div>
+        </div>
+        <span class="text-xs font-mono px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-500/40 text-emerald-400 font-bold">
+          14 VIDEOS
+        </span>
+      </div>
+
+      <!-- Video Concept List -->
+      <div class="flex-1 overflow-y-auto divide-y divide-slate-800/60 p-2 space-y-1">
+        
+        <!-- Video 1 -->
+        <div class="p-2.5 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex items-start space-x-3 text-xs" onclick="selectConcept(1)">
+          <span class="font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 text-[10px]">S.2.1.1</span>
+          <div class="flex-1">
+            <div class="font-semibold text-slate-300">Position-Time Graphs</div>
+            <div class="text-[10px] text-slate-500">Straight Line Motion • v = dx/dt</div>
+          </div>
+          <i class="fa-solid fa-circle-check text-emerald-400 text-xs"></i>
+        </div>
+
+        <!-- Video 2 -->
+        <div class="p-2.5 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex items-start space-x-3 text-xs" onclick="selectConcept(2)">
+          <span class="font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 text-[10px]">S.2.2.1</span>
+          <div class="flex-1">
+            <div class="font-semibold text-slate-300">Resolution of Vectors</div>
+            <div class="text-[10px] text-slate-500">Orthogonal Components • A = Ax i + Ay j</div>
+          </div>
+          <i class="fa-solid fa-circle-check text-emerald-400 text-xs"></i>
+        </div>
+
+        <!-- Video 3 -->
+        <div class="p-2.5 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex items-start space-x-3 text-xs" onclick="selectConcept(3)">
+          <span class="font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 text-[10px]">S.2.3.1</span>
+          <div class="flex-1">
+            <div class="font-semibold text-slate-300">Time of Flight</div>
+            <div class="text-[10px] text-slate-500">Projectile Motion • T = 2v₀ sinθ / g</div>
+          </div>
+          <i class="fa-solid fa-circle-check text-emerald-400 text-xs"></i>
+        </div>
+
+        <!-- Video 4 (ACTIVE FLAGSHIP) -->
+        <div class="p-2.5 rounded-xl bg-sky-950/60 border border-sky-500/40 cursor-pointer transition flex items-start space-x-3 text-xs" onclick="selectConcept(4)">
+          <span class="font-mono px-1.5 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-500/40 text-[10px] font-bold">S.2.3.2</span>
+          <div class="flex-1">
+            <div class="font-bold text-sky-300">The Max Height Arc</div>
+            <div class="text-[10px] text-slate-400">Projectile Motion • H_max = (v₀² sin²θ)/2g</div>
+            <div class="mt-1 flex items-center space-x-1.5">
+              <span class="text-[9px] px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 font-mono">NEET PYQ: 2024</span>
+              <span class="text-[9px] px-1.5 py-0.2 rounded bg-purple-500/20 text-purple-300 font-mono">3D LAB</span>
+            </div>
+          </div>
+          <span class="w-2 h-2 rounded-full bg-sky-400 animate-ping mt-1"></span>
+        </div>
+
+        <!-- Video 5 -->
+        <div class="p-2.5 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex items-start space-x-3 text-xs" onclick="selectConcept(5)">
+          <span class="font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 text-[10px]">S.2.3.3</span>
+          <div class="flex-1">
+            <div class="font-semibold text-slate-300">Horizontal Range & Complementary Angles</div>
+            <div class="text-[10px] text-slate-500">Projectile Motion • R = v₀² sin2θ / g</div>
+          </div>
+        </div>
+
+        <!-- Video 6 -->
+        <div class="p-2.5 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex items-start space-x-3 text-xs" onclick="selectConcept(6)">
+          <span class="font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 text-[10px]">S.2.3.4</span>
+          <div class="flex-1">
+            <div class="font-semibold text-slate-300">Equation of Trajectory</div>
+            <div class="text-[10px] text-slate-500">Parabolic Path • y = x tanθ (1 - x/R)</div>
+          </div>
+        </div>
+
+        <!-- Video 7 -->
+        <div class="p-2.5 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex items-start space-x-3 text-xs" onclick="selectConcept(7)">
+          <span class="font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 text-[10px]">S.2.4.1</span>
+          <div class="flex-1">
+            <div class="font-semibold text-slate-300">Centripetal Acceleration</div>
+            <div class="text-[10px] text-slate-500">Circular Motion • ac = v²/r = ω²r</div>
+          </div>
+        </div>
+
+        <!-- Videos 8 to 14 -->
+        <div class="p-2.5 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex items-start space-x-3 text-xs" onclick="selectConcept(8)">
+          <span class="font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 text-[10px]">S.2.1.2</span>
+          <div class="flex-1">
+            <div class="font-semibold text-slate-300">Velocity-Time Graphs & Displacement</div>
+            <div class="text-[10px] text-slate-500">Straight Line Motion • Area = ∫v dt</div>
+          </div>
+        </div>
+
+        <div class="p-2.5 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex items-start space-x-3 text-xs" onclick="selectConcept(9)">
+          <span class="font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 text-[10px]">S.2.2.2</span>
+          <div class="flex-1">
+            <div class="font-semibold text-slate-300">Relative Velocity & River-Boat</div>
+            <div class="text-[10px] text-slate-500">2D Vectors • v_AB = v_A - v_B</div>
+          </div>
+        </div>
+
+        <div class="p-2.5 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex items-start space-x-3 text-xs" onclick="selectConcept(10)">
+          <span class="font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 text-[10px]">S.2.3.5</span>
+          <div class="flex-1">
+            <div class="font-semibold text-slate-300">Horizontal Projection from a Height</div>
+            <div class="text-[10px] text-slate-500">Cliff Launch • t = √(2h/g)</div>
+          </div>
+        </div>
+
+        <div class="p-2.5 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex items-start space-x-3 text-xs" onclick="selectConcept(11)">
+          <span class="font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 text-[10px]">S.2.3.6</span>
+          <div class="flex-1">
+            <div class="font-semibold text-slate-300">Projectile on an Inclined Plane</div>
+            <div class="text-[10px] text-slate-500">Effective Gravity Components</div>
+          </div>
+        </div>
+
+        <div class="p-2.5 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex items-start space-x-3 text-xs" onclick="selectConcept(12)">
+          <span class="font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 text-[10px]">S.2.3.7</span>
+          <div class="flex-1">
+            <div class="font-semibold text-slate-300">Radius of Curvature at Apex</div>
+            <div class="text-[10px] text-slate-500">Trajectory Normal • ρ = vx²/g</div>
+          </div>
+        </div>
+
+        <div class="p-2.5 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex items-start space-x-3 text-xs" onclick="selectConcept(13)">
+          <span class="font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 text-[10px]">S.2.4.2</span>
+          <div class="flex-1">
+            <div class="font-semibold text-slate-300">Angular Velocity & Linear Speed</div>
+            <div class="text-[10px] text-slate-500">Circular Motion • v = ω · r</div>
+          </div>
+        </div>
+
+        <div class="p-2.5 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex items-start space-x-3 text-xs" onclick="selectConcept(14)">
+          <span class="font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 text-[10px]">S.2.4.3</span>
+          <div class="flex-1">
+            <div class="font-semibold text-slate-300">Non-Uniform Circular Acceleration</div>
+            <div class="text-[10px] text-slate-500">a_net = √(ac² + at²)</div>
+          </div>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- Main Content Area: Triad Player Container -->
+    <main class="flex-1 flex flex-col overflow-hidden bg-[#020408]">
+
+      <!-- The Triad Tabs Navigation -->
+      <div class="h-13 bg-[#0B0F19] border-b border-slate-800 px-4 flex items-center justify-between shrink-0">
+        
+        <!-- 3 Triad Tabs -->
+        <div class="flex items-center space-x-2">
+          <button id="tabWatchBtn" onclick="switchTab('watch')" class="px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 tab-active">
+            <i class="fa-solid fa-play"></i>
+            <span>1. WATCH (LEARN)</span>
+          </button>
+          <button id="tabLabBtn" onclick="switchTab('lab')" class="px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 tab-inactive">
+            <i class="fa-solid fa-flask-vial text-purple-400"></i>
+            <span>2. 3D LAB (PLAY)</span>
+            <span class="px-1.5 py-0.2 rounded bg-purple-500/20 text-purple-300 text-[9px] font-mono">LIVE</span>
+          </button>
+          <button id="tabSolveBtn" onclick="switchTab('solve')" class="px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 tab-inactive">
+            <i class="fa-solid fa-bolt text-amber-400"></i>
+            <span>3. NEET TRAP (SOLVE)</span>
+            <span class="px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 text-[9px] font-mono">5 MARKS</span>
+          </button>
+        </div>
+
+        <!-- Dimension Switcher (2D vs 3D video) -->
+        <div id="dimSwitcher" class="hidden sm:flex items-center space-x-1.5 bg-slate-900 border border-slate-800 px-2 py-1 rounded-xl text-xs">
+          <span class="text-slate-400 text-[11px]">Video Engine:</span>
+          <button id="btn2D" onclick="switchVideoDim('2d')" class="px-2 py-0.5 rounded text-[11px] font-bold bg-sky-600 text-white">2D Standard</button>
+          <button id="btn3D" onclick="switchVideoDim('3d')" class="px-2 py-0.5 rounded text-[11px] font-bold text-slate-400 hover:text-white">3D Spatial</button>
+        </div>
+
+      </div>
+
+      <!-- Tab Content 1: Video Player Stage -->
+      <section id="contentWatch" class="flex-1 flex flex-col overflow-hidden relative">
+        <div class="flex-1 bg-black flex items-center justify-center relative">
+          <video id="mainVideoPlayer" controls class="max-h-full max-w-full aspect-video shadow-2xl" poster="../output/thumbnails/P11-C02-T03-V02_thumbnail.png">
+            <source id="videoSource" src="../output/final_videos/P11-C02-T03-V02_en-IN.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+
+        <!-- Video Info & Meta Bar below player -->
+        <div class="h-16 bg-[#0B0F19] border-t border-slate-800 px-6 flex items-center justify-between shrink-0">
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="px-2 py-0.5 rounded bg-rose-950 border border-rose-500/40 text-rose-400 font-mono font-bold text-xs">S.2.3.2</span>
+              <h2 id="videoTitleText" class="text-white font-bold text-sm">The Max Height Arc — Projectile Motion</h2>
+            </div>
+            <p class="text-slate-400 text-xs mt-0.5">NCERT Class 11 Part 1, Chapter 4, Page 78 • Target Duration: 66s</p>
+          </div>
+          <div class="flex items-center space-x-3">
+            <button onclick="switchTab('lab')" class="px-3 py-1.5 rounded-lg bg-purple-900/60 hover:bg-purple-800/80 border border-purple-500/40 text-purple-300 text-xs font-semibold flex items-center space-x-1.5 transition">
+              <i class="fa-solid fa-cube"></i>
+              <span>Launch 3D Lab</span>
+            </button>
+            <button onclick="switchTab('solve')" class="px-3 py-1.5 rounded-lg bg-amber-900/60 hover:bg-amber-800/80 border border-amber-500/40 text-amber-300 text-xs font-semibold flex items-center space-x-1.5 transition">
+              <i class="fa-solid fa-flag"></i>
+              <span>Review Trap</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tab Content 2: 3D Interactive Lab (Play) -->
+      <section id="contentLab" class="flex-1 hidden relative overflow-hidden">
+        <iframe id="simIframe" src="../simulations/projectile_3d_simulation.html" class="w-full h-full border-0"></iframe>
+      </section>
+
+      <!-- Tab Content 3: NEET Trap & Practice Solver (Solve) -->
+      <section id="contentSolve" class="flex-1 hidden overflow-y-auto p-6 space-y-6 max-w-4xl mx-auto w-full">
+        
+        <!-- Trap Alert Banner -->
+        <div class="p-5 rounded-2xl bg-gradient-to-r from-rose-950/80 to-slate-900 border border-rose-500/40 shadow-xl space-y-3">
+          <div class="flex items-center space-x-2.5">
+            <span class="w-8 h-8 rounded-lg bg-rose-500/20 text-rose-400 flex items-center justify-center text-base">⚠️</span>
+            <div>
+              <span class="text-xs font-mono uppercase tracking-wider text-rose-400 font-bold">CRITICAL NEET TRAP POINT</span>
+              <h3 class="text-white font-bold text-base">Swapping Sine and Cosine (Angle with Vertical Axis)</h3>
+            </div>
+          </div>
+          <p class="text-slate-300 text-xs leading-relaxed">
+            The textbook maximum height formula <code class="text-amber-400 font-mono">H_max = (v₀² sin²θ) / 2g</code> is valid <strong>ONLY</strong> when angle θ is measured with the horizontal ground! If an exam question specifies angle θ relative to the <strong>vertical axis</strong>, vertical velocity becomes <code class="text-sky-400 font-mono">vy = v₀ cos θ</code>.
+          </p>
+          <div class="p-3 bg-slate-950/80 rounded-xl border border-rose-500/30 font-mono text-xs text-center flex items-center justify-center space-x-4">
+            <span class="text-rose-400 line-through">H_max = (v₀² sin²θ) / 2g</span>
+            <span class="text-slate-500">➔</span>
+            <span class="text-emerald-400 font-bold text-sm">H_max = (v₀² cos²θ) / 2g</span>
+          </div>
+        </div>
+
+        <!-- Practice PYQ Card -->
+        <div class="glass-panel p-5 rounded-2xl space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <div class="flex items-center space-x-2">
+              <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 font-mono text-xs font-bold">NEET PYQ 2024</span>
+              <span class="text-xs text-slate-400">High-Yield Trap Verification</span>
+            </div>
+            <span class="text-xs font-bold text-emerald-400">+4 Marks / -1 Mark</span>
+          </div>
+
+          <p class="text-slate-200 text-sm leading-relaxed">
+            A projectile is projected with an initial velocity <code class="text-sky-300 font-mono">v₀ = 50 m/s</code> at an angle of <code class="text-amber-300 font-mono">θ = 30°</code> with the <strong>VERTICAL</strong>. What is the maximum vertical height reached by the projectile? (Take g = 10 m/s²)
+          </p>
+
+          <!-- Options -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
+            <button onclick="checkAnswer(1)" id="opt1" class="p-3 rounded-xl bg-slate-900 border border-slate-700/60 text-left hover:border-sky-500 transition">
+              <span class="font-bold text-sky-400">A)</span> 31.25 m (Trap: used sin²30°)
+            </button>
+            <button onclick="checkAnswer(2)" id="opt2" class="p-3 rounded-xl bg-slate-900 border border-slate-700/60 text-left hover:border-sky-500 transition">
+              <span class="font-bold text-sky-400">B)</span> 93.75 m (Correct: uses cos²30°)
+            </button>
+            <button onclick="checkAnswer(3)" id="opt3" class="p-3 rounded-xl bg-slate-900 border border-slate-700/60 text-left hover:border-sky-500 transition">
+              <span class="font-bold text-sky-400">C)</span> 125.0 m
+            </button>
+            <button onclick="checkAnswer(4)" id="opt4" class="p-3 rounded-xl bg-slate-900 border border-slate-700/60 text-left hover:border-sky-500 transition">
+              <span class="font-bold text-sky-400">D)</span> 62.5 m
+            </button>
+          </div>
+
+          <div id="solutionBox" class="hidden p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-xs space-y-2">
+            <div class="text-emerald-400 font-bold flex items-center space-x-2">
+              <i class="fa-solid fa-circle-check"></i>
+              <span>CORRECT! Option B is the 5-mark answer.</span>
+            </div>
+            <p class="text-slate-300 leading-relaxed font-sans">
+              Since angle is relative to the vertical, vertical component is <code class="text-sky-300 font-mono">vy = 50 · cos(30°) = 50 · (√3/2) = 25√3 m/s</code>.<br>
+              Therefore: <code class="text-amber-300 font-mono">H_max = vy² / 2g = (25√3)² / (2 · 10) = (625 · 3) / 20 = 1875 / 20 = 93.75 m</code>.<br>
+              Option A (31.25 m) is the exact distractor chosen by students who blindly applied sin²θ!
+            </p>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <script>
+    let currentTab = 'watch';
+    let currentDim = '2d';
+    let isMacroMode = false;
+
+    function switchTab(tab) {
+      currentTab = tab;
+      const tabs = ['watch', 'lab', 'solve'];
+      tabs.forEach(t => {
+        const btn = document.getElementById('tab' + t.charAt(0).toUpperCase() + t.slice(1) + 'Btn');
+        const content = document.getElementById('content' + t.charAt(0).toUpperCase() + t.slice(1));
+        if (t === tab) {
+          btn.className = 'px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 tab-active';
+          content.classList.remove('hidden');
+        } else {
+          btn.className = 'px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 tab-inactive';
+          content.classList.add('hidden');
+        }
+      });
+    }
+
+    function switchVideoDim(dim) {
+      currentDim = dim;
+      const btn2D = document.getElementById('btn2D');
+      const btn3D = document.getElementById('btn3D');
+      const player = document.getElementById('mainVideoPlayer');
+      const source = document.getElementById('videoSource');
+
+      if (dim === '3d') {
+        btn3D.className = 'px-2 py-0.5 rounded text-[11px] font-bold bg-purple-600 text-white';
+        btn2D.className = 'px-2 py-0.5 rounded text-[11px] font-bold text-slate-400 hover:text-white';
+        source.src = '../output/final_videos/P11-C02-T03-V02_3d_en-IN.mp4';
+      } else {
+        btn2D.className = 'px-2 py-0.5 rounded text-[11px] font-bold bg-sky-600 text-white';
+        btn3D.className = 'px-2 py-0.5 rounded text-[11px] font-bold text-slate-400 hover:text-white';
+        source.src = '../output/final_videos/P11-C02-T03-V02_en-IN.mp4';
+      }
+      player.load();
+      player.play().catch(e => {});
+    }
+
+    function checkAnswer(opt) {
+      const sol = document.getElementById('solutionBox');
+      const b2 = document.getElementById('opt2');
+      const b1 = document.getElementById('opt1');
+
+      if (opt === 2) {
+        b2.classList.add('bg-emerald-950', 'border-emerald-500', 'text-emerald-300');
+        sol.classList.remove('hidden');
+      } else {
+        b1.classList.add('bg-rose-950', 'border-rose-500', 'text-rose-300');
+        sol.classList.remove('hidden');
+      }
+    }
+
+    // Toggle Sidebar Drawer
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('toggleSidebarBtn');
+    toggleBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('-ml-80');
+    });
+
+    // Macro vs Micro Switcher
+    const modeMicroBtn = document.getElementById('modeMicroBtn');
+    const modeMacroBtn = document.getElementById('modeMacroBtn');
+    const player = document.getElementById('mainVideoPlayer');
+    const source = document.getElementById('videoSource');
+
+    modeMacroBtn.addEventListener('click', () => {
+      isMacroMode = true;
+      modeMacroBtn.className = 'px-3 py-1 rounded-lg font-semibold bg-indigo-600 text-white transition';
+      modeMicroBtn.className = 'px-3 py-1 rounded-lg font-semibold text-slate-400 hover:text-white transition';
+      document.getElementById('videoTitleText').innerText = 'Kinematics Complete Masterclass (Chapter 2 Macro Movie)';
+      source.src = '../output/macro_movies/P11-C02-MOVIE.mp4';
+      player.load();
+      player.play().catch(e => {});
+      switchTab('watch');
+    });
+
+    modeMicroBtn.addEventListener('click', () => {
+      isMacroMode = false;
+      modeMicroBtn.className = 'px-3 py-1 rounded-lg font-semibold bg-sky-600 text-white transition';
+      modeMacroBtn.className = 'px-3 py-1 rounded-lg font-semibold text-slate-400 hover:text-white transition';
+      document.getElementById('videoTitleText').innerText = 'The Max Height Arc — Projectile Motion (S.2.3.2)';
+      source.src = '../output/final_videos/P11-C02-T03-V02_en-IN.mp4';
+      player.load();
+      player.play().catch(e => {});
+      switchTab('watch');
+    });
+
+    function selectConcept(num) {
+      if (num === 4) {
+        modeMicroBtn.click();
+      } else {
+        alert("Concept " + num + " selected. In batch production, this loads concept " + num + ".");
+      }
+    }
+  </script>
+</body>
+</html>

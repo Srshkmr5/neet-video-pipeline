@@ -1,0 +1,71 @@
+{
+  "metadata": {
+    "description": "Index of reference video assets mapped to CBSE / NEET Canonical Taxonomy",
+    "total_tagged_concepts": 2,
+    "total_tagged_chapters": 2,
+    "total_common_pool_items": 1,
+    "total_tagged_macro_stories": 0
+  },
+  "by_concept": {
+    "P11-C02-T03-V02": {
+      "canonical_id": "P11-C02-T03-V02",
+      "chapter_id": "P11-C02",
+      "chapter_title": "Kinematics",
+      "neet_2026_unit": "UNIT 2: KINEMATICS",
+      "file_path": "media\\references\\by_concept\\P11-C02-T03-V02\\P11-C02-T03-V02_The_Max_Height_Arc.mp4",
+      "filename": "P11-C02-T03-V02_The_Max_Height_Arc.mp4",
+      "role": "blueprint",
+      "notes": "Synced from by_concept folder"
+    },
+    "P11-C03-T01-V01": {
+      "canonical_id": "P11-C03-T01-V01",
+      "chapter_id": "P11-C03",
+      "chapter_title": "Laws of Motion",
+      "neet_2026_unit": "UNIT 3: LAWS OF MOTION",
+      "file_path": "media\\references\\by_concept\\P11-C03-T01-V01\\P11-C03-T01-V01_newtons_first_law_demo.mp4",
+      "filename": "P11-C03-T01-V01_newtons_first_law_demo.mp4",
+      "role": "blueprint",
+      "notes": "Synced from by_concept folder"
+    }
+  },
+  "by_chapter": {
+    "P11-C02": {
+      "chapter_id": "P11-C02",
+      "chapter_title": "Kinematics",
+      "neet_2026_unit": "UNIT 2: KINEMATICS",
+      "file_path": "media\\references\\by_chapter\\P11-C02\\ModernArcVisualizer_preview.mp4",
+      "filename": "ModernArcVisualizer_preview.mp4",
+      "role": "aesthetic_style",
+      "notes": "Synced from by_chapter folder"
+    },
+    "P11-C10": {
+      "chapter_id": "P11-C10",
+      "chapter_title": "Oscillations and Waves",
+      "neet_2026_unit": "UNIT 10: OSCILLATIONS AND WAVES",
+      "file_path": "media\\references\\by_chapter\\P11-C10\\simple_harmonic_pendulum.mp4",
+      "filename": "simple_harmonic_pendulum.mp4",
+      "role": "aesthetic_style",
+      "notes": "Synced from by_chapter folder"
+    }
+  },
+  "common_pool": {
+    "pool_trigonometric_circle_proof": {
+      "pool_id": "pool_trigonometric_circle_proof",
+      "filename": "trigonometric_circle_proof.mp4",
+      "file_path": "media\\references\\common_pool\\trigonometric_circle_proof.mp4",
+      "concept_tag": "Trigonometric Unit Circle",
+      "subject_hint": "Mathematics",
+      "grade_hint": 10,
+      "keywords": [
+        "trigonometry",
+        "sin",
+        "cos",
+        "unit circle"
+      ],
+      "role": "blueprint",
+      "notes": "",
+      "status": "UNMATCHED_COMMON_POOL"
+    }
+  },
+  "by_macro_story": {}
+}

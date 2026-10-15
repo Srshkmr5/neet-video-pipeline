@@ -1,0 +1,13 @@
+{
+  "_description": "Active user-defined pronunciation overrides (takes highest priority over STEM master lexicon)",
+  "global": [],
+  "ta": [
+    {
+      "find": "\\bVernier\\ Caliper\\b",
+      "replace": "வெர்னியர் காலிப்பர்",
+      "notes": "Custom override for Vernier Caliper"
+    }
+  ],
+  "hi": [],
+  "en": []
+}

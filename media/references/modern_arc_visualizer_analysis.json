@@ -1,0 +1,37 @@
+{
+  "template_name": "ModernArcVisualizer",
+  "input_source": "output\\final\\P11-C02-T03-V02_The_Max_Height_Arc.mp4",
+  "metadata": {
+    "width": 1920,
+    "height": 1080,
+    "duration": 31.8,
+    "aspect_ratio": "16:9 (Landscape)",
+    "video_path": "output\\final\\P11-C02-T03-V02_The_Max_Height_Arc.mp4"
+  },
+  "theme": {
+    "is_dark_theme": true,
+    "background": "#0C0F16",
+    "text_primary": "#F5F5F5",
+    "accent_primary": "#38BDF8",
+    "accent_secondary": "#F59E0B",
+    "accent_tertiary": "#10B981",
+    "all_palette": [
+      "#0C0F16",
+      "#0A0D14",
+      "#283338",
+      "#1B1E20",
+      "#5B5C52",
+      "#0A0E16"
+    ]
+  },
+  "keyframe_paths": [
+    "C:\\Software check\\neet-video-pipeline_1\\media\\references\\extracted_frames\\P11-C02-T03-V02_The_Max_Height_Arc\\frame_01_4.54s.png",
+    "C:\\Software check\\neet-video-pipeline_1\\media\\references\\extracted_frames\\P11-C02-T03-V02_The_Max_Height_Arc\\frame_02_9.09s.png",
+    "C:\\Software check\\neet-video-pipeline_1\\media\\references\\extracted_frames\\P11-C02-T03-V02_The_Max_Height_Arc\\frame_03_13.63s.png",
+    "C:\\Software check\\neet-video-pipeline_1\\media\\references\\extracted_frames\\P11-C02-T03-V02_The_Max_Height_Arc\\frame_04_18.17s.png",
+    "C:\\Software check\\neet-video-pipeline_1\\media\\references\\extracted_frames\\P11-C02-T03-V02_The_Max_Height_Arc\\frame_05_22.71s.png",
+    "C:\\Software check\\neet-video-pipeline_1\\media\\references\\extracted_frames\\P11-C02-T03-V02_The_Max_Height_Arc\\frame_06_27.26s.png"
+  ],
+  "draft_template_path": "C:\\Software check\\neet-video-pipeline_1\\render\\templates\\drafts\\modern_arc_visualizer.py",
+  "vision_prompt_path": "C:\\Software check\\neet-video-pipeline_1\\media\\references\\extracted_frames\\P11-C02-T03-V02_The_Max_Height_Arc\\vision_analysis_prompt.txt"
+}

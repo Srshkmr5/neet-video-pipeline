@@ -1,0 +1,157 @@
+{
+  "macro_movie_id": "P11-C02-MOVIE",
+  "chapter_id": "P11-C02",
+  "chapter_title": "Kinematics",
+  "movie_title": "Kinematics: The Architecture of Motion",
+  "subject": "Physics",
+  "grade": 11,
+  "target_duration_seconds": 600,
+  "cinematic_format": "3D Cinematic / 5-Act Narrative Arc",
+  "story_synopsis": "A cinematic journey tracking a single point particle navigating a high-velocity 3D world—dissecting how vectors dismantle illusion, how gravity splits projectile flight into two independent realities, and why understanding the apex unlocks effortless NEET mastery.",
+  "acts": [
+    {
+      "act_number": 1,
+      "act_title": "The Illusion of Stillness & The Observer's Coordinate",
+      "time_range": "00:00 - 01:45",
+      "duration_seconds": 105,
+      "cinematic_3d_direction": "Camera opens in total darkness. A solitary glowing train car speeds at 100 km/h across a futuristic desert. Inside, a passenger gently tosses an apple upwards. In the train's reference frame, the apple rises and falls in a pristine straight line. The camera suddenly dollies smoothly through the glass window into the exterior desert: from the track observer's frame, the apple traces a luminous 3D parabolic arc across space.",
+      "narrative_voiceover": "Nothing in our universe moves alone. Motion has no meaning until you choose who is watching. When you toss an apple inside a moving train, you see a straight line. But the world outside sees a parabola. Welcome to Kinematics—the mathematical language that strips away human illusion to reveal how physical reality truly travels.",
+      "audio_soundtrack": "Deep ambient sub-bass drone transitioning into a pulsing, ethereal sci-fi synth with subtle mechanical rail rhythms.",
+      "on_screen_exam_anchors": [
+        {
+          "timestamp": "01:15",
+          "anchor_text": "ANCHOR POINT 01: FRAME OF REFERENCE & INERTIAL OBSERVERS",
+          "exam_relevance": "High frequency in NEET assertion-reason questions regarding relative velocity.",
+          "linked_micro_concept_id": "P11-C02-T01-V01"
+        },
+        {
+          "timestamp": "01:35",
+          "anchor_text": "ANCHOR POINT 02: DISPLACEMENT VECTOR VS PATH LENGTH",
+          "exam_relevance": "Distance is scalar path length; displacement is unique state vector (Δr = r2 - r1).",
+          "linked_micro_concept_id": "P11-C02-T01-V02"
+        }
+      ]
+    },
+    {
+      "act_number": 2,
+      "act_title": "The Calculus of the Curve: Slopes and Shadows",
+      "time_range": "01:45 - 03:45",
+      "duration_seconds": 120,
+      "cinematic_3d_direction": "The scene morphs into a glowing neon geometric wireframe landscape. A racing sports vehicle accelerates down an undulating track. Above the car, holographic real-time graphs float in 3D: a displacement-time curve unfolds with tangent lines dynamically calculating velocity (ds/dt), while an area under a velocity-time graph illuminates in radiant cyan liquid, representing net displacement.",
+      "narrative_voiceover": "Speed is just a shadow; velocity is an arrow with purpose. When an object accelerates, its position doesn't step—it curves. Every instant has its own story, told by the tangent slope of the curve. And if you reverse the lens, every accumulated kilometer traveled is nothing more than the glowing area carved out beneath the velocity graph.",
+      "audio_soundtrack": "Energetic rhythmic percussion, crystalline arpeggios, and subtle heartbeat pulse matching acceleration.",
+      "on_screen_exam_anchors": [
+        {
+          "timestamp": "02:40",
+          "anchor_text": "ANCHOR POINT 03: INSTANTANEOUS VELOCITY & THE DERIVATIVE SLOPE",
+          "exam_relevance": "v = ds/dt (Slope of s-t graph); a = dv/dt (Slope of v-t graph).",
+          "linked_micro_concept_id": "P11-C02-T01-V03"
+        },
+        {
+          "timestamp": "03:25",
+          "anchor_text": "ANCHOR POINT 04: AREA UNDER V-T GRAPH = DISPLACEMENT",
+          "exam_relevance": "NEET graph interpretation trap: negative areas below time axis subtract from displacement.",
+          "linked_micro_concept_id": "P11-C02-T01-V04"
+        }
+      ]
+    },
+    {
+      "act_number": 3,
+      "act_title": "The Two-World Split: Projectile Flight & The Apex Peak",
+      "time_range": "03:45 - 06:15",
+      "duration_seconds": 150,
+      "cinematic_3d_direction": "Epic wide shot over a misty canyon at twilight. A golden cannon fires a glowing projectile into the evening sky. Time decelerates to ultra-slow motion (10,000 FPS). The single velocity vector splits visually into two distinct colored lasers: horizontal component (ux = u cos θ in bright cyan) gliding forward at uniform, unchanging speed; and vertical component (uy = u sin θ in ruby red) battling gravitational pull. At the peak, vertical velocity drops to zero, and the projectile floats momentarily in suspended majesty.",
+      "narrative_voiceover": "This is Galileo's greatest gift to physics: two dimensions that live side by side, completely blind to one another. Gravity has no power over the horizontal path; it pulls relentlessly only downward. Watch closely at the apex—for a single frozen microsecond, the vertical world stops existing (vy = 0). Yet the object never stops moving forward. Master this separation, and projectile motion becomes effortless.",
+      "audio_soundtrack": "Orchestral strings swelling to a breathtaking crescendo, sudden acoustic drop to total silence at the apex peak, followed by a resonant bass drop upon descent.",
+      "on_screen_exam_anchors": [
+        {
+          "timestamp": "04:30",
+          "anchor_text": "ANCHOR POINT 05: ORTHOGONAL INDEPENDENCE (ax = 0, ay = -g)",
+          "exam_relevance": "Core principle underlying all 2D motion equations.",
+          "linked_micro_concept_id": "P11-C02-T02-V05"
+        },
+        {
+          "timestamp": "05:15",
+          "anchor_text": "ANCHOR POINT 06: MAXIMUM HEIGHT FORMULA [ Hmax = (u^2 sin^2 θ) / 2g ]",
+          "exam_relevance": "Direct formula question in NEET 2017, 2019, 2024. Velocity at apex is NOT zero, it is u cos θ.",
+          "linked_micro_concept_id": "P11-C02-T03-V06"
+        },
+        {
+          "timestamp": "05:55",
+          "anchor_text": "ANCHOR POINT 07: TIME OF FLIGHT & COMPLEMENTARY RANGE ANGLES",
+          "exam_relevance": "Horizontal range is identical for launch angles θ and (90° - θ).",
+          "linked_micro_concept_id": "P11-C02-T03-V07"
+        }
+      ]
+    },
+    {
+      "act_number": 4,
+      "act_title": "The Whirlwind: Circular Motion & The NEET Trap Labyrinth",
+      "time_range": "06:15 - 08:30",
+      "duration_seconds": 135,
+      "cinematic_3d_direction": "A massive 3D glowing orbital ring descends. A particle races around the circle at constant linear speed. Green velocity vectors constantly spin perpendicular to the track, while violent red acceleration vectors point stubbornly inward toward the center. The screen flashes amber warning grids highlighting classic NEET trap scenarios: confusing speed constancy with velocity constancy, and misapplying coordinate signs on inclined planes.",
+      "narrative_voiceover": "Can an object accelerate without changing its speed? Look at the circle. Even when the speedometer never flinches, the directional arrow is twisted every fraction of a second. This is centripetal acceleration—a force forever starving for the center. Beware the exam traps: uniform circular motion has variable acceleration because its direction is in constant revolt.",
+      "audio_soundtrack": "Tense cinematic ticking clock, evolving bassline, with alert sound pulses marking trap hazards.",
+      "on_screen_exam_anchors": [
+        {
+          "timestamp": "07:10",
+          "anchor_text": "ANCHOR POINT 08: CENTRIPETAL ACCELERATION VECTOR [ ac = v^2 / r = ω^2 r ]",
+          "exam_relevance": "Vector direction changes continuously towards center; magnitude remains constant in uniform motion.",
+          "linked_micro_concept_id": "P11-C02-T04-V09"
+        },
+        {
+          "timestamp": "07:50",
+          "anchor_text": "ANCHOR POINT 09: NCERT EXAM TRAP — ANGLES FROM HORIZONTAL VS VERTICAL",
+          "exam_relevance": "NEET trap: If question specifies launch angle with the vertical, cos and sin invert!",
+          "linked_micro_concept_id": "P11-C02-T04-V10"
+        },
+        {
+          "timestamp": "08:15",
+          "anchor_text": "ANCHOR POINT 10: RELATIVE VELOCITY IN 2D (Rain-Man & River-Boat Problems)",
+          "exam_relevance": "Vector subtraction v_rel = v_A - v_B. Minimum drift vs shortest time conditions.",
+          "linked_micro_concept_id": "P11-C02-T04-V12"
+        }
+      ]
+    },
+    {
+      "act_number": 5,
+      "act_title": "The Master Blueprint: Chapter Neural Map & Exam Roadmap",
+      "time_range": "08:30 - 10:00",
+      "duration_seconds": 90,
+      "cinematic_3d_direction": "The camera pulls back dramatically into high orbit. The entire world of Kinematics coalesces into a clean, floating 3D holographic circuit map. 14 glowing nodes light up sequentially, each bearing its Canonical ID (P11-C02-T01-V01 through V14). Interactive cards flare with thumbnail previews of the micro-concept drills.",
+      "narrative_voiceover": "You now possess the complete mental architecture of motion. You know where vectors live, how curves speak, and how gravity divides the sky. But intuition must now be forged into exam speed. Below this story lie 14 surgical micro-drills—each breaking down one exact formula, one NCERT trap, and one PYQ calculation. Choose your next drill, and let's master the score.",
+      "audio_soundtrack": "Inspiring, triumphant symphonic finale with crisp tech transitions, resolving to an ambient outro.",
+      "on_screen_exam_anchors": [
+        {
+          "timestamp": "09:20",
+          "anchor_text": "ANCHOR POINT 11: FULL 14-CONCEPT CHAPTER MATRIX LOCKED",
+          "exam_relevance": "Covers 100% of NEET 2026 Unit 2 syllabus requirements.",
+          "linked_micro_concept_id": "P11-C02-T05-V14"
+        }
+      ],
+      "call_to_action": {
+        "cta_text": "Proceed to Micro Drill #01: Displacement vs Distance [P11-C02-T01-V01]",
+        "playlist_link": "curriculum_master_full_665.csv#P11-C02"
+      }
+    }
+  ],
+  "micro_concept_mappings": {
+    "total_linked_micro_concepts": 14,
+    "concepts": [
+      { "id": "P11-C02-T01-V01", "title": "Reference Frames & Rest/Motion Relative States", "covered_in_act": 1 },
+      { "id": "P11-C02-T01-V02", "title": "Displacement Vector vs Path Length Nuances", "covered_in_act": 1 },
+      { "id": "P11-C02-T01-V03", "title": "Instantaneous vs Average Velocity Slopes", "covered_in_act": 2 },
+      { "id": "P11-C02-T01-V04", "title": "Area Under v-t & a-t Graphs and Motion Traps", "covered_in_act": 2 },
+      { "id": "P11-C02-T02-V05", "title": "Orthogonal Vector Resolution & 2D Coordinates", "covered_in_act": 3 },
+      { "id": "P11-C02-T03-V06", "title": "Projectile Launch & Independence of Axes", "covered_in_act": 3 },
+      { "id": "P11-C02-T03-V07", "title": "The Max Height Arc & Velocity at Apex", "covered_in_act": 3 },
+      { "id": "P11-C02-T03-V08", "title": "Time of Flight and Horizontal Range Trajectory", "covered_in_act": 3 },
+      { "id": "P11-C02-T04-V09", "title": "Uniform Circular Motion & Centripetal Acceleration", "covered_in_act": 4 },
+      { "id": "P11-C02-T04-V10", "title": "Angular Velocity vs Linear Velocity Vectors", "covered_in_act": 4 },
+      { "id": "P11-C02-T04-V11", "title": "Non-Uniform Circular Motion & Tangential Acceleration", "covered_in_act": 4 },
+      { "id": "P11-C02-T04-V12", "title": "River-Boat & Rain-Man Relative Velocity Problems", "covered_in_act": 4 },
+      { "id": "P11-C02-T05-V13", "title": "Kinematic Equations for Variable Acceleration (Calculus)", "covered_in_act": 5 },
+      { "id": "P11-C02-T05-V14", "title": "Kinematics Master PYQ Speed Drill (NEET 2015-2024)", "covered_in_act": 5 }
+    ]
+  }
+}

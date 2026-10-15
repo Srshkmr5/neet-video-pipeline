@@ -1,0 +1,36 @@
+1
+00:00:00,100 --> 00:00:02,937
+Welcome to Projectile Motion.
+
+2
+00:00:02,887 --> 00:00:05,975
+Today we master The Max Height Arc.
+
+3
+00:00:05,975 --> 00:00:17,187
+According to NCERT: At maximum height, the vertical component of velocity is zero while horizontal velocity remains v0*cos(theta).
+
+4
+00:00:17,187 --> 00:00:25,200
+The primary formula is: H max = (v naught squared * sin^2(θ)) / (2g).
+
+5
+00:00:25,200 --> 00:00:35,050
+Notice this crucial insight: HCV Ch 3: Speed at the top is not zero; it equals v0*cos(theta).
+
+6
+00:00:35,050 --> 00:00:38,662
+Kinetic energy is minimum but non-zero.
+
+7
+00:00:38,662 --> 00:00:50,225
+Pay special attention to this NEET trap point: Confusing total velocity being zero with only vertical velocity component being zero at top of trajectory.
+
+8
+00:00:50,225 --> 00:00:55,937
+Keep this core relationship firmly in mind to secure top marks in NEET.
+
+9
+00:00:55,937 --> 00:01:01,600
+Up next in video 5: Horizontal Range and Complementary Angles.
+

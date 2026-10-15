@@ -1,0 +1,25 @@
+{
+  "chapter_id": "P11-C02-MOVIE",
+  "subject": "Physics",
+  "grade": 11,
+  "chapter_name": "Kinematics",
+  "total_concepts": 14,
+  "total_stitched_concepts": 1,
+  "macro_movie_duration_seconds": 70.55,
+  "macro_movie_path": "C:\\Software check\\neet-video-pipeline_1\\output\\macro_movies\\P11-C02-MOVIE.mp4",
+  "chapters": [
+    {
+      "timestamp": "00:00",
+      "seconds": 0.0,
+      "title": "Chapter Intro: Kinematics",
+      "canonical_id": "INTRO"
+    },
+    {
+      "timestamp": "00:04",
+      "seconds": 4.53,
+      "title": "S.2.3.2 - The Max Height Arc",
+      "canonical_id": "P11-C02-T03-V02",
+      "duration": 66.0
+    }
+  ]
+}
