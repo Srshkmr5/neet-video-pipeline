@@ -16,6 +16,7 @@ import argparse
 import csv
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -56,6 +57,177 @@ CURRICULUM_CSV = BASE_DIR / "queue" / "curriculum_master_full_665.csv"
 
 # Curated High-Yield Pedagogical Scripts for Flagship Concepts
 FLAGSHIP_SCRIPTS = {
+    "P11-C02-T01-V01": {
+        "en": (
+            "Welcome to Kinematics. In this masterclass, we analyze Position-Time Graphs. The slope of a position-time curve represents instantaneous velocity, governed by the differential relationship v equals dx divided by dt. "
+            "A horizontal line indicates the particle is at rest with zero velocity. A constant positive slope shows uniform forward velocity, while a negative slope indicates motion in the opposite direction. "
+            "Now heed the crucial NEET Trap: students frequently confuse the slope of an x-t graph, which gives velocity, with the slope of a v-t graph, which gives acceleration. "
+            "Remember that curvature on an x-t graph indicates acceleration, while the tangent slope gives velocity. Master this distinction to secure your NEET physics score!"
+        ),
+        "ta": (
+            "இயக்கவியல் பாடத்திற்கு வரவேற்கிறோம். இந்த அமர்வில் நாம் நிலை-நேர வரைபடங்களை ஆராய்கிறோம். ஒரு நிலை-நேர வரைபடத்தின் சாய்வு, துகளின் கணநேர திசைவேகத்தைக் குறிக்கிறது. "
+            "இதன் முதன்மை சமன்பாடு v equals dx divided by dt ஆகும். வரைபடம் கிடைமட்டமாக இருந்தால், திசைவேகம் பூஜ்ஜியம், அதாவது பொருள் ஓய்வு நிலையில் உள்ளது. "
+            "நேர்க்குறி சாய்வு நேர் திசை இயக்கத்தையும், எதிர்க்குறி சாய்வு எதிர் திசை இயக்கத்தையும் குறிக்கிறது. இப்போது முக்கியமான நீட் தேர்வு பொறி எச்சரிக்கை: "
+            "மாணவர்கள் நிலை-நேர வரைபடத்தின் சாய்வான திசைவேகத்தை, திசைவேக-நேர வரைபடத்தின் சாய்வான முடுக்கத்துடன் அடிக்கடி குழப்பிக் கொள்கிறார்கள். "
+            "x-t வரைபடத்தின் சாய்வு எப்போதும் திசைவேகம் மட்டுமே என்பதை நினைவில் நிறுத்துங்கள்!"
+        ),
+        "hi": (
+            "गतिकी में आपका स्वागत है। इस सत्र में हम स्थिति-समय यानी x-t ग्राफ का विश्लेषण करेंगे। स्थिति-समय वक्र की ढाल यानी स्लोप तात्क्षणिक वेग को दर्शाती है, "
+            "जिसका सूत्र है v equals dx divided by dt। यदि ग्राफ क्षैतिज रेखा है, तो वेग शून्य है और वस्तु विरामावस्था में है। "
+            "धनात्मक ढाल आगे की गति और ऋणात्मक ढाल विपरीत दिशा में गति दर्शाती है। अब ध्यान दें महत्वपूर्ण नीट ट्रैप पॉइंट पर: "
+            "छात्र अक्सर x-t ग्राफ की ढाल को v-t ग्राफ की ढाल यानी त्वरण समझकर भ्रमित हो जाते हैं। "
+            "याद रखें, स्थिति-समय ग्राफ की ढाल हमेशा केवल वेग देती है, त्वरण नहीं!"
+        )
+    },
+    "P11-C02-T03-V08": {
+        "en": (
+            "Welcome to Kinematics. In this session, we investigate Velocity-Time Graphs and Displacement. The fundamental physical principle states that the geometric area bounded between a velocity-time curve and the time axis represents net displacement, given by s equals integral v dt. "
+            "While the slope of a v-t graph yields acceleration, its area integral yields displacement. Now pay close attention to the high-frequency NEET Trap: area above the time axis represents positive displacement, whereas area below the axis represents negative displacement. "
+            "If an exam question asks for total distance, add the absolute magnitudes of both areas. But for net displacement, subtract the area below the axis! Master this sign convention to solve NEET kinematics problems instantly."
+        ),
+        "ta": (
+            "இயக்கவியல் பாடத்திற்கு வரவேற்கிறோம். இந்த அமர்வில் நாம் திசைவேக-நேர வரைபடங்கள் மற்றும் இடப்பெயர்ச்சியை ஆராய்கிறோம். "
+            "ஒரு திசைவேக-நேர வரைபடத்திற்கும் கால அச்சுக்கும் இடைப்பட்ட பரப்பளவு, துகள் கடந்த மொத்த இடப்பெயர்ச்சியைக் குறிக்கிறது. இதன் சமன்பாடு s equals integral v dt ஆகும். "
+            "வரைபடத்தின் சாய்வு முடுக்கத்தைத் தரும் அதே வேளையில், அதன் பரப்பளவு இடப்பெயர்ச்சியைத் தருகிறது. நீட் தேர்வு பொறி எச்சரிக்கை: "
+            "கால அச்சுக்கு மேலே உள்ள பரப்பு நேர் இடப்பெயர்ச்சி, கீழே உள்ள பரப்பு எதிர் இடப்பெயர்ச்சி. மொத்த தூரம் கேட்டால் இரண்டையும் கூட்ட வேண்டும், "
+            "ஆனால் நிகர இடப்பெயர்ச்சிக்கு கீழ் பரப்பைக் கழிக்க வேண்டும்! இந்த விதியை நினைவில் நிறுத்துங்கள்."
+        ),
+        "hi": (
+            "गतिकी में आपका स्वागत है। इस सत्र में हम वेग-समय ग्राफ और विस्थापन का अध्ययन करेंगे। मूलभूत सिद्धांत यह है कि v-t ग्राफ और समय अक्ष के बीच घिरा क्षेत्रफल कण के कुल विस्थापन को दर्शाता है, जिसका सूत्र है s equals integral v dt। "
+            "जहाँ v-t ग्राफ की ढाल त्वरण देती है, वहीं इसका क्षेत्रफल विस्थापन देता है। नीट परीक्षा का मुख्य ट्रैप पॉइंट: समय अक्ष के ऊपर का क्षेत्रफल धनात्मक और नीचे का क्षेत्रफल ऋणात्मक विस्थापन होता है। "
+            "यदि कुल दूरी पूछी जाए तो दोनों क्षेत्रफलों को जोड़ें, लेकिन कुल विस्थापन के लिए नीचे के क्षेत्रफल को घटाना होगा! इस नियम को हमेशा याद रखें।"
+        )
+    },
+    "P11-C02-T02-V01": {
+        "en": (
+            "Welcome to Kinematics. In this masterclass, we explore the Resolution of Vectors. Any two-dimensional vector A can be decomposed into two mutually perpendicular orthogonal components along the x and y axes, expressed as vector A equals Ax i-hat plus Ay j-hat. "
+            "When the angle theta is measured relative to the horizontal axis, the horizontal component is Ax equals A cosine theta, and the vertical component is Ay equals A sine theta. "
+            "Now heed the high-yield NEET Trap: students frequently memorize that x is always cosine and y is always sine. This is a fatal mistake! "
+            "The component adjacent to the given angle always takes the cosine, while the opposite component takes the sine. If an exam question gives the angle relative to the vertical axis, then Ay becomes A cosine alpha and Ax becomes A sine alpha! Master this golden rule to conquer vector mechanics in NEET."
+        ),
+        "ta": (
+            "இயக்கவியல் பாடத்திற்கு வரவேற்கிறோம். இந்த அமர்வில் நாம் வெக்டார்களின் கூறுகளைப் பிரித்தல் பற்றி கற்கிறோம். இரு பரிமாணத்தில் உள்ள எந்தவொரு வெக்டார் A-வையும் செங்குத்தான இரு கூறுகளாக பிரிக்க முடியும். "
+            "இதன் சமன்பாடு வெக்டார் A equals Ax i-cap plus Ay j-cap ஆகும். கோணம் theta கிடைமட்ட அச்சுடன் அமைந்தால், கிடைமட்ட கூறு Ax equals A cosine theta மற்றும் செங்குத்து கூறு Ay equals A sine theta ஆகும். "
+            "இப்போது மிக முக்கிய நீட் தேர்வு பொறி எச்சரிக்கை: x எப்போதும் cosine, y எப்போதும் sine என்று குருட்டு மனப்பாடம் செய்யாதீர்கள்! "
+            "கோணம் எந்த அச்சுடன் தொடுகிறதோ, அந்த அச்சுக்கு cosine வரும், அதற்கு செங்குத்தான அச்சுக்கு sine வரும். வினாவில் கோணம் செங்குத்து அச்சுடன் கொடுக்கப்பட்டால், Ay equals A cosine alpha மற்றும் Ax equals A sine alpha என மாறும்! இந்த பொன் விதியை எப்போதும் நினைவில் நிறுத்துங்கள்!"
+        ),
+        "hi": (
+            "गतिकी में आपका स्वागत है। इस सत्र में हम सदिशों का वियोजन यानी रेजोल्यूशन ऑफ वेक्टर्स समझेंगे। किसी भी द्विविमीय सदिश A को दो परस्पर लंबवत घटकों में वियोजित किया जा सकता है, "
+            "जिसे वेक्टर A equals Ax i-cap plus Ay j-cap के रूप में लिखा जाता है। जब कोण theta क्षैतिज अक्ष के साथ हो, तो क्षैतिज घटक Ax equals A cosine theta और ऊर्ध्वाधर घटक Ay equals A sine theta होता है। "
+            "अब ध्यान दें महत्वपूर्ण नीट ट्रैप पॉइंट पर: कभी यह रट्टा न मारें कि x हमेशा cosine होगा और y हमेशा sine! "
+            "नियम यह है कि जिस अक्ष के साथ कोण बनता है, वह घटक हमेशा cosine लेता है, और दूसरा घटक sine लेता है। यदि कोण ऊर्ध्वाधर अक्ष के साथ दिया जाए, तो Ay equals A cosine alpha और Ax equals A sine alpha होगा! इस नियम को हमेशा याद रखें।"
+        )
+    },
+    "P11-C02-T03-V09": {
+        "en": (
+            "Welcome to Kinematics. In this masterclass, we explore Relative Velocity and River-Boat Problems. The relative velocity of an object A with respect to B is defined as the vector difference: vector v AB equals vector v A minus vector v B. For a boat crossing a river flowing with velocity v r, the net velocity observed from the riverbank is the vector sum of the boat's velocity in still water and the river's velocity. "
+            "Now heed the classic NEET Trap: students frequently confuse the condition for the shortest time with the condition for the shortest path. To cross a river in the shortest time, the swimmer must always head directly perpendicular to the riverbank at 90 degrees, resulting in a downstream drift equal to v r times t min. "
+            "Conversely, to cross via the shortest path with zero drift, the swimmer must head upstream at an angle where sine theta equals v r divided by v b. Master this vital distinction to ace your NEET kinematics questions!"
+        ),
+        "ta": (
+            "இயக்கவியல் பாடத்திற்கு வரவேற்கிறோம். இந்த அமர்வில் நாம் சார்பு திசைவேகம் மற்றும் படகு-ஆறு கணக்குகளை ஆராய்கிறோம். பொருள் B-யைப் பொருத்து பொருள் A-வின் சார்பு திசைவேகம், வெக்டார் v AB equals வெக்டார் v A minus வெக்டார் v B என வரையறுக்கப்படுகிறது. "
+            "v r திசைவேகத்தில் பாயும் ஆற்றில் படகு செல்லும்போது, கரையில் இருந்து பார்க்கும் மொத்த திசைவேகம், இவ்விரு வெக்டார்களின் கூடுதலாகும். "
+            "இப்போது முக்கியமான நீட் தேர்வு பொறி எச்சரிக்கை: குறைந்தபட்ச நேரத்தில் ஆற்றைக் கடப்பதற்கும், குறைந்தபட்ச தூரத்தில் கடப்பதற்கும் உள்ள வேறுபாட்டை கவனியுங்கள்! "
+            "குறைந்தபட்ச நேரத்தில் கடக்க, படகோட்டி எப்போதும் நீரோட்டத்திற்கு செங்குத்தாக 90 டிகிரி கோணத்தில் செலுத்த வேண்டும்; இதனால் படகு சற்று முன்னோக்கி நகரும். "
+            "மாறாக, விலகல் இன்றி குறைந்தபட்ச பாதையில் நேராக எதிர் கரையை அடைய, நீரோட்டத்திற்கு எதிரே எதிர் கோணத்தில் செலுத்த வேண்டும். இந்த முக்கிய விதியை எப்போதும் நினைவில் நிறுத்துங்கள்!"
+        ),
+        "hi": (
+            "गतिकी में आपका स्वागत है। इस सत्र में हम आपेक्षिक वेग यानी रिलेटिव वेलोसिटी और नदी-नाव समस्याओं का अध्ययन करेंगे। वस्तु B के सापेक्ष वस्तु A का आपेक्षिक वेग दोनों के सदिश अंतर से दिया जाता है: वेक्टर v AB equals वेक्टर v A minus वेक्टर v B। "
+            "जब कोई नाव v r वेग से बहती नदी को पार करती है, तो किनारे से देखने पर कुल वेग शांत जल में नाव के वेग और नदी के वेग का सदिश योग होता है। "
+            "अब ध्यान दें प्रमुख नीट ट्रैप पॉइंट पर: छात्र अक्सर न्यूनतम समय और न्यूनतम पथ यानी शॉर्टेस्ट पाथ की शर्तों में भ्रमित हो जाते हैं। "
+            "न्यूनतम समय में नदी पार करने के लिए तैराक को हमेशा धारा के ठीक लंबवत यानी 90 डिग्री पर तैरना चाहिए, जिससे वह धारा के साथ थोड़ा आगे बह जाता है। "
+            "वहीं दूसरी ओर, न्यूनतम पथ से सीधे सामने वाले बिंदु पर पहुँचने के लिए तैराक को धारा की विपरीत दिशा में एक निश्चित कोण पर तैरना होगा। इस अंतर को पक्का याद रखें!"
+        )
+    },
+    "P11-C02-T04-V10": {
+        "en": (
+            "Welcome to Kinematics. In this masterclass, we examine Horizontal Projection from a Height h. When a particle is projected horizontally with an initial speed v-naught from a tower of height h, its initial vertical velocity is exactly zero. "
+            "The time taken to reach the ground is determined purely by free fall under gravity: t equals square root of 2h divided by g. Because there is no horizontal acceleration, the horizontal range covered before impact is R equals v-naught times square root of 2h divided by g. "
+            "Now pay attention to the classic NEET Trap: students frequently imagine that a ball fired at high speed stays airborne longer than one simply dropped from the same height. This is entirely incorrect! "
+            "Both projectiles accelerate downward at g with zero initial vertical velocity, so both strike the ground at the exact same instant. Horizontal velocity expands the range, but does not alter the flight duration. Master this core principle for NEET physics!"
+        ),
+        "ta": (
+            "இயக்கவியல் பாடத்திற்கு வரவேற்கிறோம். இந்த அமர்வில் நாம் h உயரத்திலிருந்து கிடைமட்டமாக எறியப்படும் பொருளின் இயக்கத்தை ஆராய்கிறோம். h உயர கோபுரத்திலிருந்து v-naught என்ற ஆரம்ப கிடைமட்ட திசைவேகத்துடன் ஒரு பொருள் எறியப்படும்போது, அதன் ஆரம்ப செங்குத்து திசைவேகம் பூஜ்ஜியமாகும். "
+            "பொருள் தரையை அடைய எடுக்கும் நேரம், முழுமையாக புவியீர்ப்பு முடுக்கத்தை மட்டுமே சார்ந்துள்ளது: t equals square root of 2h divided by g. கிடைமட்ட முடுக்கம் இல்லாததால், பொருள் அடையும் கிடைமட்ட வீச்சு R equals v-naught times square root of 2h divided by g ஆகும். "
+            "இப்போது நீட் தேர்வின் மிக முக்கிய பொறி எச்சரிக்கை: கிடைமட்டமாக அதிக வேகத்தில் எறியப்படும் பந்து, சாதாரணமாக கீழே விடப்படும் பந்தை விட அதிக நேரம் காற்றில் இருக்கும் என்று பல மாணவர்கள் தவறாக எண்ணுகிறார்கள். இது முற்றிலும் தவறு! "
+            "இரண்டு பந்துகளும் ஒரே நேரத்தில் தான் தரையைத் தொடும். கிடைமட்ட திசைவேகம் வீச்சை மட்டுமே அதிகரிக்குமே தவிர, பறக்கும் நேரத்தை மாற்றாது! இந்த பொன் விதியை எப்போதும் நினைவில் நிறுத்துங்கள்!"
+        ),
+        "hi": (
+            "गतिकी में आपका स्वागत है। इस सत्र में हम ऊँचाई h से क्षैतिज प्रक्षेपण यानी हॉरिजॉन्टल प्रोजेक्शन का अध्ययन करेंगे। जब किसी वस्तु को h ऊँचाई के टॉवर से v-naught क्षैतिज वेग से फेंका जाता है, तो उसका प्रारंभिक ऊर्ध्वाधर वेग शून्य होता है। "
+            "जमीन तक पहुँचने में लगा समय केवल गुरुत्वाकर्षण के अंतर्गत मुक्त पतन से निर्धारित होता है: t equals square root of 2h divided by g। चूंकि क्षैतिज दिशा में कोई त्वरण नहीं है, इसलिए क्षैतिज परास यानी रेंज का सूत्र R equals v-naught times square root of 2h divided by g होता है। "
+            "अब ध्यान दें प्रमुख नीट ट्रैप पॉइंट पर: छात्र अक्सर यह सोचते हैं कि तेज गति से फेंकी गई गेंद नीचे गिराई गई गेंद की तुलना में अधिक समय तक हवा में रहेगी। यह बिल्कुल गलत धारणा है! "
+            "दोनों गेंदें बिल्कुल एक ही समय पर जमीन पर गिरेंगी। क्षैतिज वेग केवल रेंज को बढ़ाता है, उड्डयन काल को नहीं! इस स्वर्णिम नियम को हमेशा याद रखें।"
+        )
+    },
+    "P11-C02-T04-V11": {
+        "en": (
+            "Welcome to Kinematics. In this masterclass, we analyze Projectile Motion on an Inclined Plane. When a projectile is launched at an angle alpha onto an incline inclined at angle beta, the standard coordinate axes must be rotated to align with the inclined surface. "
+            "The effective gravity decomposes into two components: g cosine beta acting perpendicular to the incline, and g sine beta opposing the projectile's motion along the incline. "
+            "The time of flight is given by T equals 2 v-naught sine of alpha minus beta, divided by g cosine beta. "
+            "Now heed the critical NEET Trap: students often forget that the acceleration along the incline is not zero! Because g sine beta decelerates the particle along the surface, standard ground range formulas completely fail. "
+            "Always use rotated coordinates and remember that range depends on whether you project up or down the incline! Master this method to secure full marks."
+        ),
+        "ta": (
+            "இயக்கவியல் பாடத்திற்கு வரவேற்கிறோம். இந்த அமர்வில் நாம் சாய்வுதளத்தில் எறிபொருள் இயக்கத்தை ஆராய்கிறோம். beta கோணமுடைய சாய்வுதளத்தின் மீது, கிடைமட்டத்துடன் alpha கோணத்தில் ஒரு பொருள் எறியப்படும்போது, நாம் ஆய அச்சுகளை சாய்வுதளத்திற்கு ஏற்ப சுழற்ற வேண்டும். "
+            "புவியீர்ப்பு முடுக்கம் இரண்டு கூறுகளாகப் பிரிகிறது: சாய்வுதளத்திற்கு செங்குத்தாக g cosine beta, மற்றும் சாய்வுதளத்திற்கு இணையாக g sine beta செயல்படுகிறது. "
+            "பறக்கும் நேரம் T equals 2 v-naught sine of alpha minus beta divided by g cosine beta ஆகும். "
+            "இப்போது நீட் தேர்வின் மிக முக்கிய பொறி எச்சரிக்கை: சாய்வுதளத்தின் திசையில் முடுக்கம் பூஜ்ஜியம் அல்ல என்பதை மாணவர்கள் மறந்து விடுகிறார்கள்! g sine beta துகளின் வேகத்தைக் குறைப்பதால், சாதாரண வீச்சு சமன்பாடுகள் இங்கு பொருந்தாது. "
+            "எப்போதும் சாய்வுதள அச்சுகளைப் பயன்படுத்தி கணக்கிடுங்கள்! இந்த முக்கிய விதியை நினைவில் நிறுத்துங்கள்."
+        ),
+        "hi": (
+            "गतिकी में आपका स्वागत है। इस सत्र में हम आनत तल यानी इन्क्लाइंड प्लेन पर प्रक्षेप्य गति का विश्लेषण करेंगे। जब किसी वस्तु को beta कोण वाले आनत तल पर alpha प्रक्षेपण कोण से फेंका जाता है, तो हमें निर्देशांक अक्षों को आनत तल के अनुदिश घुमाना पड़ता है। "
+            "गुरुत्वीय त्वरण दो घटकों में टूटता है: तल के लंबवत g cosine beta, और तल के अनुदिश नीचे की ओर g sine beta। "
+            "उड्डयन काल का सूत्र है: T equals 2 v-naught sine of alpha minus beta divided by g cosine beta। "
+            "अब ध्यान दें प्रमुख नीट ट्रैप पॉइंट पर: छात्र अक्सर यह भूल जाते हैं कि आनत तल के अनुदिश त्वरण शून्य नहीं होता! g sine beta तल पर कण की गति को मंदित करता है, इसलिए सामान्य समतल वाले सूत्र यहाँ लागू नहीं होते। "
+            "हमेशा आनत तल के घटक g sine beta और g cosine beta को ध्यान में रखकर ही प्रश्न हल करें! इस नियम को हमेशा याद रखें।"
+        )
+    },
+    "P11-C02-T04-V12": {
+        "en": (
+            "Welcome to Kinematics. In this masterclass, we determine the Radius of Curvature at the Apex of a projectile's trajectory. The radius of curvature rho defines the radius of an osculating circle that matches the path curvature at any point, given by speed squared divided by normal acceleration: rho equals v squared divided by a-normal. "
+            "At the apex, the vertical velocity is zero, meaning the particle moves with purely horizontal speed: v equals v-naught cosine theta. Simultaneously, gravity g acts entirely perpendicular to this instantaneous velocity, so a-normal equals g. "
+            "Therefore, the radius of curvature at the apex is rho equals v-naught squared cosine squared theta divided by g. "
+            "Now heed the classic NEET Trap: students frequently plug the full launch speed v-naught into the numerator instead of v-naught cosine theta! "
+            "Remember, at the peak, speed drops to v-naught cosine theta. Applying this exact speed prevents the most common mistake in NEET advanced kinematics!"
+        ),
+        "ta": (
+            "இயக்கவியல் பாடத்திற்கு வரவேற்கிறோம். இந்த அமர்வில் நாம் எறிபொருள் உச்சியில் இருக்கும்போது அதன் வளைவு ஆரத்தை கணக்கிடுகிறோம். வளைவு ஆரம் rho என்பது பாதையின் வளைவுக்குப் பொருந்தும் வட்டத்தின் ஆரமாகும்; இதன் பொதுவான சமன்பாடு rho equals v squared divided by a-normal ஆகும். "
+            "உச்சியில், செங்குத்து திசைவேகம் பூஜ்ஜியமாகி, துகளுக்கு கிடைமட்ட திசைவேகம் மட்டுமே இருக்கும்: v equals v-naught cosine theta. அதே வேளையில், புவியீர்ப்பு முடுக்கம் g இந்த திசைவேகத்திற்கு முழுமையாக செங்குத்தாக செயல்படுவதால், a-normal equals g ஆகிறது. "
+            "எனவே, உச்சியில் வளைவு ஆரம் rho equals v-naught squared cosine squared theta divided by g ஆகும். "
+            "இப்போது நீட் தேர்வின் முக்கிய பொறி எச்சரிக்கை: மாணவர்கள் தொடக்க திசைவேகமான v-naught-ஐ நேரடியாக சமன்பாட்டில் பிரதியிட்டு தவறான விடையைப் பெறுகிறார்கள்! "
+            "உச்சியில் திசைவேகம் v-naught cosine theta மட்டுமே என்பதை எப்போதும் நினைவில் நிறுத்துங்கள்!"
+        ),
+        "hi": (
+            "गतिकी में आपका स्वागत है। इस सत्र में हम प्रक्षेप्य पथ के उच्चतम बिंदु शीर्ष पर वक्रता त्रिज्या यानी रेडियस ऑफ कर्वेचर ज्ञात करेंगे। वक्रता त्रिज्या rho उस स्पर्श वृत की त्रिज्या होती है जो वक्र से मेल खाती है, जिसका सूत्र है rho equals v squared divided by a-normal। "
+            "शीर्ष पर ऊर्ध्वाधर वेग शून्य होता है, अतः कण केवल क्षैतिज वेग v equals v-naught cosine theta से गति करता है। साथ ही, गुरुत्वाकर्षण त्वरण g इस वेग के पूर्णतः लंबवत होता है, इसलिए a-normal equals g होगा। "
+            "अतः शीर्ष पर वक्रता त्रिज्या का सूत्र बनता है: rho equals v-naught squared cosine squared theta divided by g। "
+            "अब नीट परीक्षा का मुख्य ट्रैप पॉइंट: छात्र अक्सर अंश में v-naught cosine theta के स्थान पर पूरा प्रारंभिक वेग v-naught रख देते हैं! "
+            "याद रखें, शीर्ष पर केवल क्षैतिज वेग v-naught cosine theta ही शेष रहता है। इस नियम से आपके पूरे अंक सुरक्षित होंगे!"
+        )
+    },
+    "P11-C02-T04-V01": {
+        "en": (
+            "Welcome to Kinematics. In this masterclass, we explore Centripetal Acceleration in Uniform Circular Motion. Even when a particle traverses a circular path of radius r at a perfectly constant speed v, its direction of motion changes at every single infinitesimal instant. "
+            "Because velocity is a vector, this continuous directional change creates an acceleration directed radially inward toward the circle's center, called centripetal acceleration. "
+            "The magnitude is governed by a-sub-c equals v squared divided by r, or equivalently, omega squared times r. "
+            "Now heed the classic NEET Trap: students frequently assume that because speed is constant, the acceleration must be zero. This is a fatal misconception! "
+            "Speed is constant, but velocity is definitely not constant. Furthermore, because centripetal acceleration is strictly perpendicular to the velocity vector, the centripetal force does zero work on the particle! Master this foundational distinction for NEET physics."
+        ),
+        "ta": (
+            "இயக்கவியல் பாடத்திற்கு வரவேற்கிறோம். இந்த அமர்வில் நாம் சீரான வட்ட இயக்கத்தில் மையநோக்கு முடுக்கத்தை ஆராய்கிறோம். ஒரு துகள் r ஆரம் கொண்ட வட்டப்பாதையில் v என்ற மாறா வேகத்தில் சென்றாலும், அதன் திசைவேகத்தின் திசை ஒவ்வொரு கணமும் தொடர்ந்து மாறிக் கொண்டே இருக்கிறது. "
+            "திசைவேகம் ஒரு வெக்டார் என்பதால், இந்த திசை மாற்றம் வட்டத்தின் மையத்தை நோக்கி ஒரு முடுக்கத்தை உருவாக்குகிறது; இதுவே மையநோக்கு முடுக்கம் எனப்படும். "
+            "இதன் சமன்பாடு: a-sub-c equals v squared divided by r, அல்லது omega squared times r ஆகும். "
+            "இப்போது நீட் தேர்வின் மிக முக்கிய பொறி எச்சரிக்கை: வேகம் மாறாமல் இருப்பதால் முடுக்கம் பூஜ்ஜியம் என்று பல மாணவர்கள் தவறாக எண்ணுகிறார்கள்! "
+            "வேகம் மாறவில்லை என்றாலும், திசை மாறுவதால் முடுக்கம் உண்டு. மேலும், மையநோக்கு முடுக்கம் திசைவேகத்திற்கு செங்குத்தாக இருப்பதால், மையநோக்கு விசை செய்யும் வேலை எப்போதும் பூஜ்ஜியமாகும்! இந்த பொன் விதியை எப்போதும் நினைவில் நிறுத்துங்கள்."
+        ),
+        "hi": (
+            "गतिकी में आपका स्वागत है। इस सत्र में हम एकसमान वृत्तीय गति में अभिकेंद्रीय त्वरण यानी सेंट्रिपेटल एक्सेलेरेशन का अध्ययन करेंगे। जब कोई कण r त्रिज्या के वृत्ताकार पथ पर नियत चाल v से गति करता है, तो भी प्रत्येक क्षण उसकी गति की दिशा निरंतर बदलती रहती है। "
+            "चूंकि वेग एक सदिश राशि है, अतः दिशा में यह निरंतर परिवर्तन वृत्त के केंद्र की ओर एक त्वरण उत्पन्न करता है जिसे अभिकेंद्रीय त्वरण कहते हैं। "
+            "इसका सूत्र है: a-sub-c equals v squared divided by r, अथवा omega squared times r। "
+            "अब ध्यान दें प्रमुख नीट ट्रैप पॉइंट पर: छात्र अक्सर यह मान लेते हैं कि चाल नियत होने के कारण त्वरण शून्य होगा। यह एक गंभीर भूल है! "
+            "चाल नियत है परंतु वेग की दिशा निरंतर बदल रही है। इसके अतिरिक्त, अभिकेंद्रीय त्वरण हमेशा वेग के लंबवत होता है, अतः अभिकेंद्रीय बल द्वारा किया गया कार्य हमेशा शून्य होता है! इस महत्वपूर्ण नियम को हमेशा याद रखें।"
+        )
+    },
     "P11-C02-T03-V01": {
         "en": (
             "Welcome to Kinematics. In projectile motion, the time of flight T represents the total duration the projectile remains in the air before landing at y equals zero. "
@@ -150,6 +322,56 @@ FLAGSHIP_SCRIPTS = {
             "इसका मानक सूत्र है: y equals x tan theta minus g x squared divided by 2 v-naught squared cosine squared theta। "
             "इसका दूसरा रूप y equals x tan theta times 1 minus x by R कई कठिन नीट प्रश्नों को चुटकियों में हल कर देता है। "
             "नीट परीक्षा का मुख्य ट्रैप पॉइंट: तुलनात्मक प्रश्नों में tan theta की जगह cot theta मानकर गलती न करें। पहला पद हमेशा x tan theta ही होता है। इस परवलय समीकरण को अच्छी तरह याद रखें!"
+        )
+    },
+    "P11-C02-T05-V13": {
+        "en": (
+            "Welcome to Kinematics. In circular motion, linear speed v and angular velocity omega are directly related through the radial distance r. "
+            "The governing formula is v equals omega times r. When a rigid body rotates about a fixed axis, all particles sweep equal angles in equal time intervals, "
+            "so angular velocity omega is strictly identical for every point! However, particles farther from the center travel a larger circumference, "
+            "meaning linear velocity v increases directly with radius r. Now here is the crucial NEET Trap: students often think points closer to the center move faster, "
+            "or that angular velocity changes with radius. This is false! Angular velocity omega is constant everywhere on the body, while the outermost rim moves "
+            "with the greatest linear speed. Remember v equals omega times r to score full marks in NEET!"
+        ),
+        "ta": (
+            "இயக்கவியல் பாடத்திற்கு வரவேற்கிறோம். வட்ட இயக்கத்தில், நேரியல் வேகம் v மற்றும் கோணத் திசைவேகம் omega ஆகியவை ஆரம் r மூலமாக ஒன்றோடொன்று தொடர்புடையவை. "
+            "இதன் முதன்மை சமன்பாடு: v equals omega times r. ஒரு திடப்பொருள் சுழலும் போது, அதிலுள்ள அனைத்து புள்ளிகளும் ஒரே நேரத்தில் சமமான கோண இடப்பெயர்ச்சியைக் கடப்பதால், "
+            "கோணத் திசைவேகம் omega அனைவருக்கும் சமமாக இருக்கும்! ஆனால் மையத்திலிருந்து அதிக தூரத்தில் உள்ள புள்ளிகள் அதிக சுற்றளவைக் கடப்பதால், "
+            "நேரியல் வேகம் v ஆரத்திற்கு நேர்விகிதத்தில் அதிகரிக்கும். நீட் தேர்வு பொறி எச்சரிக்கை: மையத்திற்கு அருகில் உள்ள புள்ளிகள் அதிக வேகத்தில் சுழலும் என ஒருபோதும் தவறாக நினைக்காதீர்கள்! "
+            "omega அனைவருக்கும் பொதுவானது; விளிம்பில் இருக்கும் புள்ளியே அதிகபட்ச நேரியல் வேகம் v-ஐக் கொண்டிருக்கும். இந்த விதியை எப்போதும் நினைவில் நிறுத்துங்கள்!"
+        ),
+        "hi": (
+            "किनेमैटिक्स में आपका स्वागत है। वृत्तीय गति में रेखीय चाल v और कोणीय वेग omega त्रिज्या r द्वारा संबंधित होते हैं। "
+            "इसका मूलभूत सूत्र है: v equals omega times r। जब कोई दृढ़ पिंड घूर्णन करता है, तो उसके सभी कण समान समय में समान कोण घूमते हैं, "
+            "इसलिए कोणीय वेग omega सभी बिंदुओं के लिए बिल्कुल समान रहता है! परंतु केंद्र से अधिक दूरी वाले कण बड़ी परिधि तय करते हैं, "
+            "इसलिए रेखीय चाल v त्रिज्या r के साथ बढ़ती है। अब नीट परीक्षा का मुख्य ट्रैप पॉइंट: छात्र अक्सर सोचते हैं कि केंद्र के पास वाले बिंदु तेज़ चलते हैं "
+            "या omega बदलता है। यह गलत है! पूरे पिंड का omega समान रहता है, जबकि बाहरी रिम पर रेखीय चाल v सबसे अधिक होती है। इस सूत्र को हमेशा याद रखें!"
+        )
+    },
+    "P11-C02-T05-V14": {
+        "en": (
+            "Welcome to Kinematics. In non-uniform circular motion, a particle experiences two simultaneous, mutually perpendicular accelerations. "
+            "The first is radial centripetal acceleration, a-c equals v squared over r, which continuously changes the direction of velocity toward the center. "
+            "The second is tangential acceleration, a-t equals dv over dt, which directly changes the speed along the path. "
+            "Because these components are orthogonal, the net acceleration magnitude is given by the Pythagorean relation: a-net equals square root of a-c squared plus a-t squared. "
+            "Now heed the high-frequency NEET Trap: when speed varies in circular motion, students frequently calculate only centripetal acceleration and forget tangential acceleration entirely! "
+            "In uniform circular motion, only a-c exists; but in non-uniform circular motion, both a-c and a-t are present. Never omit the tangential component!"
+        ),
+        "ta": (
+            "இயக்கவியல் பாடத்திற்கு வரவேற்கிறோம். சீரற்ற வட்ட இயக்கத்தில், ஒரு பொருள் ஒன்றுக்கொன்று செங்குத்தான இரண்டு முடுக்கங்களை ஒரே நேரத்தில் எதிர்கொள்கிறது. "
+            "முதலாவது மையநோக்கு முடுக்கம் a-c equals v squared by r, இது திசைவேகத்தின் திசையை மட்டுமே மாற்றுகிறது. "
+            "இரண்டாவது தொடுகோட்டு முடுக்கம் a-t equals dv by dt, இது பொருளின் வேகத்தை மட்டுமே மாற்றுகிறது. "
+            "இந்த இரண்டு கூறுகளும் செங்குத்தாக அமைவதால், மொத்த நிகர முடுக்கத்தின் அளவு: a-net equals square root of a-c squared plus a-t squared ஆகும். "
+            "நீட் தேர்வு பொறி எச்சரிக்கை: வேகம் மாறும் போது, மையநோக்கு முடுக்கத்தை மட்டும் கணக்கிட்டு விட்டு, தொடுகோட்டு முடுக்கத்தை மாணவர்கள் மறந்து விடுகிறார்கள்! "
+            "சீரான வட்ட இயக்கத்திற்கு a-c மட்டுமே; சீரற்ற இயக்கத்திற்கு a-c மற்றும் a-t இரண்டும் தேவை. இந்த வேறுபாட்டை எப்போதும் நினைவில் நிறுத்துங்கள்!"
+        ),
+        "hi": (
+            "किनेमैटिक्स में आपका स्वागत है। असमान वृत्तीय गति में कण पर एक साथ दो परस्पर लंबवत त्वरण कार्य करते हैं। "
+            "पहला है अभिकेंद्रीय त्वरण a-c equals v squared over r, जो लगातार वेग की दिशा को केंद्र की ओर मोड़ता है। "
+            "दूसरा है स्पर्शरेखीय त्वरण a-t equals dv by dt, जो चाल के परिमाण को बदलता है। "
+            "चूँकि ये दोनों लंबवत हैं, कुल परिणामी त्वरण है: a-net equals square root of a-c squared plus a-t squared। "
+            "अब नीट परीक्षा का मुख्य ट्रैप: जब चाल बदल रही हो, तब छात्र केवल अभिकेंद्रीय त्वरण निकालते हैं और स्पर्शरेखीय त्वरण को भूल जाते हैं! "
+            "एकसमान गति में केवल a-c होता है, परंतु असमान गति में a-c और a-t दोनों होते हैं। इस अंतर को हमेशा याद रखें!"
         )
     }
 }
