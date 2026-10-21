@@ -72,26 +72,51 @@
     .nta-review { background-color: #8B5CF6; color: #FFFFFF; border-radius: 50%; } /* Purple circle */
     .nta-not-visited { background-color: #334155; color: #94A3B8; } /* Gray */
     .nta-current { ring: 2px solid #38BDF8; transform: scale(1.1); }
+
+    /* Floating Symbol Tool Palette Tooltips */
+    .palette-tooltip {
+      position: absolute;
+      right: calc(100% + 12px);
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(15, 23, 42, 0.96);
+      backdrop-filter: blur(12px);
+      color: #F8FAFC;
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(51, 65, 85, 0.85);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s ease-in-out;
+      z-index: 60;
+    }
+    .group:hover .palette-tooltip {
+      opacity: 1;
+    }
   </style>
 </head>
 <body class="h-screen flex flex-col overflow-hidden bg-[#07090E]" oncontextmenu="return false;">
 
-  <!-- Top Global Security & Navigation Bar -->
+  <!-- Top Global Security & Navigation Bar (Minimalist Study Cockpit) -->
   <header class="h-14 border-b border-slate-800/80 bg-[#0B0F19]/95 px-4 flex items-center justify-between z-30 shrink-0">
     <div class="flex items-center space-x-3">
-      <button id="toggleSidebarBtn" class="text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-slate-800 transition">
-        <i class="fa-solid fa-bars text-lg"></i>
+      <button id="toggleSidebarBtn" title="Toggle Curriculum Drawer" class="text-slate-400 hover:text-white p-2 rounded-xl hover:bg-slate-800/80 transition flex items-center justify-center">
+        <i class="fa-solid fa-bars-staggered text-base"></i>
       </button>
       <div class="flex items-center space-x-2">
-        <span class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span class="font-bold text-base tracking-wide bg-gradient-to-r from-sky-400 via-indigo-300 to-purple-400 bg-clip-text text-transparent">
-          NEET UG MASTERCLASS
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="font-bold text-sm tracking-wide bg-gradient-to-r from-sky-400 via-indigo-300 to-purple-400 bg-clip-text text-transparent">
+          NEET MASTERCLASS
         </span>
       </div>
 
       <!-- Subject Switcher Pills (Physics / Chemistry / Biology) -->
       <div class="hidden sm:flex items-center space-x-1 bg-slate-900/90 border border-slate-700/60 rounded-xl p-1 text-xs ml-2">
-        <button id="subjPhysicsBtn" onclick="selectSubject('Physics')" class="px-3 py-1 rounded-lg font-semibold bg-sky-600 text-white transition flex items-center space-x-1.5">
+        <button id="subjPhysicsBtn" onclick="selectSubject('Physics')" class="px-3 py-1 rounded-lg font-semibold bg-sky-600 text-white transition flex items-center space-x-1.5 shadow-sm">
           <span>⚛️</span>
           <span>Physics</span>
         </button>
@@ -106,40 +131,20 @@
           <span id="bioLockIcon" class="hidden text-amber-400 text-[10px]"><i class="fa-solid fa-lock"></i></span>
         </button>
       </div>
-
-      <span class="hidden xl:flex items-center space-x-1.5 text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950/60 border border-emerald-500/30 text-emerald-400">
-        <i class="fa-solid fa-lock text-[9px]"></i>
-        <span>AES-128 ENCRYPTED STREAM</span>
-      </span>
     </div>
 
-    <!-- Center Mode Indicator -->
-    <div class="hidden md:flex items-center space-x-2 bg-slate-900/90 border border-slate-700/60 rounded-xl p-1 text-xs">
-      <button id="modeMicroBtn" class="px-3 py-1 rounded-lg font-semibold bg-sky-600 text-white transition">
-        ⚡ Concept Sprints (60s)
-      </button>
-      <button id="modeExamBtn" onclick="openExamHubModal()" class="px-3 py-1 rounded-lg font-semibold bg-gradient-to-r from-amber-600 to-rose-600 text-white hover:from-amber-500 hover:to-rose-500 transition flex items-center space-x-1.5 shadow-md">
-        <i class="fa-solid fa-graduation-cap"></i>
-        <span>📝 Exam Center</span>
-      </button>
-      <!-- Admin Vault Button (Visible to Admin Only) -->
-      <button id="adminVaultNavBtn" onclick="openAdminVaultModal()" class="hidden px-3 py-1 rounded-lg font-semibold bg-purple-900/80 hover:bg-purple-800 border border-purple-500/40 text-purple-200 transition flex items-center space-x-1.5">
-        <i class="fa-solid fa-shield-halved"></i>
-        <span>🛡️ Admin Vault</span>
-      </button>
+    <!-- Hidden Backwards Compatibility Hooks -->
+    <div class="hidden">
+      <button id="modeMicroBtn"></button>
+      <button id="modeExamBtn" onclick="openExamHubModal()"></button>
+      <button id="adminVaultNavBtn" onclick="openAdminVaultModal()"></button>
     </div>
 
-    <!-- Right Multi-Role User Profile & Role Switcher -->
-    <div class="flex items-center space-x-3">
-      <!-- Direct Sign In / Sign Up Button -->
-      <button onclick="openAuthModal('otp')" class="px-3 py-1.5 rounded-lg bg-sky-600/80 hover:bg-sky-500 text-white text-xs font-semibold flex items-center space-x-1.5 transition shadow">
-        <i class="fa-solid fa-user-lock text-[11px]"></i>
-        <span>Sign In / Register</span>
-      </button>
-
-      <!-- Clickable Account Badge -->
-      <div id="studentBadge" onclick="openRoleSwitcherModal()" class="cursor-pointer flex items-center space-x-2 text-xs font-mono bg-sky-950/50 hover:bg-sky-900/60 border border-sky-500/30 px-2.5 py-1 rounded-lg text-sky-300 transition">
-        <i id="userRoleIcon" class="fa-solid fa-user-graduate text-emerald-400"></i>
+    <!-- Right Profile Status & Palette Quick Access -->
+    <div class="flex items-center space-x-2.5">
+      <!-- Minimalist Account Badge -->
+      <div id="studentBadge" onclick="openRoleSwitcherModal()" class="cursor-pointer flex items-center space-x-2 text-xs font-mono bg-slate-900/80 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 px-3 py-1 rounded-xl text-slate-300 transition">
+        <i id="userRoleIcon" class="fa-solid fa-user-graduate text-emerald-400 text-xs"></i>
         <div class="text-left">
           <div id="studentNameDisplay" class="font-bold text-[11px] leading-tight">Dr. Aarav Sharma</div>
           <div class="text-[9px] text-slate-400 flex items-center space-x-1">
@@ -148,12 +153,17 @@
             <span id="studentRollDisplay">NEET-26-8801</span>
           </div>
         </div>
-        <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 ml-1"></i>
+        <i class="fa-solid fa-chevron-down text-[10px] text-slate-500 ml-1"></i>
       </div>
 
       <div id="subjectAvatar" class="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-xs font-bold text-sky-400">
         PHY
       </div>
+
+      <!-- Quick Tool Palette Toggle Button -->
+      <button onclick="toggleToolPalette()" title="Toggle Tool Palette" class="text-slate-400 hover:text-white p-2 rounded-xl hover:bg-slate-800 transition">
+        <i class="fa-solid fa-sliders text-sm"></i>
+      </button>
     </div>
   </header>
 
@@ -286,26 +296,16 @@
 
       </div>
 
-      <!-- Tab Content 1: Video Player Stage -->
+      <!-- Tab Content 1: Video Player Stage (Clean Student Study Board) -->
       <section id="contentWatch" class="flex-1 flex flex-col overflow-hidden relative">
         
-        <!-- TEACHER PRIVATE AUDIT TOOLBAR (Visible ONLY to Teachers & Admin) -->
-        <div id="teacherAuditBar" class="hidden h-10 bg-amber-950/80 border-b border-amber-500/40 px-4 flex items-center justify-between shrink-0 z-20">
-          <div class="flex items-center space-x-2 text-xs font-mono text-amber-300">
-            <span class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse"></span>
-            <span class="font-bold">👨‍🏫 FACULTY AUDIT MODE</span>
-            <span class="text-slate-400">|</span>
-            <span id="teacherTimeTracker">Timestamp: 00:00</span>
-          </div>
-          <button onclick="openTeacherErrorModal()" class="px-3 py-1 rounded bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold flex items-center space-x-1.5 shadow transition">
-            <i class="fa-solid fa-flag"></i>
-            <span>Report Error / Correction</span>
-          </button>
+        <!-- TEACHER PRIVATE AUDIT (Preserved in DOM for timestamp tracking, hidden from student view) -->
+        <div id="teacherAuditBar" class="hidden">
+          <span id="teacherTimeTracker">Timestamp: 00:00</span>
         </div>
 
         <div class="flex-1 bg-black flex items-center justify-center relative p-2 sm:p-4">
-          
-          <div class="video-shield max-h-full max-w-full aspect-video shadow-2xl relative flex items-center justify-center">
+          <div class="video-shield max-h-full max-w-full aspect-video shadow-2xl relative flex items-center justify-center w-full max-w-5xl">
             
             <!-- Video Player Element (nodownload enforced) -->
             <video id="mainVideoPlayer" 
@@ -328,72 +328,44 @@
             </div>
 
           </div>
-
         </div>
 
-        <!-- Video Info & Student Telemetry Feedback Bar below player -->
-        <div class="h-20 bg-[#0B0F19] border-t border-slate-800/80 px-6 flex flex-col justify-center shrink-0 space-y-1">
-          <div class="flex items-center justify-between">
-            <div>
-              <div class="flex items-center space-x-2">
-                <span id="conceptBadge" class="px-2 py-0.5 rounded bg-rose-950 border border-rose-500/40 text-rose-400 font-mono font-bold text-xs">S.2.3.2</span>
-                <h2 id="videoTitleText" class="text-white font-bold text-sm">The Max Height Arc — Projectile Motion</h2>
-              </div>
-              <p id="videoCitationText" class="text-slate-400 text-xs mt-0.5">NCERT Class 11 Part 1, Chapter 4, Page 78 • Concept ID: P11-C02-T03-V02</p>
-            </div>
-            
-            <div class="flex items-center space-x-3">
-              <button id="markCompleteBtn" onclick="toggleConceptCompletion()" class="px-3 py-1.5 rounded-lg bg-emerald-950/70 hover:bg-emerald-900 border border-emerald-500/40 text-emerald-400 text-xs font-semibold flex items-center space-x-1.5 transition">
-                <i class="fa-solid fa-check"></i>
-                <span id="markCompleteBtnText">Mark Mastered</span>
-              </button>
-              <button onclick="switchTab('lab')" class="px-3 py-1.5 rounded-lg bg-purple-900/60 hover:bg-purple-800 border border-purple-500/40 text-purple-300 text-xs font-semibold flex items-center space-x-1.5 transition">
-                <i class="fa-solid fa-flask-vial"></i>
-                <span>Open 3D Lab</span>
-              </button>
-              <button onclick="switchTab('solve')" class="px-3 py-1.5 rounded-lg bg-amber-900/60 hover:bg-amber-800 border border-amber-500/40 text-amber-300 text-xs font-semibold flex items-center space-x-1.5 transition">
-                <i class="fa-solid fa-bolt"></i>
-                <span>Solve Trap</span>
-              </button>
+        <!-- Clean Student Study Board Bar -->
+        <div class="h-16 bg-[#0B0F19] border-t border-slate-800/80 px-6 flex items-center justify-between shrink-0">
+          <!-- Left: Concept Identification -->
+          <div class="flex items-center space-x-3 truncate">
+            <span id="conceptBadge" class="px-2.5 py-1 rounded-lg bg-sky-950/80 border border-sky-500/40 text-sky-400 font-mono font-bold text-xs shrink-0">
+              S.2.3.2
+            </span>
+            <div class="truncate">
+              <h2 id="videoTitleText" class="text-white font-bold text-sm tracking-tight truncate">
+                The Max Height Arc — Projectile Motion
+              </h2>
+              <p id="videoCitationText" class="text-slate-400 text-xs font-mono truncate mt-0.5">
+                NCERT Class 11 Part 1, Chapter 4, Page 78 • Concept ID: P11-C02-T03-V02
+              </p>
             </div>
           </div>
 
-          <!-- Bottom Telemetry & Rating Sub-Bar (Student In-Video Feedback) -->
-          <div class="flex items-center justify-between pt-1 border-t border-slate-800/50 text-[11px] font-mono text-slate-400">
-            <div class="flex items-center space-x-4">
-              <!-- Audio Clarity Rating -->
-              <div class="flex items-center space-x-1.5">
-                <span class="text-slate-500"><i class="fa-solid fa-volume-high text-sky-400"></i> Audio:</span>
-                <div class="flex items-center space-x-0.5 text-amber-400 cursor-pointer">
-                  <span onclick="submitRating('audio', 1)">★</span>
-                  <span onclick="submitRating('audio', 2)">★</span>
-                  <span onclick="submitRating('audio', 3)">★</span>
-                  <span onclick="submitRating('audio', 4)">★</span>
-                  <span onclick="submitRating('audio', 5)">★</span>
-                </div>
-              </div>
+          <!-- Right: Study Navigation Controls (Prev, Mark Mastered, Next) -->
+          <div class="flex items-center space-x-2 shrink-0">
+            <button onclick="goToPrevConcept()" title="Previous Concept" class="p-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white transition">
+              <i class="fa-solid fa-chevron-left text-xs"></i>
+            </button>
 
-              <!-- Video Clarity Rating -->
-              <div class="flex items-center space-x-1.5">
-                <span class="text-slate-500"><i class="fa-solid fa-tv text-purple-400"></i> Video:</span>
-                <div class="flex items-center space-x-0.5 text-amber-400 cursor-pointer">
-                  <span onclick="submitRating('video', 1)">★</span>
-                  <span onclick="submitRating('video', 2)">★</span>
-                  <span onclick="submitRating('video', 3)">★</span>
-                  <span onclick="submitRating('video', 4)">★</span>
-                  <span onclick="submitRating('video', 5)">★</span>
-                </div>
-              </div>
+            <button id="markCompleteBtn" onclick="toggleConceptCompletion()" class="px-4 py-2 rounded-xl bg-emerald-950/60 hover:bg-emerald-900/80 border border-emerald-500/40 text-emerald-400 text-xs font-semibold flex items-center space-x-1.5 transition">
+              <i class="fa-solid fa-circle-check text-xs"></i>
+              <span id="markCompleteBtnText">Mark Mastered</span>
+            </button>
 
-              <span id="ratingThankYouBadge" class="hidden text-emerald-400 font-bold">✓ Rated!</span>
-            </div>
-
-            <!-- "Still Don't Understand" Flag Button -->
-            <button onclick="openConfusionModal()" class="text-amber-400 hover:text-amber-300 flex items-center space-x-1 px-2 py-0.5 rounded bg-amber-950/40 border border-amber-500/30 transition">
-              <i class="fa-regular fa-circle-question"></i>
-              <span>Still Don't Understand? (Flag for Doubt Class)</span>
+            <button onclick="goToNextConcept()" title="Next Concept" class="p-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white transition">
+              <i class="fa-solid fa-chevron-right text-xs"></i>
             </button>
           </div>
+
+          <!-- Hidden Dummy for Backwards Compatibility -->
+          <span id="ratingThankYouBadge" class="hidden"></span>
+
         </div>
       </section>
 
@@ -450,6 +422,142 @@
       </section>
 
     </main>
+
+    <!-- Right Rail: Distraction-Free Tool Palette (Symbol Bar with Micro-Flyouts) -->
+    <aside id="toolPaletteBar" class="w-14 border-l border-slate-800/80 bg-[#0B0F19] flex flex-col items-center py-3 justify-between shrink-0 z-20 transition-all select-none">
+      
+      <!-- Top Group: Core Study & Diagnostic Tools -->
+      <div class="flex flex-col items-center space-y-3 w-full">
+
+        <!-- Tool 1: NTA CBT Exam Center -->
+        <div class="relative group">
+          <button id="paletteExamBtn" onclick="openExamHubModal()" class="w-10 h-10 rounded-xl bg-slate-900 hover:bg-gradient-to-tr hover:from-amber-600 hover:to-rose-600 text-slate-300 hover:text-white flex items-center justify-center transition border border-slate-800 hover:border-transparent shadow-sm">
+            <i class="fa-solid fa-graduation-cap text-sm"></i>
+          </button>
+          <div class="palette-tooltip">CBT Exam Center</div>
+        </div>
+
+        <!-- Tool 2: Remedial Revision Playlist (Mistakes First) -->
+        <div class="relative group">
+          <button id="paletteRemedialBtn" onclick="toggleRemedialModeFromPalette()" class="w-10 h-10 rounded-xl bg-slate-900 hover:bg-rose-950 text-slate-300 hover:text-rose-400 flex items-center justify-center transition border border-slate-800 hover:border-rose-500/40 relative">
+            <i class="fa-solid fa-arrows-rotate text-sm"></i>
+            <span id="paletteMistakeBadge" class="hidden absolute -top-1 -right-1 w-4 h-4 rounded-full bg-rose-600 text-white text-[9px] font-mono font-bold flex items-center justify-center">0</span>
+          </button>
+          <div class="palette-tooltip">Remedial Mode (Mistakes First)</div>
+        </div>
+
+        <!-- Tool 3: Audio & Video Quality Rating Flyout -->
+        <div class="relative group">
+          <button id="paletteRatingBtn" onclick="toggleRatingFlyout()" class="w-10 h-10 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-amber-400 flex items-center justify-center transition border border-slate-800">
+            <i class="fa-solid fa-star text-sm"></i>
+          </button>
+          <div class="palette-tooltip">Rate Audio & Video Quality</div>
+
+          <!-- Rating Micro-Flyout Card (Floats next to palette on click) -->
+          <div id="ratingFlyout" class="hidden absolute right-14 top-0 w-64 p-3.5 rounded-2xl bg-slate-900/95 backdrop-blur-xl border border-slate-700 shadow-2xl z-50 text-xs space-y-3">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+              <span class="font-bold text-white flex items-center space-x-1.5">
+                <i class="fa-solid fa-sliders text-amber-400"></i>
+                <span>Quality Feedback</span>
+              </span>
+              <button onclick="toggleRatingFlyout()" class="text-slate-400 hover:text-white p-0.5"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <!-- Audio Clarity -->
+            <div class="space-y-1">
+              <div class="flex items-center justify-between text-slate-400 text-[11px] font-mono">
+                <span><i class="fa-solid fa-volume-high text-sky-400"></i> Audio Clarity:</span>
+                <span id="audioStarsLabel" class="text-amber-400 font-bold">5 / 5 ★</span>
+              </div>
+              <div class="flex items-center justify-center space-x-2 text-base text-amber-400 cursor-pointer py-1 bg-slate-950 rounded-lg border border-slate-800">
+                <span onclick="submitRating('audio', 1)">★</span>
+                <span onclick="submitRating('audio', 2)">★</span>
+                <span onclick="submitRating('audio', 3)">★</span>
+                <span onclick="submitRating('audio', 4)">★</span>
+                <span onclick="submitRating('audio', 5)">★</span>
+              </div>
+            </div>
+
+            <!-- Video Clarity -->
+            <div class="space-y-1">
+              <div class="flex items-center justify-between text-slate-400 text-[11px] font-mono">
+                <span><i class="fa-solid fa-tv text-purple-400"></i> Video Clarity:</span>
+                <span id="videoStarsLabel" class="text-amber-400 font-bold">5 / 5 ★</span>
+              </div>
+              <div class="flex items-center justify-center space-x-2 text-base text-amber-400 cursor-pointer py-1 bg-slate-950 rounded-lg border border-slate-800">
+                <span onclick="submitRating('video', 1)">★</span>
+                <span onclick="submitRating('video', 2)">★</span>
+                <span onclick="submitRating('video', 3)">★</span>
+                <span onclick="submitRating('video', 4)">★</span>
+                <span onclick="submitRating('video', 5)">★</span>
+              </div>
+            </div>
+
+            <div id="flyoutRatedMsg" class="hidden text-center text-emerald-400 font-bold text-[11px] pt-1">
+              ✓ Rating Submitted! Thank you.
+            </div>
+          </div>
+        </div>
+
+        <!-- Tool 4: Student Doubt / "Still Confused" Flag -->
+        <div class="relative group">
+          <button onclick="openConfusionModal()" class="w-10 h-10 rounded-xl bg-slate-900 hover:bg-amber-950 text-slate-300 hover:text-amber-400 flex items-center justify-center transition border border-slate-800 hover:border-amber-500/40">
+            <i class="fa-regular fa-circle-question text-sm"></i>
+          </button>
+          <div class="palette-tooltip">Flag Concept for Doubt Class</div>
+        </div>
+
+        <!-- Subtle Divider -->
+        <div class="w-6 h-px bg-slate-800 my-1"></div>
+
+        <!-- Tool 5: Faculty Audit Error Report (Teacher / Admin Only) -->
+        <div id="paletteTeacherBtn" class="hidden relative group">
+          <button onclick="openTeacherErrorModal()" class="w-10 h-10 rounded-xl bg-amber-950/80 hover:bg-amber-900 text-amber-300 flex items-center justify-center transition border border-amber-500/40">
+            <i class="fa-solid fa-chalkboard-user text-sm"></i>
+          </button>
+          <div class="palette-tooltip">Faculty Audit: Report Error</div>
+        </div>
+
+        <!-- Tool 6: Super Admin Vault (Admin / Institution Only) -->
+        <div id="paletteAdminBtn" class="hidden relative group">
+          <button onclick="openAdminVaultModal()" class="w-10 h-10 rounded-xl bg-purple-950/80 hover:bg-purple-900 text-purple-300 flex items-center justify-center transition border border-purple-500/40">
+            <i class="fa-solid fa-shield-halved text-sm"></i>
+          </button>
+          <div class="palette-tooltip">Super Admin Vault & B2B Licenses</div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Group: Focus, Auth & Account Tools -->
+      <div class="flex flex-col items-center space-y-3 w-full">
+
+        <!-- Tool 7: Zen / Cinema Focus Mode Toggle -->
+        <div class="relative group">
+          <button onclick="toggleZenMode()" class="w-10 h-10 rounded-xl bg-slate-900 hover:bg-sky-950 text-slate-300 hover:text-sky-400 flex items-center justify-center transition border border-slate-800">
+            <i id="zenModeIcon" class="fa-solid fa-expand text-sm"></i>
+          </button>
+          <div class="palette-tooltip">Zen Focus Mode (Distraction-Free)</div>
+        </div>
+
+        <!-- Tool 8: Full Security & Auth Portal -->
+        <div class="relative group">
+          <button onclick="openAuthModal('otp')" class="w-10 h-10 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-sky-400 flex items-center justify-center transition border border-slate-800">
+            <i class="fa-solid fa-key text-sm"></i>
+          </button>
+          <div class="palette-tooltip">Sign In / Mobile OTP / Register</div>
+        </div>
+
+        <!-- Tool 9: Student Account & Persona Switcher -->
+        <div class="relative group">
+          <button onclick="openRoleSwitcherModal()" class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 text-white flex items-center justify-center shadow-lg transition hover:scale-105">
+            <i id="paletteRoleIcon" class="fa-solid fa-user-graduate text-sm"></i>
+          </button>
+          <div class="palette-tooltip">Account & Persona Switcher</div>
+        </div>
+
+      </div>
+
+    </aside>
 
   </div>
 
@@ -1156,6 +1264,8 @@
     let completedConcepts = JSON.parse(localStorage.getItem('neet_completed_concepts') || '[]');
     let studentMistakes = JSON.parse(localStorage.getItem('neet_student_mistakes') || '[]');
     let isRemedialModeActive = false;
+    let currentFilteredConcepts = [];
+    let isZenMode = false;
 
     // CBT Active Exam Session State
     let activeExamSession = null;
@@ -1195,27 +1305,51 @@
         roleIcon.className = 'fa-solid fa-chalkboard-user text-amber-400';
         planBadge.innerText = 'Faculty Auditor';
         planBadge.className = 'text-amber-400 font-semibold';
-        teacherBar.classList.remove('hidden');
-        adminNavBtn.classList.remove('hidden');
+        if (teacherBar) teacherBar.classList.remove('hidden');
+        if (adminNavBtn) adminNavBtn.classList.remove('hidden');
       } else if (currentUser.role === 'admin') {
         roleIcon.className = 'fa-solid fa-shield-halved text-purple-400';
         planBadge.innerText = 'Super Admin';
         planBadge.className = 'text-purple-400 font-semibold';
-        teacherBar.classList.remove('hidden');
-        adminNavBtn.classList.remove('hidden');
+        if (teacherBar) teacherBar.classList.remove('hidden');
+        if (adminNavBtn) adminNavBtn.classList.remove('hidden');
       } else if (currentUser.role === 'institution') {
         roleIcon.className = 'fa-solid fa-school text-sky-400';
         planBadge.innerText = 'Partner School';
         planBadge.className = 'text-sky-400 font-semibold';
-        teacherBar.classList.add('hidden');
-        adminNavBtn.classList.remove('hidden');
+        if (teacherBar) teacherBar.classList.add('hidden');
+        if (adminNavBtn) adminNavBtn.classList.remove('hidden');
       } else {
         roleIcon.className = 'fa-solid fa-user-graduate text-emerald-400';
         planBadge.innerText = currentUser.entitlements.length > 1 ? 'All 3 Subjects' : 'Physics Pass';
         planBadge.className = currentUser.entitlements.length > 1 ? 'text-emerald-400 font-semibold' : 'text-sky-400 font-semibold';
-        teacherBar.classList.add('hidden');
-        adminNavBtn.classList.add('hidden');
+        if (teacherBar) teacherBar.classList.add('hidden');
+        if (adminNavBtn) adminNavBtn.classList.add('hidden');
       }
+
+      // Update Palette Tool Icons
+      const paletteTeacherBtn = document.getElementById('paletteTeacherBtn');
+      const paletteAdminBtn = document.getElementById('paletteAdminBtn');
+      const paletteRoleIcon = document.getElementById('paletteRoleIcon');
+
+      if (currentUser.role === 'teacher') {
+        if (paletteTeacherBtn) paletteTeacherBtn.classList.remove('hidden');
+        if (paletteAdminBtn) paletteAdminBtn.classList.remove('hidden');
+        if (paletteRoleIcon) paletteRoleIcon.className = 'fa-solid fa-chalkboard-user text-amber-300 text-sm';
+      } else if (currentUser.role === 'admin') {
+        if (paletteTeacherBtn) paletteTeacherBtn.classList.remove('hidden');
+        if (paletteAdminBtn) paletteAdminBtn.classList.remove('hidden');
+        if (paletteRoleIcon) paletteRoleIcon.className = 'fa-solid fa-shield-halved text-purple-300 text-sm';
+      } else if (currentUser.role === 'institution') {
+        if (paletteTeacherBtn) paletteTeacherBtn.classList.add('hidden');
+        if (paletteAdminBtn) paletteAdminBtn.classList.remove('hidden');
+        if (paletteRoleIcon) paletteRoleIcon.className = 'fa-solid fa-school text-sky-300 text-sm';
+      } else {
+        if (paletteTeacherBtn) paletteTeacherBtn.classList.add('hidden');
+        if (paletteAdminBtn) paletteAdminBtn.classList.add('hidden');
+        if (paletteRoleIcon) paletteRoleIcon.className = 'fa-solid fa-user-graduate text-white text-sm';
+      }
+      updatePaletteRemedialState();
 
       // Update Lock icons for Chemistry & Biology
       const chemLocked = !currentUser.entitlements.includes('Chemistry') && currentUser.role === 'student';
@@ -1394,6 +1528,8 @@
           return bMistake - aMistake;
         });
       }
+
+      currentFilteredConcepts = filtered;
 
       const container = document.getElementById('conceptListContainer');
       container.innerHTML = '';
@@ -1666,11 +1802,28 @@
     }
 
     // =========================================================================
-    // IN-VIDEO TELEMETRY & STUDENT FEEDBACK (RATINGS & CONFUSION)
+    // IN-VIDEO TELEMETRY, CLEAN STUDY BOARD & TOOL PALETTE ENGINE
     // =========================================================================
+
+    function toggleToolPalette() {
+      const palette = document.getElementById('toolPaletteBar');
+      if (palette) palette.classList.toggle('hidden');
+    }
+
+    function toggleRatingFlyout() {
+      const flyout = document.getElementById('ratingFlyout');
+      if (flyout) flyout.classList.toggle('hidden');
+    }
 
     async function submitRating(type, stars) {
       if (!currentConcept) return;
+      if (type === 'audio') {
+        const el = document.getElementById('audioStarsLabel');
+        if (el) el.innerText = `${stars} / 5 ★`;
+      } else if (type === 'video') {
+        const el = document.getElementById('videoStarsLabel');
+        if (el) el.innerText = `${stars} / 5 ★`;
+      }
       try {
         await fetch('/api/feedback/rate', {
           method: 'POST',
@@ -1682,11 +1835,84 @@
             uid: currentUser.uid
           })
         });
+        const msg = document.getElementById('flyoutRatedMsg');
+        if (msg) {
+          msg.classList.remove('hidden');
+          setTimeout(() => {
+            msg.classList.add('hidden');
+            const flyout = document.getElementById('ratingFlyout');
+            if (flyout) flyout.classList.add('hidden');
+          }, 1400);
+        }
         const badge = document.getElementById('ratingThankYouBadge');
-        badge.classList.remove('hidden');
-        setTimeout(() => badge.classList.add('hidden'), 3000);
+        if (badge) {
+          badge.classList.remove('hidden');
+          setTimeout(() => badge.classList.add('hidden'), 3000);
+        }
       } catch (err) {
         console.warn('Rating submit error:', err);
+      }
+    }
+
+    function toggleRemedialModeFromPalette() {
+      if (isRemedialModeActive) {
+        clearRemedialMode();
+      } else {
+        launchRemedialRevisionPlaylist();
+      }
+      updatePaletteRemedialState();
+    }
+
+    function updatePaletteRemedialState() {
+      const btn = document.getElementById('paletteRemedialBtn');
+      const badge = document.getElementById('paletteMistakeBadge');
+      if (!btn) return;
+      if (isRemedialModeActive) {
+        btn.className = 'w-10 h-10 rounded-xl bg-rose-600 text-white flex items-center justify-center transition shadow-lg ring-2 ring-rose-400 animate-pulse relative';
+      } else {
+        btn.className = 'w-10 h-10 rounded-xl bg-slate-900 hover:bg-rose-950 text-slate-300 hover:text-rose-400 flex items-center justify-center transition border border-slate-800 hover:border-rose-500/40 relative';
+      }
+      if (studentMistakes && studentMistakes.length > 0) {
+        if (badge) {
+          badge.innerText = studentMistakes.length;
+          badge.classList.remove('hidden');
+        }
+      } else {
+        if (badge) badge.classList.add('hidden');
+      }
+    }
+
+    function toggleZenMode() {
+      isZenMode = !isZenMode;
+      const sidebar = document.getElementById('sidebar');
+      const palette = document.getElementById('toolPaletteBar');
+      const zenIcon = document.getElementById('zenModeIcon');
+
+      if (isZenMode) {
+        if (sidebar && !sidebar.classList.contains('-ml-96')) sidebar.classList.add('-ml-96');
+        if (palette) palette.classList.add('opacity-25', 'hover:opacity-100');
+        if (zenIcon) zenIcon.className = 'fa-solid fa-compress text-sky-400 text-sm';
+      } else {
+        if (palette) palette.classList.remove('opacity-25', 'hover:opacity-100');
+        if (zenIcon) zenIcon.className = 'fa-solid fa-expand text-slate-300 text-sm';
+      }
+    }
+
+    function goToPrevConcept() {
+      if (!manifestData || !currentConcept) return;
+      const list = (currentFilteredConcepts && currentFilteredConcepts.length > 0) ? currentFilteredConcepts : manifestData.concepts;
+      const idx = list.findIndex(c => c.canonical_id === currentConcept.canonical_id);
+      if (idx > 0) {
+        selectConcept(list[idx - 1]);
+      }
+    }
+
+    function goToNextConcept() {
+      if (!manifestData || !currentConcept) return;
+      const list = (currentFilteredConcepts && currentFilteredConcepts.length > 0) ? currentFilteredConcepts : manifestData.concepts;
+      const idx = list.findIndex(c => c.canonical_id === currentConcept.canonical_id);
+      if (idx >= 0 && idx < list.length - 1) {
+        selectConcept(list[idx + 1]);
       }
     }
 
@@ -2734,6 +2960,7 @@
       isRemedialModeActive = true;
       document.getElementById('remedialBanner').classList.remove('hidden');
       renderFilteredConcepts();
+      updatePaletteRemedialState();
 
       if (studentMistakes.length > 0) {
         const firstMistakeConcept = manifestData.concepts.find(c => c.canonical_id === studentMistakes[0]);
@@ -2748,6 +2975,7 @@
       isRemedialModeActive = false;
       document.getElementById('remedialBanner').classList.add('hidden');
       renderFilteredConcepts();
+      updatePaletteRemedialState();
     }
 
     // Dynamic Floating Forensic Watermark Engine
@@ -2792,6 +3020,14 @@
     window.addEventListener('DOMContentLoaded', async () => {
       await initSession('NEET-26-8801');
       await loadData();
+      updatePaletteRemedialState();
+    });
+
+    // Escape exits Zen Mode
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isZenMode) {
+        toggleZenMode();
+      }
     });
   </script>
 </body>
