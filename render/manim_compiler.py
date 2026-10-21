@@ -69,24 +69,34 @@ class ManimCompiler:
         # Derive snake_name and class_name from template_name and dimension
         snake_name = "".join(["_" + c.lower() if c.isupper() else c for c in template_name]).lstrip("_")
         
-        if dimension == "3d":
-            # Attempt 3D template module resolution
+        unit1_classes = {
+            "BaseQuantitiesTable7": "BaseQuantitiesTable7Scene",
+            "DerivedUnitsAlgebraicLadder": "DerivedUnitsAlgebraicLadderScene",
+            "DimensionEquivalenceMatrix": "DimensionEquivalenceMatrixScene",
+            "HomogeneityVanDerWaals": "HomogeneityVanDerWaalsScene",
+            "MeasurementErrorDistribution": "MeasurementErrorDistributionScene",
+            "PowerRuleCalculationTree": "PowerRuleCalculationTreeScene",
+            "VernierDualScaleVisualizer": "VernierDualScaleVisualizerScene",
+            "SignificantFiguresRulesBox": "SignificantFiguresRulesBoxScene"
+        }
+
+        if template_name in unit1_classes:
+            import_stmt = f"from render.templates.unit_01_archetypes import {unit1_classes[template_name]} as ActiveBaseScene"
+        elif dimension == "3d":
             snake_3d = f"{snake_name}_3d"
             class_3d = f"{template_name}3DScene" if not template_name.endswith("3DScene") else template_name
             mod_3d = BASE_DIR / "render" / "templates" / f"{snake_3d}.py"
             if mod_3d.exists():
-                snake_name = snake_3d
-                class_name = class_3d
+                import_stmt = f"from render.templates.{snake_3d} import {class_3d} as ActiveBaseScene"
             else:
-                # Default 3D fallback
-                snake_name = "formula_with_graph_3d"
-                class_name = "FormulaWithGraph3DScene"
+                raise ValueError(f"CRITICAL: 3D template '{template_name}' not found. Silent fallback forbidden!")
         else:
             class_name = f"{template_name}Scene" if not template_name.endswith("Scene") else template_name
             mod_file = BASE_DIR / "render" / "templates" / f"{snake_name}.py"
-            if not mod_file.exists():
-                snake_name = "formula_with_graph"
-                class_name = "FormulaWithGraphScene"
+            if mod_file.exists():
+                import_stmt = f"{import_stmt} as ActiveBaseScene"
+            else:
+                raise ValueError(f"CRITICAL: Template '{template_name}' module '{snake_name}.py' not found! Silent fallback forbidden.")
 
         code = f'''import sys
 import json
@@ -104,13 +114,13 @@ for _f in fonts_dir.glob("*.*"):
     except Exception:
         pass
 
-from render.templates.{snake_name} import {class_name}
+{import_stmt}
 
 json_path = Path({repr(str(temp_json))})
 with open(json_path, "r", encoding="utf-8") as f:
     node_data = json.load(f)
 
-class ActiveScene({class_name}):
+class ActiveScene(ActiveBaseScene):
     def __init__(self, **kwargs):
         super().__init__(node_data=node_data, **kwargs)
 '''

@@ -61,11 +61,11 @@ THEMES: Dict[str, TypographyTheme] = {
         tagline="High-contrast modern geometric sans with clear formula isolation and radiant solar gold",
         bg_color="#0B0F19",
         # Topic
-        topic_font="Inter",
+        topic_font="Verdana",
         topic_weight="BOLD",
         topic_color="#FFFFFF",
         # Body
-        body_font="Inter",
+        body_font="Consolas",
         body_weight="MEDIUM",
         body_color="#CBD5E1",
         # Formula (Radiant vibrant gold, zero dullness, clean transparent card)
@@ -76,7 +76,7 @@ THEMES: Dict[str, TypographyTheme] = {
         formula_box_border="#FFE600",
         formula_box_opacity=0.0,
         # Trap
-        trap_font="Inter",
+        trap_font="Cascadia Mono",
         trap_head_weight="BOLD",
         trap_color="#FB7185",
         trap_box_bg="#24141E",
@@ -99,11 +99,11 @@ THEMES: Dict[str, TypographyTheme] = {
         tagline="Pedagogical prestige pairing clean modern headers with refined textbook math serif equations in radiant gold",
         bg_color="#0A0E1A",
         # Topic
-        topic_font="Inter",
+        topic_font="Verdana",
         topic_weight="BOLD",
         topic_color="#FFFFFF",
         # Body
-        body_font="Inter",
+        body_font="Consolas",
         body_weight="NORMAL",
         body_color="#CBD5E1",
         # Formula (Radiant Cambria Math in pure bright gold, clean transparent card)
@@ -114,7 +114,7 @@ THEMES: Dict[str, TypographyTheme] = {
         formula_box_border="#FFE600",
         formula_box_opacity=0.0,
         # Trap
-        trap_font="Inter",
+        trap_font="Cascadia Mono",
         trap_head_weight="BOLD",
         trap_color="#EF4444",
         trap_box_bg="#261318",
@@ -141,7 +141,7 @@ THEMES: Dict[str, TypographyTheme] = {
         topic_weight="BOLD",
         topic_color="#F0F0F0",
         # Body
-        body_font="Inter",
+        body_font="Consolas",
         body_weight="NORMAL",
         body_color="#A3A3A3",
         # Formula
@@ -152,7 +152,7 @@ THEMES: Dict[str, TypographyTheme] = {
         formula_box_border="#58C4DD",
         formula_box_opacity=0.0,
         # Trap
-        trap_font="Inter",
+        trap_font="Cascadia Mono",
         trap_head_weight="BOLD",
         trap_color="#FF6B6B",
         trap_box_bg="#2B1618",
@@ -175,11 +175,11 @@ THEMES: Dict[str, TypographyTheme] = {
         tagline="Ultra-clean Swiss studio minimalism with pitch obsidian background, electric cyan and stark white typography",
         bg_color="#08090D",
         # Topic
-        topic_font="Inter",
+        topic_font="Verdana",
         topic_weight="BOLD",
         topic_color="#FFFFFF",
         # Body
-        body_font="Inter",
+        body_font="Consolas",
         body_weight="MEDIUM",
         body_color="#D4D4D8",
         # Formula (Radiant Electric Cyan, zero dull fill)
@@ -190,7 +190,7 @@ THEMES: Dict[str, TypographyTheme] = {
         formula_box_border="#38BDF8",
         formula_box_opacity=0.0,
         # Trap
-        trap_font="Inter",
+        trap_font="Cascadia Mono",
         trap_head_weight="BOLD",
         trap_color="#FB923C",
         trap_box_bg="#2A1810",

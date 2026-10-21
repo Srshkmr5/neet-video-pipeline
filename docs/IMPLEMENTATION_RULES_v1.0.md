@@ -163,3 +163,24 @@
 
 
 
+
+---
+
+## Pillar 12: Pre-Flight Gatekeeper & Primary PDF Verification Protocol
+1. **Mandatory Pre-Flight Sign-Off (Zero Blind Renders)**:
+   - Before any chapter video compilation is permitted, the Pre-Flight Gatekeeper (`pipeline/preflight_gatekeeper.py`) must generate 4-beat static proof frames (`beat_1` to `beat_4`) for every concept drill in the chapter.
+   - Batch rendering engines (`render_unit1_batch.py`, `render_concept_video.py`) enforce a hard lock: if any concept is missing `"APPROVED"` in `queue/approval_manifest.json`, compilation throws `PermissionError` and immediately halts.
+2. **Primary PDF Fact-Checking (NCERT & NTA PYQ)**:
+   - Never rely on unverified or synthesized syllabus claims.
+   - Every formula, citation, and PYQ tag must be cross-verified directly against primary PDF sources:
+     - Official NCERT Textbook PDFs (`PHYSICS-1-11-NCERT.pdf`, etc.)
+     - Official NTA NEET Exam Question Paper PDFs (`C:\Users\DELL\OneDrive\Desktop\NEET\*.pdf`)
+   - Unverified placeholder tags must be corrected or explicitly validated against the question papers before approving the storyboard.
+3. **The Three-Tier Typography System & Glyph Safety Protocol**:
+   - Typography across all scenes follows a strict 3-tier harmony:
+     - **Tier 1: Main Headers**: **`Verdana Bold`** for scene and topic titles.
+     - **Tier 2: Card & HUD Headers**: **`Cascadia Mono Bold`** for container card titles, taxonomy banners, and HUD labels.
+     - **Tier 3: Body & Formula Text**: **`Consolas`** for bullet points, explanations, formulas, numbers, and derivations (monospaced fixed width eliminates kerning gaps permanently).
+   - For exponents and subscripts, standard font mobjects with sub-mobject positioning must be used. Never use obscure Unicode glyphs (such as Canadian Aboriginal Syllabics `U+146B`) which render as missing-glyph hex boxes in Pango.
+4. **Interactive Markdown Storyboards with Proof Carousels**:
+   - The Pre-Flight Gatekeeper compiles all proof screenshots into an interactive Markdown storyboard (`<unit>_preflight_storyboard.md`) with slide carousels for Beats 1–4, formula cards, and NCERT/PYQ audit logs.

@@ -47,12 +47,25 @@ ACCENT_GREEN = "#34D399"
 TEXT_WHITE = "#FFFFFF"
 MUTED_TEXT = "#94A3B8"
 
-# Typography Design System Standards
-FONT_PRIMARY = "Inter"
+# Typography Design System Standards (Three-Tier Harmony)
+FONT_HEADER = "Verdana"          # Main topic & slide headers
+FONT_CARD = "Cascadia Mono"      # Card titles, HUD telemetry, and container banners
+FONT_BODY = "Consolas"           # Body bullets, rules, numbers & derivations (zero kerning gap)
+FONT_PRIMARY = FONT_BODY
 FONT_MONO = "Consolas"
+FONT_MATH = "Consolas"
+FONT_SERIF = "Georgia"
 
-# Enforce clean sans-serif default across all Manim text objects
-Text.set_default(font=FONT_PRIMARY)
+# Enforce clean default across all Manim text objects
+Text.set_default(font=FONT_BODY)
+
+# Root-level font safety net: guarantee any Text instance without explicit font gets FONT_BODY
+_orig_manim_text_init = Text.__init__
+def _safe_text_init(self, *args, **kwargs):
+    if not kwargs.get("font"):
+        kwargs["font"] = FONT_BODY
+    return _orig_manim_text_init(self, *args, **kwargs)
+Text.__init__ = _safe_text_init
 
 SUPERSCRIPTS = {
     "0": "⁰", "1": "¹", "2": "²", "3": "³", "4": "⁴",
@@ -183,17 +196,28 @@ class NEETVideoScene(Scene):
         - Top-Right: High-Yield NEET PYQ Badge on the FIRST line in gold, no box
         - Bottom-Left: '4/14  2D', no box, no color, faded slate
         """
-        # 1. Top-Center: Concatenated Syllabus Code + Concept Title (2.3.2. The Max Height Arc)
-        ch_num = self.node_data.get("chapter_no", self.node_data.get("seq_chapter", 2))
-        top_num = self.node_data.get("topic_no", 3)
-        vid_num = self.node_data.get("video_no", 2)
+        # 1. Top-Center: Concatenated Syllabus Code + Concept Title (Dynamic Auto-Resolution)
+        vid_id = str(self.node_data.get("videoId") or self.node_data.get("canonical_id") or "")
+        match = re.search(r"C(\d+)-T(\d+)-V(\d+)", vid_id)
+        if match:
+            auto_ch, auto_top, auto_vid = int(match.group(1)), int(match.group(2)), int(match.group(3))
+        else:
+            auto_ch, auto_top, auto_vid = 1, 1, 1
+
+        ch_num = self.node_data.get("chapter_no", self.node_data.get("seq_chapter", auto_ch))
+        top_num = self.node_data.get("topic_no", auto_top)
+        vid_num = self.node_data.get("video_no", auto_vid)
         neet_code = str(self.node_data.get("neet_code", f"{ch_num}.{top_num}.{vid_num}")).strip()
         if neet_code.upper().startswith("S."):
             neet_code = neet_code[2:]
         elif neet_code.upper().startswith("S"):
             neet_code = neet_code[1:]
 
-        full_title_text = f"{neet_code}. {self.serial_title}"
+        title_text = self.serial_title
+        if title_text == "Core Concept" and self.parameters.get("conceptTitle"):
+            title_text = self.parameters.get("conceptTitle")
+
+        full_title_text = f"{neet_code}. {title_text}"
         center_title = Text(full_title_text, font=self.topic_font, font_size=22, weight=self.theme.topic_weight, color=self.theme.topic_color)
         center_title.to_edge(UP, buff=0.45)
 
@@ -232,12 +256,12 @@ class NEETVideoScene(Scene):
 
 
 
-    def render_release_teaser(self, duration: float = 3.5):
-        """Beat 6: Transition teaser directing student to next sequential concept"""
+    def build_release_teaser(self):
+        """Builds Beat 5 / 6 release teaser mobjects (Up Next in Sequence)"""
         next_title = self.node_data.get("next_video_title")
         next_id = self.node_data.get("next_video_id")
         seq_ch = int(self.node_data.get("seq_chapter", 1))
-        tot_ch = int(self.node_data.get("total_chapter_videos", 14))
+        tot_ch = int(self.node_data.get("total_chapter_videos", 8))
 
         overlay = Rectangle(
             width=16, height=9,
@@ -245,29 +269,33 @@ class NEETVideoScene(Scene):
             stroke_width=0
         )
 
-        if next_title:
-            badge = Text("UP NEXT IN SEQUENCE", font=FONT_PRIMARY, font_size=22, weight="BOLD", color=ACCENT_BLUE)
-            wrapped_next = textwrap.fill(f"Video {seq_ch+1:02d}/{tot_ch:02d}: {next_title}", width=48)
-            next_txt = Text(wrapped_next, font=FONT_PRIMARY, font_size=24, weight="BOLD", color=TEXT_WHITE)
+        if next_title and next_id:
+            badge = Text("UP NEXT IN SEQUENCE", font=FONT_CARD, font_size=20, weight="BOLD", color=ACCENT_BLUE)
+            wrapped_next = textwrap.fill(f"Concept {seq_ch+1:02d}/{tot_ch:02d}: {next_title}", width=48)
+            next_txt = Text(wrapped_next, font=FONT_HEADER, font_size=24, weight="BOLD", color=TEXT_WHITE)
             if next_txt.width > 11.5:
                 next_txt.scale_to_fit_width(11.5)
-            lab_badge = Text("INTERACTIVE LAB AVAILABLE IN APP TAB 2", font=FONT_PRIMARY, font_size=15, weight="BOLD", color=ACCENT_GREEN)
-            items = [badge, next_txt]
-            if next_id:
-                sub_txt = Text(f"Canonical ID: {next_id}", font=FONT_MONO, font_size=16, color=MUTED_TEXT)
-                items.append(sub_txt)
-            items.append(lab_badge)
-            content_box = VGroup(*items).arrange(DOWN, buff=0.3).move_to(ORIGIN)
-            teaser_mobjects = VGroup(overlay, content_box)
-            self.play(FadeIn(teaser_mobjects), run_time=1.0)
-            self.wait(max(1.0, duration - 2.0))
-            self.play(FadeOut(teaser_mobjects), run_time=1.0)
+            sub_txt = Text(f"Canonical ID: {next_id}", font=FONT_BODY, font_size=15, color=MUTED_TEXT)
+            lab_badge = Text("INTERACTIVE LAB AVAILABLE IN APP TAB 2", font=FONT_CARD, font_size=13, weight="BOLD", color=ACCENT_GREEN)
+            
+            content_box = VGroup(badge, next_txt, sub_txt, lab_badge).arrange(DOWN, buff=0.32).move_to(ORIGIN)
+            return VGroup(overlay, content_box)
         else:
-            txt = Text("Chapter Completed! Ready for the next high-yield unit.", font=FONT_PRIMARY, font_size=24, color=ACCENT_GREEN).move_to(ORIGIN)
-            teaser_mobjects = VGroup(overlay, txt)
-            self.play(FadeIn(teaser_mobjects), run_time=1.0)
-            self.wait(max(1.0, duration - 2.0))
-            self.play(FadeOut(teaser_mobjects), run_time=1.0)
+            badge = Text("CHAPTER COMPLETE", font=FONT_CARD, font_size=20, weight="BOLD", color=ACCENT_GOLD)
+            txt = Text(next_title if next_title else "Chapter 1 Complete • Ready for Unit 2: Kinematics", font=FONT_HEADER, font_size=24, weight="BOLD", color=ACCENT_GREEN)
+            if txt.width > 11.5:
+                txt.scale_to_fit_width(11.5)
+            sub = Text(f"All {tot_ch}/{tot_ch} Core Concepts Verified", font=FONT_BODY, font_size=16, color=TEXT_WHITE)
+            lab = Text("EXAM DIAGNOSTIC SUITE UNLOCKED IN APP TAB 3", font=FONT_CARD, font_size=13, weight="BOLD", color=ACCENT_BLUE)
+            content_box = VGroup(badge, txt, sub, lab).arrange(DOWN, buff=0.32).move_to(ORIGIN)
+            return VGroup(overlay, content_box)
+
+    def render_release_teaser(self, duration: float = 3.5):
+        """Beat 5 / 6: Transition teaser directing student to next sequential concept"""
+        teaser_mobjects = self.build_release_teaser()
+        self.play(FadeIn(teaser_mobjects), run_time=1.0)
+        self.wait(max(1.0, duration - 2.0))
+        self.play(FadeOut(teaser_mobjects), run_time=1.0)
 
     def create_formula_mobject(self, latex_str: str, plain_str: str = "", font_size: int = 34, color_val=None):
         """
@@ -513,17 +541,28 @@ class NEETVideoScene3D(ThreeDScene):
         - Top-Right: High-Yield NEET PYQ Badge on the FIRST line in gold, no box
         - Bottom-Left: '4/14  3D', no box, no color, faded slate
         """
-        # 1. Top-Center: Concatenated Syllabus Code + Concept Title (2.3.2. The Max Height Arc)
-        ch_num = self.node_data.get("chapter_no", self.node_data.get("seq_chapter", 2))
-        top_num = self.node_data.get("topic_no", 3)
-        vid_num = self.node_data.get("video_no", 2)
+        # 1. Top-Center: Concatenated Syllabus Code + Concept Title (Dynamic Auto-Resolution)
+        vid_id = str(self.node_data.get("videoId") or self.node_data.get("canonical_id") or "")
+        match = re.search(r"C(\d+)-T(\d+)-V(\d+)", vid_id)
+        if match:
+            auto_ch, auto_top, auto_vid = int(match.group(1)), int(match.group(2)), int(match.group(3))
+        else:
+            auto_ch, auto_top, auto_vid = 1, 1, 1
+
+        ch_num = self.node_data.get("chapter_no", self.node_data.get("seq_chapter", auto_ch))
+        top_num = self.node_data.get("topic_no", auto_top)
+        vid_num = self.node_data.get("video_no", auto_vid)
         neet_code = str(self.node_data.get("neet_code", f"{ch_num}.{top_num}.{vid_num}")).strip()
         if neet_code.upper().startswith("S."):
             neet_code = neet_code[2:]
         elif neet_code.upper().startswith("S"):
             neet_code = neet_code[1:]
 
-        full_title_text = f"{neet_code}. {self.serial_title}"
+        title_text = self.serial_title
+        if title_text == "Core Concept" and self.parameters.get("conceptTitle"):
+            title_text = self.parameters.get("conceptTitle")
+
+        full_title_text = f"{neet_code}. {title_text}"
         center_title = Text(full_title_text, font=self.topic_font, font_size=22, weight=self.theme.topic_weight, color=self.theme.topic_color)
         center_title.to_edge(UP, buff=0.45)
 

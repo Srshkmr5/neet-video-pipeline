@@ -8,7 +8,7 @@ import numpy as np
 from manim import (
     Axes, DashedLine, Dot, Arrow, Arc, MathTex, Text, VGroup, RoundedRectangle,
     FadeIn, FadeOut, Create, Write, Transform, Indicate, ValueTracker, DecimalNumber,
-    Line, Circle,
+    Line, Circle, Rectangle, Square, Polygon, SurroundingRectangle,
     UP, DOWN, LEFT, RIGHT, ORIGIN, UL, UR, DL, DR,
     DEGREES, linear
 )
@@ -47,6 +47,20 @@ class FormulaWithGraphScene(BaseNeetScene):
         self.play(FadeIn(settle_group), run_time=1.2)
         self.wait(1.5)
         self.play(FadeOut(settle_group), run_time=0.8)
+
+        # Unit 1: Physics and Measurement Dedicated Scene Dispatch
+        if canonical_id.startswith("P11-C01") or "measurement" in chapter_name.lower():
+            self.render_unit1_measurement_beats(
+                canonical_id=canonical_id,
+                concept_title=concept_title,
+                topic_name=topic_name,
+                chapter_name=chapter_name,
+                plain_formula=plain_formula,
+                trap_text=trap_text,
+                author_nuance=author_nuance,
+                target_dur=target_dur
+            )
+            return
 
         # =========================================================================
         # --- BEAT 2: CONTEXT / GRAPH SETUP ---
@@ -596,4 +610,296 @@ class FormulaWithGraphScene(BaseNeetScene):
         # =========================================================================
         # --- BEAT 6: RELEASE (WITH NEXT CONCEPT TEASER) ---
         # =========================================================================
+        self.render_release_teaser(duration=3.5)
+
+
+    def render_unit1_measurement_beats(self, canonical_id, concept_title, topic_name, chapter_name, plain_formula, trap_text, author_nuance, target_dur):
+        extra_time = max(0.0, target_dur - 31.8)
+        hold_formula = 1.5 + (extra_time * 0.30)
+        hold_trap = 2.0 + (extra_time * 0.30)
+        capsule_dur = 6.0 + (extra_time * 0.40)
+
+        # 1. Telemetry HUD Box
+        hud_box = RoundedRectangle(
+            corner_radius=0.1,
+            height=0.95,
+            width=4.8,
+            stroke_color=self.accent_blue,
+            stroke_width=1.5,
+            fill_color="#0F172A",
+            fill_opacity=0.0
+        ).to_corner(UL, buff=1.0).shift(DOWN * 0.3)
+
+        # 2. Build Specific Pedagogical Visuals for each Concept
+        if canonical_id == "P11-C01-T01-V01":  # SI Base Quantities & Supplementary Units
+            hud_title = Text("INTERNATIONAL SYSTEM OF UNITS (SI)", font_size=11, weight="BOLD", color=self.muted_text).next_to(hud_box.get_top(), DOWN, buff=0.10)
+            hud_sub = Text("The 7 Fundamental Base Quantities & 2 Supplementary Units", font_size=10, weight="BOLD", color=self.accent_gold).next_to(hud_title, DOWN, buff=0.10)
+
+            # 7 Base Quantities Table Box
+            tbl_box = RoundedRectangle(corner_radius=0.08, height=3.2, width=5.8, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(LEFT * 3.1 + UP * 0.45)
+            tbl_hdr = Text("7 FUNDAMENTAL SI BASE QUANTITIES", font_size=12, weight="BOLD", color=self.accent_gold).next_to(tbl_box.get_top(), DOWN, buff=0.14)
+            col_hdr = Text("Physical Quantity       | SI Unit (Symbol) | Dim", font_size=10, weight="BOLD", color=self.accent_blue).next_to(tbl_hdr, DOWN, buff=0.10, aligned_edge=LEFT).shift(RIGHT * 0.2)
+            div_line = Line(start=LEFT * 5.8 + UP * 1.35, end=LEFT * 0.4 + UP * 1.35, color=self.muted_text, stroke_width=1.0)
+
+            row_items = [
+                ("1. Length", "metre (m)", "[L]"),
+                ("2. Mass", "kilogram (kg)", "[M]"),
+                ("3. Time", "second (s)", "[T]"),
+                ("4. Electric Current", "ampere (A)", "[A]"),
+                ("5. Thermodynamic Temp", "kelvin (K)", "[K]"),
+                ("6. Amount of Substance", "mole (mol)", "[mol]"),
+                ("7. Luminous Intensity", "candela (cd)", "[cd]")
+            ]
+            rows_vgroup = VGroup()
+            for q, u, d in row_items:
+                r_txt = Text(f"{q:<24} | {u:<16} | {d}", font=FONT_MONO, font_size=10, color=TEXT_WHITE)
+                rows_vgroup.add(r_txt)
+            rows_vgroup.arrange(DOWN, buff=0.09, aligned_edge=LEFT).next_to(div_line, DOWN, buff=0.09).shift(RIGHT * 0.15)
+            table_group = VGroup(tbl_box, tbl_hdr, col_hdr, div_line, rows_vgroup)
+
+            # Supplementary Units Card
+            supp_box = RoundedRectangle(corner_radius=0.08, height=1.1, width=5.8, stroke_color=self.accent_green, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(LEFT * 3.1 + DOWN * 1.85)
+            supp_hdr = Text("2 Supplementary Units (Dimensionless: [M⁰ L⁰ T⁰]):", font_size=11, weight="BOLD", color=self.accent_green).next_to(supp_box.get_top(), DOWN, buff=0.10)
+            supp_r1 = Text("• Plane Angle:  dθ = ds / r   ==> Unit: Radian (rad)", font_size=10, color=TEXT_WHITE).next_to(supp_hdr, DOWN, buff=0.06, aligned_edge=LEFT).shift(RIGHT * 0.2)
+            supp_r2 = Text("• Solid Angle:  dΩ = dA / r²  ==> Unit: Steradian (sr)", font_size=10, color=TEXT_WHITE).next_to(supp_r1, DOWN, buff=0.05, aligned_edge=LEFT)
+            supp_group = VGroup(supp_box, supp_hdr, supp_r1, supp_r2)
+
+            feature_group = VGroup(table_group, supp_group)
+
+            trap_rules = [
+                ("• Radian & Steradian possess physical units but NO dimensions!", self.accent_green),
+                ("• [Plane Angle] = [Solid Angle] = [M⁰ L⁰ T⁰]  (Dimensionless)", self.theme.trap_color),
+                ("• A quantity CAN have units without dimensions, but NEVER vice versa!", self.accent_gold)
+            ]
+
+        elif canonical_id == "P11-C01-T01-V02":  # Derived Units & Standard Metric Prefixes
+            hud_title = Text("DERIVED UNITS & METRIC PREFIXES", font_size=11, weight="BOLD", color=self.muted_text).next_to(hud_box.get_top(), DOWN, buff=0.10)
+            hud_sub = Text("Algebraic Combinations  •  Standard SI Prefixes", font_size=11, weight="BOLD", color=self.accent_gold).next_to(hud_title, DOWN, buff=0.10)
+
+            # Derived units table box
+            t_box = RoundedRectangle(corner_radius=0.08, height=2.2, width=4.8, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(LEFT * 3.6 + UP * 0.6)
+            d_hdr = Text("Base Unit Algebraic Derivations:", font_size=12, weight="BOLD", color=self.accent_gold).next_to(t_box.get_top(), DOWN, buff=0.15)
+            d_row1 = Text("Force:   1 N = 1 kg·m·s⁻²   (F = m·a)", font_size=11, color=TEXT_WHITE).next_to(d_hdr, DOWN, buff=0.12, aligned_edge=LEFT)
+            d_row2 = Text("Work:    1 J = 1 kg·m²·s⁻²  (W = F·d)", font_size=11, color=TEXT_WHITE).next_to(d_row1, DOWN, buff=0.10, aligned_edge=LEFT)
+            d_row3 = Text("Power:   1 W = 1 kg·m²·s⁻³  (P = W/t)", font_size=11, color=TEXT_WHITE).next_to(d_row2, DOWN, buff=0.10, aligned_edge=LEFT)
+            d_group = VGroup(t_box, d_hdr, d_row1, d_row2, d_row3)
+
+            # Prefix ladder
+            p_hdr = Text("SI Metric Prefix Exponent Scale:", font_size=12, weight="BOLD", color=self.accent_green).move_to(LEFT * 3.6 + DOWN * 1.0)
+            p_row1 = Text("femto(10⁻¹⁵) • pico(10⁻¹²) • nano(10⁻⁹) • micro(10⁻⁶)", font_size=10, color=self.muted_text).next_to(p_hdr, DOWN, buff=0.08)
+            p_row2 = Text("milli(10⁻³) • kilo(10³) • mega(10⁶) • giga(10⁹)", font_size=10, color=self.accent_blue).next_to(p_row1, DOWN, buff=0.08)
+            p_group = VGroup(p_hdr, p_row1, p_row2)
+            feature_group = VGroup(d_group, p_group)
+
+            trap_rules = [
+                ("• Double prefixes are STRICTLY FORBIDDEN: Write 1 pF, NEVER 1 μμF!", self.theme.trap_color),
+                ("• Base unit of mass is kg, but prefixes attach to gram: 1 mg = 10⁻⁶ kg.", self.accent_green),
+                ("• Solid angle steradian (sr) is dimensionless supplementary, not base.", self.accent_gold)
+            ]
+
+        elif canonical_id == "P11-C01-T02-V03":  # Dimensions of Physical Quantities & Common Equivalences
+            hud_title = Text("DIMENSION MATRIX & COMMON EQUIVALENCES", font_size=11, weight="BOLD", color=self.muted_text).next_to(hud_box.get_top(), DOWN, buff=0.10)
+            hud_sub = Text("Formula: [M^a L^b T^c]  •  Frequent NEET Equivalence Sets", font_size=11, weight="BOLD", color=self.accent_gold).next_to(hud_title, DOWN, buff=0.10)
+
+            # Equivalence clusters
+            c_box1 = RoundedRectangle(corner_radius=0.08, height=0.9, width=4.8, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(LEFT * 3.6 + UP * 0.9)
+            c_t1 = Text("Planck's Constant (h) = Angular Momentum (L):", font_size=11, weight="BOLD", color=self.accent_gold).next_to(c_box1.get_top(), DOWN, buff=0.12)
+            c_v1 = Text("[h] = [L] = [M L² T⁻¹]", font_size=13, weight="BOLD", color=TEXT_WHITE).next_to(c_t1, DOWN, buff=0.08)
+            grp1 = VGroup(c_box1, c_t1, c_v1)
+
+            c_box2 = RoundedRectangle(corner_radius=0.08, height=0.9, width=4.8, stroke_color=self.accent_green, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(LEFT * 3.6 + DOWN * 0.2)
+            c_t2 = Text("Stress = Pressure = Energy Density = Modulus:", font_size=11, weight="BOLD", color=self.accent_green).next_to(c_box2.get_top(), DOWN, buff=0.12)
+            c_v2 = Text("[Stress] = [P] = [E_density] = [M L⁻¹ T⁻²]", font_size=13, weight="BOLD", color=TEXT_WHITE).next_to(c_t2, DOWN, buff=0.08)
+            grp2 = VGroup(c_box2, c_t2, c_v2)
+
+            c_box3 = RoundedRectangle(corner_radius=0.08, height=0.9, width=4.8, stroke_color=self.accent_gold, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(LEFT * 3.6 + DOWN * 1.3)
+            c_t3 = Text("Work = Torque = Energy = Heat:", font_size=11, weight="BOLD", color=self.accent_gold).next_to(c_box3.get_top(), DOWN, buff=0.12)
+            c_v3 = Text("[W] = [τ] = [Heat] = [M L² T⁻²]", font_size=13, weight="BOLD", color=TEXT_WHITE).next_to(c_t3, DOWN, buff=0.08)
+            grp3 = VGroup(c_box3, c_t3, c_v3)
+            feature_group = VGroup(grp1, grp2, grp3)
+
+            trap_rules = [
+                ("• High-Yield NEET Trap: Angle, Strain, and Refractive Index are [M⁰ L⁰ T⁰]!", self.theme.trap_color),
+                ("• Relative permittivity ε_r and relative permeability μ_r are dimensionless.", self.accent_green),
+                ("• Quantities with identical dimensions can have fundamentally different physics!", self.accent_gold)
+            ]
+
+        elif canonical_id == "P11-C01-T02-V04":  # Principle of Homogeneity of Dimensions
+            hud_title = Text("PRINCIPLE OF HOMOGENEITY", font_size=11, weight="BOLD", color=self.muted_text).next_to(hud_box.get_top(), DOWN, buff=0.10)
+            hud_sub = Text("Axiom: Only terms of IDENTICAL dimensions can be added/subtracted", font_size=10, weight="BOLD", color=self.accent_gold).next_to(hud_title, DOWN, buff=0.10)
+
+            # Van der Waals breakdown
+            vdw_box = RoundedRectangle(corner_radius=0.08, height=2.8, width=4.8, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(LEFT * 3.6 + DOWN * 0.4)
+            eq_title = Text("Van der Waals Equation Dimensional Match:", font_size=12, weight="BOLD", color=self.accent_gold).next_to(vdw_box.get_top(), DOWN, buff=0.15)
+            eq_main = Text("(P + a / V²) · (V - b) = R · T", font_size=14, weight="BOLD", color=TEXT_WHITE).next_to(eq_title, DOWN, buff=0.12)
+
+            match1 = Text("1. [P] = [a / V²]  ==>  [a] = [P]·[V²]", font_size=11, color=self.accent_green).next_to(eq_main, DOWN, buff=0.14, aligned_edge=LEFT)
+            match1_res = Text("   [a] = [M L⁻¹ T⁻²]·[L⁶] = [M L⁵ T⁻²]", font_size=11, weight="BOLD", color=TEXT_WHITE).next_to(match1, DOWN, buff=0.06, aligned_edge=LEFT)
+            match2 = Text("2. [V] = [b]  ==>  [b] = [L³]", font_size=11, color=self.accent_green).next_to(match1_res, DOWN, buff=0.10, aligned_edge=LEFT)
+            feature_group = VGroup(vdw_box, eq_title, eq_main, match1, match1_res, match2)
+
+            trap_rules = [
+                ("• Mathematical arguments of sin(kx - ωt) or e^(-αt) MUST be dimensionless!", self.theme.trap_color),
+                ("• [kx] = 1 ==> [k] = [L⁻¹]  |  [ωt] = 1 ==> [ω] = [T⁻¹]", self.accent_green),
+                ("• Homogeneity verifies dimensional consistency, NOT numerical dimensionless factors.", self.accent_gold)
+            ]
+
+        elif canonical_id == "P11-C01-T03-V05":  # Classification of Errors & Mean Absolute Error
+            hud_title = Text("ERROR ANALYSIS & SPREAD TELEMETRY", font_size=11, weight="BOLD", color=self.muted_text).next_to(hud_box.get_top(), DOWN, buff=0.10)
+            hud_sub = Text("Reported Result: a = a_mean ± Δa_mean", font_size=11, weight="BOLD", color=self.accent_gold).next_to(hud_title, DOWN, buff=0.10)
+
+            # Number line showing measurement scatter
+            ax_line = Line(start=LEFT * 5.8 + DOWN * 0.2, end=LEFT * 1.4 + DOWN * 0.2, color=self.muted_text, stroke_width=2.5)
+            mean_pt = LEFT * 3.6 + DOWN * 0.2
+            mean_line = Line(start=mean_pt + DOWN * 0.4, end=mean_pt + UP * 0.6, color=self.accent_gold, stroke_width=3.0)
+            mean_lbl = Text("a_mean", font_size=12, weight="BOLD", color=self.accent_gold).next_to(mean_line, UP, buff=0.08)
+
+            # Sample measurement dots
+            dots_x = [LEFT * 4.4, LEFT * 4.0, LEFT * 3.6, LEFT * 3.2, LEFT * 2.8]
+            sample_dots = VGroup(*[Dot(point=px + DOWN * 0.2, color=self.accent_blue, radius=0.08) for px in dots_x])
+            d_lbl = Text("Measured Readings (a₁ ... a₅)", font_size=11, color=self.accent_blue).next_to(ax_line, DOWN, buff=0.25)
+
+            # Error bracket
+            bracket = DashedLine(start=LEFT * 4.4 + UP * 0.2, end=LEFT * 2.8 + UP * 0.2, color=self.accent_green, stroke_width=2.0)
+            bracket_lbl = Text("± Δa_mean Band", font_size=11, weight="BOLD", color=self.accent_green).next_to(bracket, UP, buff=0.06)
+
+            err_box = RoundedRectangle(corner_radius=0.08, height=1.3, width=4.8, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(LEFT * 3.6 + DOWN * 1.5)
+            e1 = Text("• a_mean = (Σ a_i) / n", font_size=11, color=TEXT_WHITE).next_to(err_box.get_top(), DOWN, buff=0.15, aligned_edge=LEFT)
+            e2 = Text("• Δa_mean = (Σ |a_mean - a_i|) / n", font_size=11, color=TEXT_WHITE).next_to(e1, DOWN, buff=0.08, aligned_edge=LEFT)
+            e3 = Text("• % Error = (Δa_mean / a_mean) × 100%", font_size=11, color=self.accent_gold).next_to(e2, DOWN, buff=0.08, aligned_edge=LEFT)
+            err_eqs = VGroup(err_box, e1, e2, e3)
+
+            feature_group = VGroup(ax_line, mean_line, mean_lbl, sample_dots, d_lbl, bracket, bracket_lbl, err_eqs)
+
+            trap_rules = [
+                ("• Mean Absolute Error is ALWAYS POSITIVE: |a_mean - a_i| ≥ 0!", self.theme.trap_color),
+                ("• Random errors reduce by factor of √n when taking n measurements.", self.accent_green),
+                ("• Systematic errors have a known cause and can be calibrated out.", self.accent_gold)
+            ]
+
+        elif canonical_id == "P11-C01-T03-V06":  # Combination & Propagation of Errors (Power Rule)
+            hud_title = Text("COMBINATION OF ERRORS: POWER RULE", font_size=11, weight="BOLD", color=self.muted_text).next_to(hud_box.get_top(), DOWN, buff=0.10)
+            hud_sub = Text("Relative Errors Multiply by Powers & ALWAYS Add", font_size=11, weight="BOLD", color=self.accent_gold).next_to(hud_title, DOWN, buff=0.10)
+
+            p_box = RoundedRectangle(corner_radius=0.08, height=2.8, width=4.8, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(LEFT * 3.6 + DOWN * 0.4)
+            p_hdr = Text("Power Law Error Propagation Rule:", font_size=12, weight="BOLD", color=self.accent_gold).next_to(p_box.get_top(), DOWN, buff=0.15)
+            p_eq = Text("Z = (A^p · B^q) / C^r", font_size=13, weight="BOLD", color=TEXT_WHITE).next_to(p_hdr, DOWN, buff=0.10)
+            p_exp = Text("ΔZ/Z = p·(ΔA/A) + q·(ΔB/B) + r·(ΔC/C)", font_size=12, weight="BOLD", color=self.accent_green).next_to(p_eq, DOWN, buff=0.10)
+
+            # Numerical worked example
+            ex_hdr = Text("NEET Worked Example:", font_size=11, weight="BOLD", color=self.accent_blue).next_to(p_exp, DOWN, buff=0.14, aligned_edge=LEFT)
+            ex_body = Text("Given: ΔA/A=1%, ΔB/B=2%, ΔC/C=3%  for  Z = A²·B³ / C¹", font_size=10, color=self.muted_text).next_to(ex_hdr, DOWN, buff=0.06, aligned_edge=LEFT)
+            ex_res = Text("% ΔZ = 2(1%) + 3(2%) + 1(3%) = 11%", font_size=12, weight="BOLD", color=self.accent_gold).next_to(ex_body, DOWN, buff=0.08, aligned_edge=LEFT)
+            feature_group = VGroup(p_box, p_hdr, p_eq, p_exp, ex_hdr, ex_body, ex_res)
+
+            trap_rules = [
+                ("• CRITICAL NEET TRAP: ERRORS ALWAYS ADD IN WORST-CASE COMBINATION!", self.theme.trap_color),
+                ("• NEVER subtract errors in denominator: +r·(ΔC/C), NOT -r·(ΔC/C)!", self.accent_red),
+                ("• The variable with the highest power contributes maximum to total error.", self.accent_green)
+            ]
+
+        elif canonical_id == "P11-C01-T04-V07":  # Measuring Instruments: Vernier Callipers & Screw Gauge
+            hud_title = Text("PRECISION MEASURING INSTRUMENTS", font_size=11, weight="BOLD", color=self.muted_text).next_to(hud_box.get_top(), DOWN, buff=0.10)
+            hud_sub = Text("Least Count Calibration  •  Zero Error Correction", font_size=11, weight="BOLD", color=self.accent_gold).next_to(hud_title, DOWN, buff=0.10)
+
+            # Vernier scale dual visualization
+            v_box = RoundedRectangle(corner_radius=0.08, height=1.5, width=4.8, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(LEFT * 3.6 + UP * 0.7)
+            v_title = Text("Vernier Callipers Dual Scale:", font_size=12, weight="BOLD", color=self.accent_gold).next_to(v_box.get_top(), DOWN, buff=0.12)
+            v_ms = Text("Main Scale (MS):   1 MSD = 1.0 mm", font_size=11, color=TEXT_WHITE).next_to(v_title, DOWN, buff=0.08, aligned_edge=LEFT)
+            v_vs = Text("Vernier Scale (VS): 10 VSD = 9 MSD ==> 1 VSD = 0.9 mm", font_size=10, color=self.muted_text).next_to(v_ms, DOWN, buff=0.06, aligned_edge=LEFT)
+            v_lc = Text("Least Count (LC) = 1 MSD - 1 VSD = 0.1 mm (0.01 cm)", font_size=11, weight="BOLD", color=self.accent_green).next_to(v_vs, DOWN, buff=0.08, aligned_edge=LEFT)
+            v_grp = VGroup(v_box, v_title, v_ms, v_vs, v_lc)
+
+            # Screw gauge card
+            sg_box = RoundedRectangle(corner_radius=0.08, height=1.3, width=4.8, stroke_color=self.accent_green, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(LEFT * 3.6 + DOWN * 1.0)
+            sg_title = Text("Screw Gauge / Spherometer Least Count:", font_size=12, weight="BOLD", color=self.accent_green).next_to(sg_box.get_top(), DOWN, buff=0.12)
+            sg_eq = Text("LC = Pitch / Circular Divisions = 0.5 mm / 50 = 0.01 mm", font_size=10, weight="BOLD", color=TEXT_WHITE).next_to(sg_title, DOWN, buff=0.08)
+            sg_cal = Text("True Reading = Observed - (± Zero Error)", font_size=11, weight="BOLD", color=self.accent_gold).next_to(sg_eq, DOWN, buff=0.08)
+            sg_grp = VGroup(sg_box, sg_title, sg_eq, sg_cal)
+            feature_group = VGroup(v_grp, sg_grp)
+
+            trap_rules = [
+                ("• Positive Zero Error (Vernier 0 ahead) is SUBTRACTED from reading!", self.theme.trap_color),
+                ("• Negative Zero Error (Vernier 0 behind) is ADDED to reading!", self.accent_green),
+                ("• Never forget to multiply Vernier coincidence by Least Count!", self.accent_gold)
+            ]
+
+        else:  # P11-C01-T04-V08: Significant Figures & Arithmetic Rounding Rules
+            hud_title = Text("SIGNIFICANT FIGURES & ROUNDING RULES", font_size=11, weight="BOLD", color=self.muted_text).next_to(hud_box.get_top(), DOWN, buff=0.10)
+            hud_sub = Text("NCERT Class 11 Standards  •  NEET Arithmetic Rules", font_size=11, weight="BOLD", color=self.accent_gold).next_to(hud_title, DOWN, buff=0.10)
+
+            # Rules inspector cards
+            sf_box = RoundedRectangle(corner_radius=0.08, height=1.6, width=4.8, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(LEFT * 3.6 + UP * 0.7)
+            sf_t = Text("Significant Figure Identification Rules:", font_size=12, weight="BOLD", color=self.accent_gold).next_to(sf_box.get_top(), DOWN, buff=0.12)
+            sf_1 = Text("• 4.008  ==> 4 SF  (Trapped zeros count)", font_size=10, color=TEXT_WHITE).next_to(sf_t, DOWN, buff=0.06, aligned_edge=LEFT)
+            sf_2 = Text("• 0.0035 ==> 2 SF  (Leading zeros never count)", font_size=10, color=TEXT_WHITE).next_to(sf_1, DOWN, buff=0.06, aligned_edge=LEFT)
+            sf_3 = Text("• 5.400  ==> 4 SF  (Trailing zeros with decimal count)", font_size=10, color=TEXT_WHITE).next_to(sf_2, DOWN, buff=0.06, aligned_edge=LEFT)
+            sf_grp = VGroup(sf_box, sf_t, sf_1, sf_2, sf_3)
+
+            # Arithmetic rules
+            ar_box = RoundedRectangle(corner_radius=0.08, height=1.3, width=4.8, stroke_color=self.accent_green, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(LEFT * 3.6 + DOWN * 1.0)
+            ar_t = Text("NEET Arithmetic Rounding Directives:", font_size=12, weight="BOLD", color=self.accent_green).next_to(ar_box.get_top(), DOWN, buff=0.12)
+            ar_1 = Text("• Addition / Subtraction: Retain LEAST decimal places!", font_size=10, weight="BOLD", color=self.accent_gold).next_to(ar_t, DOWN, buff=0.08)
+            ar_2 = Text("• Multiplication / Division: Retain LEAST significant figures!", font_size=10, weight="BOLD", color=self.theme.trap_color).next_to(ar_1, DOWN, buff=0.06)
+            ar_grp = VGroup(ar_box, ar_t, ar_1, ar_2)
+            feature_group = VGroup(sf_grp, ar_grp)
+
+            trap_rules = [
+                ("• Exact pure numbers (e.g. 2 in 2πr) have INFINITE significant figures!", self.accent_green),
+                ("• Rounding 5: If preceded by even, leave unchanged (2.650 -> 2.6)!", self.theme.trap_color),
+                ("• Rounding 5: If preceded by odd, round UP to even (2.750 -> 2.8)!", self.accent_gold)
+            ]
+
+        hud_group = VGroup(hud_box, hud_title, hud_sub)
+
+        # 3. Animate Left-side Visual Feature
+        self.play(FadeIn(hud_group), Create(feature_group), run_time=1.5)
+        self.wait(1.0)
+
+        # 4. Right-side Formula Card
+        formula_mobj = self.create_smart_formula(
+            formula_str=plain_formula,
+            font_size=24,
+            color_val=self.theme.formula_color
+        ).to_corner(UR, buff=1.3).shift(DOWN * 0.8)
+
+        header_text = f"{concept_title.upper()} CORE RULE"
+        formula_title = Text(header_text, font=self.topic_font, font_size=16, weight="BOLD", color=self.theme.topic_color)
+        if formula_title.width > 5.2:
+            formula_title.scale_to_fit_width(5.2)
+        formula_title.next_to(formula_mobj, UP, buff=0.35)
+        if formula_title.get_right()[0] > 6.0:
+            formula_title.shift(LEFT * (formula_title.get_right()[0] - 6.0))
+
+        formula_panel = VGroup(formula_title, formula_mobj)
+        self.play(Write(formula_panel), run_time=1.5)
+        self.wait(hold_formula)
+        self.play(Indicate(formula_mobj, color=self.theme.formula_color, scale_factor=1.05), run_time=1.2)
+        for sm in formula_mobj.get_family():
+            sm.set_opacity(1.0)
+
+        # 5. Right-side NEET Trap Card
+        trap_title = Text("NEET HIGH-YIELD DISTRACTOR TRAP", font=self.topic_font, font_size=13, weight="BOLD", color=self.accent_red)
+        trap_lines = [Text(text, font=self.body_font, font_size=11, weight="BOLD", color=col) for text, col in trap_rules]
+        trap_panel = VGroup(trap_title, *trap_lines).arrange(DOWN, aligned_edge=LEFT, buff=0.12).next_to(formula_mobj, DOWN, buff=0.45)
+        if trap_panel.width > 5.4:
+            trap_panel.scale_to_fit_width(5.4)
+        if trap_panel.get_right()[0] > 6.1:
+            trap_panel.shift(LEFT * (trap_panel.get_right()[0] - 6.1))
+        if trap_panel.get_bottom()[1] < -3.3:
+            trap_panel.shift(UP * (-3.3 - trap_panel.get_bottom()[1]))
+
+        self.play(FadeIn(trap_panel), run_time=1.2)
+        self.wait(hold_trap)
+
+        # 6. Clear and Render End Capsule Revision
+        self.play(
+            FadeOut(trap_panel),
+            FadeOut(formula_panel),
+            FadeOut(hud_group),
+            FadeOut(feature_group),
+            run_time=0.6
+        )
+
+        self.render_end_capsule(formula_mobj, trap_text, duration=capsule_dur)
         self.render_release_teaser(duration=3.5)

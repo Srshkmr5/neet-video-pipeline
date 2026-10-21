@@ -1,0 +1,170 @@
+{
+  "P11-C01-T01-V01": {
+    "canonical_id": "P11-C01-T01-V01",
+    "concept_title": "SI Base Quantities & Supplementary Units",
+    "template_name": "BaseQuantitiesTable7",
+    "status": "PENDING_REVIEW",
+    "last_verified_at": "2026-10-21T16:40:46.785377",
+    "proofs": {
+      "beat_1": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T01-V01\\P11-C01-T01-V01_beat_1.png",
+      "beat_1_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T01-V01_beat_1.png",
+      "beat_2": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T01-V01\\P11-C01-T01-V01_beat_2.png",
+      "beat_2_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T01-V01_beat_2.png",
+      "beat_3": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T01-V01\\P11-C01-T01-V01_beat_3.png",
+      "beat_3_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T01-V01_beat_3.png",
+      "beat_4": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T01-V01\\P11-C01-T01-V01_beat_4.png",
+      "beat_4_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T01-V01_beat_4.png",
+      "beat_5": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T01-V01\\P11-C01-T01-V01_beat_5.png",
+      "beat_5_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T01-V01_beat_5.png"
+    },
+    "ncert_citation": "NCERT Class 11 Part 1, Chapter 2, Pages 16-18",
+    "typo_warnings_count": 0
+  },
+  "P11-C01-T01-V02": {
+    "canonical_id": "P11-C01-T01-V02",
+    "concept_title": "Derived Units & Standard Metric Prefixes",
+    "template_name": "DerivedUnitsAlgebraicLadder",
+    "status": "PENDING_REVIEW",
+    "last_verified_at": "2026-10-21T16:41:30.184815",
+    "proofs": {
+      "beat_1": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T01-V02\\P11-C01-T01-V02_beat_1.png",
+      "beat_1_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T01-V02_beat_1.png",
+      "beat_2": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T01-V02\\P11-C01-T01-V02_beat_2.png",
+      "beat_2_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T01-V02_beat_2.png",
+      "beat_3": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T01-V02\\P11-C01-T01-V02_beat_3.png",
+      "beat_3_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T01-V02_beat_3.png",
+      "beat_4": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T01-V02\\P11-C01-T01-V02_beat_4.png",
+      "beat_4_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T01-V02_beat_4.png",
+      "beat_5": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T01-V02\\P11-C01-T01-V02_beat_5.png",
+      "beat_5_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T01-V02_beat_5.png"
+    },
+    "ncert_citation": "NCERT Class 11 Part 1, Chapter 2, Pages 17-20",
+    "typo_warnings_count": 0
+  },
+  "P11-C01-T02-V03": {
+    "canonical_id": "P11-C01-T02-V03",
+    "concept_title": "Dimensions of Physical Quantities & Common Equivalences",
+    "template_name": "DimensionEquivalenceMatrix",
+    "status": "PENDING_REVIEW",
+    "last_verified_at": "2026-10-21T16:42:46.081794",
+    "proofs": {
+      "beat_1": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T02-V03\\P11-C01-T02-V03_beat_1.png",
+      "beat_1_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T02-V03_beat_1.png",
+      "beat_2": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T02-V03\\P11-C01-T02-V03_beat_2.png",
+      "beat_2_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T02-V03_beat_2.png",
+      "beat_3": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T02-V03\\P11-C01-T02-V03_beat_3.png",
+      "beat_3_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T02-V03_beat_3.png",
+      "beat_4": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T02-V03\\P11-C01-T02-V03_beat_4.png",
+      "beat_4_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T02-V03_beat_4.png",
+      "beat_5": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T02-V03\\P11-C01-T02-V03_beat_5.png",
+      "beat_5_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T02-V03_beat_5.png"
+    },
+    "ncert_citation": "NCERT Class 11 Part 1, Chapter 2, Pages 22-24",
+    "typo_warnings_count": 0
+  },
+  "P11-C01-T02-V04": {
+    "canonical_id": "P11-C01-T02-V04",
+    "concept_title": "Principle of Homogeneity of Dimensions",
+    "template_name": "HomogeneityVanDerWaals",
+    "status": "PENDING_REVIEW",
+    "last_verified_at": "2026-10-21T16:43:43.139012",
+    "proofs": {
+      "beat_1": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T02-V04\\P11-C01-T02-V04_beat_1.png",
+      "beat_1_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T02-V04_beat_1.png",
+      "beat_2": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T02-V04\\P11-C01-T02-V04_beat_2.png",
+      "beat_2_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T02-V04_beat_2.png",
+      "beat_3": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T02-V04\\P11-C01-T02-V04_beat_3.png",
+      "beat_3_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T02-V04_beat_3.png",
+      "beat_4": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T02-V04\\P11-C01-T02-V04_beat_4.png",
+      "beat_4_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T02-V04_beat_4.png",
+      "beat_5": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T02-V04\\P11-C01-T02-V04_beat_5.png",
+      "beat_5_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T02-V04_beat_5.png"
+    },
+    "ncert_citation": "NCERT Class 11 Part 1, Chapter 2, Pages 24-26",
+    "typo_warnings_count": 0
+  },
+  "P11-C01-T03-V05": {
+    "canonical_id": "P11-C01-T03-V05",
+    "concept_title": "Classification of Errors & Mean Absolute Error",
+    "template_name": "MeasurementErrorDistribution",
+    "status": "PENDING_REVIEW",
+    "last_verified_at": "2026-10-21T16:44:30.892410",
+    "proofs": {
+      "beat_1": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T03-V05\\P11-C01-T03-V05_beat_1.png",
+      "beat_1_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T03-V05_beat_1.png",
+      "beat_2": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T03-V05\\P11-C01-T03-V05_beat_2.png",
+      "beat_2_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T03-V05_beat_2.png",
+      "beat_3": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T03-V05\\P11-C01-T03-V05_beat_3.png",
+      "beat_3_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T03-V05_beat_3.png",
+      "beat_4": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T03-V05\\P11-C01-T03-V05_beat_4.png",
+      "beat_4_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T03-V05_beat_4.png",
+      "beat_5": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T03-V05\\P11-C01-T03-V05_beat_5.png",
+      "beat_5_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T03-V05_beat_5.png"
+    },
+    "ncert_citation": "NCERT Class 11 Part 1, Chapter 2, Pages 20-22",
+    "typo_warnings_count": 0
+  },
+  "P11-C01-T03-V06": {
+    "canonical_id": "P11-C01-T03-V06",
+    "concept_title": "Combination & Propagation of Errors (Power Rule)",
+    "template_name": "PowerRuleCalculationTree",
+    "status": "PENDING_REVIEW",
+    "last_verified_at": "2026-10-21T16:45:30.470824",
+    "proofs": {
+      "beat_1": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T03-V06\\P11-C01-T03-V06_beat_1.png",
+      "beat_1_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T03-V06_beat_1.png",
+      "beat_2": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T03-V06\\P11-C01-T03-V06_beat_2.png",
+      "beat_2_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T03-V06_beat_2.png",
+      "beat_3": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T03-V06\\P11-C01-T03-V06_beat_3.png",
+      "beat_3_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T03-V06_beat_3.png",
+      "beat_4": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T03-V06\\P11-C01-T03-V06_beat_4.png",
+      "beat_4_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T03-V06_beat_4.png",
+      "beat_5": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T03-V06\\P11-C01-T03-V06_beat_5.png",
+      "beat_5_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T03-V06_beat_5.png"
+    },
+    "ncert_citation": "NCERT Class 11 Part 1, Chapter 2, Pages 22-24",
+    "typo_warnings_count": 0
+  },
+  "P11-C01-T04-V07": {
+    "canonical_id": "P11-C01-T04-V07",
+    "concept_title": "Measuring Instruments: Vernier Callipers & Screw Gauge",
+    "template_name": "VernierDualScaleVisualizer",
+    "status": "PENDING_REVIEW",
+    "last_verified_at": "2026-10-21T16:46:52.528127",
+    "proofs": {
+      "beat_1": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T04-V07\\P11-C01-T04-V07_beat_1.png",
+      "beat_1_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T04-V07_beat_1.png",
+      "beat_2": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T04-V07\\P11-C01-T04-V07_beat_2.png",
+      "beat_2_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T04-V07_beat_2.png",
+      "beat_3": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T04-V07\\P11-C01-T04-V07_beat_3.png",
+      "beat_3_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T04-V07_beat_3.png",
+      "beat_4": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T04-V07\\P11-C01-T04-V07_beat_4.png",
+      "beat_4_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T04-V07_beat_4.png",
+      "beat_5": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T04-V07\\P11-C01-T04-V07_beat_5.png",
+      "beat_5_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T04-V07_beat_5.png"
+    },
+    "ncert_citation": "NCERT Class 11 Part 1, Chapter 2 Appendix & Practical Manual",
+    "typo_warnings_count": 0
+  },
+  "P11-C01-T04-V08": {
+    "canonical_id": "P11-C01-T04-V08",
+    "concept_title": "Significant Figures & Arithmetic Rounding Rules",
+    "template_name": "SignificantFiguresRulesBox",
+    "status": "PENDING_REVIEW",
+    "last_verified_at": "2026-10-21T16:48:04.336801",
+    "proofs": {
+      "beat_1": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T04-V08\\P11-C01-T04-V08_beat_1.png",
+      "beat_1_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T04-V08_beat_1.png",
+      "beat_2": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T04-V08\\P11-C01-T04-V08_beat_2.png",
+      "beat_2_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T04-V08_beat_2.png",
+      "beat_3": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T04-V08\\P11-C01-T04-V08_beat_3.png",
+      "beat_3_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T04-V08_beat_3.png",
+      "beat_4": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T04-V08\\P11-C01-T04-V08_beat_4.png",
+      "beat_4_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T04-V08_beat_4.png",
+      "beat_5": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\output\\preflight_proofs\\unit_01_measurement\\P11-C01-T04-V08\\P11-C01-T04-V08_beat_5.png",
+      "beat_5_brain": "C:\\Users\\DELL\\.gemini\\antigravity\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\proof_P11-C01-T04-V08_beat_5.png"
+    },
+    "ncert_citation": "NCERT Class 11 Part 1, Chapter 2, Pages 27-30",
+    "typo_warnings_count": 0
+  }
+}
