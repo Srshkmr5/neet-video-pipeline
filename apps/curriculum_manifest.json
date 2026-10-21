@@ -2,7 +2,7 @@
   "version": "2.0.0",
   "app_title": "NEET UG Masterclass Triad Player",
   "total_concepts": 665,
-  "active_stream_concepts": 15,
+  "active_stream_concepts": 22,
   "concepts": [
     {
       "canonical_id": "P11-C01-T01-V01",
@@ -26,7 +26,9 @@
       "has_secure_stream": true,
       "streams": {
         "2d": {
-          "en": "/api/stream/P11-C01-T01-V01_en-IN/master.m3u8"
+          "en": "/api/stream/P11-C01-T01-V01_en-IN/master.m3u8",
+          "hi": "/api/stream/P11-C01-T01-V01_hi-IN/master.m3u8",
+          "ta": "/api/stream/P11-C01-T01-V01_ta-IN/master.m3u8"
         },
         "3d": {}
       },
@@ -82,9 +84,13 @@
       "author_book_nuance": "D.C. Pandey: Double prefixes are strictly forbidden in SI rules (e.g., write pF, never μμF).",
       "neet_trap_point": "Attaching prefixes to kilogram instead of gram. Since kg already has 'kilo', write 1 mg for 10^-6 kg, not 1 μkg.",
       "pyq_years": "2021, 2020",
-      "has_secure_stream": false,
+      "has_secure_stream": true,
       "streams": {
-        "2d": {},
+        "2d": {
+          "en": "/api/stream/P11-C01-T01-V02_en-IN/master.m3u8",
+          "hi": "/api/stream/P11-C01-T01-V02_hi-IN/master.m3u8",
+          "ta": "/api/stream/P11-C01-T01-V02_ta-IN/master.m3u8"
+        },
         "3d": {}
       },
       "simulation": null,
@@ -139,9 +145,13 @@
       "author_book_nuance": "Halliday & Resnick: Torque and Work share identical dimensions [M L^2 T^-2] but are fundamentally different: Torque is a vector, Work is a scalar.",
       "neet_trap_point": "Confusing quantities that share identical dimensions with being physically identical. Never equate their physical nature.",
       "pyq_years": "2023, 2022, 2020, 2019",
-      "has_secure_stream": false,
+      "has_secure_stream": true,
       "streams": {
-        "2d": {},
+        "2d": {
+          "en": "/api/stream/P11-C01-T02-V03_en-IN/master.m3u8",
+          "hi": "/api/stream/P11-C01-T02-V03_hi-IN/master.m3u8",
+          "ta": "/api/stream/P11-C01-T02-V03_ta-IN/master.m3u8"
+        },
         "3d": {}
       },
       "simulation": null,
@@ -196,9 +206,13 @@
       "author_book_nuance": "I.E. Irodov: In (P + a/V^2)(V - b) = RT, dimensional homogeneity dictates [a/V^2] = [P] and [b] = [V].",
       "neet_trap_point": "Assuming dimensional consistency guarantees physical correctness. Pure numbers (like 1/2 or 2π) cannot be derived or checked by dimensional analysis.",
       "pyq_years": "2021, 2018, 2017",
-      "has_secure_stream": false,
+      "has_secure_stream": true,
       "streams": {
-        "2d": {},
+        "2d": {
+          "en": "/api/stream/P11-C01-T02-V04_en-IN/master.m3u8",
+          "hi": "/api/stream/P11-C01-T02-V04_hi-IN/master.m3u8",
+          "ta": "/api/stream/P11-C01-T02-V04_ta-IN/master.m3u8"
+        },
         "3d": {}
       },
       "simulation": null,
@@ -253,9 +267,13 @@
       "author_book_nuance": "H.C. Verma: Absolute error is always positive. The sum of signed deviations from the mean is always identically zero.",
       "neet_trap_point": "Taking the algebraic sum of deviations instead of the magnitude |Δa_i|, which falsely gives zero mean error.",
       "pyq_years": "2023, 2020",
-      "has_secure_stream": false,
+      "has_secure_stream": true,
       "streams": {
-        "2d": {},
+        "2d": {
+          "en": "/api/stream/P11-C01-T03-V05_en-IN/master.m3u8",
+          "hi": "/api/stream/P11-C01-T03-V05_hi-IN/master.m3u8",
+          "ta": "/api/stream/P11-C01-T03-V05_ta-IN/master.m3u8"
+        },
         "3d": {}
       },
       "simulation": null,
@@ -310,9 +328,13 @@
       "author_book_nuance": "D.C. Pandey: Even if C is in the denominator (C^r), its fractional error is added with coefficient +r, never subtracted!",
       "neet_trap_point": "Subtracting errors for quantities in the denominator. Errors always accumulate in maximum uncertainty analysis.",
       "pyq_years": "2023, 2022, 2021, 2019, 2013",
-      "has_secure_stream": false,
+      "has_secure_stream": true,
       "streams": {
-        "2d": {},
+        "2d": {
+          "en": "/api/stream/P11-C01-T03-V06_en-IN/master.m3u8",
+          "hi": "/api/stream/P11-C01-T03-V06_hi-IN/master.m3u8",
+          "ta": "/api/stream/P11-C01-T03-V06_ta-IN/master.m3u8"
+        },
         "3d": {}
       },
       "simulation": null,
@@ -367,9 +389,13 @@
       "author_book_nuance": "NCERT Lab Manual: Positive zero error is SUBTRACTED; negative zero error is ADDED (- (-e) = +e).",
       "neet_trap_point": "Inverting zero error signs: Positive zero error (+e) must be subtracted, while negative zero error (-e) must be added.",
       "pyq_years": "2024, 2023, 2021, 2020, 2018",
-      "has_secure_stream": false,
+      "has_secure_stream": true,
       "streams": {
-        "2d": {},
+        "2d": {
+          "en": "/api/stream/P11-C01-T04-V07_en-IN/master.m3u8",
+          "hi": "/api/stream/P11-C01-T04-V07_hi-IN/master.m3u8",
+          "ta": "/api/stream/P11-C01-T04-V07_ta-IN/master.m3u8"
+        },
         "3d": {}
       },
       "simulation": null,
@@ -424,9 +450,13 @@
       "author_book_nuance": "H.C. Verma: In addition 100.1 + 0.003 = 100.103 -> 100.1 (1 decimal place). Do not count total significant figures in addition/subtraction.",
       "neet_trap_point": "Applying the multiplication rule (least sig figs) to addition/subtraction, which is governed strictly by the least decimal places.",
       "pyq_years": "2022, 2020, 2019, 2018",
-      "has_secure_stream": false,
+      "has_secure_stream": true,
       "streams": {
-        "2d": {},
+        "2d": {
+          "en": "/api/stream/P11-C01-T04-V08_en-IN/master.m3u8",
+          "hi": "/api/stream/P11-C01-T04-V08_hi-IN/master.m3u8",
+          "ta": "/api/stream/P11-C01-T04-V08_ta-IN/master.m3u8"
+        },
         "3d": {}
       },
       "simulation": null,
