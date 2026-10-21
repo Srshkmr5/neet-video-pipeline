@@ -1,0 +1,163 @@
+{
+  "NEET-26-8801": {
+    "uid": "NEET-26-8801",
+    "name": "Dr. Aarav Sharma",
+    "phone": "+91 9876543210",
+    "email": "aarav.sharma@neetaspirant.in",
+    "password_hash": "976e2ce31c3536cb20d11302d64801e2:0e88d294b1ea740cbba74dc384fb524c9aec297be2d21b51b65a9633eff2931e",
+    "role": "student",
+    "plan": "single_physics",
+    "entitlements": [
+      "Physics"
+    ],
+    "valid_until": "2027-05-31",
+    "referral_code": "AARAV10",
+    "institution": null,
+    "devices": [
+      {
+        "device_id": "DEV-WIN-001",
+        "name": "Windows PC (Primary)",
+        "registered_at": "2026-10-21"
+      },
+      {
+        "device_id": "DEV-TEST-1",
+        "name": "Web Browser",
+        "registered_at": "2026-10-21 11:48"
+      }
+    ]
+  },
+  "NEET-26-8802": {
+    "uid": "NEET-26-8802",
+    "name": "Priya Sundaram",
+    "phone": "+91 9876543211",
+    "email": "priya.sundaram@neetaspirant.in",
+    "password_hash": "b6062ef4e1c110d0e28d4bae71b8b98a:86892b08ff1104e5e6850cf328d8d3879d4367f992da06d4ffbb887fd0c6f2a4",
+    "role": "student",
+    "plan": "combo_all",
+    "entitlements": [
+      "Physics",
+      "Chemistry",
+      "Biology"
+    ],
+    "valid_until": "2027-05-31",
+    "referral_code": "PRIYA10",
+    "institution": "Sri Chaitanya Academy",
+    "devices": [
+      {
+        "device_id": "DEV-MAC-002",
+        "name": "iPad Pro 11-inch",
+        "registered_at": "2026-10-21"
+      }
+    ]
+  },
+  "TEACHER-PHY-01": {
+    "uid": "TEACHER-PHY-01",
+    "name": "Prof. K. Ramanathan (Senior Faculty)",
+    "phone": "+91 9876543220",
+    "email": "k.ramanathan@neetmasterclass.in",
+    "password_hash": "490a68aefb7be247426fbd1fbd830da4:b9a8f81c3b0fd9a315c9e5054dfbd996d3cfd0091f6915206ba3a9b96fef1fe8",
+    "role": "teacher",
+    "plan": "faculty_unlimited",
+    "entitlements": [
+      "Physics",
+      "Chemistry",
+      "Biology"
+    ],
+    "valid_until": "2029-12-31",
+    "referral_code": "FACULTY25",
+    "institution": "NEET Masterclass Core Faculty",
+    "devices": []
+  },
+  "INST-ALLEN-01": {
+    "uid": "INST-ALLEN-01",
+    "name": "Academic Director (Allen Franchise Partner)",
+    "phone": "+91 9876543230",
+    "email": "allen.director@coaching.in",
+    "password_hash": "11cf2603b60eb702ead3daad62f0aef9:8e60d4cd66530100d7f6554d6d76860c0779e27fd0a0913be3a677b773cabb05",
+    "role": "institution",
+    "plan": "b2b_enterprise",
+    "entitlements": [
+      "Physics",
+      "Chemistry",
+      "Biology"
+    ],
+    "valid_until": "2028-05-31",
+    "referral_code": "ALLEN2026",
+    "institution": "Allen Partner Center",
+    "devices": []
+  },
+  "ADMIN-ROOT": {
+    "uid": "ADMIN-ROOT",
+    "name": "Platform Super Administrator",
+    "phone": "+91 9999999999",
+    "email": "admin@neetmasterclass.in",
+    "password_hash": "d6ea0bf7242e4211298a1846f11b9838:44596b97b5da4ec547cc639dea19d33bbadd6b2d18cccc9ceb83b6feb5b3c8ba",
+    "role": "admin",
+    "plan": "super_admin",
+    "entitlements": [
+      "Physics",
+      "Chemistry",
+      "Biology"
+    ],
+    "valid_until": "2035-12-31",
+    "referral_code": "NEETMASTER",
+    "institution": "Headquarters",
+    "devices": []
+  },
+  "NEET-26-8806": {
+    "uid": "NEET-26-8806",
+    "name": "Student Aspirant",
+    "phone": "9876543210",
+    "email": "",
+    "password_hash": "cec76d4cc3d940fa320b4c0a349bf90d:816bf7129e693c02c59069787a7ed5924fa74955c09ad6063658809debc886a6",
+    "role": "student",
+    "plan": "single_physics",
+    "entitlements": [
+      "Physics"
+    ],
+    "valid_until": "2027-05-31",
+    "referral_code": "REF8806",
+    "institution": null,
+    "devices": [
+      {
+        "device_id": "DEV-WIN-001",
+        "name": "Web Browser",
+        "registered_at": "2026-10-21 11:45"
+      },
+      {
+        "device_id": "DEV-TEST-1",
+        "name": "Test Dev",
+        "registered_at": "2026-10-21 11:48"
+      }
+    ]
+  },
+  "NEET-26-8807": {
+    "uid": "NEET-26-8807",
+    "name": "Pooja Hegde",
+    "phone": "9876500001",
+    "email": "",
+    "password_hash": "dbd4732c1274f62497c6f82132336472:f89fb302f6cd3d77a30a041fe324ea1363c51f406857f47146e8254e3e018df6",
+    "role": "student",
+    "plan": "single_physics",
+    "target_year": "NEET 2026",
+    "entitlements": [
+      "Physics"
+    ],
+    "valid_until": "2027-05-31",
+    "referral_code": "REF8807",
+    "referred_by": "TOPPER10",
+    "institution": "Direct Registration",
+    "devices": [
+      {
+        "device_id": "DEV-POOJA-2",
+        "name": "Web Browser",
+        "registered_at": "2026-10-21 11:48"
+      },
+      {
+        "device_id": "DEV-POOJA-3",
+        "name": "Web Browser",
+        "registered_at": "2026-10-21 11:48"
+      }
+    ]
+  }
+}

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NEET UG Masterclass — Secure Triad EdApp & Exam Engine</title>
+  <title>NEET UG Masterclass — Commercial Triad EdApp & SaaS Platform</title>
   <!-- Tailwind CSS & FontAwesome -->
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -93,15 +93,17 @@
       <div class="hidden sm:flex items-center space-x-1 bg-slate-900/90 border border-slate-700/60 rounded-xl p-1 text-xs ml-2">
         <button id="subjPhysicsBtn" onclick="selectSubject('Physics')" class="px-3 py-1 rounded-lg font-semibold bg-sky-600 text-white transition flex items-center space-x-1.5">
           <span>⚛️</span>
-          <span>Physics (234)</span>
+          <span>Physics</span>
         </button>
         <button id="subjChemistryBtn" onclick="selectSubject('Chemistry')" class="px-3 py-1 rounded-lg font-semibold text-slate-400 hover:text-white transition flex items-center space-x-1.5">
           <span>🧪</span>
-          <span>Chemistry (221)</span>
+          <span>Chemistry</span>
+          <span id="chemLockIcon" class="hidden text-amber-400 text-[10px]"><i class="fa-solid fa-lock"></i></span>
         </button>
         <button id="subjBiologyBtn" onclick="selectSubject('Biology')" class="px-3 py-1 rounded-lg font-semibold text-slate-400 hover:text-white transition flex items-center space-x-1.5">
           <span>🧬</span>
-          <span>Biology (210)</span>
+          <span>Biology</span>
+          <span id="bioLockIcon" class="hidden text-amber-400 text-[10px]"><i class="fa-solid fa-lock"></i></span>
         </button>
       </div>
 
@@ -113,26 +115,42 @@
 
     <!-- Center Mode Indicator -->
     <div class="hidden md:flex items-center space-x-2 bg-slate-900/90 border border-slate-700/60 rounded-xl p-1 text-xs">
-      <button id="modeMicroBtn" onclick="setAppMode('sprint')" class="px-3 py-1 rounded-lg font-semibold bg-sky-600 text-white transition">
+      <button id="modeMicroBtn" class="px-3 py-1 rounded-lg font-semibold bg-sky-600 text-white transition">
         ⚡ Concept Sprints (60s)
-      </button>
-      <button id="modeMacroBtn" class="px-3 py-1 rounded-lg font-semibold text-slate-400 hover:text-white transition" onclick="alert('Kinematics Chapter Movie (15m) integrates all 14 delivered concepts into a continuous 5-Act story sequence.')">
-        🎬 Chapter Movie (15m)
       </button>
       <button id="modeExamBtn" onclick="openExamHubModal()" class="px-3 py-1 rounded-lg font-semibold bg-gradient-to-r from-amber-600 to-rose-600 text-white hover:from-amber-500 hover:to-rose-500 transition flex items-center space-x-1.5 shadow-md">
         <i class="fa-solid fa-graduation-cap"></i>
         <span>📝 Exam Center</span>
       </button>
+      <!-- Admin Vault Button (Visible to Admin Only) -->
+      <button id="adminVaultNavBtn" onclick="openAdminVaultModal()" class="hidden px-3 py-1 rounded-lg font-semibold bg-purple-900/80 hover:bg-purple-800 border border-purple-500/40 text-purple-200 transition flex items-center space-x-1.5">
+        <i class="fa-solid fa-shield-halved"></i>
+        <span>🛡️ Admin Vault</span>
+      </button>
     </div>
 
-    <!-- Right Student Auth & Watermark Status -->
+    <!-- Right Multi-Role User Profile & Role Switcher -->
     <div class="flex items-center space-x-3">
-      <div id="studentBadge" class="hidden sm:flex items-center space-x-2 text-xs font-mono bg-sky-950/40 border border-sky-500/30 px-2.5 py-1 rounded-lg text-sky-300">
-        <i class="fa-solid fa-user-graduate text-emerald-400"></i>
-        <span id="studentNameDisplay">Dr. Aspirant</span>
-        <span class="text-[10px] text-slate-400">|</span>
-        <span id="studentRollDisplay" class="text-slate-400 text-[10px]">NEET-TN-0941</span>
+      <!-- Direct Sign In / Sign Up Button -->
+      <button onclick="openAuthModal('otp')" class="px-3 py-1.5 rounded-lg bg-sky-600/80 hover:bg-sky-500 text-white text-xs font-semibold flex items-center space-x-1.5 transition shadow">
+        <i class="fa-solid fa-user-lock text-[11px]"></i>
+        <span>Sign In / Register</span>
+      </button>
+
+      <!-- Clickable Account Badge -->
+      <div id="studentBadge" onclick="openRoleSwitcherModal()" class="cursor-pointer flex items-center space-x-2 text-xs font-mono bg-sky-950/50 hover:bg-sky-900/60 border border-sky-500/30 px-2.5 py-1 rounded-lg text-sky-300 transition">
+        <i id="userRoleIcon" class="fa-solid fa-user-graduate text-emerald-400"></i>
+        <div class="text-left">
+          <div id="studentNameDisplay" class="font-bold text-[11px] leading-tight">Dr. Aarav Sharma</div>
+          <div class="text-[9px] text-slate-400 flex items-center space-x-1">
+            <span id="userPlanBadge" class="text-emerald-400 font-semibold">Physics Pass</span>
+            <span>•</span>
+            <span id="studentRollDisplay">NEET-26-8801</span>
+          </div>
+        </div>
+        <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 ml-1"></i>
       </div>
+
       <div id="subjectAvatar" class="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-xs font-bold text-sky-400">
         PHY
       </div>
@@ -195,7 +213,7 @@
         </div>
       </div>
 
-      <!-- Remedial Revision Mode Banner (Appears when student makes exam mistakes) -->
+      <!-- Remedial Revision Mode Banner -->
       <div id="remedialBanner" class="hidden p-2.5 bg-rose-950/70 border-b border-rose-500/40 flex items-center justify-between text-xs">
         <div class="flex items-center space-x-2 text-rose-300 font-semibold">
           <i class="fa-solid fa-triangle-exclamation text-rose-400 animate-bounce"></i>
@@ -206,7 +224,6 @@
 
       <!-- Videos Tree / List under Selected Topic -->
       <div id="conceptListContainer" class="flex-1 overflow-y-auto divide-y divide-slate-800/50 p-2 space-y-1">
-        <!-- Rendered dynamically by JavaScript -->
         <div class="p-4 text-center text-xs text-slate-500">
           <i class="fa-solid fa-spinner fa-spin mr-1"></i> Loading curriculum concepts...
         </div>
@@ -271,6 +288,21 @@
 
       <!-- Tab Content 1: Video Player Stage -->
       <section id="contentWatch" class="flex-1 flex flex-col overflow-hidden relative">
+        
+        <!-- TEACHER PRIVATE AUDIT TOOLBAR (Visible ONLY to Teachers & Admin) -->
+        <div id="teacherAuditBar" class="hidden h-10 bg-amber-950/80 border-b border-amber-500/40 px-4 flex items-center justify-between shrink-0 z-20">
+          <div class="flex items-center space-x-2 text-xs font-mono text-amber-300">
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse"></span>
+            <span class="font-bold">👨‍🏫 FACULTY AUDIT MODE</span>
+            <span class="text-slate-400">|</span>
+            <span id="teacherTimeTracker">Timestamp: 00:00</span>
+          </div>
+          <button onclick="openTeacherErrorModal()" class="px-3 py-1 rounded bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold flex items-center space-x-1.5 shadow transition">
+            <i class="fa-solid fa-flag"></i>
+            <span>Report Error / Correction</span>
+          </button>
+        </div>
+
         <div class="flex-1 bg-black flex items-center justify-center relative p-2 sm:p-4">
           
           <div class="video-shield max-h-full max-w-full aspect-video shadow-2xl relative flex items-center justify-center">
@@ -287,7 +319,7 @@
 
             <!-- Dynamic Floating Forensic Anti-Piracy Watermark -->
             <div id="forensicWatermark" style="top: 30%; left: 40%;">
-              [STUDENT: NEET-2026-AIR1 • IP: 127.0.0.1 • SESSION VERIFIED]
+              [STUDENT: NEET-26-8801 • IP: 127.0.0.1 • SESSION VERIFIED]
             </div>
 
             <!-- Playback Spinner -->
@@ -299,28 +331,67 @@
 
         </div>
 
-        <!-- Video Info & Meta Bar below player -->
-        <div class="h-16 bg-[#0B0F19] border-t border-slate-800/80 px-6 flex items-center justify-between shrink-0">
-          <div>
-            <div class="flex items-center space-x-2">
-              <span id="conceptBadge" class="px-2 py-0.5 rounded bg-rose-950 border border-rose-500/40 text-rose-400 font-mono font-bold text-xs">S.2.3.2</span>
-              <h2 id="videoTitleText" class="text-white font-bold text-sm">The Max Height Arc — Projectile Motion</h2>
+        <!-- Video Info & Student Telemetry Feedback Bar below player -->
+        <div class="h-20 bg-[#0B0F19] border-t border-slate-800/80 px-6 flex flex-col justify-center shrink-0 space-y-1">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="flex items-center space-x-2">
+                <span id="conceptBadge" class="px-2 py-0.5 rounded bg-rose-950 border border-rose-500/40 text-rose-400 font-mono font-bold text-xs">S.2.3.2</span>
+                <h2 id="videoTitleText" class="text-white font-bold text-sm">The Max Height Arc — Projectile Motion</h2>
+              </div>
+              <p id="videoCitationText" class="text-slate-400 text-xs mt-0.5">NCERT Class 11 Part 1, Chapter 4, Page 78 • Concept ID: P11-C02-T03-V02</p>
             </div>
-            <p id="videoCitationText" class="text-slate-400 text-xs mt-0.5">NCERT Class 11 Part 1, Chapter 4, Page 78 • Target Duration: 66s</p>
+            
+            <div class="flex items-center space-x-3">
+              <button id="markCompleteBtn" onclick="toggleConceptCompletion()" class="px-3 py-1.5 rounded-lg bg-emerald-950/70 hover:bg-emerald-900 border border-emerald-500/40 text-emerald-400 text-xs font-semibold flex items-center space-x-1.5 transition">
+                <i class="fa-solid fa-check"></i>
+                <span id="markCompleteBtnText">Mark Mastered</span>
+              </button>
+              <button onclick="switchTab('lab')" class="px-3 py-1.5 rounded-lg bg-purple-900/60 hover:bg-purple-800 border border-purple-500/40 text-purple-300 text-xs font-semibold flex items-center space-x-1.5 transition">
+                <i class="fa-solid fa-flask-vial"></i>
+                <span>Open 3D Lab</span>
+              </button>
+              <button onclick="switchTab('solve')" class="px-3 py-1.5 rounded-lg bg-amber-900/60 hover:bg-amber-800 border border-amber-500/40 text-amber-300 text-xs font-semibold flex items-center space-x-1.5 transition">
+                <i class="fa-solid fa-bolt"></i>
+                <span>Solve Trap</span>
+              </button>
+            </div>
           </div>
-          
-          <div class="flex items-center space-x-3">
-            <button id="markCompleteBtn" onclick="toggleConceptCompletion()" class="px-3 py-1.5 rounded-lg bg-emerald-950/70 hover:bg-emerald-900 border border-emerald-500/40 text-emerald-400 text-xs font-semibold flex items-center space-x-1.5 transition">
-              <i class="fa-solid fa-check"></i>
-              <span id="markCompleteBtnText">Mark Mastered</span>
-            </button>
-            <button onclick="switchTab('lab')" class="px-3 py-1.5 rounded-lg bg-purple-900/60 hover:bg-purple-800 border border-purple-500/40 text-purple-300 text-xs font-semibold flex items-center space-x-1.5 transition">
-              <i class="fa-solid fa-flask-vial"></i>
-              <span>Open 3D Lab</span>
-            </button>
-            <button onclick="switchTab('solve')" class="px-3 py-1.5 rounded-lg bg-amber-900/60 hover:bg-amber-800 border border-amber-500/40 text-amber-300 text-xs font-semibold flex items-center space-x-1.5 transition">
-              <i class="fa-solid fa-bolt"></i>
-              <span>Solve Trap</span>
+
+          <!-- Bottom Telemetry & Rating Sub-Bar (Student In-Video Feedback) -->
+          <div class="flex items-center justify-between pt-1 border-t border-slate-800/50 text-[11px] font-mono text-slate-400">
+            <div class="flex items-center space-x-4">
+              <!-- Audio Clarity Rating -->
+              <div class="flex items-center space-x-1.5">
+                <span class="text-slate-500"><i class="fa-solid fa-volume-high text-sky-400"></i> Audio:</span>
+                <div class="flex items-center space-x-0.5 text-amber-400 cursor-pointer">
+                  <span onclick="submitRating('audio', 1)">★</span>
+                  <span onclick="submitRating('audio', 2)">★</span>
+                  <span onclick="submitRating('audio', 3)">★</span>
+                  <span onclick="submitRating('audio', 4)">★</span>
+                  <span onclick="submitRating('audio', 5)">★</span>
+                </div>
+              </div>
+
+              <!-- Video Clarity Rating -->
+              <div class="flex items-center space-x-1.5">
+                <span class="text-slate-500"><i class="fa-solid fa-tv text-purple-400"></i> Video:</span>
+                <div class="flex items-center space-x-0.5 text-amber-400 cursor-pointer">
+                  <span onclick="submitRating('video', 1)">★</span>
+                  <span onclick="submitRating('video', 2)">★</span>
+                  <span onclick="submitRating('video', 3)">★</span>
+                  <span onclick="submitRating('video', 4)">★</span>
+                  <span onclick="submitRating('video', 5)">★</span>
+                </div>
+              </div>
+
+              <span id="ratingThankYouBadge" class="hidden text-emerald-400 font-bold">✓ Rated!</span>
+            </div>
+
+            <!-- "Still Don't Understand" Flag Button -->
+            <button onclick="openConfusionModal()" class="text-amber-400 hover:text-amber-300 flex items-center space-x-1 px-2 py-0.5 rounded bg-amber-950/40 border border-amber-500/30 transition">
+              <i class="fa-regular fa-circle-question"></i>
+              <span>Still Don't Understand? (Flag for Doubt Class)</span>
             </button>
           </div>
         </div>
@@ -333,7 +404,6 @@
 
       <!-- Tab Content 3: NEET Trap & Practice Solver (Solve) -->
       <section id="contentSolve" class="flex-1 hidden overflow-y-auto p-6 space-y-6 max-w-4xl mx-auto w-full">
-        
         <!-- Trap Alert Banner -->
         <div class="p-5 rounded-2xl bg-gradient-to-r from-rose-950/80 via-slate-900 to-slate-900 border border-rose-500/40 shadow-xl space-y-3">
           <div class="flex items-center space-x-2.5">
@@ -367,23 +437,16 @@
             A projectile is projected with an initial velocity <code class="text-sky-300 font-mono">v₀ = 50 m/s</code> at an angle of <code class="text-amber-300 font-mono">θ = 30°</code> with the <strong>VERTICAL</strong>. What is the maximum vertical height reached by the projectile? (Take g = 10 m/s²)
           </p>
 
-          <!-- Options Grid -->
-          <div id="quizOptionsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
-            <!-- Dynamically populated -->
-          </div>
+          <div id="quizOptionsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono"></div>
 
-          <!-- Solution Accordion -->
           <div id="solutionBox" class="hidden p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-xs space-y-2">
             <div class="text-emerald-400 font-bold flex items-center space-x-2">
               <i class="fa-solid fa-circle-check"></i>
               <span id="solutionResultTitle">Correct! 5-Mark Examination Insight</span>
             </div>
-            <p id="solutionDetailText" class="text-slate-300 leading-relaxed font-sans">
-              Since angle is relative to the vertical, vertical component is vy = v0 * cos(30°).
-            </p>
+            <p id="solutionDetailText" class="text-slate-300 leading-relaxed font-sans"></p>
           </div>
         </div>
-
       </section>
 
     </main>
@@ -391,11 +454,506 @@
   </div>
 
   <!-- ========================================================================= -->
-  <!-- MODAL 1: EXAM CENTER SELECTION HUB (Unit Test / Multi-Unit / Full Mock)   -->
+  <!-- MODAL: LOCKED SUBJECT & SUBSCRIPTION CHECKOUT (WITH REFERRAL CODE)        -->
   <!-- ========================================================================= -->
+  <div id="lockedSubjectModal" class="hidden fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center z-50 p-4">
+    <div class="glass-panel w-full max-w-xl rounded-2xl p-6 space-y-5 border border-slate-700">
+      
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-rose-600 flex items-center justify-center text-white text-lg">
+            <i class="fa-solid fa-lock"></i>
+          </div>
+          <div>
+            <h2 class="text-base font-bold text-white"><span id="lockedSubjectName">Chemistry</span> Masterclass Locked</h2>
+            <p class="text-xs text-slate-400">This subject is not included in your active Single Subject Pass</p>
+          </div>
+        </div>
+        <button onclick="closeLockedSubjectModal()" class="text-slate-400 hover:text-white p-2">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <!-- Upgrade Value Cards -->
+      <div class="space-y-3">
+        <div class="p-3.5 rounded-xl bg-gradient-to-r from-sky-950/80 to-indigo-950/80 border border-sky-500/40 flex items-center justify-between">
+          <div>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 font-bold">RECOMMENDED</span>
+            <h3 class="text-sm font-bold text-white mt-1">Complete NEET UG Masterclass Combo</h3>
+            <p class="text-xs text-slate-300">Unlock All 3 Subjects: Physics (234) + Chemistry (221) + Biology (210) + 3D Labs</p>
+          </div>
+          <div class="text-right">
+            <div id="comboPriceDisplay" class="text-lg font-bold text-emerald-400">₹ 6,999</div>
+            <div id="comboOrigPrice" class="text-xs line-through text-slate-500">₹ 9,999</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Referral Code Input Box -->
+      <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+        <label class="block text-xs font-mono text-slate-300 uppercase font-semibold">Have a Referral / Partner Code?</label>
+        <div class="flex items-center space-x-2">
+          <input type="text" id="referralCodeInput" placeholder="Enter code (e.g. TOPPER10, EARLYBIRD, ALLEN25)" class="flex-1 px-3 py-1.5 bg-slate-900 border border-slate-700 rounded-lg text-xs text-white uppercase tracking-wider focus:outline-none focus:border-sky-500 font-mono">
+          <button onclick="applyReferralCode()" class="px-4 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold transition">
+            Apply
+          </button>
+        </div>
+        <!-- Live Discount Message -->
+        <div id="referralStatusMsg" class="hidden text-xs font-mono"></div>
+      </div>
+
+      <!-- Payment Gateways Simulation & Instant Unlock Button -->
+      <div class="pt-2 flex items-center justify-between">
+        <div class="text-[11px] text-slate-400 flex items-center space-x-2">
+          <i class="fa-solid fa-shield-halved text-emerald-400"></i>
+          <span>Supports UPI, Cards, NetBanking</span>
+        </div>
+        <button onclick="simulateSubscriptionPayment()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-sky-600 hover:from-emerald-500 hover:to-sky-500 text-white font-bold text-xs shadow-lg transition">
+          💳 Unlock Complete Combo Now
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: STUDENT "STILL CONFUSED" FLAG DRAWER                               -->
+  <!-- ========================================================================= -->
+  <div id="confusionModal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50 p-4">
+    <div class="glass-panel w-full max-w-md rounded-2xl p-6 space-y-4 border border-slate-700">
+      
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div class="flex items-center space-x-2.5">
+          <span class="text-amber-400 text-lg"><i class="fa-solid fa-circle-question"></i></span>
+          <h3 class="text-sm font-bold text-white">Flag Concept for Sunday Doubt Class</h3>
+        </div>
+        <button onclick="closeConfusionModal()" class="text-slate-400 hover:text-white p-1">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <p class="text-xs text-slate-300">
+        Tell us what felt tricky about <strong id="confusionConceptTitle" class="text-sky-300">this concept</strong> so our faculty can cover it with extra numericals:
+      </p>
+
+      <div class="space-y-2 text-xs font-mono">
+        <label class="flex items-center space-x-2 p-2 rounded-lg bg-slate-900 border border-slate-800 cursor-pointer hover:border-amber-500">
+          <input type="radio" name="confusion_reason" value="Formula derivation was too fast" checked class="text-amber-500">
+          <span class="text-slate-200">Formula derivation was too fast</span>
+        </label>
+        <label class="flex items-center space-x-2 p-2 rounded-lg bg-slate-900 border border-slate-800 cursor-pointer hover:border-amber-500">
+          <input type="radio" name="confusion_reason" value="Diagram / Vector components were unclear" class="text-amber-500">
+          <span class="text-slate-200">Diagram / Vector components were unclear</span>
+        </label>
+        <label class="flex items-center space-x-2 p-2 rounded-lg bg-slate-900 border border-slate-800 cursor-pointer hover:border-amber-500">
+          <input type="radio" name="confusion_reason" value="Need more NEET numerical examples" class="text-amber-500">
+          <span class="text-slate-200">Need more NEET numerical examples</span>
+        </label>
+        <label class="flex items-center space-x-2 p-2 rounded-lg bg-slate-900 border border-slate-800 cursor-pointer hover:border-amber-500">
+          <input type="radio" name="confusion_reason" value="Pronunciation or audio speed issue" class="text-amber-500">
+          <span class="text-slate-200">Pronunciation or audio speed issue</span>
+        </label>
+      </div>
+
+      <div class="flex items-center justify-end space-x-2 pt-2">
+        <button onclick="closeConfusionModal()" class="px-3 py-1.5 rounded-lg text-xs text-slate-400 hover:text-white">Cancel</button>
+        <button onclick="submitConfusionFlag()" class="px-4 py-1.5 rounded-lg text-xs font-bold bg-amber-600 hover:bg-amber-500 text-white">
+          Submit Flag
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: TEACHER PRIVATE ERROR REPORTING (ADMIN ONLY VISIBILITY)            -->
+  <!-- ========================================================================= -->
+  <div id="teacherErrorModal" class="hidden fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center z-50 p-4">
+    <div class="glass-panel w-full max-w-lg rounded-2xl p-6 space-y-4 border border-rose-500/40">
+      
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div class="flex items-center space-x-2.5">
+          <span class="text-rose-400 text-lg"><i class="fa-solid fa-flag"></i></span>
+          <div>
+            <h3 class="text-sm font-bold text-white">Faculty Video Error Report</h3>
+            <p class="text-[10px] text-slate-400 font-mono">Direct to Admin Vault • Strictly Hidden from Students</p>
+          </div>
+        </div>
+        <button onclick="closeTeacherErrorModal()" class="text-slate-400 hover:text-white p-1">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3 text-xs font-mono">
+        <div>
+          <label class="block text-slate-400 mb-1">Concept ID</label>
+          <input type="text" id="teacherReportCid" readonly class="w-full px-2.5 py-1.5 bg-slate-900 border border-slate-800 rounded-lg text-sky-300">
+        </div>
+        <div>
+          <label class="block text-slate-400 mb-1">Video Timestamp</label>
+          <input type="text" id="teacherReportTimestamp" readonly class="w-full px-2.5 py-1.5 bg-slate-900 border border-slate-800 rounded-lg text-amber-300">
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3 text-xs">
+        <div>
+          <label class="block text-slate-400 mb-1 font-mono">Error Category</label>
+          <select id="teacherReportCategory" class="w-full px-2.5 py-1.5 bg-slate-900 border border-slate-800 rounded-lg text-white">
+            <option value="Math Derivation">Math Derivation / Formula Slip</option>
+            <option value="Pronunciation">Pronunciation / Audio Glitch</option>
+            <option value="Visual Safe-Zone">Visual Safe-Zone / Text Clipping</option>
+            <option value="NCERT Nuance">NCERT / Syllabus Update</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-slate-400 mb-1 font-mono">Severity</label>
+          <select id="teacherReportSeverity" class="w-full px-2.5 py-1.5 bg-slate-900 border border-slate-800 rounded-lg text-white">
+            <option value="Medium">Medium (Fix in next render)</option>
+            <option value="Critical">Critical (Immediate correction)</option>
+            <option value="Low">Low (Minor cosmetic)</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-mono text-slate-400 mb-1">Detailed Technical Correction / Note</label>
+        <textarea id="teacherReportDesc" rows="3" placeholder="Explain the specific error, formula correction, or pronunciation slip at this timestamp..." class="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-rose-500"></textarea>
+      </div>
+
+      <div class="flex items-center justify-end space-x-2 pt-2">
+        <button onclick="closeTeacherErrorModal()" class="px-3 py-1.5 rounded-lg text-xs text-slate-400 hover:text-white">Cancel</button>
+        <button onclick="submitTeacherErrorReport()" class="px-4 py-1.5 rounded-lg text-xs font-bold bg-rose-600 hover:bg-rose-500 text-white">
+          Submit to Admin Vault
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: ADMIN VAULT (TEACHER TICKETS, TELEMETRY, & B2B INSTITUTION BATCH)  -->
+  <!-- ========================================================================= -->
+  <div id="adminVaultModal" class="hidden fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center z-50 p-4">
+    <div class="glass-panel w-full max-w-4xl rounded-2xl p-6 space-y-5 border border-purple-500/40 max-h-[90vh] flex flex-col">
+      
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-purple-900/60 border border-purple-500/40 flex items-center justify-center text-purple-300 text-lg">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <div>
+            <h2 class="text-base font-bold text-white">Platform Super Admin & Faculty Audit Vault</h2>
+            <p class="text-xs text-slate-400">Strictly Internal Console • Teacher Error Reports & B2B Cohort Manager</p>
+          </div>
+        </div>
+        <button onclick="closeAdminVaultModal()" class="text-slate-400 hover:text-white p-2">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <!-- Admin Navigation Tabs -->
+      <div class="flex items-center space-x-2 border-b border-slate-800 pb-2">
+        <button id="adminTabTicketsBtn" onclick="switchAdminTab('tickets')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-purple-600 text-white">
+          📝 Faculty Error Tickets (<span id="adminTicketCount">0</span>)
+        </button>
+        <button id="adminTabTelemetryBtn" onclick="switchAdminTab('telemetry')" class="px-3 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white">
+          📊 Confusion Telemetry Heatmap
+        </button>
+        <button id="adminTabB2BBtn" onclick="switchAdminTab('b2b')" class="px-3 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white">
+          🏫 B2B Institution Batch UIDs
+        </button>
+      </div>
+
+      <!-- Tab 1: Faculty Error Tickets -->
+      <div id="adminTabTicketsContent" class="flex-1 overflow-y-auto space-y-3 pr-1">
+        <div id="adminTicketsList" class="space-y-2">
+          <div class="p-4 text-center text-xs text-slate-500">Loading teacher error reports...</div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Confusion Telemetry Heatmap -->
+      <div id="adminTabTelemetryContent" class="hidden flex-1 overflow-y-auto space-y-3 pr-1">
+        <div id="adminTelemetryList" class="space-y-2"></div>
+      </div>
+
+      <!-- Tab 3: B2B Institution Batch UIDs -->
+      <div id="adminTabB2BContent" class="hidden flex-1 overflow-y-auto space-y-4 pr-1">
+        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-3">
+          <h4 class="text-xs font-bold uppercase text-white font-mono">Generate Batch Institutional Student Licenses</h4>
+          <div class="grid grid-cols-3 gap-3 text-xs font-mono">
+            <div>
+              <label class="block text-slate-400 mb-1">Prefix</label>
+              <input type="text" id="b2bPrefixInput" value="INST-ALN" class="w-full px-2.5 py-1.5 bg-slate-950 border border-slate-800 rounded-lg text-white">
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1">Student Count</label>
+              <input type="number" id="b2bCountInput" value="5" min="1" max="50" class="w-full px-2.5 py-1.5 bg-slate-950 border border-slate-800 rounded-lg text-white">
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1">Institution Name</label>
+              <input type="text" id="b2bInstNameInput" value="Allen Partner Academy" class="w-full px-2.5 py-1.5 bg-slate-950 border border-slate-800 rounded-lg text-white">
+            </div>
+          </div>
+          <button onclick="generateB2BBatchUIDs()" class="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold">
+            Generate Cohort UIDs
+          </button>
+        </div>
+        <div id="b2bGeneratedResults" class="space-y-2"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: ACCOUNT & MULTI-ROLE SWITCHER (TESTING CONSOLE)                    -->
+  <!-- ========================================================================= -->
+  <div id="roleSwitcherModal" class="hidden fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center z-50 p-4">
+    <div class="glass-panel w-full max-w-lg rounded-2xl p-6 space-y-5 border border-slate-700">
+      
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div>
+          <h3 class="text-base font-bold text-white">Account & Role Switcher</h3>
+          <p class="text-xs text-slate-400">Switch persona to test permissions, faculty tools, and locked subjects</p>
+        </div>
+        <button onclick="closeRoleSwitcherModal()" class="text-slate-400 hover:text-white p-1">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <!-- Quick Role Pills -->
+      <div class="space-y-2">
+        <label class="block text-xs font-mono text-slate-400 uppercase font-semibold">Select Test Persona:</label>
+        
+        <!-- Persona 1: Student (Physics Only) -->
+        <div onclick="switchUserPersona('NEET-26-8801')" class="p-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-sky-500 cursor-pointer transition flex items-center justify-between">
+          <div class="flex items-center space-x-3">
+            <span class="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center"><i class="fa-solid fa-user-graduate"></i></span>
+            <div>
+              <div class="font-bold text-white text-xs">Dr. Aarav Sharma (Student - Physics Only)</div>
+              <div class="text-[10px] text-slate-400">UID: NEET-26-8801 • Can test Chem/Bio locked modal</div>
+            </div>
+          </div>
+          <span class="text-xs text-sky-400 font-bold">Switch →</span>
+        </div>
+
+        <!-- Persona 2: Student (Complete Combo) -->
+        <div onclick="switchUserPersona('NEET-26-8802')" class="p-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-emerald-500 cursor-pointer transition flex items-center justify-between">
+          <div class="flex items-center space-x-3">
+            <span class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center"><i class="fa-solid fa-star"></i></span>
+            <div>
+              <div class="font-bold text-white text-xs">Priya Sundaram (Student - All 3 Subjects)</div>
+              <div class="text-[10px] text-slate-400">UID: NEET-26-8802 • Complete 665 concepts unlocked</div>
+            </div>
+          </div>
+          <span class="text-xs text-emerald-400 font-bold">Switch →</span>
+        </div>
+
+        <!-- Persona 3: Teacher / Faculty -->
+        <div onclick="switchUserPersona('TEACHER-PHY-01')" class="p-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-amber-500 cursor-pointer transition flex items-center justify-between">
+          <div class="flex items-center space-x-3">
+            <span class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center"><i class="fa-solid fa-chalkboard-user"></i></span>
+            <div>
+              <div class="font-bold text-white text-xs">Prof. K. Ramanathan (Senior Faculty Auditor)</div>
+              <div class="text-[10px] text-slate-400">UID: TEACHER-PHY-01 • Enables in-video private error reporting</div>
+            </div>
+          </div>
+          <span class="text-xs text-amber-400 font-bold">Switch →</span>
+        </div>
+
+        <!-- Persona 4: Super Admin -->
+        <div onclick="switchUserPersona('ADMIN-ROOT')" class="p-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-purple-500 cursor-pointer transition flex items-center justify-between">
+          <div class="flex items-center space-x-3">
+            <span class="w-8 h-8 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center"><i class="fa-solid fa-shield-halved"></i></span>
+            <div>
+              <div class="font-bold text-white text-xs">Platform Administrator (Global Root)</div>
+              <div class="text-[10px] text-slate-400">UID: ADMIN-ROOT • Review teacher tickets & telemetry</div>
+            </div>
+          </div>
+          <span class="text-xs text-purple-400 font-bold">Switch →</span>
+        </div>
+
+      </div>
+
+      <!-- Button to Open Full Auth (Sign In / Sign Up) -->
+      <div class="pt-3 border-t border-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-400">Need real authentication?</span>
+        <button onclick="closeRoleSwitcherModal(); openAuthModal('otp')" class="px-4 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs">
+          🔑 Open Sign In / Sign Up Portal
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: FULL AUTHENTICATION & ONBOARDING (OTP / PASSWORD / SIGN UP)        -->
+  <!-- ========================================================================= -->
+  <div id="authModal" class="hidden fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center z-50 p-4">
+    <div class="glass-panel w-full max-w-md rounded-2xl p-6 space-y-5 border border-slate-700">
+      
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center text-white text-base">
+            <i class="fa-solid fa-user-lock"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-white">NEET Masterclass Access</h3>
+            <p class="text-xs text-slate-400 font-mono">Secure Salted Auth & Anti-Piracy Portal</p>
+          </div>
+        </div>
+        <button onclick="closeAuthModal()" class="text-slate-400 hover:text-white p-1">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <!-- Auth Navigation Tabs: OTP | Password | Sign Up -->
+      <div class="grid grid-cols-3 gap-1 bg-slate-950 p-1 rounded-xl border border-slate-800 text-xs font-semibold">
+        <button id="authTabOtpBtn" onclick="switchAuthTab('otp')" class="py-1.5 rounded-lg bg-sky-600 text-white">
+          📱 Mobile OTP
+        </button>
+        <button id="authTabPwBtn" onclick="switchAuthTab('pw')" class="py-1.5 rounded-lg text-slate-400 hover:text-white">
+          🔑 Password
+        </button>
+        <button id="authTabRegBtn" onclick="switchAuthTab('reg')" class="py-1.5 rounded-lg text-slate-400 hover:text-white">
+          ✨ Sign Up
+        </button>
+      </div>
+
+      <!-- TAB 1: Mobile OTP Sign In -->
+      <div id="authTabOtpContent" class="space-y-4">
+        <div>
+          <label class="block text-xs font-mono text-slate-400 mb-1">Mobile Number (10 Digits)</label>
+          <div class="flex items-center space-x-2">
+            <span class="px-3 py-2 bg-slate-900 border border-slate-800 rounded-lg text-xs font-mono text-slate-400">+91</span>
+            <input type="tel" id="otpPhoneInput" placeholder="9876543210" maxlength="10" class="flex-1 px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-xs text-white font-mono focus:outline-none focus:border-sky-500">
+            <button id="sendOtpBtn" onclick="sendOtpRequest()" class="px-3 py-2 bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold rounded-lg transition whitespace-nowrap">
+              Send OTP
+            </button>
+          </div>
+          <div id="otpRateLimitMsg" class="hidden text-[11px] text-amber-400 font-mono mt-1"></div>
+        </div>
+
+        <!-- OTP Input Area (Appears after sending) -->
+        <div id="otpInputSection" class="hidden space-y-3 p-3 bg-slate-950 rounded-xl border border-slate-800">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-slate-400 font-mono">Enter 6-Digit Verification Code:</span>
+            <span id="otpCountdownTimer" class="text-amber-400 font-mono text-[11px]">Resend in 30s</span>
+          </div>
+
+          <div class="flex justify-between space-x-1.5">
+            <input type="text" maxlength="1" class="otp-digit w-10 h-11 text-center bg-slate-900 border border-slate-700 rounded-lg text-lg font-bold text-sky-400 font-mono focus:border-sky-500 focus:outline-none" oninput="onOtpDigitInput(this, 0)">
+            <input type="text" maxlength="1" class="otp-digit w-10 h-11 text-center bg-slate-900 border border-slate-700 rounded-lg text-lg font-bold text-sky-400 font-mono focus:border-sky-500 focus:outline-none" oninput="onOtpDigitInput(this, 1)">
+            <input type="text" maxlength="1" class="otp-digit w-10 h-11 text-center bg-slate-900 border border-slate-700 rounded-lg text-lg font-bold text-sky-400 font-mono focus:border-sky-500 focus:outline-none" oninput="onOtpDigitInput(this, 2)">
+            <input type="text" maxlength="1" class="otp-digit w-10 h-11 text-center bg-slate-900 border border-slate-700 rounded-lg text-lg font-bold text-sky-400 font-mono focus:border-sky-500 focus:outline-none" oninput="onOtpDigitInput(this, 3)">
+            <input type="text" maxlength="1" class="otp-digit w-10 h-11 text-center bg-slate-900 border border-slate-700 rounded-lg text-lg font-bold text-sky-400 font-mono focus:border-sky-500 focus:outline-none" oninput="onOtpDigitInput(this, 4)">
+            <input type="text" maxlength="1" class="otp-digit w-10 h-11 text-center bg-slate-900 border border-slate-700 rounded-lg text-lg font-bold text-sky-400 font-mono focus:border-sky-500 focus:outline-none" oninput="onOtpDigitInput(this, 5)">
+          </div>
+
+          <!-- Dev Auto-Fill Helper for instant testing -->
+          <button id="devAutoFillBtn" onclick="autoFillDevOtp()" class="w-full text-center text-[10px] font-mono text-emerald-400 hover:underline pt-1">
+            ⚡ Click to Auto-Fill Received OTP (<span id="devOtpSpan">------</span>)
+          </button>
+
+          <button onclick="verifyOtpAndLogin()" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl shadow-lg transition">
+            Verify & Enter Platform →
+          </button>
+        </div>
+      </div>
+
+      <!-- TAB 2: UID / Password Sign In -->
+      <div id="authTabPwContent" class="hidden space-y-3">
+        <div>
+          <label class="block text-xs font-mono text-slate-400 mb-1">Student UID / Mobile / Email</label>
+          <input type="text" id="pwIdentInput" placeholder="e.g. NEET-26-8801 or 9876543210" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-xs text-white focus:outline-none focus:border-sky-500 font-mono">
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono text-slate-400 mb-1">Account Password</label>
+          <input type="password" id="pwPasswordInput" placeholder="••••••••••••" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-xs text-white focus:outline-none focus:border-sky-500">
+        </div>
+
+        <div id="pwErrorMsg" class="hidden text-xs text-rose-400 font-mono"></div>
+
+        <button onclick="loginWithPassword()" class="w-full py-2.5 bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs rounded-xl shadow-lg transition mt-2">
+          Secure Salted Sign In →
+        </button>
+      </div>
+
+      <!-- TAB 3: New Student Registration -->
+      <div id="authTabRegContent" class="hidden space-y-3">
+        <div>
+          <label class="block text-xs font-mono text-slate-400 mb-1">Full Student Name</label>
+          <input type="text" id="regNameInput" placeholder="e.g. Rohit Verma" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-xs text-white focus:outline-none focus:border-sky-500">
+        </div>
+
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block text-xs font-mono text-slate-400 mb-1">Mobile Number</label>
+            <input type="tel" id="regPhoneInput" placeholder="9876543299" maxlength="10" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-xs text-white focus:outline-none focus:border-sky-500 font-mono">
+          </div>
+          <div>
+            <label class="block text-xs font-mono text-slate-400 mb-1">Target Exam Year</label>
+            <select id="regYearInput" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-xs text-white focus:outline-none focus:border-sky-500 font-mono">
+              <option value="NEET 2026">NEET UG 2026</option>
+              <option value="NEET 2027">NEET UG 2027</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono text-slate-400 mb-1">Create Password (Salted PBKDF2)</label>
+          <input type="password" id="regPasswordInput" placeholder="Minimum 6 characters" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-xs text-white focus:outline-none focus:border-sky-500">
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono text-slate-400 mb-1">Referral / Institutional Code (Optional)</label>
+          <input type="text" id="regReferralInput" placeholder="e.g. TOPPER10, ALLEN25" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-xs text-white focus:outline-none focus:border-sky-500 font-mono uppercase">
+        </div>
+
+        <div id="regErrorMsg" class="hidden text-xs text-rose-400 font-mono"></div>
+
+        <button onclick="registerNewStudent()" class="w-full py-2.5 bg-gradient-to-r from-emerald-600 to-sky-600 hover:from-emerald-500 hover:to-sky-500 text-white font-bold text-xs rounded-xl shadow-lg transition mt-2">
+          Create Account & Issue UID →
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: DEVICE LIMIT REACHED (MAX 2 DEVICES POLICY)                        -->
+  <!-- ========================================================================= -->
+  <div id="deviceLimitModal" class="hidden fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center z-50 p-4">
+    <div class="glass-panel w-full max-w-md rounded-2xl p-6 space-y-4 border border-rose-500/50">
+      
+      <div class="flex items-center space-x-3 text-rose-400 border-b border-slate-800 pb-3">
+        <i class="fa-solid fa-triangle-exclamation text-2xl"></i>
+        <div>
+          <h3 class="text-sm font-bold text-white">Active Device Limit Exceeded</h3>
+          <p class="text-[11px] text-slate-400">Maximum 2 registered devices allowed per student</p>
+        </div>
+      </div>
+
+      <p class="text-xs text-slate-300 leading-relaxed">
+        To prevent unauthorized credential sharing, each student account is strictly bound to 2 devices. To register this current device, please choose which older device to deregister:
+      </p>
+
+      <!-- Active Registered Devices List -->
+      <div id="activeDevicesDeregisterList" class="space-y-2"></div>
+
+      <div class="pt-2 flex justify-end">
+        <button onclick="closeDeviceLimitModal()" class="px-4 py-1.5 rounded-lg text-xs text-slate-400 hover:text-white">
+          Cancel
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- CBT Exam Hub Modal & NTA CBT Modal (Preserved & Integrated) -->
   <div id="examHubModal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50 p-4">
     <div class="glass-panel w-full max-w-2xl rounded-2xl p-6 space-y-6 border border-slate-700">
-      
       <div class="flex items-center justify-between border-b border-slate-800 pb-3">
         <div class="flex items-center space-x-3">
           <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-rose-500 flex items-center justify-center text-white text-lg">
@@ -411,17 +969,12 @@
         </button>
       </div>
 
-      <!-- 3 Exam Mode Cards -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-        
-        <!-- Card 1: Unit Diagnostic Exam -->
         <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-sky-500 transition cursor-pointer flex flex-col justify-between" onclick="startUnitExam()">
           <div class="space-y-2">
             <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-sky-950 border border-sky-500/30 text-sky-400 font-bold">MODE A</span>
             <h3 class="text-sm font-bold text-white">Unit Diagnostic</h3>
-            <p class="text-[11px] text-slate-400 leading-relaxed">
-              1 question per topic from currently active unit (<span id="examModalUnitName" class="text-sky-300">Kinematics</span>).
-            </p>
+            <p class="text-[11px] text-slate-400 leading-relaxed">1 question per topic from currently active unit.</p>
           </div>
           <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs">
             <span class="text-slate-400 font-mono">4 Qs • 8 Mins</span>
@@ -429,14 +982,11 @@
           </div>
         </div>
 
-        <!-- Card 2: Multi-Unit Custom Exam -->
         <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-amber-500 transition cursor-pointer flex flex-col justify-between" onclick="showMultiUnitConfig()">
           <div class="space-y-2">
             <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-950 border border-amber-500/30 text-amber-400 font-bold">MODE B</span>
             <h3 class="text-sm font-bold text-white">Multi-Unit Clubbed</h3>
-            <p class="text-[11px] text-slate-400 leading-relaxed">
-              Select multiple completed units to test cumulative retention across chapters.
-            </p>
+            <p class="text-[11px] text-slate-400 leading-relaxed">Select multiple completed units to test cumulative retention.</p>
           </div>
           <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs">
             <span class="text-slate-400 font-mono">Custom Units</span>
@@ -444,32 +994,25 @@
           </div>
         </div>
 
-        <!-- Card 3: Full NEET Physics Mock Exam -->
         <div class="p-4 rounded-xl bg-gradient-to-b from-rose-950/40 to-slate-900/90 border border-rose-500/40 hover:border-rose-400 transition cursor-pointer flex flex-col justify-between" onclick="startFullPhysicsMock()">
           <div class="space-y-2">
             <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-rose-950 border border-rose-500/40 text-rose-300 font-bold">MODE C • FULL NEET</span>
             <h3 class="text-sm font-bold text-white">Complete Physics Mock</h3>
-            <p class="text-[11px] text-slate-300 leading-relaxed">
-              Full 45 Questions / 180 Marks weighted rigorously according to official NEET blueprint!
-            </p>
+            <p class="text-[11px] text-slate-300 leading-relaxed">Full 45 Questions / 180 Marks weighted rigorously according to official NEET blueprint!</p>
           </div>
           <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs">
             <span class="text-slate-400 font-mono">45 Qs • 60 Mins</span>
             <span class="text-rose-400 font-bold">Begin Mock →</span>
           </div>
         </div>
-
       </div>
 
-      <!-- Multi-Unit Clubbing Configuration Panel (Hidden by default) -->
       <div id="multiUnitConfigPanel" class="hidden p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
         <div class="flex items-center justify-between">
           <h4 class="text-xs font-bold uppercase text-amber-400 font-mono">Select Units to Club Together</h4>
           <span class="text-[10px] text-slate-500">1 question per topic</span>
         </div>
-        <div id="multiUnitCheckboxList" class="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-40 overflow-y-auto pr-1 text-xs">
-          <!-- Dynamically populated -->
-        </div>
+        <div id="multiUnitCheckboxList" class="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-40 overflow-y-auto pr-1 text-xs"></div>
         <div class="flex items-center justify-end space-x-2 pt-2">
           <button onclick="hideMultiUnitConfig()" class="px-3 py-1.5 rounded-lg text-xs text-slate-400 hover:text-white">Cancel</button>
           <button onclick="startMultiUnitExam()" class="px-4 py-1.5 rounded-lg text-xs font-bold bg-amber-600 hover:bg-amber-500 text-white">
@@ -477,26 +1020,19 @@
           </button>
         </div>
       </div>
-
     </div>
   </div>
 
-  <!-- ========================================================================= -->
-  <!-- MODAL 2: FULL NTA COMPUTER-BASED TEST (CBT) INTERFACE                     -->
-  <!-- ========================================================================= -->
+  <!-- NTA CBT Interface Modal -->
   <div id="cbtExamModal" class="hidden fixed inset-0 bg-[#07090E] flex flex-col z-50">
-    
-    <!-- CBT Header -->
     <header class="h-14 border-b border-slate-800 bg-[#0B0F19] px-6 flex items-center justify-between shrink-0">
       <div class="flex items-center space-x-3">
         <span class="w-3 h-3 rounded-full bg-rose-500 animate-ping"></span>
         <div>
-          <h2 id="cbtExamTitle" class="text-sm font-bold text-white">NEET UG Physics Examination Simulator</h2>
-          <p id="cbtExamSubtitle" class="text-[10px] text-slate-400 font-mono">NTA Standard Marking: +4 Correct • -1 Incorrect • 0 Unattempted</p>
+          <h2 id="cbtExamTitle" class="text-sm font-bold text-white">NEET UG Examination Simulator</h2>
+          <p id="cbtExamSubtitle" class="text-[10px] text-slate-400 font-mono">+4 Correct • -1 Incorrect • 0 Unattempted</p>
         </div>
       </div>
-
-      <!-- Live Countdown Timer -->
       <div class="flex items-center space-x-4">
         <div class="flex items-center space-x-2 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-800">
           <i class="fa-regular fa-clock text-amber-400 text-sm"></i>
@@ -509,103 +1045,49 @@
       </div>
     </header>
 
-    <!-- CBT Main Stage: Question Area (Left) + Question Palette (Right) -->
     <div class="flex-1 flex overflow-hidden">
-      
-      <!-- Left: Active Question Viewer -->
       <div class="flex-1 flex flex-col bg-[#04060A] overflow-y-auto p-6 space-y-6">
-        
         <div class="flex items-center justify-between border-b border-slate-800 pb-3">
           <div class="flex items-center space-x-2">
             <span id="cbtQuestionNumberBadge" class="px-2.5 py-1 rounded bg-sky-950 border border-sky-500/40 text-sky-400 font-mono text-xs font-bold">
               Question 1 of 45
             </span>
-            <span id="cbtQuestionTopicBadge" class="text-xs font-mono text-slate-400">
-              [Unit 2: Kinematics • Projectile Motion]
-            </span>
+            <span id="cbtQuestionTopicBadge" class="text-xs font-mono text-slate-400"></span>
           </div>
           <span class="text-xs font-mono text-emerald-400 font-semibold">+4 / -1 Marks</span>
         </div>
-
-        <!-- Question Stem -->
         <div class="space-y-2">
-          <span id="cbtQuestionSource" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-amber-300">
-            NCERT Exemplar Class 11
-          </span>
-          <p id="cbtQuestionStemText" class="text-slate-100 text-sm sm:text-base leading-relaxed font-sans pt-2">
-            Loading exam question...
-          </p>
+          <span id="cbtQuestionSource" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-amber-300"></span>
+          <p id="cbtQuestionStemText" class="text-slate-100 text-sm sm:text-base leading-relaxed font-sans pt-2"></p>
         </div>
-
-        <!-- 4 Radio Options -->
-        <div id="cbtOptionsContainer" class="space-y-3 pt-2">
-          <!-- Dynamically populated -->
-        </div>
-
-        <!-- CBT Footer Action Buttons -->
+        <div id="cbtOptionsContainer" class="space-y-3 pt-2"></div>
         <div class="pt-6 border-t border-slate-800/80 flex items-center justify-between">
           <div class="flex items-center space-x-2">
-            <button onclick="clearCurrentResponse()" class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-slate-400 hover:text-white text-xs font-mono transition">
-              Clear Response
-            </button>
-            <button onclick="markCurrentForReview()" class="px-3 py-1.5 rounded-lg bg-purple-950/70 border border-purple-500/40 text-purple-300 hover:bg-purple-900 text-xs font-mono transition">
-              Mark for Review & Next
-            </button>
+            <button onclick="clearCurrentResponse()" class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-slate-400 hover:text-white text-xs font-mono">Clear</button>
+            <button onclick="markCurrentForReview()" class="px-3 py-1.5 rounded-lg bg-purple-950/70 border border-purple-500/40 text-purple-300 hover:bg-purple-900 text-xs font-mono">Mark for Review & Next</button>
           </div>
           <div class="flex items-center space-x-2">
-            <button onclick="saveAndPreviousQuestion()" class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-slate-300 hover:text-white text-xs font-semibold">
-              ← Previous
-            </button>
-            <button onclick="saveAndNextQuestion()" class="px-5 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold shadow-md transition">
-              Save & Next →
-            </button>
+            <button onclick="saveAndPreviousQuestion()" class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-slate-300 hover:text-white text-xs">← Previous</button>
+            <button onclick="saveAndNextQuestion()" class="px-5 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold">Save & Next →</button>
           </div>
         </div>
-
       </div>
-
-      <!-- Right: NTA Question Palette & Statistics -->
       <aside class="w-80 border-l border-slate-800 bg-[#0B0F19] flex flex-col shrink-0 p-4 space-y-4">
-        
         <h3 class="text-xs font-bold font-mono text-slate-300 uppercase tracking-wider">Question Palette</h3>
-
-        <!-- Legend -->
         <div class="grid grid-cols-2 gap-2 text-[10px] font-mono p-2.5 rounded-xl bg-slate-950 border border-slate-800">
-          <div class="flex items-center space-x-1.5">
-            <span class="w-3 h-3 rounded bg-emerald-500"></span>
-            <span class="text-slate-300">Answered (<span id="cbtCountAnswered">0</span>)</span>
-          </div>
-          <div class="flex items-center space-x-1.5">
-            <span class="w-3 h-3 rounded bg-rose-500"></span>
-            <span class="text-slate-300">Not Answered (<span id="cbtCountNotAnswered">0</span>)</span>
-          </div>
-          <div class="flex items-center space-x-1.5">
-            <span class="w-3 h-3 rounded-full bg-purple-500"></span>
-            <span class="text-slate-300">Review (<span id="cbtCountReview">0</span>)</span>
-          </div>
-          <div class="flex items-center space-x-1.5">
-            <span class="w-3 h-3 rounded bg-slate-700"></span>
-            <span class="text-slate-300">Not Visited (<span id="cbtCountNotVisited">0</span>)</span>
-          </div>
+          <div class="flex items-center space-x-1.5"><span class="w-3 h-3 rounded bg-emerald-500"></span><span class="text-slate-300">Answered (<span id="cbtCountAnswered">0</span>)</span></div>
+          <div class="flex items-center space-x-1.5"><span class="w-3 h-3 rounded bg-rose-500"></span><span class="text-slate-300">Not Answered (<span id="cbtCountNotAnswered">0</span>)</span></div>
+          <div class="flex items-center space-x-1.5"><span class="w-3 h-3 rounded-full bg-purple-500"></span><span class="text-slate-300">Review (<span id="cbtCountReview">0</span>)</span></div>
+          <div class="flex items-center space-x-1.5"><span class="w-3 h-3 rounded bg-slate-700"></span><span class="text-slate-300">Not Visited (<span id="cbtCountNotVisited">0</span>)</span></div>
         </div>
-
-        <!-- Palette Grid -->
-        <div id="cbtPaletteGrid" class="flex-1 overflow-y-auto grid grid-cols-5 gap-2 pr-1 content-start">
-          <!-- Dynamically populated bubbles -->
-        </div>
-
+        <div id="cbtPaletteGrid" class="flex-1 overflow-y-auto grid grid-cols-5 gap-2 pr-1 content-start"></div>
       </aside>
-
     </div>
   </div>
 
-  <!-- ========================================================================= -->
-  <!-- MODAL 3: EXAM SCORECARD & MISTAKE-PRIORITIZED REMEDIAL LAUNCHER           -->
-  <!-- ========================================================================= -->
+  <!-- Scorecard Result Modal -->
   <div id="examResultModal" class="hidden fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center z-50 p-4">
     <div class="glass-panel w-full max-w-3xl rounded-2xl p-6 space-y-6 border border-slate-700 max-h-[90vh] flex flex-col">
-      
-      <!-- Scorecard Header -->
       <div class="flex items-center justify-between border-b border-slate-800 pb-3">
         <div>
           <span class="text-[10px] font-mono uppercase text-emerald-400 font-bold">EXAM ATTEMPT EVALUATION COMPLETE</span>
@@ -616,50 +1098,30 @@
         </button>
       </div>
 
-      <!-- Stats Grid -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
-        <div class="p-3 bg-slate-900/90 rounded-xl border border-slate-800">
-          <div class="text-[10px] font-mono text-slate-400">NET SCORE</div>
-          <div id="resultScoreText" class="text-2xl font-bold text-sky-400">+14 / 16</div>
-        </div>
-        <div class="p-3 bg-slate-900/90 rounded-xl border border-slate-800">
-          <div class="text-[10px] font-mono text-slate-400">ACCURACY</div>
-          <div id="resultAccuracyText" class="text-2xl font-bold text-emerald-400">75%</div>
-        </div>
-        <div class="p-3 bg-slate-900/90 rounded-xl border border-slate-800">
-          <div class="text-[10px] font-mono text-slate-400">NEGATIVE PENALTY</div>
-          <div id="resultNegativePenalty" class="text-2xl font-bold text-rose-400">-1 Mark</div>
-        </div>
-        <div class="p-3 bg-slate-900/90 rounded-xl border border-slate-800">
-          <div class="text-[10px] font-mono text-slate-400">TRAP ERRORS</div>
-          <div id="resultMistakeCount" class="text-2xl font-bold text-amber-400">1 Concept</div>
-        </div>
+        <div class="p-3 bg-slate-900/90 rounded-xl border border-slate-800"><div class="text-[10px] font-mono text-slate-400">NET SCORE</div><div id="resultScoreText" class="text-2xl font-bold text-sky-400">+14 / 16</div></div>
+        <div class="p-3 bg-slate-900/90 rounded-xl border border-slate-800"><div class="text-[10px] font-mono text-slate-400">ACCURACY</div><div id="resultAccuracyText" class="text-2xl font-bold text-emerald-400">75%</div></div>
+        <div class="p-3 bg-slate-900/90 rounded-xl border border-slate-800"><div class="text-[10px] font-mono text-slate-400">NEGATIVE PENALTY</div><div id="resultNegativePenalty" class="text-2xl font-bold text-rose-400">-1 Mark</div></div>
+        <div class="p-3 bg-slate-900/90 rounded-xl border border-slate-800"><div class="text-[10px] font-mono text-slate-400">TRAP ERRORS</div><div id="resultMistakeCount" class="text-2xl font-bold text-amber-400">1 Concept</div></div>
       </div>
 
-      <!-- CRITICAL ACTION: Remedial Video Playlist Launcher -->
       <div class="p-4 rounded-xl bg-gradient-to-r from-rose-950/80 to-amber-950/60 border border-rose-500/40 flex flex-col sm:flex-row items-center justify-between gap-3">
         <div class="space-y-1">
           <div class="text-sm font-bold text-white flex items-center space-x-2">
             <i class="fa-solid fa-arrows-rotate text-rose-400"></i>
             <span>Mistake-Prioritized Remedial Playlist Ready</span>
           </div>
-          <p class="text-xs text-slate-300">
-            Automatically re-sequences video sprints so concepts where you lost marks are placed <strong class="text-rose-300">first in line</strong> for targeted revision!
-          </p>
+          <p class="text-xs text-slate-300">Re-sequences video sprints so concepts where you lost marks are placed <strong class="text-rose-300">first in line</strong>!</p>
         </div>
         <button onclick="launchRemedialRevisionPlaylist()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-rose-600 to-amber-600 hover:from-rose-500 hover:to-amber-500 text-white font-bold text-xs shadow-lg transition whitespace-nowrap">
           🚀 Launch Remedial Playlist
         </button>
       </div>
 
-      <!-- Mistake Review List -->
       <div class="flex-1 overflow-y-auto space-y-3 pr-1">
         <h4 class="text-xs font-bold font-mono text-slate-400 uppercase">Question-by-Question Diagnostic Review</h4>
-        <div id="resultQuestionsReviewList" class="space-y-2">
-          <!-- Dynamically populated -->
-        </div>
+        <div id="resultQuestionsReviewList" class="space-y-2"></div>
       </div>
-
     </div>
   </div>
 
@@ -677,7 +1139,20 @@
     let currentTab = 'watch';
     let hlsInstance = null;
     let sessionToken = null;
-    let studentData = { id: "NEET-2026-AIR1", name: "Dr. Aspirant", roll: "NEET-TN-0941", ip: "127.0.0.1" };
+
+    // Active User Persona State
+    let currentUser = {
+      uid: "NEET-26-8801",
+      name: "Dr. Aarav Sharma",
+      role: "student",
+      plan: "single_physics",
+      entitlements: ["Physics"],
+      valid_until: "2027-05-31",
+      referral_code: "AARAV10",
+      ip: "127.0.0.1"
+    };
+
+    let activeReferralDiscount = null;
     let completedConcepts = JSON.parse(localStorage.getItem('neet_completed_concepts') || '[]');
     let studentMistakes = JSON.parse(localStorage.getItem('neet_student_mistakes') || '[]');
     let isRemedialModeActive = false;
@@ -686,25 +1161,70 @@
     let activeExamSession = null;
     let cbtTimerInterval = null;
 
-    // 1. Authenticate with Secure Server
-    async function initSession() {
+    // 1. Authenticate with Server
+    async function initSession(uid = "NEET-26-8801") {
       try {
         const res = await fetch('/api/auth/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ student_id: 'NEET-2026-AIR1', student_name: 'Dr. Aspirant', roll_no: 'NEET-TN-0941' })
+          body: JSON.stringify({ uid: uid })
         });
         const data = await res.json();
         sessionToken = data.token;
-        if (data.student) {
-          studentData = data.student;
-          document.getElementById('studentNameDisplay').innerText = studentData.name;
-          document.getElementById('studentRollDisplay').innerText = studentData.roll;
+        if (data.user) {
+          currentUser = data.user;
+          updateUserInterfaceProfile();
         }
         startForensicWatermark();
       } catch (err) {
-        console.warn('Local session auth fallback:', err);
+        console.warn('Session auth fallback:', err);
       }
+    }
+
+    function updateUserInterfaceProfile() {
+      document.getElementById('studentNameDisplay').innerText = currentUser.name;
+      document.getElementById('studentRollDisplay').innerText = currentUser.uid;
+      
+      const roleIcon = document.getElementById('userRoleIcon');
+      const planBadge = document.getElementById('userPlanBadge');
+      const adminNavBtn = document.getElementById('adminVaultNavBtn');
+      const teacherBar = document.getElementById('teacherAuditBar');
+
+      // Update role icon and badges
+      if (currentUser.role === 'teacher') {
+        roleIcon.className = 'fa-solid fa-chalkboard-user text-amber-400';
+        planBadge.innerText = 'Faculty Auditor';
+        planBadge.className = 'text-amber-400 font-semibold';
+        teacherBar.classList.remove('hidden');
+        adminNavBtn.classList.remove('hidden');
+      } else if (currentUser.role === 'admin') {
+        roleIcon.className = 'fa-solid fa-shield-halved text-purple-400';
+        planBadge.innerText = 'Super Admin';
+        planBadge.className = 'text-purple-400 font-semibold';
+        teacherBar.classList.remove('hidden');
+        adminNavBtn.classList.remove('hidden');
+      } else if (currentUser.role === 'institution') {
+        roleIcon.className = 'fa-solid fa-school text-sky-400';
+        planBadge.innerText = 'Partner School';
+        planBadge.className = 'text-sky-400 font-semibold';
+        teacherBar.classList.add('hidden');
+        adminNavBtn.classList.remove('hidden');
+      } else {
+        roleIcon.className = 'fa-solid fa-user-graduate text-emerald-400';
+        planBadge.innerText = currentUser.entitlements.length > 1 ? 'All 3 Subjects' : 'Physics Pass';
+        planBadge.className = currentUser.entitlements.length > 1 ? 'text-emerald-400 font-semibold' : 'text-sky-400 font-semibold';
+        teacherBar.classList.add('hidden');
+        adminNavBtn.classList.add('hidden');
+      }
+
+      // Update Lock icons for Chemistry & Biology
+      const chemLocked = !currentUser.entitlements.includes('Chemistry') && currentUser.role === 'student';
+      const bioLocked = !currentUser.entitlements.includes('Biology') && currentUser.role === 'student';
+      
+      const chemLock = document.getElementById('chemLockIcon');
+      const bioLock = document.getElementById('bioLockIcon');
+      if (chemLocked) chemLock.classList.remove('hidden'); else chemLock.classList.add('hidden');
+      if (bioLocked) bioLock.classList.remove('hidden'); else bioLock.classList.add('hidden');
     }
 
     // 2. Load Manifest & Exam Bank
@@ -722,8 +1242,14 @@
       }
     }
 
-    // 3. Subject Switcher
+    // 3. Subject Switcher with Entitlement Check
     function selectSubject(subj) {
+      // Check if user has entitlement to this subject
+      if (currentUser.role === 'student' && !currentUser.entitlements.includes(subj)) {
+        openLockedSubjectModal(subj);
+        return;
+      }
+
       currentSubject = subj;
       ['Physics', 'Chemistry', 'Biology'].forEach(s => {
         const btn = document.getElementById('subj' + s + 'Btn');
@@ -861,12 +1387,11 @@
         return matchSubj && matchUnit && matchChapter && matchTopic && matchSearch;
       });
 
-      // MISTAKE-PRIORITIZED SORTING
       if (isRemedialModeActive) {
         filtered.sort((a, b) => {
           const aMistake = studentMistakes.includes(a.canonical_id) ? 1 : 0;
           const bMistake = studentMistakes.includes(b.canonical_id) ? 1 : 0;
-          return bMistake - aMistake; // Mistakes first
+          return bMistake - aMistake;
         });
       }
 
@@ -994,6 +1519,15 @@
         video.src = authenticatedStreamUrl;
         video.play().catch(e => {});
       }
+
+      // Track playback time for teacher audit bar
+      video.ontimeupdate = () => {
+        const cur = Math.floor(video.currentTime);
+        const mins = String(Math.floor(cur / 60)).padStart(2, '0');
+        const secs = String(cur % 60).padStart(2, '0');
+        const tracker = document.getElementById('teacherTimeTracker');
+        if (tracker) tracker.innerText = `Timestamp: ${mins}:${secs}`;
+      };
     }
 
     function setLanguage(lang) {
@@ -1086,7 +1620,6 @@
       } else {
         solTitle.innerHTML = `<span class="text-rose-400 font-bold">⚠️ -1 MARK: NEET DISTRACTOR TRAP TRIGGERED</span>`;
         solDetail.innerHTML = `<span class="text-rose-300 block mb-1 font-semibold">${quiz.options[selectedIdx].trap}</span>${quiz.explanation}`;
-        // Track mistake
         if (currentConcept && !studentMistakes.includes(currentConcept.canonical_id)) {
           studentMistakes.push(currentConcept.canonical_id);
           localStorage.setItem('neet_student_mistakes', JSON.stringify(studentMistakes));
@@ -1133,12 +1666,706 @@
     }
 
     // =========================================================================
-    // EXAM ENGINE: UNIT, MULTI-UNIT & FULL NEET PHYSICS MOCK IMPLEMENTATION
+    // IN-VIDEO TELEMETRY & STUDENT FEEDBACK (RATINGS & CONFUSION)
+    // =========================================================================
+
+    async function submitRating(type, stars) {
+      if (!currentConcept) return;
+      try {
+        await fetch('/api/feedback/rate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            canonical_id: currentConcept.canonical_id,
+            audio_rating: type === 'audio' ? stars : 5,
+            video_rating: type === 'video' ? stars : 5,
+            uid: currentUser.uid
+          })
+        });
+        const badge = document.getElementById('ratingThankYouBadge');
+        badge.classList.remove('hidden');
+        setTimeout(() => badge.classList.add('hidden'), 3000);
+      } catch (err) {
+        console.warn('Rating submit error:', err);
+      }
+    }
+
+    function openConfusionModal() {
+      if (!currentConcept) return;
+      document.getElementById('confusionConceptTitle').innerText = currentConcept.title;
+      document.getElementById('confusionModal').classList.remove('hidden');
+    }
+
+    function closeConfusionModal() {
+      document.getElementById('confusionModal').classList.add('hidden');
+    }
+
+    async function submitConfusionFlag() {
+      if (!currentConcept) return;
+      const selected = document.querySelector('input[name="confusion_reason"]:checked')?.value || "Formula derivation was too fast";
+      try {
+        const res = await fetch('/api/feedback/confused', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            canonical_id: currentConcept.canonical_id,
+            reason: selected,
+            uid: currentUser.uid
+          })
+        });
+        const data = await res.json();
+        closeConfusionModal();
+        alert(data.message || "Concept flagged for doubt clearing!");
+      } catch (err) {
+        alert("Failed to submit confusion flag.");
+      }
+    }
+
+    // =========================================================================
+    // TEACHER PRIVATE ERROR REPORTING (FACULTY -> ADMIN VAULT ONLY)
+    // =========================================================================
+
+    function openTeacherErrorModal() {
+      if (!currentConcept) return;
+      const video = document.getElementById('mainVideoPlayer');
+      const cur = Math.floor(video.currentTime || 0);
+      const mins = String(Math.floor(cur / 60)).padStart(2, '0');
+      const secs = String(cur % 60).padStart(2, '0');
+
+      document.getElementById('teacherReportCid').value = currentConcept.canonical_id;
+      document.getElementById('teacherReportTimestamp').value = `${mins}:${secs} (Video Time)`;
+      document.getElementById('teacherReportDesc').value = '';
+      document.getElementById('teacherErrorModal').classList.remove('hidden');
+    }
+
+    function closeTeacherErrorModal() {
+      document.getElementById('teacherErrorModal').classList.add('hidden');
+    }
+
+    async function submitTeacherErrorReport() {
+      if (!currentConcept) return;
+      const desc = document.getElementById('teacherReportDesc').value.trim();
+      if (!desc) {
+        alert("Please enter a description of the error.");
+        return;
+      }
+
+      const body = {
+        canonical_id: currentConcept.canonical_id,
+        concept_title: currentConcept.title,
+        timestamp_str: document.getElementById('teacherReportTimestamp').value,
+        category: document.getElementById('teacherReportCategory').value,
+        severity: document.getElementById('teacherReportSeverity').value,
+        description: desc,
+        teacher_name: currentUser.name
+      };
+
+      try {
+        const res = await fetch('/api/teacher/error_report', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + sessionToken
+          },
+          body: JSON.stringify(body)
+        });
+        const data = await res.json();
+        closeTeacherErrorModal();
+        alert(data.message || "Error report submitted to Admin vault.");
+      } catch (err) {
+        alert("Error filing report.");
+      }
+    }
+
+    // =========================================================================
+    // LOCKED SUBJECT MODAL & CHECKOUT SIMULATOR (WITH REFERRAL CODE)
+    // =========================================================================
+
+    function openLockedSubjectModal(subj) {
+      document.getElementById('lockedSubjectName').innerText = subj;
+      document.getElementById('referralCodeInput').value = '';
+      document.getElementById('referralStatusMsg').classList.add('hidden');
+      activeReferralDiscount = null;
+      updateCheckoutPriceDisplay();
+      document.getElementById('lockedSubjectModal').classList.remove('hidden');
+    }
+
+    function closeLockedSubjectModal() {
+      document.getElementById('lockedSubjectModal').classList.add('hidden');
+    }
+
+    async function applyReferralCode() {
+      const code = document.getElementById('referralCodeInput').value.trim();
+      const statusMsg = document.getElementById('referralStatusMsg');
+      if (!code) return;
+
+      try {
+        const res = await fetch('/api/payment/validate-referral', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ code: code })
+        });
+        const data = await res.json();
+        statusMsg.classList.remove('hidden');
+
+        if (data.valid) {
+          activeReferralDiscount = data;
+          statusMsg.className = 'text-xs font-mono text-emerald-400 font-bold';
+          statusMsg.innerText = `✓ Code Applied: ${data.label}!`;
+          updateCheckoutPriceDisplay();
+        } else {
+          activeReferralDiscount = null;
+          statusMsg.className = 'text-xs font-mono text-rose-400 font-bold';
+          statusMsg.innerText = data.message || "Invalid referral code.";
+          updateCheckoutPriceDisplay();
+        }
+      } catch (err) {
+        console.warn('Referral check failed:', err);
+      }
+    }
+
+    function updateCheckoutPriceDisplay() {
+      let base = 6999;
+      let finalPrice = base;
+
+      if (activeReferralDiscount) {
+        if (activeReferralDiscount.discount_pct) {
+          finalPrice = Math.round(base * (1 - activeReferralDiscount.discount_pct / 100));
+        } else if (activeReferralDiscount.flat_discount) {
+          finalPrice = Math.max(0, base - activeReferralDiscount.flat_discount);
+        }
+      }
+
+      document.getElementById('comboPriceDisplay').innerText = `₹ ${finalPrice.toLocaleString('en-IN')}`;
+    }
+
+    async function simulateSubscriptionPayment() {
+      try {
+        const res = await fetch('/api/payment/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            uid: currentUser.uid,
+            plan: 'combo_all',
+            entitlements: ['Physics', 'Chemistry', 'Biology']
+          })
+        });
+        const data = await res.json();
+        if (data.status === 'success') {
+          currentUser.entitlements = data.entitlements;
+          currentUser.plan = 'combo_all';
+          sessionToken = data.token;
+          updateUserInterfaceProfile();
+          closeLockedSubjectModal();
+          alert("🎉 Payment Success! Complete NEET Masterclass Unlocked (Physics, Chemistry & Biology).");
+          selectSubject('Chemistry');
+        }
+      } catch (err) {
+        alert("Payment simulation failed.");
+      }
+    }
+
+    // =========================================================================
+    // ADMIN VAULT: TEACHER TICKETS, TELEMETRY & B2B INSTITUTION PORTAL
+    // =========================================================================
+
+    function openAdminVaultModal() {
+      document.getElementById('adminVaultModal').classList.remove('hidden');
+      loadAdminTickets();
+    }
+
+    function closeAdminVaultModal() {
+      document.getElementById('adminVaultModal').classList.add('hidden');
+    }
+
+    function switchAdminTab(tab) {
+      ['tickets', 'telemetry', 'b2b'].forEach(t => {
+        const btn = document.getElementById('adminTab' + t.charAt(0).toUpperCase() + t.slice(1) + 'Btn');
+        const content = document.getElementById('adminTab' + t.charAt(0).toUpperCase() + t.slice(1) + 'Content');
+        if (t === tab) {
+          btn.className = 'px-3 py-1.5 rounded-lg text-xs font-bold bg-purple-600 text-white';
+          content.classList.remove('hidden');
+        } else {
+          btn.className = 'px-3 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white';
+          content.classList.add('hidden');
+        }
+      });
+      if (tab === 'telemetry') loadAdminTelemetry();
+    }
+
+    async function loadAdminTickets() {
+      try {
+        const res = await fetch('/api/admin/error_reports', {
+          headers: { 'Authorization': 'Bearer ' + sessionToken }
+        });
+        const data = await res.json();
+        const container = document.getElementById('adminTicketsList');
+        document.getElementById('adminTicketCount').innerText = data.total_reports || 0;
+        container.innerHTML = '';
+
+        if (!data.reports || data.reports.length === 0) {
+          container.innerHTML = `<div class="p-4 text-center text-xs text-slate-500">No error reports currently filed.</div>`;
+          return;
+        }
+
+        data.reports.forEach(rep => {
+          const div = document.createElement('div');
+          div.className = 'p-3 rounded-xl bg-slate-900 border border-slate-800 text-xs space-y-1.5';
+          div.innerHTML = `
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-sky-400 font-mono">${rep.ticket_id} • ${rep.canonical_id} (${rep.concept_title || 'Concept'})</span>
+              <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono text-[10px] font-bold">${rep.status}</span>
+            </div>
+            <div class="text-[11px] text-slate-400 font-mono">
+              Auditor: ${rep.teacher_name} • At: ${rep.timestamp_str} • Category: ${rep.category} • Severity: ${rep.severity}
+            </div>
+            <p class="text-slate-200 bg-slate-950 p-2 rounded-lg font-sans">${rep.description}</p>
+          `;
+          container.appendChild(div);
+        });
+      } catch (err) {
+        console.warn('Failed to load tickets:', err);
+      }
+    }
+
+    async function loadAdminTelemetry() {
+      try {
+        const res = await fetch('/api/admin/telemetry', {
+          headers: { 'Authorization': 'Bearer ' + sessionToken }
+        });
+        const data = await res.json();
+        const container = document.getElementById('adminTelemetryList');
+        container.innerHTML = '';
+
+        const counts = data.confusion_counts || {};
+        const entries = Object.entries(counts);
+
+        if (entries.length === 0) {
+          container.innerHTML = `<div class="p-4 text-center text-xs text-slate-500">No confusion flags logged yet. Concepts well understood!</div>`;
+          return;
+        }
+
+        entries.forEach(([cid, count]) => {
+          const div = document.createElement('div');
+          div.className = 'p-3 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between text-xs font-mono';
+          div.innerHTML = `
+            <div>
+              <span class="font-bold text-white">${cid}</span>
+              <span class="text-slate-400 ml-2">Flagged for Doubt Resolution</span>
+            </div>
+            <span class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-400 font-bold">${count} Students Flagged</span>
+          `;
+          container.appendChild(div);
+        });
+      } catch (err) {
+        console.warn('Telemetry load failed:', err);
+      }
+    }
+
+    async function generateB2BBatchUIDs() {
+      const prefix = document.getElementById('b2bPrefixInput').value.trim() || 'INST-ALN';
+      const count = parseInt(document.getElementById('b2bCountInput').value) || 5;
+      const instName = document.getElementById('b2bInstNameInput').value.trim() || 'Partner School';
+
+      try {
+        const res = await fetch('/api/institution/batch-generate', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + sessionToken
+          },
+          body: JSON.stringify({ prefix: prefix, count: count, institution_name: instName })
+        });
+        const data = await res.json();
+        const container = document.getElementById('b2bGeneratedResults');
+        container.innerHTML = `<h5 class="text-xs font-bold text-emerald-400 font-mono">✓ Generated ${data.count} UIDs for ${data.institution}:</h5>`;
+
+        data.uids.forEach(u => {
+          const div = document.createElement('div');
+          div.className = 'p-2 rounded bg-slate-950 border border-slate-800 flex items-center justify-between text-xs font-mono';
+          div.innerHTML = `<span class="text-sky-300 font-bold">${u.uid}</span><span class="text-slate-400">${u.name}</span><span class="text-emerald-400">${u.plan}</span>`;
+          container.appendChild(div);
+        });
+      } catch (err) {
+        alert("Batch generation error.");
+      }
+    }
+
+    // =========================================================================
+    // MULTI-ROLE PERSONA SWITCHER
+    // =========================================================================
+
+    function openRoleSwitcherModal() {
+      document.getElementById('roleSwitcherModal').classList.remove('hidden');
+    }
+
+    function closeRoleSwitcherModal() {
+      document.getElementById('roleSwitcherModal').classList.add('hidden');
+    }
+
+    async function switchUserPersona(uid) {
+      closeRoleSwitcherModal();
+      await initSession(uid);
+      selectSubject('Physics');
+      alert(`Switched persona to: ${currentUser.name} (${currentUser.role.toUpperCase()})`);
+    }
+
+    // =========================================================================
+    // FULL AUTHENTICATION & DEVICE MANAGEMENT ENGINE (SALTED PBKDF2 & OTP)
+    // =========================================================================
+
+    let currentAuthTab = 'otp';
+    let receivedDevOtp = '';
+    let pendingAuthRequest = null;
+    let otpCountdownInterval = null;
+
+    function getDeviceId() {
+      let id = localStorage.getItem('neet_device_id');
+      if (!id) {
+        id = 'DEV-' + Math.random().toString(36).substring(2, 8).toUpperCase() + '-' + Date.now().toString(36).substring(4).toUpperCase();
+        localStorage.setItem('neet_device_id', id);
+      }
+      return id;
+    }
+
+    function getDeviceName() {
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      return (isMobile ? 'Mobile Device (' : 'Desktop Browser (') + (navigator.platform || 'Client') + ')';
+    }
+
+    function openAuthModal(defaultTab = 'otp') {
+      document.getElementById('authModal').classList.remove('hidden');
+      switchAuthTab(defaultTab);
+    }
+
+    function closeAuthModal() {
+      document.getElementById('authModal').classList.add('hidden');
+    }
+
+    function switchAuthTab(tab) {
+      currentAuthTab = tab;
+      const tabs = ['otp', 'pw', 'reg'];
+      tabs.forEach(t => {
+        const btn = document.getElementById(`authTab${t.charAt(0).toUpperCase() + t.slice(1)}Btn`);
+        const content = document.getElementById(`authTab${t.charAt(0).toUpperCase() + t.slice(1)}Content`);
+        if (t === tab) {
+          btn.className = 'py-1.5 rounded-lg bg-sky-600 text-white';
+          content.classList.remove('hidden');
+        } else {
+          btn.className = 'py-1.5 rounded-lg text-slate-400 hover:text-white';
+          content.classList.add('hidden');
+        }
+      });
+    }
+
+    async function sendOtpRequest() {
+      const phoneInput = document.getElementById('otpPhoneInput');
+      const phone = phoneInput.value.trim();
+      const rateLimitMsg = document.getElementById('otpRateLimitMsg');
+      const sendBtn = document.getElementById('sendOtpBtn');
+
+      if (!phone || phone.length < 10) {
+        alert("Please enter a valid 10-digit mobile number.");
+        return;
+      }
+
+      sendBtn.disabled = true;
+      sendBtn.innerText = "Sending...";
+      rateLimitMsg.classList.add('hidden');
+
+      try {
+        const res = await fetch('/api/auth/send-otp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ phone: phone })
+        });
+        const data = await res.json();
+
+        if (res.status === 429) {
+          rateLimitMsg.innerText = data.error;
+          rateLimitMsg.classList.remove('hidden');
+          sendBtn.disabled = false;
+          sendBtn.innerText = "Send OTP";
+          return;
+        }
+
+        if (res.status !== 200) {
+          alert(data.error || "Failed to send OTP.");
+          sendBtn.disabled = false;
+          sendBtn.innerText = "Send OTP";
+          return;
+        }
+
+        receivedDevOtp = data.dev_otp;
+        document.getElementById('devOtpSpan').innerText = data.dev_otp;
+        document.getElementById('otpInputSection').classList.remove('hidden');
+
+        document.querySelectorAll('.otp-digit').forEach(input => input.value = '');
+
+        let secondsLeft = 30;
+        const timerEl = document.getElementById('otpCountdownTimer');
+        timerEl.innerText = `Resend in ${secondsLeft}s`;
+        if (otpCountdownInterval) clearInterval(otpCountdownInterval);
+        otpCountdownInterval = setInterval(() => {
+          secondsLeft--;
+          if (secondsLeft <= 0) {
+            clearInterval(otpCountdownInterval);
+            timerEl.innerText = "Resend OTP";
+            sendBtn.disabled = false;
+            sendBtn.innerText = "Resend";
+          } else {
+            timerEl.innerText = `Resend in ${secondsLeft}s`;
+          }
+        }, 1000);
+
+        const firstDigit = document.querySelector('.otp-digit');
+        if (firstDigit) firstDigit.focus();
+
+      } catch (err) {
+        alert("Network error sending OTP. Please check server.");
+        sendBtn.disabled = false;
+        sendBtn.innerText = "Send OTP";
+      }
+    }
+
+    function autoFillDevOtp() {
+      if (!receivedDevOtp) return;
+      const inputs = document.querySelectorAll('.otp-digit');
+      for (let i = 0; i < 6 && i < receivedDevOtp.length; i++) {
+        inputs[i].value = receivedDevOtp[i];
+      }
+    }
+
+    function onOtpDigitInput(el, idx) {
+      if (el.value.length === 1) {
+        const inputs = document.querySelectorAll('.otp-digit');
+        if (idx < inputs.length - 1) {
+          inputs[idx + 1].focus();
+        }
+      }
+    }
+
+    async function verifyOtpAndLogin() {
+      const phone = document.getElementById('otpPhoneInput').value.trim();
+      const inputs = document.querySelectorAll('.otp-digit');
+      let otp = '';
+      inputs.forEach(input => otp += input.value.trim());
+
+      if (otp.length < 6) {
+        alert("Please enter the complete 6-digit verification code.");
+        return;
+      }
+
+      const payload = {
+        phone: phone,
+        otp: otp,
+        device_id: getDeviceId(),
+        device_name: getDeviceName()
+      };
+
+      try {
+        const res = await fetch('/api/auth/verify-otp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+
+        if (res.status === 403 && data.status === 'device_limit_exceeded') {
+          pendingAuthRequest = { type: 'otp', payload: payload, uid: data.uid };
+          showDeviceLimitModal(data.active_devices, data.uid);
+          return;
+        }
+
+        if (res.status !== 200) {
+          alert(data.error || "OTP verification failed.");
+          return;
+        }
+
+        sessionToken = data.token;
+        currentUser = data.user;
+        updateUserInterfaceProfile();
+        startForensicWatermark();
+        closeAuthModal();
+        alert(`Authentication successful! Welcome, ${currentUser.name} (${currentUser.uid})`);
+      } catch (err) {
+        alert("Network error verifying OTP: " + err.message);
+      }
+    }
+
+    async function loginWithPassword() {
+      const ident = document.getElementById('pwIdentInput').value.trim();
+      const pw = document.getElementById('pwPasswordInput').value;
+      const errEl = document.getElementById('pwErrorMsg');
+
+      if (!ident || !pw) {
+        errEl.innerText = "Please provide both UID/mobile and password.";
+        errEl.classList.remove('hidden');
+        return;
+      }
+      errEl.classList.add('hidden');
+
+      const payload = {
+        identifier: ident,
+        password: pw,
+        device_id: getDeviceId(),
+        device_name: getDeviceName()
+      };
+
+      try {
+        const res = await fetch('/api/auth/login-password', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+
+        if (res.status === 403 && data.status === 'device_limit_exceeded') {
+          pendingAuthRequest = { type: 'pw', payload: payload, uid: data.uid };
+          showDeviceLimitModal(data.active_devices, data.uid);
+          return;
+        }
+
+        if (res.status !== 200) {
+          errEl.innerText = data.error || "Invalid credentials.";
+          errEl.classList.remove('hidden');
+          return;
+        }
+
+        sessionToken = data.token;
+        currentUser = data.user;
+        updateUserInterfaceProfile();
+        startForensicWatermark();
+        closeAuthModal();
+        alert(`Welcome back, ${currentUser.name}!`);
+      } catch (err) {
+        errEl.innerText = "Server connection error.";
+        errEl.classList.remove('hidden');
+      }
+    }
+
+    async function registerNewStudent() {
+      const name = document.getElementById('regNameInput').value.trim();
+      const phone = document.getElementById('regPhoneInput').value.trim();
+      const year = document.getElementById('regYearInput').value;
+      const pw = document.getElementById('regPasswordInput').value;
+      const referral = document.getElementById('regReferralInput').value.trim();
+      const errEl = document.getElementById('regErrorMsg');
+
+      if (!name || !phone || !pw) {
+        errEl.innerText = "Please enter student name, phone number, and password.";
+        errEl.classList.remove('hidden');
+        return;
+      }
+      if (phone.length < 10) {
+        errEl.innerText = "Phone number must be at least 10 digits.";
+        errEl.classList.remove('hidden');
+        return;
+      }
+      if (pw.length < 6) {
+        errEl.innerText = "Password must be at least 6 characters.";
+        errEl.classList.remove('hidden');
+        return;
+      }
+      errEl.classList.add('hidden');
+
+      const payload = {
+        name: name,
+        phone: phone,
+        password: pw,
+        target_year: year,
+        referral_code: referral,
+        device_id: getDeviceId(),
+        device_name: getDeviceName()
+      };
+
+      try {
+        const res = await fetch('/api/auth/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+
+        if (res.status !== 200) {
+          errEl.innerText = data.error || "Registration failed.";
+          errEl.classList.remove('hidden');
+          return;
+        }
+
+        sessionToken = data.token;
+        currentUser = data.user;
+        updateUserInterfaceProfile();
+        startForensicWatermark();
+        closeAuthModal();
+        alert(`Registration successful! 🎉\nYour permanent Student UID is: ${currentUser.uid}\nPlease keep your UID safe for your 1-year access.`);
+      } catch (err) {
+        errEl.innerText = "Server connection error during sign up.";
+        errEl.classList.remove('hidden');
+      }
+    }
+
+    function showDeviceLimitModal(activeDevices, uid) {
+      const container = document.getElementById('activeDevicesDeregisterList');
+      container.innerHTML = '';
+
+      activeDevices.forEach((dev, idx) => {
+        const div = document.createElement('div');
+        div.className = 'p-3 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-between text-xs';
+        div.innerHTML = `
+          <div>
+            <div class="font-bold text-white flex items-center space-x-1.5">
+              <i class="fa-solid fa-laptop text-slate-400"></i>
+              <span>${dev.device_name || 'Device ' + (idx + 1)}</span>
+            </div>
+            <div class="text-[10px] text-slate-400 font-mono">ID: ${dev.device_id} • Registered: ${dev.registered_at ? dev.registered_at.substring(0, 10) : 'Recent'}</div>
+          </div>
+          <button onclick="deregisterDeviceAndContinue('${uid}', '${dev.device_id}')" class="px-3 py-1.5 rounded-lg bg-rose-600/80 hover:bg-rose-500 text-white font-bold text-[11px] transition">
+            Deregister & Bind This
+          </button>
+        `;
+        container.appendChild(div);
+      });
+
+      document.getElementById('deviceLimitModal').classList.remove('hidden');
+    }
+
+    function closeDeviceLimitModal() {
+      document.getElementById('deviceLimitModal').classList.add('hidden');
+    }
+
+    async function deregisterDeviceAndContinue(uid, deviceIdToRemove) {
+      try {
+        const res = await fetch('/api/auth/deregister-device', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ uid: uid, device_id_to_remove: deviceIdToRemove })
+        });
+        const data = await res.json();
+        if (res.status === 200) {
+          closeDeviceLimitModal();
+          alert("Device deregistered successfully. Completing your sign in now...");
+          if (pendingAuthRequest) {
+            if (pendingAuthRequest.type === 'otp') {
+              await verifyOtpAndLogin();
+            } else if (pendingAuthRequest.type === 'pw') {
+              await loginWithPassword();
+            }
+          }
+        } else {
+          alert("Error deregistering device: " + (data.error || "Unknown"));
+        }
+      } catch (err) {
+        alert("Failed to deregister device: " + err.message);
+      }
+    }
+
+    // =========================================================================
+    // CBT EXAM ENGINE INTEGRATION (PRESERVED & TESTED)
     // =========================================================================
 
     function openExamHubModal() {
       document.getElementById('examHubModal').classList.remove('hidden');
-      document.getElementById('examModalUnitName').innerText = currentUnit || 'Unit 2: Kinematics';
     }
 
     function closeExamHubModal() {
@@ -1149,7 +2376,6 @@
       startUnitExam();
     }
 
-    // MODE A: Unit Diagnostic Exam (1 Question per Topic)
     function startUnitExam() {
       closeExamHubModal();
       if (!examBankData) return;
@@ -1157,40 +2383,35 @@
       const targetUnit = currentUnit || 'UNIT 2: KINEMATICS';
       const unitQuestions = examBankData.questions.filter(q => q.unit_id === targetUnit);
 
-      // Group by topic to get 1 Q per topic
       const byTopic = {};
       unitQuestions.forEach(q => {
-        if (!byTopic[q.topic_no]) {
-          byTopic[q.topic_no] = q;
-        }
+        if (!byTopic[q.topic_no]) byTopic[q.topic_no] = q;
       });
 
       const selectedQuestions = Object.values(byTopic);
       if (selectedQuestions.length === 0) {
-        alert("No exam questions found for " + targetUnit);
+        alert("No questions found for " + targetUnit);
         return;
       }
 
       initCBTExam({
         title: `${targetUnit} Diagnostic Exam`,
         subtitle: `1 Question per Topic • ${selectedQuestions.length} Questions (${selectedQuestions.length * 4} Marks)`,
-        timeLimitSeconds: selectedQuestions.length * 120, // 2 mins per question
+        timeLimitSeconds: selectedQuestions.length * 120,
         questions: selectedQuestions
       });
     }
 
-    // MODE B: Multi-Unit Custom Exam
     function showMultiUnitConfig() {
       const panel = document.getElementById('multiUnitConfigPanel');
       panel.classList.remove('hidden');
-
       const container = document.getElementById('multiUnitCheckboxList');
       container.innerHTML = '';
 
       if (!manifestData) return;
       const units = [...new Set(manifestData.concepts.map(c => c.unit).filter(Boolean))];
 
-      units.forEach((u, idx) => {
+      units.forEach(u => {
         const label = document.createElement('label');
         label.className = 'flex items-center space-x-2 p-2 rounded-lg bg-slate-900 border border-slate-800 cursor-pointer hover:border-amber-500';
         label.innerHTML = `
@@ -1243,26 +2464,21 @@
       });
     }
 
-    // MODE C: Complete NEET Physics Mock Exam (45 Questions / 180 Marks / 60 Mins)
     function startFullPhysicsMock() {
       closeExamHubModal();
       if (!examBankData) return;
 
-      // Extract 45 official weighted physics questions
       const physicsQuestions = examBankData.questions.filter(q => (q.subject || 'Physics').toLowerCase() === 'physics');
-      
-      // Pull high-yield questions up to 45
       const mockQuestions = physicsQuestions.slice(0, 45);
 
       initCBTExam({
         title: "NEET UG Full Physics Master Mock Exam",
         subtitle: "Official NEET Paper Format: 45 Questions • 180 Marks • 60 Minutes Duration",
-        timeLimitSeconds: 60 * 60, // 60 minutes
+        timeLimitSeconds: 60 * 60,
         questions: mockQuestions
       });
     }
 
-    // 10. CBT Exam Engine Lifecycle
     function initCBTExam(config) {
       activeExamSession = {
         title: config.title,
@@ -1270,12 +2486,11 @@
         questions: config.questions,
         totalQuestions: config.questions.length,
         currentIndex: 0,
-        answers: {}, // index -> selectedOptionIndex
-        statuses: {}, // index -> 'answered' | 'not-answered' | 'review' | 'not-visited'
+        answers: {},
+        statuses: {},
         remainingSeconds: config.timeLimitSeconds
       };
 
-      // Set initial statuses
       for (let i = 0; i < config.questions.length; i++) {
         activeExamSession.statuses[i] = (i === 0) ? 'not-answered' : 'not-visited';
       }
@@ -1293,7 +2508,6 @@
       if (!activeExamSession) return;
       activeExamSession.currentIndex = index;
 
-      // Update visited status
       if (activeExamSession.statuses[index] === 'not-visited') {
         activeExamSession.statuses[index] = 'not-answered';
       }
@@ -1304,10 +2518,8 @@
       document.getElementById('cbtQuestionSource').innerText = q.source || 'NCERT Exemplar';
       document.getElementById('cbtQuestionStemText').innerText = q.question;
 
-      // Options
       const container = document.getElementById('cbtOptionsContainer');
       container.innerHTML = '';
-
       const currentSelected = activeExamSession.answers[index];
 
       q.options.forEach((opt, optIdx) => {
@@ -1366,9 +2578,7 @@
     function saveAndPreviousQuestion() {
       if (!activeExamSession) return;
       const idx = activeExamSession.currentIndex;
-      if (idx > 0) {
-        renderCBTQuestion(idx - 1);
-      }
+      if (idx > 0) renderCBTQuestion(idx - 1);
     }
 
     function renderCBTPalette() {
@@ -1418,7 +2628,7 @@
 
         if (s <= 0) {
           clearInterval(cbtTimerInterval);
-          alert("Time is up! Submitting examination automatically.");
+          alert("Time is up! Submitting examination.");
           evaluateExamSubmission();
         }
       }, 1000);
@@ -1430,7 +2640,6 @@
       }
     }
 
-    // 11. Scorecard Evaluation & Mistake Analytics
     function evaluateExamSubmission() {
       if (cbtTimerInterval) clearInterval(cbtTimerInterval);
       document.getElementById('cbtExamModal').classList.add('hidden');
@@ -1474,14 +2683,12 @@
       const maxScore = activeExamSession.totalQuestions * 4;
       const accuracy = (correctCount + wrongCount > 0) ? Math.round((correctCount / (correctCount + wrongCount)) * 100) : 0;
 
-      // Populate Result Modal
       document.getElementById('resultExamTitle').innerText = activeExamSession.title;
       document.getElementById('resultScoreText').innerText = `${netScore > 0 ? '+' + netScore : netScore} / ${maxScore}`;
       document.getElementById('resultAccuracyText').innerText = `${accuracy}%`;
       document.getElementById('resultNegativePenalty').innerText = `-${wrongCount} Marks`;
       document.getElementById('resultMistakeCount').innerText = `${mistakesThisExam.length} Concepts`;
 
-      // Render Review List
       const reviewContainer = document.getElementById('resultQuestionsReviewList');
       reviewContainer.innerHTML = '';
 
@@ -1522,24 +2729,19 @@
       document.getElementById('examResultModal').classList.add('hidden');
     }
 
-    // 12. LAUNCH MISTAKE-PRIORITIZED REMEDIAL PLAYLIST
     function launchRemedialRevisionPlaylist() {
       closeResultModal();
       isRemedialModeActive = true;
       document.getElementById('remedialBanner').classList.remove('hidden');
-
       renderFilteredConcepts();
 
-      // Automatically select first mistake concept
       if (studentMistakes.length > 0) {
         const firstMistakeConcept = manifestData.concepts.find(c => c.canonical_id === studentMistakes[0]);
-        if (firstMistakeConcept) {
-          selectConcept(firstMistakeConcept);
-        }
+        if (firstMistakeConcept) selectConcept(firstMistakeConcept);
       }
 
       switchTab('watch');
-      alert("🚨 Remedial Revision Mode Activated! Concepts where you incurred negative marks have been prioritized first in your playlist.");
+      alert("🚨 Remedial Revision Mode Activated! Concepts with negative marks are placed first in your revision queue.");
     }
 
     function clearRemedialMode() {
@@ -1548,7 +2750,7 @@
       renderFilteredConcepts();
     }
 
-    // 13. Dynamic Floating Forensic Watermark Engine
+    // Dynamic Floating Forensic Watermark Engine
     function startForensicWatermark() {
       const wm = document.getElementById('forensicWatermark');
       function moveWatermark() {
@@ -1558,13 +2760,13 @@
         wm.style.top = top + '%';
         wm.style.left = left + '%';
         wm.style.opacity = (0.18 + Math.random() * 0.22).toFixed(2);
-        wm.innerText = `[STUDENT: ${studentData.id} • ROLL: ${studentData.roll} • IP: ${studentData.ip} • ${now}]`;
+        wm.innerText = `[${currentUser.name} • ${currentUser.uid} • ${now}]`;
       }
       moveWatermark();
       setInterval(moveWatermark, 6000);
     }
 
-    // 14. Anti-Download & Anti-Scraping Keyboard Locks
+    // Anti-Download & Anti-Scraping Keyboard Locks
     document.addEventListener('keydown', function(e) {
       if (e.key === 'F12' || 
           (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) || 
@@ -1588,7 +2790,7 @@
 
     // App Initialization
     window.addEventListener('DOMContentLoaded', async () => {
-      await initSession();
+      await initSession('NEET-26-8801');
       await loadData();
     });
   </script>
