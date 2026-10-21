@@ -8,4 +8,8 @@ Thumbs.db
 output/raw_video/
 server/security/keys/
 output/secure_streams/
+render/_run_*.py
+render/_node_*.json
+audio/cache/
+output/raw_audio/
 
