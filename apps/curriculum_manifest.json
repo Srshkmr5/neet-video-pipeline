@@ -2,7 +2,7 @@
   "version": "2.0.0",
   "app_title": "NEET UG Masterclass Triad Player",
   "total_concepts": 665,
-  "active_stream_concepts": 14,
+  "active_stream_concepts": 15,
   "concepts": [
     {
       "canonical_id": "P11-C01-T01-V01",
@@ -23,9 +23,11 @@
       "author_book_nuance": "H.C. Verma: A quantity can possess units without dimensions (rad, sr), but no quantity can possess dimensions without units.",
       "neet_trap_point": "Students assume all quantities with units have dimensions. Plane angle has unit radian but dimension [M^0 L^0 T^0].",
       "pyq_years": "2022, 2019",
-      "has_secure_stream": false,
+      "has_secure_stream": true,
       "streams": {
-        "2d": {},
+        "2d": {
+          "en": "/api/stream/P11-C01-T01-V01_en-IN/master.m3u8"
+        },
         "3d": {}
       },
       "simulation": null,
