@@ -6,3 +6,6 @@ __pycache__/
 .DS_Store
 Thumbs.db
 output/raw_video/
+server/security/keys/
+output/secure_streams/
+
