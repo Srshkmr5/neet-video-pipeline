@@ -271,46 +271,46 @@ class DimensionEquivalenceMatrixScene(ModularUnit1Scene):
         return VGroup(settle_tag, settle_title, ncert_ref).arrange(DOWN, buff=0.35).move_to(ORIGIN)
 
     def build_beat_2(self):
-        mat_box = RoundedRectangle(corner_radius=0.12, height=4.2, width=11.2, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(ORIGIN)
-        mat_title = Text("HIGH-FREQUENCY DIMENSIONAL EQUIVALENCES (NEET PYQ)", font=self.card_font, font_size=17, weight="BOLD", color=self.accent_gold).next_to(mat_box.get_top(), DOWN, buff=0.22)
+        mat_box = RoundedRectangle(corner_radius=0.12, height=4.8, width=11.6, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(DOWN * 0.1)
+        mat_title = Text("HIGH-FREQUENCY DIMENSIONAL EQUIVALENCES (NEET PYQ)", font=self.card_font, font_size=16, weight="BOLD", color=self.accent_gold).next_to(mat_box.get_top(), DOWN, buff=0.20)
 
-        g1 = Text("• [M L² T⁻¹]  :  Planck's Constant (h)  =  Angular Momentum (L)", font=self.body_font, font_size=12, color=TEXT_WHITE)
-        g2 = Text("• [M L⁻¹ T⁻²] :  Pressure  =  Stress  =  Modulus of Elasticity  =  Energy Density", font=self.body_font, font_size=12, color=self.accent_green)
-        g3 = Text("• [M L² T⁻²]  :  Work  =  Kinetic Energy  =  Potential Energy  =  Torque (τ)", font=self.body_font, font_size=12, color=TEXT_WHITE)
+        g1 = Text("• [M L² T⁻¹]  :  Planck's Constant (h)  =  Angular Momentum (L)", font=self.body_font, font_size=12.5, color=TEXT_WHITE)
+        g2 = Text("• [M L⁻¹ T⁻²] :  Pressure  =  Stress  =  Modulus of Elasticity  =  Energy Density", font=self.body_font, font_size=12.5, color=self.accent_green)
+        g3 = Text("• [M L² T⁻²]  :  Work  =  Kinetic Energy  =  Potential Energy  =  Torque (τ)", font=self.body_font, font_size=12.5, color=TEXT_WHITE)
         g4 = Text("• [M⁰ L⁰ T⁻¹] :  Frequency  =  Angular Velocity (ω)  =  Velocity Gradient  =  Decay Constant (λ)", font=self.body_font, font_size=12, color=self.accent_green)
-        g5 = Text("• [M⁰ L⁰ T¹]  :  Time Constant: RC  =  L / R  =  √(LC)", font=self.body_font, font_size=12, color=self.accent_gold)
+        g5 = Text("• [M⁰ L⁰ T¹]  :  Time Constant: RC  =  L / R  =  √(LC)", font=self.body_font, font_size=12.5, color=self.accent_gold)
 
-        matrix_rows = VGroup(g1, g2, g3, g4, g5).arrange(DOWN, buff=0.20, aligned_edge=LEFT).next_to(mat_title, DOWN, buff=0.25).shift(LEFT * 0.2)
+        matrix_rows = VGroup(g1, g2, g3, g4, g5).arrange(DOWN, buff=0.22, aligned_edge=LEFT).next_to(mat_title, DOWN, buff=0.22).shift(LEFT * 0.2)
         return VGroup(mat_box, mat_title, matrix_rows)
 
     def build_beat_3(self):
-        comp_box = RoundedRectangle(corner_radius=0.12, height=4.2, width=11.2, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(ORIGIN)
-        comp_title = Text("CRUCIAL DISTINCTION: IDENTICAL DIMENSIONS ≠ IDENTICAL NATURE", font=self.card_font, font_size=16, weight="BOLD", color=self.accent_gold).next_to(comp_box.get_top(), DOWN, buff=0.22)
+        comp_box = RoundedRectangle(corner_radius=0.12, height=4.8, width=11.6, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(DOWN * 0.1)
+        comp_title = Text("CRUCIAL DISTINCTION: IDENTICAL DIMENSIONS ≠ IDENTICAL NATURE", font=self.card_font, font_size=15, weight="BOLD", color=self.accent_gold).next_to(comp_box.get_top(), DOWN, buff=0.20)
 
-        c1 = Text("Case Study: Work vs. Torque (Halliday & Resnick)", font_size=14, weight="BOLD", color=self.accent_blue).next_to(comp_title, DOWN, buff=0.30, aligned_edge=LEFT).shift(RIGHT * 0.4)
-        c2 = Text("• Both possess identical dimensions: [M L² T⁻²]", font_size=13, color=TEXT_WHITE).next_to(c1, DOWN, buff=0.10, aligned_edge=LEFT)
-        c3 = Text("• WORK is a SCALAR quantity (Dot Product: W = F · d). Unit: Joule (J)", font_size=13, color=self.accent_green).next_to(c2, DOWN, buff=0.12, aligned_edge=LEFT)
-        c4 = Text("• TORQUE is a VECTOR quantity (Cross Product: τ = r × F). Unit: N · m (NEVER Joules!)", font_size=13, color=self.accent_gold).next_to(c3, DOWN, buff=0.12, aligned_edge=LEFT)
-        c5 = Text("• Rule: Never express Torque in Joules, even though the base units match.", font_size=12, weight="BOLD", color=self.muted_text).next_to(c4, DOWN, buff=0.12, aligned_edge=LEFT)
+        c1 = Text("Case Study: Work vs. Torque (Halliday & Resnick)", font=self.card_font, font_size=14, weight="BOLD", color=self.accent_blue)
+        c2 = Text("• Both possess identical dimensions: [M L² T⁻²]", font=self.body_font, font_size=12.5, color=TEXT_WHITE)
+        c3 = Text("• WORK is a SCALAR quantity (Dot Product: W = F · d). Unit: Joule (J)", font=self.body_font, font_size=12.5, color=self.accent_green)
+        c4 = Text("• TORQUE is a VECTOR quantity (Cross Product: τ = r × F). Unit: N · m (NEVER Joules!)", font=self.body_font, font_size=12.5, color=self.accent_gold)
+        c5 = Text("• Rule: Never express Torque in Joules, even though base units match.", font=self.body_font, font_size=12, weight="BOLD", color=self.muted_text)
 
-        return VGroup(comp_box, comp_title, c1, c2, c3, c4, c5)
+        content_vg = VGroup(c1, c2, c3, c4, c5).arrange(DOWN, buff=0.18, aligned_edge=LEFT)
+        content_vg.move_to(comp_box.get_center() + DOWN * 0.20)
+
+        return VGroup(comp_box, comp_title, content_vg)
 
     def build_beat_4(self):
-        trap_box = RoundedRectangle(corner_radius=0.12, height=4.4, width=11.6, stroke_color=self.accent_red, stroke_width=2.0, fill_color="#1e1014", fill_opacity=0.3).move_to(ORIGIN)
+        trap_box = RoundedRectangle(corner_radius=0.12, height=4.8, width=11.6, stroke_color=self.accent_red, stroke_width=2.0, fill_color="#1e1014", fill_opacity=0.35).move_to(DOWN * 0.1)
         trap_title = Text("NEET HIGH-YIELD DISTRACTOR TRAP", font=self.card_font, font_size=18, weight="BOLD", color=self.accent_red).next_to(trap_box.get_top(), DOWN, buff=0.22)
 
         lines = [
-            Text("1. Common Trap: Assuming physical quantities sharing dimensions can be added.", font=self.body_font, font_size=12, weight="BOLD", color=TEXT_WHITE),
-            Text("   Reality: You CANNOT add Work and Torque together (Scalar + Vector is invalid!).", font=self.body_font, font_size=11, color=self.accent_gold),
-            Text("2. Dimensionless Constant Trap:", font=self.body_font, font_size=12, weight="BOLD", color=TEXT_WHITE),
-            Text("   Refractive index, relative permittivity, and strain are dimensionless.", font=self.body_font, font_size=11, color=self.accent_green),
-            Text("   Formula: [M⁰ L⁰ T⁰]  ===>  They have neither dimensions NOR physical units!", font=self.body_font, font_size=11, weight="BOLD", color=self.accent_gold)
+            Text("1. Common Trap: Assuming quantities sharing dimensions can be added together.", font=self.body_font, font_size=13, weight="BOLD", color=TEXT_WHITE),
+            Text("   Reality: You CANNOT add Work and Torque (Scalar + Vector addition is invalid!).", font=self.body_font, font_size=12, color=self.accent_gold),
+            Text("2. Dimensionless Constant Trap:", font=self.body_font, font_size=13, weight="BOLD", color=TEXT_WHITE),
+            Text("   Refractive index, relative permittivity, and strain are dimensionless.", font=self.body_font, font_size=12, color=self.accent_green),
+            Text("   Formula: [M⁰ L⁰ T⁰]  ===>  Possess neither dimensions NOR physical units!", font=self.body_font, font_size=12.5, weight="BOLD", color=self.accent_gold)
         ]
-        for l in lines:
-            if l.width > 10.4:
-                l.scale_to_fit_width(10.4)
-        vg = VGroup(*lines).arrange(DOWN, buff=0.14, aligned_edge=LEFT).next_to(trap_title, DOWN, buff=0.22)
-        vg.move_to(trap_box.get_center() + DOWN * 0.22)
+        vg = VGroup(*lines).arrange(DOWN, buff=0.18, aligned_edge=LEFT).next_to(trap_title, DOWN, buff=0.22)
+        vg.move_to(trap_box.get_center() + DOWN * 0.20)
         return VGroup(trap_box, trap_title, vg)
 
 
@@ -325,49 +325,46 @@ class HomogeneityVanDerWaalsScene(ModularUnit1Scene):
         return VGroup(settle_tag, settle_title, ncert_ref).arrange(DOWN, buff=0.35).move_to(ORIGIN)
 
     def build_beat_2(self):
-        vdw_box = RoundedRectangle(corner_radius=0.12, height=4.2, width=11.2, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(ORIGIN)
-        vdw_title = Text("VAN DER WAALS EQUATION: HOMOGENEITY IN ACTION (NEET CLASSIC)", font=self.card_font, font_size=16, weight="BOLD", color=self.accent_gold).next_to(vdw_box.get_top(), DOWN, buff=0.22)
+        vdw_box = RoundedRectangle(corner_radius=0.12, height=4.8, width=11.6, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(DOWN * 0.1)
+        vdw_title = Text("VAN DER WAALS EQUATION: HOMOGENEITY IN ACTION (NEET CLASSIC)", font=self.card_font, font_size=16, weight="BOLD", color=self.accent_gold).next_to(vdw_box.get_top(), DOWN, buff=0.20)
 
-        eq_txt = Text("( P  +  a / V² ) ( V  -  b )  =  R · T", font=self.body_font, font_size=22, weight="BOLD", color=self.accent_blue).next_to(vdw_title, DOWN, buff=0.30)
+        eq_txt = Text("( P  +  a / V² ) ( V  -  b )  =  R · T", font=self.body_font, font_size=22, weight="BOLD", color=self.accent_blue).next_to(vdw_title, DOWN, buff=0.25)
 
-        step1 = Text("1. Addition Rule: Only terms of identical dimensions can be added together.", font_size=12, color=TEXT_WHITE)
+        step1 = Text("1. Addition Rule: Only terms of identical dimensions can be added together.", font=self.body_font, font_size=12.5, color=TEXT_WHITE)
         step2 = Text("   ==> [a / V²]  =  [P]  (Pressure)", font=self.body_font, font_size=13, weight="BOLD", color=self.accent_green)
         step3 = Text("   ==> [a]  =  [P] · [V²]  =  [M L⁻¹ T⁻²] · [L³]²  =  [M L⁵ T⁻²]", font=self.body_font, font_size=13, weight="BOLD", color=self.accent_gold)
         step4 = Text("2. Subtraction Rule: [b]  =  [V]  (Volume)  ==>  [b]  =  [L³]", font=self.body_font, font_size=13, weight="BOLD", color=self.accent_green)
 
-        breakdown_vg = VGroup(step1, step2, step3, step4).arrange(DOWN, buff=0.15, aligned_edge=LEFT).next_to(eq_txt, DOWN, buff=0.25).shift(LEFT * 0.3)
+        breakdown_vg = VGroup(step1, step2, step3, step4).arrange(DOWN, buff=0.16, aligned_edge=LEFT).next_to(eq_txt, DOWN, buff=0.22).shift(LEFT * 0.3)
         return VGroup(vdw_box, vdw_title, eq_txt, breakdown_vg)
 
     def build_beat_3(self):
-        func_box = RoundedRectangle(corner_radius=0.12, height=4.2, width=11.2, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(ORIGIN)
-        func_title = Text("HOMOGENEITY RULE FOR TRANSCENDENTAL FUNCTIONS", font=self.card_font, font_size=17, weight="BOLD", color=self.accent_gold).next_to(func_box.get_top(), DOWN, buff=0.22)
+        func_box = RoundedRectangle(corner_radius=0.12, height=4.8, width=11.6, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(DOWN * 0.1)
+        func_title = Text("HOMOGENEITY RULE FOR TRANSCENDENTAL FUNCTIONS", font=self.card_font, font_size=16, weight="BOLD", color=self.accent_gold).next_to(func_box.get_top(), DOWN, buff=0.20)
 
-        r1 = Text("Golden Rule: Arguments of trigonometric, exponential, and logarithmic functions", font_size=13, weight="BOLD", color=TEXT_WHITE).next_to(func_title, DOWN, buff=0.30, aligned_edge=LEFT).shift(RIGHT * 0.4)
-        r2 = Text("MUST ALWAYS BE PURE NUMBERS (DIMENSIONLESS: [M⁰ L⁰ T⁰]).", font_size=13, weight="BOLD", color=self.accent_green).next_to(r1, DOWN, buff=0.08, aligned_edge=LEFT)
+        r1 = Text("Golden Rule: Arguments of trigonometric, exponential, and logarithmic functions", font=self.body_font, font_size=12.5, weight="BOLD", color=TEXT_WHITE).next_to(func_title, DOWN, buff=0.25, aligned_edge=LEFT).shift(RIGHT * 0.3)
+        r2 = Text("MUST ALWAYS BE PURE NUMBERS (DIMENSIONLESS: [M⁰ L⁰ T⁰]).", font=self.body_font, font_size=12.5, weight="BOLD", color=self.accent_green).next_to(r1, DOWN, buff=0.10, aligned_edge=LEFT)
 
-        ex1 = Text("Example: In  y = A · sin(ωt - kx) :", font=self.body_font, font_size=13, color=self.accent_blue).next_to(r2, DOWN, buff=0.25, aligned_edge=LEFT)
-        ex2 = Text("• [ωt] = [M⁰ L⁰ T⁰]   ==>   [ω] = [1 / t] = [T⁻¹]", font=self.body_font, font_size=12, color=TEXT_WHITE).next_to(ex1, DOWN, buff=0.10, aligned_edge=LEFT)
-        ex3 = Text("• [kx] = [M⁰ L⁰ T⁰]   ==>   [k] = [1 / x] = [L⁻¹]", font=self.body_font, font_size=12, color=TEXT_WHITE).next_to(ex2, DOWN, buff=0.08, aligned_edge=LEFT)
-        ex4 = Text("• [A]  = [y]          ==>   Amplitude shares the dimension of displacement [L]", font=self.body_font, font_size=12, color=self.accent_gold).next_to(ex3, DOWN, buff=0.08, aligned_edge=LEFT)
+        ex1 = Text("Example: In  y = A · sin(ωt - kx) :", font=self.body_font, font_size=13, color=self.accent_blue).next_to(r2, DOWN, buff=0.22, aligned_edge=LEFT)
+        ex2 = Text("• [ωt] = [M⁰ L⁰ T⁰]   ==>   [ω] = [1 / t] = [T⁻¹]", font=self.body_font, font_size=12.5, color=TEXT_WHITE).next_to(ex1, DOWN, buff=0.10, aligned_edge=LEFT)
+        ex3 = Text("• [kx] = [M⁰ L⁰ T⁰]   ==>   [k] = [1 / x] = [L⁻¹]", font=self.body_font, font_size=12.5, color=TEXT_WHITE).next_to(ex2, DOWN, buff=0.10, aligned_edge=LEFT)
+        ex4 = Text("• [A]  = [y]          ==>   Amplitude shares the dimension of displacement [L]", font=self.body_font, font_size=12.5, color=self.accent_gold).next_to(ex3, DOWN, buff=0.10, aligned_edge=LEFT)
 
         return VGroup(func_box, func_title, r1, r2, ex1, ex2, ex3, ex4)
 
     def build_beat_4(self):
-        trap_box = RoundedRectangle(corner_radius=0.12, height=4.4, width=11.6, stroke_color=self.accent_red, stroke_width=2.0, fill_color="#1e1014", fill_opacity=0.3).move_to(ORIGIN)
+        trap_box = RoundedRectangle(corner_radius=0.12, height=4.8, width=11.6, stroke_color=self.accent_red, stroke_width=2.0, fill_color="#1e1014", fill_opacity=0.35).move_to(DOWN * 0.1)
         trap_title = Text("NEET HIGH-YIELD DISTRACTOR TRAP", font=self.card_font, font_size=18, weight="BOLD", color=self.accent_red).next_to(trap_box.get_top(), DOWN, buff=0.22)
 
         lines = [
-            Text("1. Common Trap: Assuming dimensional consistency proves an equation is correct.", font=self.body_font, font_size=12, weight="BOLD", color=TEXT_WHITE),
-            Text("   Reality: Equation can be dimensionally valid but wrong: e.g. s = ut + at².", font=self.body_font, font_size=11, color=self.accent_gold),
-            Text("2. Blindness to Dimensionless Constants (H.C. Verma):", font=self.body_font, font_size=12, weight="BOLD", color=TEXT_WHITE),
-            Text("   Dimensional analysis can NEVER determine pure coefficients (like 1/2, 2π).", font=self.body_font, font_size=11, color=self.accent_green),
-            Text("   It only checks the dimensional power balance, never the numerical magnitude!", font=self.body_font, font_size=11, weight="BOLD", color=self.accent_gold)
+            Text("1. Common Trap: Assuming dimensional consistency proves an equation is correct.", font=self.body_font, font_size=12.5, weight="BOLD", color=TEXT_WHITE),
+            Text("   Reality: An equation can be dimensionally valid but false: e.g. s = ut + at².", font=self.body_font, font_size=12, color=self.accent_gold),
+            Text("2. Blindness to Dimensionless Constants (H.C. Verma Classic):", font=self.body_font, font_size=12.5, weight="BOLD", color=TEXT_WHITE),
+            Text("   Dimensional analysis can NEVER determine pure coefficients (like 1/2, 2π).", font=self.body_font, font_size=12, color=self.accent_green),
+            Text("   It only checks the dimensional power balance, never the numerical magnitude!", font=self.body_font, font_size=12, weight="BOLD", color=self.accent_gold)
         ]
-        for l in lines:
-            if l.width > 10.4:
-                l.scale_to_fit_width(10.4)
-        vg = VGroup(*lines).arrange(DOWN, buff=0.14, aligned_edge=LEFT).next_to(trap_title, DOWN, buff=0.22)
-        vg.move_to(trap_box.get_center() + DOWN * 0.22)
+        vg = VGroup(*lines).arrange(DOWN, buff=0.16, aligned_edge=LEFT).next_to(trap_title, DOWN, buff=0.22)
+        vg.move_to(trap_box.get_center() + DOWN * 0.20)
         return VGroup(trap_box, trap_title, vg)
 
 
@@ -382,57 +379,54 @@ class MeasurementErrorDistributionScene(ModularUnit1Scene):
         return VGroup(settle_tag, settle_title, ncert_ref).arrange(DOWN, buff=0.35).move_to(ORIGIN)
 
     def build_beat_2(self):
-        tax_box = RoundedRectangle(corner_radius=0.12, height=4.2, width=11.2, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(ORIGIN)
-        tax_title = Text("TAXONOMY OF EXPERIMENTAL MEASUREMENT ERRORS", font=self.card_font, font_size=17, weight="BOLD", color=self.accent_gold).next_to(tax_box.get_top(), DOWN, buff=0.22)
+        tax_box = RoundedRectangle(corner_radius=0.12, height=4.8, width=11.6, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(DOWN * 0.1)
+        tax_title = Text("TAXONOMY OF EXPERIMENTAL MEASUREMENT ERRORS", font=self.card_font, font_size=16, weight="BOLD", color=self.accent_gold).next_to(tax_box.get_top(), DOWN, buff=0.20)
 
-        c1_box = RoundedRectangle(corner_radius=0.08, height=3.0, width=5.4, stroke_color=self.accent_blue, stroke_width=1.2, fill_color="#0F172A", fill_opacity=0.0).move_to(LEFT * 2.9 + DOWN * 0.3)
-        c1_hdr = Text("SYSTEMATIC ERRORS (UNIDIRECTIONAL)", font=self.body_font, font_size=12, weight="BOLD", color=self.accent_blue).next_to(c1_box.get_top(), DOWN, buff=0.14)
-        c1_t1 = Text("• Constant bias in ONE direction (+ or -)", font=self.body_font, font_size=11, color=TEXT_WHITE)
-        c1_t2 = Text("• Sources: Instrumental (zero error),", font=self.body_font, font_size=11, color=TEXT_WHITE)
-        c1_t3 = Text("  imperfection in technique, personal bias", font=self.body_font, font_size=11, color=TEXT_WHITE)
-        c1_t4 = Text("• Remedy: Re-calibration of apparatus", font=self.body_font, font_size=11, weight="BOLD", color=self.accent_green)
-        c1_vg = VGroup(c1_t1, c1_t2, c1_t3, c1_t4).arrange(DOWN, buff=0.12, aligned_edge=LEFT).next_to(c1_hdr, DOWN, buff=0.18)
+        c1_box = RoundedRectangle(corner_radius=0.08, height=3.2, width=5.5, stroke_color=self.accent_blue, stroke_width=1.2, fill_color="#0F172A", fill_opacity=0.0).move_to(LEFT * 2.85 + DOWN * 0.3)
+        c1_hdr = Text("SYSTEMATIC ERRORS (UNIDIRECTIONAL)", font=self.body_font, font_size=12, weight="BOLD", color=self.accent_blue).next_to(c1_box.get_top(), DOWN, buff=0.15)
+        c1_t1 = Text("• Constant bias in ONE direction (+ or -)", font=self.body_font, font_size=11.5, color=TEXT_WHITE)
+        c1_t2 = Text("• Sources: Instrumental (zero error),", font=self.body_font, font_size=11.5, color=TEXT_WHITE)
+        c1_t3 = Text("  imperfection in technique, personal bias", font=self.body_font, font_size=11.5, color=TEXT_WHITE)
+        c1_t4 = Text("• Remedy: Re-calibration of apparatus", font=self.body_font, font_size=11.5, weight="BOLD", color=self.accent_green)
+        c1_vg = VGroup(c1_t1, c1_t2, c1_t3, c1_t4).arrange(DOWN, buff=0.14, aligned_edge=LEFT).next_to(c1_hdr, DOWN, buff=0.18)
 
-        c2_box = RoundedRectangle(corner_radius=0.08, height=3.0, width=5.4, stroke_color=self.accent_gold, stroke_width=1.2, fill_color="#0F172A", fill_opacity=0.0).move_to(RIGHT * 2.9 + DOWN * 0.3)
-        c2_hdr = Text("RANDOM ERRORS (GAUSSIAN FLUCTUATIONS)", font=self.body_font, font_size=12, weight="BOLD", color=self.accent_gold).next_to(c2_box.get_top(), DOWN, buff=0.14)
-        c2_t1 = Text("• Unpredictable variations in sign & size", font=self.body_font, font_size=11, color=TEXT_WHITE)
-        c2_t2 = Text("• Sources: Uncontrolled ambient temp, line", font=self.body_font, font_size=11, color=TEXT_WHITE)
-        c2_t3 = Text("  voltage swings, mechanical vibrations", font=self.body_font, font_size=11, color=TEXT_WHITE)
-        c2_t4 = Text("• Remedy: Arithmetic mean of N readings", font=self.body_font, font_size=11, weight="BOLD", color=self.accent_green)
-        c2_vg = VGroup(c2_t1, c2_t2, c2_t3, c2_t4).arrange(DOWN, buff=0.12, aligned_edge=LEFT).next_to(c2_hdr, DOWN, buff=0.18)
+        c2_box = RoundedRectangle(corner_radius=0.08, height=3.2, width=5.5, stroke_color=self.accent_gold, stroke_width=1.2, fill_color="#0F172A", fill_opacity=0.0).move_to(RIGHT * 2.85 + DOWN * 0.3)
+        c2_hdr = Text("RANDOM ERRORS (GAUSSIAN FLUCTUATIONS)", font=self.body_font, font_size=12, weight="BOLD", color=self.accent_gold).next_to(c2_box.get_top(), DOWN, buff=0.15)
+        c2_t1 = Text("• Unpredictable variations in sign & size", font=self.body_font, font_size=11.5, color=TEXT_WHITE)
+        c2_t2 = Text("• Sources: Ambient temp, line voltage swings,", font=self.body_font, font_size=11.5, color=TEXT_WHITE)
+        c2_t3 = Text("  unavoidable mechanical vibrations", font=self.body_font, font_size=11.5, color=TEXT_WHITE)
+        c2_t4 = Text("• Remedy: Arithmetic mean of N readings", font=self.body_font, font_size=11.5, weight="BOLD", color=self.accent_green)
+        c2_vg = VGroup(c2_t1, c2_t2, c2_t3, c2_t4).arrange(DOWN, buff=0.14, aligned_edge=LEFT).next_to(c2_hdr, DOWN, buff=0.18)
 
         return VGroup(tax_box, tax_title, c1_box, c1_hdr, c1_vg, c2_box, c2_hdr, c2_vg)
 
     def build_beat_3(self):
-        stat_box = RoundedRectangle(corner_radius=0.12, height=4.2, width=11.2, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(ORIGIN)
-        stat_title = Text("MATHEMATICAL FORMULATION OF ERRORS (NCERT SECTION 2.6)", font=self.card_font, font_size=16, weight="BOLD", color=self.accent_gold).next_to(stat_box.get_top(), DOWN, buff=0.22)
+        stat_box = RoundedRectangle(corner_radius=0.12, height=4.8, width=11.6, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(DOWN * 0.1)
+        stat_title = Text("MATHEMATICAL FORMULATION OF ERRORS (NCERT SECTION 2.6)", font=self.card_font, font_size=16, weight="BOLD", color=self.accent_gold).next_to(stat_box.get_top(), DOWN, buff=0.20)
 
-        m1 = Text("1. Arithmetic Mean (Best Estimate):      a_mean = ( Σ a_i ) / n", font=self.body_font, font_size=13, weight="BOLD", color=TEXT_WHITE)
-        m2 = Text("2. Absolute Error of Reading i:          Δa_i = | a_mean - a_i |   (ALWAYS POSITIVE)", font=self.body_font, font_size=13, weight="BOLD", color=self.accent_green)
-        m3 = Text("3. Mean Absolute Error:                  Δa_mean = ( Σ |Δa_i| ) / n", font=self.body_font, font_size=13, weight="BOLD", color=self.accent_green)
-        m4 = Text("4. Relative (Fractional) Error:          Δa_mean / a_mean", font=self.body_font, font_size=13, weight="BOLD", color=self.accent_gold)
-        m5 = Text("5. Percentage Error (δa):                ( Δa_mean / a_mean ) × 100 %", font=self.body_font, font_size=13, weight="BOLD", color=self.accent_gold)
+        m1 = Text("1. Arithmetic Mean (Best Estimate):      a_mean = ( Σ a_i ) / n", font=self.body_font, font_size=12.5, weight="BOLD", color=TEXT_WHITE)
+        m2 = Text("2. Absolute Error of Reading i:          Δa_i = | a_mean - a_i |   (ALWAYS POSITIVE)", font=self.body_font, font_size=12.5, weight="BOLD", color=self.accent_green)
+        m3 = Text("3. Mean Absolute Error:                  Δa_mean = ( Σ |Δa_i| ) / n", font=self.body_font, font_size=12.5, weight="BOLD", color=self.accent_green)
+        m4 = Text("4. Relative (Fractional) Error:          Δa_mean / a_mean", font=self.body_font, font_size=12.5, weight="BOLD", color=self.accent_gold)
+        m5 = Text("5. Percentage Error (δa):                ( Δa_mean / a_mean ) × 100 %", font=self.body_font, font_size=12.5, weight="BOLD", color=self.accent_gold)
 
-        stat_vg = VGroup(m1, m2, m3, m4, m5).arrange(DOWN, buff=0.18, aligned_edge=LEFT).next_to(stat_title, DOWN, buff=0.25).shift(LEFT * 0.3)
+        stat_vg = VGroup(m1, m2, m3, m4, m5).arrange(DOWN, buff=0.20, aligned_edge=LEFT).next_to(stat_title, DOWN, buff=0.24).shift(LEFT * 0.2)
         return VGroup(stat_box, stat_title, stat_vg)
 
     def build_beat_4(self):
-        trap_box = RoundedRectangle(corner_radius=0.12, height=4.4, width=11.6, stroke_color=self.accent_red, stroke_width=2.0, fill_color="#1e1014", fill_opacity=0.3).move_to(ORIGIN)
+        trap_box = RoundedRectangle(corner_radius=0.12, height=4.8, width=11.6, stroke_color=self.accent_red, stroke_width=2.0, fill_color="#1e1014", fill_opacity=0.35).move_to(DOWN * 0.1)
         trap_title = Text("NEET HIGH-YIELD DISTRACTOR TRAP", font=self.card_font, font_size=18, weight="BOLD", color=self.accent_red).next_to(trap_box.get_top(), DOWN, buff=0.22)
 
         lines = [
-            Text("1. The Zero Sum Trap (H.C. Verma Classic):", font=self.body_font, font_size=12, weight="BOLD", color=TEXT_WHITE),
-            Text("   The algebraic sum of deviations from arithmetic mean is IDENTICALLY ZERO:", font=self.body_font, font_size=11, color=TEXT_WHITE),
-            Text("   Σ (a_mean - a_i) = 0   ===> NEVER use signed deviations for mean error!", font=self.body_font, font_size=11, weight="BOLD", color=self.accent_gold),
-            Text("2. Absolute Error Magnitude Rule:", font=self.body_font, font_size=12, weight="BOLD", color=TEXT_WHITE),
-            Text("   You MUST take the absolute magnitude |Δa_i| before taking the arithmetic mean.", font=self.body_font, font_size=11, color=self.accent_green),
-            Text("   Absolute error is non-negative by definition (Δa_mean > 0).", font=self.body_font, font_size=11, weight="BOLD", color=self.accent_gold)
+            Text("1. The Zero Sum Trap (H.C. Verma Classic):", font=self.body_font, font_size=12.5, weight="BOLD", color=TEXT_WHITE),
+            Text("   The algebraic sum of deviations from arithmetic mean is IDENTICALLY ZERO:", font=self.body_font, font_size=12, color=TEXT_WHITE),
+            Text("   Σ (a_mean - a_i) = 0   ===> NEVER use signed deviations for mean error!", font=self.body_font, font_size=12, weight="BOLD", color=self.accent_gold),
+            Text("2. Absolute Error Magnitude Rule:", font=self.body_font, font_size=12.5, weight="BOLD", color=TEXT_WHITE),
+            Text("   You MUST take the absolute magnitude |Δa_i| before taking the arithmetic mean.", font=self.body_font, font_size=12, color=self.accent_green),
+            Text("   Absolute error is non-negative by definition (Δa_mean > 0).", font=self.body_font, font_size=12, weight="BOLD", color=self.accent_gold)
         ]
-        for l in lines:
-            if l.width > 10.4:
-                l.scale_to_fit_width(10.4)
-        vg = VGroup(*lines).arrange(DOWN, buff=0.12, aligned_edge=LEFT).next_to(trap_title, DOWN, buff=0.20)
-        vg.move_to(trap_box.get_center() + DOWN * 0.22)
+        vg = VGroup(*lines).arrange(DOWN, buff=0.14, aligned_edge=LEFT).next_to(trap_title, DOWN, buff=0.20)
+        vg.move_to(trap_box.get_center() + DOWN * 0.20)
         return VGroup(trap_box, trap_title, vg)
 
 
@@ -447,8 +441,8 @@ class PowerRuleCalculationTreeScene(ModularUnit1Scene):
         return VGroup(settle_tag, settle_title, ncert_ref).arrange(DOWN, buff=0.35).move_to(ORIGIN)
 
     def build_beat_2(self):
-        pwr_box = RoundedRectangle(corner_radius=0.12, height=4.2, width=11.2, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(ORIGIN)
-        pwr_title = Text("THE MASTER POWER RULE FOR RELATIVE ERROR (WORST CASE)", font=self.card_font, font_size=16, weight="BOLD", color=self.accent_gold).next_to(pwr_box.get_top(), DOWN, buff=0.22)
+        pwr_box = RoundedRectangle(corner_radius=0.12, height=4.8, width=11.6, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(DOWN * 0.1)
+        pwr_title = Text("THE MASTER POWER RULE FOR RELATIVE ERROR (WORST CASE)", font=self.card_font, font_size=16, weight="BOLD", color=self.accent_gold).next_to(pwr_box.get_top(), DOWN, buff=0.20)
 
         t_if = Text("If   Z  =  ( ", font=self.body_font, font_size=20, weight="BOLD", color=self.accent_blue)
         t_a = Text("A", font=self.body_font, font_size=20, weight="BOLD", color=self.accent_blue)
@@ -463,43 +457,40 @@ class PowerRuleCalculationTreeScene(ModularUnit1Scene):
         
         prop_eq = Text("==>   ΔZ / Z  =  p · ( ΔA / A )  +  q · ( ΔB / B )  +  r · ( ΔC / C )", font=self.body_font, font_size=16, weight="BOLD", color=self.accent_green).next_to(gen_eq, DOWN, buff=0.25)
 
-        note1 = Text("Key Principle: The relative error of a physical quantity raised to power 'p'", font_size=12, color=TEXT_WHITE).next_to(prop_eq, DOWN, buff=0.30)
-        note2 = Text("is 'p' times the relative error of the individual quantity.", font_size=12, color=TEXT_WHITE).next_to(note1, DOWN, buff=0.06)
+        note1 = Text("Key Principle: The relative error of a physical quantity raised to power 'p'", font=self.body_font, font_size=12.5, color=TEXT_WHITE).next_to(prop_eq, DOWN, buff=0.25)
+        note2 = Text("is 'p' times the relative error of the individual quantity.", font=self.body_font, font_size=12.5, color=TEXT_WHITE).next_to(note1, DOWN, buff=0.08)
 
         return VGroup(pwr_box, pwr_title, gen_eq, prop_eq, note1, note2)
 
     def build_beat_3(self):
-        tree_box = RoundedRectangle(corner_radius=0.12, height=4.2, width=11.2, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(ORIGIN)
-        tree_title = Text("NUMERICAL STEP TREE: NEET FREQUENT PYQ PATTERN", font=self.card_font, font_size=17, weight="BOLD", color=self.accent_gold).next_to(tree_box.get_top(), DOWN, buff=0.22)
+        tree_box = RoundedRectangle(corner_radius=0.12, height=4.8, width=11.6, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(DOWN * 0.1)
+        tree_title = Text("NUMERICAL STEP TREE: NEET FREQUENT PYQ PATTERN", font=self.card_font, font_size=16, weight="BOLD", color=self.accent_gold).next_to(tree_box.get_top(), DOWN, buff=0.20)
 
-        prob = Text("Given: Z = ( A⁴ · B¹/³ ) / ( C · D³/² ), with errors: A=1%, B=3%, C=2%, D=4%", font=self.body_font, font_size=11, color=TEXT_WHITE).next_to(tree_title, DOWN, buff=0.25)
+        prob = Text("Given: Z = ( A⁴ · B¹/³ ) / ( C · D³/² ), with errors: A=1%, B=3%, C=2%, D=4%", font=self.body_font, font_size=12, color=TEXT_WHITE).next_to(tree_title, DOWN, buff=0.22)
         
-        step_a = Text("• Contribution from A: 4 × (1%)          =  4.0%", font=self.body_font, font_size=12, color=self.accent_blue)
-        step_b = Text("• Contribution from B: (1/3) × (3%)      =  1.0%", font=self.body_font, font_size=12, color=self.accent_blue)
-        step_c = Text("• Contribution from C: 1 × (2%)          =  2.0%   (Added, NOT subtracted!)", font=self.body_font, font_size=12, color=self.accent_green)
-        step_d = Text("• Contribution from D: (3/2) × (4%)      =  6.0%   (Added, NOT subtracted!)", font=self.body_font, font_size=12, color=self.accent_green)
+        step_a = Text("• Contribution from A: 4 × (1%)          =  4.0%", font=self.body_font, font_size=12.5, color=self.accent_blue)
+        step_b = Text("• Contribution from B: (1/3) × (3%)      =  1.0%", font=self.body_font, font_size=12.5, color=self.accent_blue)
+        step_c = Text("• Contribution from C: 1 × (2%)          =  2.0%   (Added, NOT subtracted!)", font=self.body_font, font_size=12.5, color=self.accent_green)
+        step_d = Text("• Contribution from D: (3/2) × (4%)      =  6.0%   (Added, NOT subtracted!)", font=self.body_font, font_size=12.5, color=self.accent_green)
         step_tot = Text("TOTAL MAXIMUM PERCENTAGE ERROR  =  4 + 1 + 2 + 6  =  13.0%", font=self.body_font, font_size=13, weight="BOLD", color=self.accent_gold)
 
-        calc_vg = VGroup(step_a, step_b, step_c, step_d, step_tot).arrange(DOWN, buff=0.14, aligned_edge=LEFT).next_to(prob, DOWN, buff=0.20).shift(LEFT * 0.4)
+        calc_vg = VGroup(step_a, step_b, step_c, step_d, step_tot).arrange(DOWN, buff=0.16, aligned_edge=LEFT).next_to(prob, DOWN, buff=0.20).shift(LEFT * 0.3)
         return VGroup(tree_box, tree_title, prob, calc_vg)
 
     def build_beat_4(self):
-        trap_box = RoundedRectangle(corner_radius=0.12, height=4.4, width=11.6, stroke_color=self.accent_red, stroke_width=2.0, fill_color="#1e1014", fill_opacity=0.3).move_to(ORIGIN)
+        trap_box = RoundedRectangle(corner_radius=0.12, height=4.8, width=11.6, stroke_color=self.accent_red, stroke_width=2.0, fill_color="#1e1014", fill_opacity=0.35).move_to(DOWN * 0.1)
         trap_title = Text("NEET HIGH-YIELD DISTRACTOR TRAP", font=self.card_font, font_size=18, weight="BOLD", color=self.accent_red).next_to(trap_box.get_top(), DOWN, buff=0.22)
 
         lines = [
-            Text("1. The Denominator Subtraction Trap (D.C. Pandey):", font=self.body_font, font_size=12, weight="BOLD", color=TEXT_WHITE),
-            Text("   Students see C in denominator and subtract: - r · (ΔC / C).", font=self.body_font, font_size=11, color=self.accent_gold),
-            Text("   FATAL ERROR! In worst-case analysis, ERRORS ALWAYS ACCUMULATE (ADD)!", font=self.body_font, font_size=11, weight="BOLD", color=self.accent_red),
-            Text("2. Dominant Contributor Rule:", font=self.body_font, font_size=12, weight="BOLD", color=TEXT_WHITE),
-            Text("   The quantity with the HIGHEST power coefficient dominates total uncertainty.", font=self.body_font, font_size=11, color=self.accent_green),
-            Text("   It must always be measured with the highest precision instrument!", font=self.body_font, font_size=11, weight="BOLD", color=self.accent_gold)
+            Text("1. The Denominator Subtraction Trap (D.C. Pandey):", font=self.body_font, font_size=12.5, weight="BOLD", color=TEXT_WHITE),
+            Text("   Students see C in denominator and subtract: - r · (ΔC / C).", font=self.body_font, font_size=12, color=self.accent_gold),
+            Text("   FATAL ERROR! In worst-case analysis, ERRORS ALWAYS ACCUMULATE (ADD)!", font=self.body_font, font_size=12, weight="BOLD", color=self.accent_red),
+            Text("2. Dominant Contributor Rule:", font=self.body_font, font_size=12.5, weight="BOLD", color=TEXT_WHITE),
+            Text("   The quantity with the HIGHEST power coefficient dominates total uncertainty.", font=self.body_font, font_size=12, color=self.accent_green),
+            Text("   It must always be measured with the highest precision instrument!", font=self.body_font, font_size=12, weight="BOLD", color=self.accent_gold)
         ]
-        for l in lines:
-            if l.width > 10.4:
-                l.scale_to_fit_width(10.4)
-        vg = VGroup(*lines).arrange(DOWN, buff=0.12, aligned_edge=LEFT).next_to(trap_title, DOWN, buff=0.20)
-        vg.move_to(trap_box.get_center() + DOWN * 0.22)
+        vg = VGroup(*lines).arrange(DOWN, buff=0.14, aligned_edge=LEFT).next_to(trap_title, DOWN, buff=0.20)
+        vg.move_to(trap_box.get_center() + DOWN * 0.20)
         return VGroup(trap_box, trap_title, vg)
 
 
@@ -514,45 +505,42 @@ class VernierDualScaleVisualizerScene(ModularUnit1Scene):
         return VGroup(settle_tag, settle_title, ncert_ref).arrange(DOWN, buff=0.35).move_to(ORIGIN)
 
     def build_beat_2(self):
-        v_box = RoundedRectangle(corner_radius=0.12, height=4.2, width=11.2, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(ORIGIN)
-        v_title = Text("VERNIER CALLIPERS: PRINCIPLE & LEAST COUNT", font=self.card_font, font_size=18, weight="BOLD", color=self.accent_gold).next_to(v_box.get_top(), DOWN, buff=0.22)
+        v_box = RoundedRectangle(corner_radius=0.12, height=4.8, width=11.6, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(DOWN * 0.1)
+        v_title = Text("VERNIER CALLIPERS: PRINCIPLE & LEAST COUNT", font=self.card_font, font_size=16, weight="BOLD", color=self.accent_gold).next_to(v_box.get_top(), DOWN, buff=0.20)
 
-        f1 = Text("Principle: n divisions on Vernier Scale (VSD) = (n - 1) divisions on Main Scale (MSD)", font_size=12, color=TEXT_WHITE).next_to(v_title, DOWN, buff=0.25)
+        f1 = Text("Principle: n divisions on Vernier Scale (VSD) = (n - 1) divisions on Main Scale (MSD)", font=self.body_font, font_size=12.5, color=TEXT_WHITE).next_to(v_title, DOWN, buff=0.22)
         f2 = Text("Least Count (Vernier Constant):   LC = 1 MSD - 1 VSD = ( 1 / n ) · MSD", font=self.body_font, font_size=13, weight="BOLD", color=self.accent_green).next_to(f1, DOWN, buff=0.18)
-        f3 = Text("Standard Case: 10 VSD = 9 MSD (where 1 MSD = 1 mm):", font_size=12, color=self.accent_blue).next_to(f2, DOWN, buff=0.20, aligned_edge=LEFT).shift(RIGHT * 1.5)
+        f3 = Text("Standard Case: 10 VSD = 9 MSD (where 1 MSD = 1 mm):", font=self.body_font, font_size=12.5, color=self.accent_blue).next_to(f2, DOWN, buff=0.18, aligned_edge=LEFT).shift(RIGHT * 1.0)
         f4 = Text("==> LC = 1 mm - (9/10) mm = 0.1 mm = 0.01 cm", font=self.body_font, font_size=13, weight="BOLD", color=self.accent_gold).next_to(f3, DOWN, buff=0.10, aligned_edge=LEFT)
-        f5 = Text("Total Reading  =  Main Scale Reading (MSR)  +  ( Coinciding VSD × LC )", font=self.body_font, font_size=12, weight="BOLD", color=TEXT_WHITE).next_to(f4, DOWN, buff=0.18, aligned_edge=LEFT)
+        f5 = Text("Total Reading  =  Main Scale Reading (MSR)  +  ( Coinciding VSD × LC )", font=self.body_font, font_size=12.5, weight="BOLD", color=TEXT_WHITE).next_to(f4, DOWN, buff=0.18, aligned_edge=LEFT)
 
         return VGroup(v_box, v_title, f1, f2, f3, f4, f5)
 
     def build_beat_3(self):
-        sg_box = RoundedRectangle(corner_radius=0.12, height=4.2, width=11.2, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(ORIGIN)
-        sg_title = Text("SCREW GAUGE: PITCH & CIRCULAR SCALE LEAST COUNT", font=self.card_font, font_size=17, weight="BOLD", color=self.accent_gold).next_to(sg_box.get_top(), DOWN, buff=0.22)
+        sg_box = RoundedRectangle(corner_radius=0.12, height=4.8, width=11.6, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(DOWN * 0.1)
+        sg_title = Text("SCREW GAUGE: PITCH & CIRCULAR SCALE LEAST COUNT", font=self.card_font, font_size=16, weight="BOLD", color=self.accent_gold).next_to(sg_box.get_top(), DOWN, buff=0.20)
 
-        s1 = Text("• Pitch: Distance moved by screw on linear scale per 1 complete rotation (e.g. 1 mm)", font_size=12, color=TEXT_WHITE).next_to(sg_title, DOWN, buff=0.30, aligned_edge=LEFT).shift(RIGHT * 0.4)
-        s2 = Text("• Least Count Formula:   LC = Pitch / ( Total Circular Divisions )", font=self.body_font, font_size=13, weight="BOLD", color=self.accent_green).next_to(s1, DOWN, buff=0.15, aligned_edge=LEFT)
-        s3 = Text("  Example: Pitch = 1 mm, Circular Divisions = 100", font_size=12, color=self.accent_blue).next_to(s2, DOWN, buff=0.15, aligned_edge=LEFT)
-        s4 = Text("  ==> LC = 1 mm / 100 = 0.01 mm = 0.001 cm", font=self.body_font, font_size=13, weight="BOLD", color=self.accent_gold).next_to(s3, DOWN, buff=0.08, aligned_edge=LEFT)
-        s5 = Text("• Total Reading = Linear Scale (PSR) + ( Coinciding CSR × LC ) - Zero Error", font=self.body_font, font_size=12, weight="BOLD", color=TEXT_WHITE).next_to(s4, DOWN, buff=0.20, aligned_edge=LEFT)
+        s1 = Text("• Pitch: Distance moved by screw on linear scale per 1 complete rotation (e.g. 1 mm)", font=self.body_font, font_size=12.5, color=TEXT_WHITE).next_to(sg_title, DOWN, buff=0.25, aligned_edge=LEFT).shift(RIGHT * 0.3)
+        s2 = Text("• Least Count Formula:   LC = Pitch / ( Total Circular Divisions )", font=self.body_font, font_size=13, weight="BOLD", color=self.accent_green).next_to(s1, DOWN, buff=0.16, aligned_edge=LEFT)
+        s3 = Text("  Example: Pitch = 1 mm, Circular Divisions = 100", font=self.body_font, font_size=12.5, color=self.accent_blue).next_to(s2, DOWN, buff=0.14, aligned_edge=LEFT)
+        s4 = Text("  ==> LC = 1 mm / 100 = 0.01 mm = 0.001 cm", font=self.body_font, font_size=13, weight="BOLD", color=self.accent_gold).next_to(s3, DOWN, buff=0.10, aligned_edge=LEFT)
+        s5 = Text("• Total Reading = Linear Scale (PSR) + ( Coinciding CSR × LC ) - Zero Error", font=self.body_font, font_size=12.5, weight="BOLD", color=TEXT_WHITE).next_to(s4, DOWN, buff=0.18, aligned_edge=LEFT)
 
         return VGroup(sg_box, sg_title, s1, s2, s3, s4, s5)
 
     def build_beat_4(self):
-        trap_box = RoundedRectangle(corner_radius=0.12, height=4.4, width=11.6, stroke_color=self.accent_red, stroke_width=2.0, fill_color="#1e1014", fill_opacity=0.3).move_to(ORIGIN)
+        trap_box = RoundedRectangle(corner_radius=0.12, height=4.8, width=11.6, stroke_color=self.accent_red, stroke_width=2.0, fill_color="#1e1014", fill_opacity=0.35).move_to(DOWN * 0.1)
         trap_title = Text("NEET HIGH-YIELD DISTRACTOR TRAP", font=self.card_font, font_size=18, weight="BOLD", color=self.accent_red).next_to(trap_box.get_top(), DOWN, buff=0.22)
 
         lines = [
-            Text("1. Inverting Zero Error Signs (The #1 Negative Mark Trap in NEET):", font=self.body_font, font_size=12, weight="BOLD", color=TEXT_WHITE),
-            Text("   POSITIVE Zero Error (+e)  ===>  SUBTRACT from observed reading:", font=self.body_font, font_size=11, color=self.accent_gold),
-            Text("   True Reading = Observed Reading - (+e)", font=self.body_font, font_size=11, weight="BOLD", color=self.accent_gold),
-            Text("   NEGATIVE Zero Error (-e)  ===>  ADD to observed reading:", font=self.body_font, font_size=11, color=self.accent_green),
-            Text("   True Reading = Observed Reading - (-e) = Observed Reading + e", font=self.body_font, font_size=11, weight="BOLD", color=self.accent_green)
+            Text("1. Inverting Zero Error Signs (The #1 Negative Mark Trap in NEET):", font=self.body_font, font_size=12.5, weight="BOLD", color=TEXT_WHITE),
+            Text("   POSITIVE Zero Error (+e)  ===>  SUBTRACT from observed reading:", font=self.body_font, font_size=12, color=self.accent_gold),
+            Text("   True Reading = Observed Reading - (+e)", font=self.body_font, font_size=12, weight="BOLD", color=self.accent_gold),
+            Text("   NEGATIVE Zero Error (-e)  ===>  ADD to observed reading:", font=self.body_font, font_size=12, color=self.accent_green),
+            Text("   True Reading = Observed Reading - (-e) = Observed Reading + e", font=self.body_font, font_size=12, weight="BOLD", color=self.accent_green)
         ]
-        for l in lines:
-            if l.width > 10.4:
-                l.scale_to_fit_width(10.4)
-        vg = VGroup(*lines).arrange(DOWN, buff=0.12, aligned_edge=LEFT).next_to(trap_title, DOWN, buff=0.20)
-        vg.move_to(trap_box.get_center() + DOWN * 0.22)
+        vg = VGroup(*lines).arrange(DOWN, buff=0.14, aligned_edge=LEFT).next_to(trap_title, DOWN, buff=0.20)
+        vg.move_to(trap_box.get_center() + DOWN * 0.20)
         return VGroup(trap_box, trap_title, vg)
 
 
@@ -567,48 +555,45 @@ class SignificantFiguresRulesBoxScene(ModularUnit1Scene):
         return VGroup(settle_tag, settle_title, ncert_ref).arrange(DOWN, buff=0.35).move_to(ORIGIN)
 
     def build_beat_2(self):
-        sf_box = RoundedRectangle(corner_radius=0.12, height=4.2, width=11.2, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(ORIGIN)
-        sf_title = Text("THE 4 CORE RULES FOR SIGNIFICANT FIGURES (NCERT)", font=self.card_font, font_size=17, weight="BOLD", color=self.accent_gold).next_to(sf_box.get_top(), DOWN, buff=0.22)
+        sf_box = RoundedRectangle(corner_radius=0.12, height=4.8, width=11.6, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(DOWN * 0.1)
+        sf_title = Text("THE 5 CORE RULES FOR SIGNIFICANT FIGURES (NCERT)", font=self.card_font, font_size=16, weight="BOLD", color=self.accent_gold).next_to(sf_box.get_top(), DOWN, buff=0.20)
 
-        r1 = Text("1. All non-zero digits are significant:           e.g. 2384  ==> 4 SF", font=self.body_font, font_size=12, color=TEXT_WHITE)
-        r2 = Text("2. Trapped zeros between non-zeros are sig:       e.g. 4007  ==> 4 SF", font=self.body_font, font_size=12, color=TEXT_WHITE)
+        r1 = Text("1. All non-zero digits are significant:           e.g. 2384  ==> 4 SF", font=self.body_font, font_size=12.5, color=TEXT_WHITE)
+        r2 = Text("2. Trapped zeros between non-zeros are sig:       e.g. 4007  ==> 4 SF", font=self.body_font, font_size=12.5, color=TEXT_WHITE)
         r3 = Text("3. Leading zeros before first non-zero NEVER sig: e.g. 0.0052 ==> 2 SF (zeros indicate position)", font=self.body_font, font_size=12, color=self.accent_green)
         r4 = Text("4. Trailing zeros WITH decimal point are sig:     e.g. 3.500 ==> 4 SF (indicates precision)", font=self.body_font, font_size=12, color=self.accent_green)
         r5 = Text("5. Trailing zeros WITHOUT decimal are NOT sig:    e.g. 4700  ==> 2 SF (use sci notation: 4.70 × 10³)", font=self.body_font, font_size=12, color=self.accent_gold)
 
-        rules_vg = VGroup(r1, r2, r3, r4, r5).arrange(DOWN, buff=0.16, aligned_edge=LEFT).next_to(sf_title, DOWN, buff=0.25).shift(LEFT * 0.2)
+        rules_vg = VGroup(r1, r2, r3, r4, r5).arrange(DOWN, buff=0.18, aligned_edge=LEFT).next_to(sf_title, DOWN, buff=0.22).shift(LEFT * 0.2)
         return VGroup(sf_box, sf_title, rules_vg)
 
     def build_beat_3(self):
-        ops_box = RoundedRectangle(corner_radius=0.12, height=4.2, width=11.2, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(ORIGIN)
-        ops_title = Text("ROUNDING IN ARITHMETIC OPERATIONS: ADDITION VS MULTIPLICATION", font=self.card_font, font_size=16, weight="BOLD", color=self.accent_gold).next_to(ops_box.get_top(), DOWN, buff=0.22)
+        ops_box = RoundedRectangle(corner_radius=0.12, height=4.8, width=11.6, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(DOWN * 0.1)
+        ops_title = Text("ROUNDING IN ARITHMETIC OPERATIONS: ADDITION VS MULTIPLICATION", font=self.card_font, font_size=15, weight="BOLD", color=self.accent_gold).next_to(ops_box.get_top(), DOWN, buff=0.20)
 
-        a1 = Text("ADDITION / SUBTRACTION RULE: Governed by LEAST DECIMAL PLACES", font_size=13, weight="BOLD", color=self.accent_blue).next_to(ops_title, DOWN, buff=0.25, aligned_edge=LEFT).shift(RIGHT * 0.4)
-        a2 = Text("• 436.32 (2 dec) + 227.2 (1 dec) + 0.301 (3 dec) = 663.821", font=self.body_font, font_size=11, color=TEXT_WHITE).next_to(a1, DOWN, buff=0.08, aligned_edge=LEFT)
-        a3 = Text("• Result must retain only 1 decimal place  ==>  663.8", font=self.body_font, font_size=12, weight="BOLD", color=self.accent_green).next_to(a2, DOWN, buff=0.06, aligned_edge=LEFT)
+        a1 = Text("ADDITION / SUBTRACTION RULE: Governed by LEAST DECIMAL PLACES", font=self.body_font, font_size=12.5, weight="BOLD", color=self.accent_blue).next_to(ops_title, DOWN, buff=0.22, aligned_edge=LEFT).shift(RIGHT * 0.3)
+        a2 = Text("• 436.32 (2 dec) + 227.2 (1 dec) + 0.301 (3 dec) = 663.821", font=self.body_font, font_size=12, color=TEXT_WHITE).next_to(a1, DOWN, buff=0.10, aligned_edge=LEFT)
+        a3 = Text("• Result must retain only 1 decimal place  ==>  663.8", font=self.body_font, font_size=12.5, weight="BOLD", color=self.accent_green).next_to(a2, DOWN, buff=0.08, aligned_edge=LEFT)
 
-        m1 = Text("MULTIPLICATION / DIVISION RULE: Governed by LEAST SIGNIFICANT FIGURES", font_size=13, weight="BOLD", color=self.accent_gold).next_to(a3, DOWN, buff=0.22, aligned_edge=LEFT)
-        m2 = Text("• Density = Mass / Volume = 4.237 g (4 SF) / 2.51 cm³ (3 SF) = 1.68804...", font=self.body_font, font_size=11, color=TEXT_WHITE).next_to(m1, DOWN, buff=0.08, aligned_edge=LEFT)
-        m3 = Text("• Result must retain only 3 significant figures  ==>  1.69 g/cm³", font=self.body_font, font_size=12, weight="BOLD", color=self.accent_green).next_to(m2, DOWN, buff=0.06, aligned_edge=LEFT)
+        m1 = Text("MULTIPLICATION / DIVISION RULE: Governed by LEAST SIGNIFICANT FIGURES", font=self.body_font, font_size=12.5, weight="BOLD", color=self.accent_gold).next_to(a3, DOWN, buff=0.18, aligned_edge=LEFT)
+        m2 = Text("• Density = Mass / Volume = 4.237 g (4 SF) / 2.51 cm³ (3 SF) = 1.68804...", font=self.body_font, font_size=12, color=TEXT_WHITE).next_to(m1, DOWN, buff=0.10, aligned_edge=LEFT)
+        m3 = Text("• Result must retain only 3 significant figures  ==>  1.69 g/cm³", font=self.body_font, font_size=12.5, weight="BOLD", color=self.accent_green).next_to(m2, DOWN, buff=0.08, aligned_edge=LEFT)
 
         return VGroup(ops_box, ops_title, a1, a2, a3, m1, m2, m3)
 
     def build_beat_4(self):
-        trap_box = RoundedRectangle(corner_radius=0.12, height=4.4, width=11.6, stroke_color=self.accent_red, stroke_width=2.0, fill_color="#1e1014", fill_opacity=0.3).move_to(ORIGIN)
+        trap_box = RoundedRectangle(corner_radius=0.12, height=4.8, width=11.6, stroke_color=self.accent_red, stroke_width=2.0, fill_color="#1e1014", fill_opacity=0.35).move_to(DOWN * 0.1)
         trap_title = Text("NEET HIGH-YIELD DISTRACTOR TRAP", font=self.card_font, font_size=18, weight="BOLD", color=self.accent_red).next_to(trap_box.get_top(), DOWN, buff=0.22)
 
         lines = [
-            Text("1. Applying Multiplication Rule to Addition/Subtraction (NEET 2020 Trap):", font=self.body_font, font_size=12, weight="BOLD", color=TEXT_WHITE),
-            Text("   Addition/Subtraction is governed strictly by LEAST DECIMAL PLACES, not sig figs!", font=self.body_font, font_size=11, color=self.accent_gold),
-            Text("   Example: 9.99 m - 0.0099 m = 9.9801 m  ===>  Round to 2 decimal places: 9.98 m", font=self.body_font, font_size=11, weight="BOLD", color=self.accent_green),
-            Text("2. Trailing Zeros Ambiguity Rule:", font=self.body_font, font_size=12, weight="BOLD", color=TEXT_WHITE),
-            Text("   4.700 m has 4 sig figs (decimal present), but 4700 m has only 2 sig figs!", font=self.body_font, font_size=11, color=self.accent_green),
-            Text("   To avoid ambiguity, always write in scientific notation: 4.700 × 10³ m.", font=self.body_font, font_size=11, weight="BOLD", color=self.accent_gold)
+            Text("1. Applying Multiplication Rule to Addition/Subtraction (NEET 2020 Trap):", font=self.body_font, font_size=12.5, weight="BOLD", color=TEXT_WHITE),
+            Text("   Addition/Subtraction is governed strictly by LEAST DECIMAL PLACES, not sig figs!", font=self.body_font, font_size=12, color=self.accent_gold),
+            Text("   Example: 9.99 m - 0.0099 m = 9.9801 m  ===>  Round to 2 decimal places: 9.98 m", font=self.body_font, font_size=12, weight="BOLD", color=self.accent_green),
+            Text("2. Trailing Zeros Ambiguity Rule:", font=self.body_font, font_size=12.5, weight="BOLD", color=TEXT_WHITE),
+            Text("   4.700 m has 4 sig figs (decimal present), but 4700 m has only 2 sig figs!", font=self.body_font, font_size=12, color=self.accent_green),
+            Text("   To avoid ambiguity, always write in scientific notation: 4.700 × 10³ m.", font=self.body_font, font_size=12, weight="BOLD", color=self.accent_gold)
         ]
-        for l in lines:
-            if l.width > 10.4:
-                l.scale_to_fit_width(10.4)
-        vg = VGroup(*lines).arrange(DOWN, buff=0.12, aligned_edge=LEFT).next_to(trap_title, DOWN, buff=0.20)
-        vg.move_to(trap_box.get_center() + DOWN * 0.22)
+        vg = VGroup(*lines).arrange(DOWN, buff=0.14, aligned_edge=LEFT).next_to(trap_title, DOWN, buff=0.20)
+        vg.move_to(trap_box.get_center() + DOWN * 0.20)
         return VGroup(trap_box, trap_title, vg)
 
