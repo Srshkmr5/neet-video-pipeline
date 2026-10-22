@@ -30,3 +30,33 @@ Derived from MASTER_BLUEPRINT.md v1.1
      - `FONT_BODY = "Consolas"` (Body bullets, derivation steps, formulas, and values — guarantees 100% constant character width, razor-sharp LCD contrast, and zero kerning gaps)
      - Never use fake Unicode substitutions (such as Canadian Aboriginal Syllabics `146B`); all exponents/subscripts must use native sub-mobject positioning.
    - **Interactive Storyboard Proof**: The pipeline automatically compiles all 4-beat static proof screenshots (`beat_1` to `beat_4`) into an interactive Markdown storyboard carousel for visual review and sign-off before production rendering.
+
+9. **Dynamic Audio-Visual Beat Synchronization (Zero Hardcoded Timers)**:
+   - Hardcoded slide hold times (e.g. `self.wait(10)`) are strictly prohibited.
+   - Each visual beat's duration must dynamically bind to its corresponding discrete TTS audio track duration:
+     $$\text{Slide Hold Time} = \text{Audio Beat Duration} - \text{FadeIn (0.8s)} + \text{Inter-beat Buffer (0.5s)}$$
+   - Slide transitions must never occur while narration for the current beat is still playing (eliminating desync issues such as topic slides switching early while prior audio continues).
+
+10. **NEET Trap Memory Consolidation Hold (3.0-Second Silent Freeze)**:
+    - Beat 4 (NEET Trap Card) must enforce a mandatory **3.0-second silent hold** after narration concludes before transitioning to Beat 5 or ending.
+    - This dedicated screen freeze allows mobile students to take screenshots, absorb the trap logic and formula transformations, and reflect without cognitive overload.
+
+11. **Mobile-First High-DPI Typography Scale & Vector Integrity**:
+    - **Strict Ban on `scale_to_fit_width()`**: Horizontal vector squeezing is prohibited on textual mobjects. Preserving a 1:1 font aspect ratio prevents unreadable barcode-like text distortion.
+    - **Text Line Wrapping**: Enforce natural two-line wrapping with a strict limit of $\le 55$ characters per line.
+    - **Minimum Font Floor**: All body text, data rows, and formulas must maintain a minimum font size of $\ge 10.5\text{pt}$ (Consolas/Cascadia Mono) so content remains crisp and legible on 5.5"–6.5" Android smartphones in both landscape and portrait orientations.
+
+12. **Per-Language Dynamic Visual Alignment (Zero Language Drift)**:
+    - Narration speaking rates and syllable lengths vary significantly across languages (e.g., Hindi and Tamil narration often require 15%–30% different timing per beat compared to English).
+    - It is strictly prohibited to stretch, compress, or reuse an English visual render for Hindi or Tamil audio tracks.
+    - Every language edition (`en-IN`, `hi-IN`, `ta-IN`) MUST synthesize beat-discrete audio first, measure the exact beat durations in that language, and render a custom visual timeline where slide transitions and the 3.0s NEET trap freeze align precisely with that language's narration.
+
+13. **Mandatory 3-Phase Closing Sequence (Punchline -> 3.0s Silent Hold -> Next Video End Card)**:
+    - Every concept video in ALL languages (`en-IN`, `hi-IN`, `ta-IN`) must strictly include the three-phase closing sequence:
+      1. **Pedagogical Punchline**: Beat 4 narration MUST conclude with the exam anchor sentence:
+         - English: *"Master this to secure full marks in NEET Physics."*
+         - Hindi: *"नीट परीक्षा में पूरे अंक सुनिश्चित करने के लिए इन नियमों को कंठस्थ कर लें।"*
+         - Tamil: *"நீட் தேர்வில் முழு மதிப்பெண் பெற இந்த விதிகளை நினைவில் நிறுத்துங்கள்."*
+      2. **3.0-Second Silent Trap Freeze**: The visual NEET Trap card must remain completely static on screen for exactly 3.0 seconds in total audio silence after narration ends.
+      3. **Beat 5 Next Video End Card**: A 3.5-second sequence card displaying `"UP NEXT IN SEQUENCE: Concept (N+1)/Total - Next Title"`, `"Canonical ID"`, and `"INTERACTIVE LAB AVAILABLE IN APP TAB 2"`.
+    - **Zero Mux Truncation**: Never pass `-shortest` with subtitle streams in FFmpeg muxing, as subtitle stream completion prematurely terminates the video and cuts off the silent freeze and end card.

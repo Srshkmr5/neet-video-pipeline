@@ -24,24 +24,35 @@ class ModularUnit1Scene(BaseNeetScene):
         self.topic_font = FONT_HEADER
 
     def render_concept_beats(self):
+        target_dur = float(self.node_data.get("target_duration", 32.0))
+        extra_time = max(0.0, target_dur - 22.1)
+        wait_b1 = 1.5 + 0.08 * extra_time
+        wait_b2 = 3.0 + 0.38 * extra_time
+        wait_b3 = 3.0 + 0.32 * extra_time
+        wait_b4 = 3.5 + 0.22 * extra_time
+
         b1 = self.build_beat_1()
         self.play(FadeIn(b1, shift=UP * 0.2), run_time=1.0)
-        self.wait(1.5)
+        self.wait(wait_b1)
         self.play(FadeOut(b1), run_time=0.8)
 
         b2 = self.build_beat_2()
         self.play(FadeIn(b2), run_time=1.2)
-        self.wait(3.0)
+        self.wait(wait_b2)
         self.play(FadeOut(b2), run_time=0.8)
 
         b3 = self.build_beat_3()
         self.play(FadeIn(b3), run_time=1.2)
-        self.wait(3.0)
+        self.wait(wait_b3)
         self.play(FadeOut(b3), run_time=0.8)
 
         b4 = self.build_beat_4()
         self.play(FadeIn(b4), run_time=1.0)
-        self.wait(3.5)
+        self.wait(wait_b4)
+        self.play(FadeOut(b4), run_time=0.8)
+
+        # Beat 5: Transition Teaser (Up Next in Sequence)
+        self.render_release_teaser(duration=3.5)
 
 
 # ---------------------------------------------------------------------------
@@ -55,57 +66,119 @@ class BaseQuantitiesTable7Scene(ModularUnit1Scene):
         return VGroup(settle_tag, settle_title, ncert_ref).arrange(DOWN, buff=0.35).move_to(ORIGIN)
 
     def build_beat_2(self):
-        hud_box = RoundedRectangle(corner_radius=0.1, height=0.95, width=5.2, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).to_corner(UL, buff=1.0).shift(DOWN * 0.3)
-        hud_title = Text("INTERNATIONAL SYSTEM OF UNITS (SI)", font_size=11, weight="BOLD", color=self.muted_text).next_to(hud_box.get_top(), DOWN, buff=0.10)
-        hud_sub = Text("The 7 Fundamental Base Quantities & 2 Supplementary Units", font_size=10, weight="BOLD", color=self.accent_gold).next_to(hud_title, DOWN, buff=0.10)
-        hud_group = VGroup(hud_box, hud_title, hud_sub)
+        # Master card container box (width = 11.6, height = 5.0, centered at Y = -0.1)
+        card_box = RoundedRectangle(corner_radius=0.12, height=5.0, width=11.6, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(DOWN * 0.1)
+        
+        # Card Header inside top of card
+        card_title = Text("INTERNATIONAL SYSTEM OF UNITS (SI)", font=self.card_font, font_size=15, weight="BOLD", color=self.accent_gold).next_to(card_box.get_top(), DOWN, buff=0.15)
+        card_sub = Text("NCERT Table 2.1 • 7 Fundamental Base Standards & 2 Supplementary Dimensionless Units", font=self.body_font, font_size=10, color=self.muted_text).next_to(card_title, DOWN, buff=0.08)
+        
+        # Top horizontal divider separating header from dual columns
+        h_div = Line(start=card_box.get_left() + RIGHT * 0.3, end=card_box.get_right() + LEFT * 0.3, color="#334155", stroke_width=1.0).next_to(card_sub, DOWN, buff=0.10)
+        
+        # Center vertical divider separating Left Table from Right Supplementary Card
+        v_div = Line(start=h_div.get_center() + DOWN * 0.05, end=card_box.get_bottom() + UP * 0.2, color="#334155", stroke_width=1.0).shift(LEFT * 0.1)
 
-        tbl_box = RoundedRectangle(corner_radius=0.08, height=3.2, width=5.8, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(LEFT * 3.1 + UP * 0.45)
-        tbl_hdr = Text("7 FUNDAMENTAL SI BASE QUANTITIES", font_size=12, weight="BOLD", color=self.accent_gold).next_to(tbl_box.get_top(), DOWN, buff=0.14)
-        col_hdr = Text("Physical Quantity       | SI Unit (Symbol) | Dim", font_size=10, weight="BOLD", color=self.accent_blue).next_to(tbl_hdr, DOWN, buff=0.10, aligned_edge=LEFT).shift(RIGHT * 0.2)
-        div_line = Line(start=LEFT * 5.8 + UP * 1.35, end=LEFT * 0.4 + UP * 1.35, color=self.muted_text, stroke_width=1.0)
+        # -------------------------------------------------------------
+        # LEFT COLUMN: 7 Fundamental SI Base Quantities Table (True Coordinate Grid)
+        # -------------------------------------------------------------
+        tbl_title = Text("7 FUNDAMENTAL BASE QUANTITIES", font=self.card_font, font_size=12, weight="BOLD", color=self.accent_blue).next_to(h_div, DOWN, buff=0.12).shift(LEFT * 3.0)
+        
+        hdr_y = tbl_title.get_bottom()[1] - 0.22
+        col1_x = -5.45
+        col2_x = -3.20
+        col3_x = -1.25
 
-        row_items = [
+        h_q = Text("Base Quantity", font=self.card_font, font_size=10, weight="BOLD", color=self.accent_gold).move_to([col1_x, hdr_y, 0], aligned_edge=LEFT)
+        h_u = Text("SI Unit (Symbol)", font=self.card_font, font_size=10, weight="BOLD", color=self.accent_gold).move_to([col2_x, hdr_y, 0], aligned_edge=LEFT)
+        h_d = Text("Dim", font=self.card_font, font_size=10, weight="BOLD", color=self.accent_gold).move_to([col3_x, hdr_y, 0], aligned_edge=LEFT)
+        
+        tbl_div = Line(start=[col1_x, hdr_y - 0.14, 0], end=[-0.4, hdr_y - 0.14, 0], color="#334155", stroke_width=1.0)
+        
+        row_data = [
             ("1. Length", "metre (m)", "[L]"),
             ("2. Mass", "kilogram (kg)", "[M]"),
             ("3. Time", "second (s)", "[T]"),
             ("4. Electric Current", "ampere (A)", "[A]"),
-            ("5. Thermodynamic Temp", "kelvin (K)", "[K]"),
+            ("5. Thermo Temperature", "kelvin (K)", "[K]"),
             ("6. Amount of Substance", "mole (mol)", "[mol]"),
             ("7. Luminous Intensity", "candela (cd)", "[cd]")
         ]
-        rows_vgroup = VGroup()
-        for q, u, d in row_items:
-            r_txt = Text(f"{q:<24} | {u:<16} | {d}", font=self.body_font, font_size=10, color=TEXT_WHITE)
-            rows_vgroup.add(r_txt)
-        rows_vgroup.arrange(DOWN, buff=0.09, aligned_edge=LEFT).next_to(div_line, DOWN, buff=0.09).shift(RIGHT * 0.15)
-        table_group = VGroup(tbl_box, tbl_hdr, col_hdr, div_line, rows_vgroup)
+        
+        table_mobjects = [tbl_title, h_q, h_u, h_d, tbl_div]
+        start_row_y = hdr_y - 0.32
+        row_spacing = 0.27
+        
+        for idx, (q, u, d) in enumerate(row_data):
+            curr_y = start_row_y - idx * row_spacing
+            q_m = Text(q, font=self.body_font, font_size=9.5, color=TEXT_WHITE).move_to([col1_x, curr_y, 0], aligned_edge=LEFT)
+            u_m = Text(u, font=self.body_font, font_size=9.5, color=TEXT_WHITE).move_to([col2_x, curr_y, 0], aligned_edge=LEFT)
+            d_m = Text(d, font=self.body_font, font_size=9.5, color=self.accent_green).move_to([col3_x, curr_y, 0], aligned_edge=LEFT)
+            table_mobjects.extend([q_m, u_m, d_m])
 
-        supp_box = RoundedRectangle(corner_radius=0.08, height=1.1, width=5.8, stroke_color=self.accent_green, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(LEFT * 3.1 + DOWN * 1.85)
-        supp_hdr = Text("2 Supplementary Units (Dimensionless: [M⁰ L⁰ T⁰]):", font_size=11, weight="BOLD", color=self.accent_green).next_to(supp_box.get_top(), DOWN, buff=0.10)
-        supp_r1 = Text("• Plane Angle:  dθ = ds / r   ==> Unit: Radian (rad)", font_size=10, color=TEXT_WHITE).next_to(supp_hdr, DOWN, buff=0.06, aligned_edge=LEFT).shift(RIGHT * 0.2)
-        supp_r2 = Text("• Solid Angle:  dΩ = dA / r²  ==> Unit: Steradian (sr)", font_size=10, color=TEXT_WHITE).next_to(supp_r1, DOWN, buff=0.05, aligned_edge=LEFT)
-        supp_group = VGroup(supp_box, supp_hdr, supp_r1, supp_r2)
+        # -------------------------------------------------------------
+        # RIGHT COLUMN: 2 Supplementary Units (Structured Specs)
+        # -------------------------------------------------------------
+        supp_title = Text("2 SUPPLEMENTARY UNITS", font=self.card_font, font_size=12, weight="BOLD", color=self.accent_green).next_to(h_div, DOWN, buff=0.12).shift(RIGHT * 2.8)
+        supp_sub = Text("Pure Geometric Ratios • Zero Dimensions [M⁰ L⁰ T⁰]", font=self.body_font, font_size=9, color=self.muted_text).next_to(supp_title, DOWN, buff=0.06)
+        
+        right_x = 0.5
+        s1_t = Text("1. Plane Angle (2D Circular Arc)", font=self.body_font, font_size=10, weight="BOLD", color=self.accent_blue).move_to([right_x, start_row_y + 0.05, 0], aligned_edge=LEFT)
+        s1_f = Text("   • Formula   : dθ = ds / r  (Arc / Radius)", font=self.body_font, font_size=9, color=TEXT_WHITE).next_to(s1_t, DOWN, buff=0.08, aligned_edge=LEFT)
+        s1_u = Text("   • SI Unit   : Radian (rad)", font=self.body_font, font_size=9, color=self.accent_green).next_to(s1_f, DOWN, buff=0.06, aligned_edge=LEFT)
+        s1_d = Text("   • Dimension : [M⁰ L⁰ T⁰] (Dimensionless)", font=self.body_font, font_size=9, color=self.accent_gold).next_to(s1_u, DOWN, buff=0.06, aligned_edge=LEFT)
 
-        return VGroup(hud_group, table_group, supp_group)
+        s2_t = Text("2. Solid Angle (3D Spherical Cone)", font=self.body_font, font_size=10, weight="BOLD", color=self.accent_blue).next_to(s1_d, DOWN, buff=0.14, aligned_edge=LEFT)
+        s2_f = Text("   • Formula   : dΩ = dA / r² (Area / Radius²)", font=self.body_font, font_size=9, color=TEXT_WHITE).next_to(s2_t, DOWN, buff=0.08, aligned_edge=LEFT)
+        s2_u = Text("   • SI Unit   : Steradian (sr)", font=self.body_font, font_size=9, color=self.accent_green).next_to(s2_f, DOWN, buff=0.06, aligned_edge=LEFT)
+        s2_d = Text("   • Dimension : [M⁰ L⁰ T⁰] (Dimensionless)", font=self.body_font, font_size=9, color=self.accent_gold).next_to(s2_u, DOWN, buff=0.06, aligned_edge=LEFT)
+
+        rule_box = RoundedRectangle(corner_radius=0.08, height=0.42, width=5.0, stroke_color=self.accent_gold, stroke_width=1.0, fill_color="#1e1805", fill_opacity=0.4).next_to(s2_d, DOWN, buff=0.14).align_to(s1_t, LEFT)
+        rule_txt = Text("NEET RULE: Units exist WITHOUT physical dimensions!", font=self.body_font, font_size=8.8, weight="BOLD", color=self.accent_gold).move_to(rule_box.get_center())
+        
+        right_mobjects = [supp_title, supp_sub, s1_t, s1_f, s1_u, s1_d, s2_t, s2_f, s2_u, s2_d, rule_box, rule_txt]
+
+        return VGroup(card_box, card_title, card_sub, h_div, v_div, *table_mobjects, *right_mobjects)
 
     def build_beat_3(self):
-        card_box = RoundedRectangle(corner_radius=0.12, height=4.2, width=11.2, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(ORIGIN)
-        card_title = Text("CORE PRINCIPLES OF THE SI SYSTEM", font=self.card_font, font_size=18, weight="BOLD", color=self.accent_gold).next_to(card_box.get_top(), DOWN, buff=0.25)
+        card_box = RoundedRectangle(corner_radius=0.12, height=5.0, width=11.6, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(DOWN * 0.1)
+        card_title = Text("CORE PRINCIPLES OF THE SI SYSTEM", font=self.card_font, font_size=16, weight="BOLD", color=self.accent_gold).next_to(card_box.get_top(), DOWN, buff=0.15)
+        card_sub = Text("Three Irreducible Axioms Defining Modern Metric & Dimensional Standards", font=self.body_font, font_size=10, color=self.muted_text).next_to(card_title, DOWN, buff=0.06)
+        h_div = Line(start=card_box.get_left() + RIGHT * 0.3, end=card_box.get_right() + LEFT * 0.3, color="#334155", stroke_width=1.0).next_to(card_sub, DOWN, buff=0.08)
 
-        p1_title = Text("1. Mutual Independence of Base Quantities", font_size=13, weight="BOLD", color=self.accent_blue).next_to(card_title, DOWN, buff=0.25, aligned_edge=LEFT).shift(RIGHT * 0.4)
-        p1_desc = Text("   • None of the 7 base quantities can be derived from or resolved into any other.", font_size=12, color=TEXT_WHITE).next_to(p1_title, DOWN, buff=0.07, aligned_edge=LEFT)
-        p1_sub = Text("   • They serve as the irreducible standards of modern measurement.", font_size=11, color=self.muted_text).next_to(p1_desc, DOWN, buff=0.05, aligned_edge=LEFT)
+        pills_vgroup = VGroup()
+        pill_w = 11.0
+        pill_h = 1.14
+        
+        items = [
+            ("1. Mutual Independence of Base Standards",
+             "None of the 7 base quantities can be derived from or resolved into one another.",
+             "Standard Pillars: Length, Mass, Time, Current, Temp, Amount, Luminous cd.",
+             self.accent_blue, TEXT_WHITE, self.muted_text),
+            ("2. Universal Foundation for All Derived Quantities",
+             "All other physical quantities are algebraic combinations of these 7 base standards.",
+             "Examples: 1 N = 1 kg·m·s⁻²  |  1 J = 1 kg·m²·s⁻²  |  1 Pa = 1 kg·m⁻¹·s⁻².",
+             self.accent_blue, TEXT_WHITE, self.accent_green),
+            ("3. Supplementary Units (Radian & Steradian)",
+             "Pure geometric ratios: Arc / Radius (m/m) and Area / Radius² (m²/m²).",
+             "NEET RULE: Possess authentic units (rad, sr) but strictly ZERO dimensions!",
+             self.accent_blue, TEXT_WHITE, self.accent_gold)
+        ]
 
-        p2_title = Text("2. Universal Foundation for All Derived Units", font_size=13, weight="BOLD", color=self.accent_blue).next_to(p1_sub, DOWN, buff=0.18, aligned_edge=LEFT)
-        p2_desc = Text("   • All other physical quantities (Force, Energy, Pressure, etc.) are combinations", font_size=12, color=TEXT_WHITE).next_to(p2_title, DOWN, buff=0.07, aligned_edge=LEFT)
-        p2_sub = Text("     of these 7 base standards (e.g. 1 N = 1 kg·m·s⁻²).", font_size=11, color=self.accent_green).next_to(p2_desc, DOWN, buff=0.05, aligned_edge=LEFT)
+        for title, l1, l2, c_t, c_l1, c_l2 in items:
+            p_box = RoundedRectangle(corner_radius=0.08, height=pill_h, width=pill_w, stroke_color="#334155", stroke_width=1.0, fill_color="#0F172A", fill_opacity=0.6)
+            
+            box_left = p_box.get_left()[0] + 0.40
+            
+            t_mob = Text(title, font=self.card_font, font_size=12, weight="BOLD", color=c_t).move_to([box_left, p_box.get_top()[1] - 0.24, 0], aligned_edge=LEFT)
+            l1_mob = Text(f"• {l1}", font=self.body_font, font_size=10.5, color=c_l1).next_to(t_mob, DOWN, buff=0.10, aligned_edge=LEFT)
+            l2_mob = Text(f"  {l2}", font=self.body_font, font_size=10, weight="BOLD" if c_l2 == self.accent_gold else "NORMAL", color=c_l2).next_to(l1_mob, DOWN, buff=0.08, aligned_edge=LEFT)
+            
+            pills_vgroup.add(VGroup(p_box, t_mob, l1_mob, l2_mob))
 
-        p3_title = Text("3. Supplementary Units (Radian & Steradian)", font_size=13, weight="BOLD", color=self.accent_blue).next_to(p2_sub, DOWN, buff=0.18, aligned_edge=LEFT)
-        p3_desc = Text("   • Pure geometric ratios: Arc/Radius (m/m) and Area/Radius² (m²/m²).", font_size=12, color=TEXT_WHITE).next_to(p3_title, DOWN, buff=0.07, aligned_edge=LEFT)
-        p3_sub = Text("   • Unique status: Possess SI units (rad, sr) but strictly ZERO dimensions ([M⁰ L⁰ T⁰]).", font_size=11, color=self.accent_gold).next_to(p3_desc, DOWN, buff=0.05, aligned_edge=LEFT)
+        pills_vgroup.arrange(DOWN, buff=0.10).next_to(h_div, DOWN, buff=0.10)
 
-        return VGroup(card_box, card_title, p1_title, p1_desc, p1_sub, p2_title, p2_desc, p2_sub, p3_title, p3_desc, p3_sub)
+        return VGroup(card_box, card_title, card_sub, h_div, pills_vgroup)
 
     def build_beat_4(self):
         trap_box = RoundedRectangle(corner_radius=0.12, height=4.4, width=11.6, stroke_color=self.accent_red, stroke_width=2.0, fill_color="#1e1014", fill_opacity=0.3).move_to(ORIGIN)
@@ -172,21 +245,18 @@ class DerivedUnitsAlgebraicLadderScene(ModularUnit1Scene):
         return VGroup(pfx_box, pfx_title, col1_hdr, col1_vg, div, col2_hdr, col2_vg)
 
     def build_beat_4(self):
-        trap_box = RoundedRectangle(corner_radius=0.12, height=4.4, width=11.6, stroke_color=self.accent_red, stroke_width=2.0, fill_color="#1e1014", fill_opacity=0.3).move_to(ORIGIN)
+        trap_box = RoundedRectangle(corner_radius=0.12, height=4.8, width=11.6, stroke_color=self.accent_red, stroke_width=2.0, fill_color="#1e1014", fill_opacity=0.35).move_to(DOWN * 0.1)
         trap_title = Text("NEET HIGH-YIELD DISTRACTOR TRAP", font=self.card_font, font_size=18, weight="BOLD", color=self.accent_red).next_to(trap_box.get_top(), DOWN, buff=0.22)
 
         lines = [
-            Text("1. Strict SI Rule: Double prefixes are FORBIDDEN (D.C. Pandey).", font=self.body_font, font_size=12, weight="BOLD", color=TEXT_WHITE),
-            Text("   WRONG: 1 μμF (micro-microfarad)   ===>   CORRECT: 1 pF (picofarad)", font=self.body_font, font_size=11, color=self.accent_gold),
-            Text("2. The Kilogram Trap:", font=self.body_font, font_size=12, weight="BOLD", color=TEXT_WHITE),
-            Text("   Since 'kg' already contains 'kilo', prefixes must be attached to 'gram'!", font=self.body_font, font_size=11, color=self.accent_green),
-            Text("   For 10⁻⁶ kg, do NOT write 1 μkg. Write 1 mg (milligram).", font=self.body_font, font_size=11, weight="BOLD", color=self.accent_gold)
+            Text("1. Strict SI Rule: Double prefixes are FORBIDDEN (D.C. Pandey).", font=self.body_font, font_size=13, weight="BOLD", color=TEXT_WHITE),
+            Text("   WRONG: 1 μμF (micro-microfarad)  ===>  CORRECT: 1 pF (picofarad)", font=self.body_font, font_size=12, color=self.accent_gold),
+            Text("2. The Kilogram Trap:", font=self.body_font, font_size=13, weight="BOLD", color=TEXT_WHITE),
+            Text("   Since 'kg' already contains 'kilo', prefixes must attach to 'gram'!", font=self.body_font, font_size=12, color=self.accent_green),
+            Text("   For 10⁻⁶ kg, do NOT write 1 μkg. Write 1 mg (milligram).", font=self.body_font, font_size=12.5, weight="BOLD", color=self.accent_gold)
         ]
-        for l in lines:
-            if l.width > 10.4:
-                l.scale_to_fit_width(10.4)
-        vg = VGroup(*lines).arrange(DOWN, buff=0.14, aligned_edge=LEFT).next_to(trap_title, DOWN, buff=0.22)
-        vg.move_to(trap_box.get_center() + DOWN * 0.22)
+        vg = VGroup(*lines).arrange(DOWN, buff=0.18, aligned_edge=LEFT).next_to(trap_title, DOWN, buff=0.22)
+        vg.move_to(trap_box.get_center() + DOWN * 0.20)
         return VGroup(trap_box, trap_title, vg)
 
 

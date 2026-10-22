@@ -64,7 +64,9 @@ def package_video_aes128(video_path: Path, force: bool = False) -> bool:
     cmd = [
         "ffmpeg", "-y",
         "-i", str(video_path.resolve()),
-        "-c", "copy",
+        "-c:v", "copy",
+        "-c:a", "copy",
+        "-c:s", "webvtt",
         "-hls_time", "4",
         "-hls_playlist_type", "vod",
         "-hls_key_info_file", str(key_info_file.resolve()),
@@ -82,9 +84,14 @@ def package_video_aes128(video_path: Path, force: bool = False) -> bool:
         print(f"❌ Failed to package {video_stem}: {e.stderr.decode('utf-8', errors='ignore')[:300]}")
         return False
 
-def package_all_videos(force: bool = False) -> Dict[str, int]:
+def package_all_videos(force: bool = False, input_dirs: list = None) -> Dict[str, int]:
     ensure_directories()
-    mp4_files = list(FINAL_VIDEOS_DIR.glob("*.mp4"))
+    dirs = input_dirs or [FINAL_VIDEOS_DIR, BASE_DIR / "output" / "unit_01_physics_and_measurement"]
+    mp4_files = []
+    for d in dirs:
+        p_dir = Path(d)
+        if p_dir.exists():
+            mp4_files.extend(p_dir.glob("*.mp4"))
     
     total = len(mp4_files)
     succeeded = 0

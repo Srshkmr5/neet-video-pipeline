@@ -184,3 +184,35 @@
    - For exponents and subscripts, standard font mobjects with sub-mobject positioning must be used. Never use obscure Unicode glyphs (such as Canadian Aboriginal Syllabics `U+146B`) which render as missing-glyph hex boxes in Pango.
 4. **Interactive Markdown Storyboards with Proof Carousels**:
    - The Pre-Flight Gatekeeper compiles all proof screenshots into an interactive Markdown storyboard (`<unit>_preflight_storyboard.md`) with slide carousels for Beats 1–4, formula cards, and NCERT/PYQ audit logs.
+
+
+---
+
+## Pillar 13: Dynamic Audio-Visual Synchronization & Mobile-First Pedagogy
+1. **Dynamic Beat Pacing (Zero Hardcoded Wait Timers)**:
+   - Hardcoded wait timers (e.g. `self.wait(10)`) are strictly forbidden in Manim scenes.
+   - Every visual beat dynamically synchronizes with discrete TTS narration tracks:
+     $$\text{Slide Hold Time} = \text{Audio Beat Duration} - \text{FadeIn (0.8s)} + \text{Inter-beat Buffer (0.5s)}$$
+   - Eliminates desynchronization where slide visuals transition before narration completes.
+2. **NEET Trap Memory Consolidation Hold (3.0-Second Silent Freeze)**:
+   - Beat 4 (NEET Trap Card) must enforce a mandatory **3.0-second silent hold** after narration concludes before any transition.
+   - Gives mobile students dedicated screen time to absorb the trap logic, copy formulas, and reflect without distraction.
+3. **Mobile-First Typography Scale & Ban on Vector Compression**:
+   - Zero horizontal font squeezing: `scale_to_fit_width()` is banned on text mobjects; aspect ratio must remain 1:1.
+   - Text wrapping strictly capped at $\le 55$ characters per line.
+   - Minimum font floor of $\ge 10.5\text{pt}$ (Consolas/Cascadia Mono) ensures perfect clarity on 5.5"–6.5" Android smartphones.
+
+4. **Per-Language Dynamic Visual Alignment (Zero Multilingual Desync)**:
+   - Speaking velocity and syllable structures differ widely between English, Hindi, and Tamil. A slide that takes 25 seconds to explain in English may require 32 seconds in Tamil.
+   - The engine strictly prohibits reusing an English visual video with other language audio overlays.
+   - Every language video (`en-IN`, `hi-IN`, `ta-IN`) must independently synthesize beat-level audio, compute beat hold durations, and compile a dedicated Manim visual render to ensure 100% audio-visual synchronization across all languages.
+
+5. **Mandatory 3-Phase Closing Sequence (Punchline, 3.0s Freeze, and End Card)**:
+   - In all languages (`en-IN`, `hi-IN`, `ta-IN`), Beat 4 must conclude with the explicit closing formula:
+     - English: *"Master this to secure full marks in NEET Physics."*
+     - Hindi: *"नीट परीक्षा में पूरे अंक सुनिश्चित करने के लिए इन नियमों को कंठस्थ कर लें।"*
+     - Tamil: *"நீட் தேர்வில் முழு மதிப்பெண் பெற இந்த விதிகளை நினைவில் நிறுத்துங்கள்."*
+   - Followed by:
+     - Exactly **3.0 seconds of audio silence** while holding the NEET Trap card on screen.
+     - A 3.5-second **Beat 5 Next Video Title End Card** ("UP NEXT IN SEQUENCE: Concept (N+1)/Total: [Title]").
+   - **Mux Truncation Guardrail**: FFmpeg muxing commands must never truncate via `-shortest` against subtitle streams.
