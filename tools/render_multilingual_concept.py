@@ -138,6 +138,26 @@ CONCEPT_BEAT_SCRIPTS = {
             ("beat_3", "கணித ரீதியாக, n அளவீடுகளின் கூட்டுச் சராசரி a-mean என்பது உண்மை மதிப்பின் சிறந்த தோராயமாகும். ஒவ்வொரு அளவீட்டின் தனிப் பிழை டெல்டா a-i என்பது சராசரியிலிருந்து அதன் விலக்கத்தின் நேர்மறை எண் மதிப்பாகும். இந்த எண் மதிப்புகளின் சராசரியே சராசரி தனிப் பிழை ஆகும், இதிலிருந்து பின்னப் பிழை மற்றும் விழுக்காட்டுப் பிழை கணக்கிடப்படுகின்றன."),
             ("beat_4", "இப்போது முக்கியமான நீட் தேர்வு பொறியைக் கவனியுங்கள்: சராசரி தனிப் பிழை காணும்போது குறியீடுகளை நீக்க மாணவர்கள் மறந்துவிடுகிறார்கள்! கூட்டுச் சராசரியின் கணித விதிப்படி, அனைத்து விலக்கங்களின் இயற்கணிதக் கூடுதல் எப்போதும் பூஜ்ஜியமாகும். மட்டு எண் மதிப்புகளை எடுக்காமல் கூட்டினால் பூஜ்ஜியமே விடையாக வரும்! எனவே எப்போதும் நேர்மறை எண் மதிப்புகளை மட்டுமே கூட்டி நீட் தேர்வில் முழு மதிப்பெண் பெறுங்கள்.")
         ]
+    },
+    "P11-C01-T03-V06": {
+        "en-IN": [
+            ("beat_1", "Welcome to Physics and Measurement. In this masterclass, we explore the Combination and Propagation of Errors, focusing on the Master Power Rule."),
+            ("beat_2", "When physical quantities combine through multiplication, division, or powers in the relation Z equals A to the p, times B to the q, divided by C to the r, relative errors accumulate. The fractional error delta Z over Z equals p times delta A over A, plus q times delta B over B, plus r times delta C over C. Each exponent acts as a linear multiplier for that quantity's relative uncertainty."),
+            ("beat_3", "Consider this classic NEET numerical: given Z equals A to the fourth, times B to the one-third, divided by C, times D to the three-halves, with percentage errors of one, three, two, and four percent. Multiplying each error by its exponent yields four percent from A, one percent from B, two percent from C, and six percent from D. Summing all contributions gives a total maximum percentage error of thirteen percent."),
+            ("beat_4", "Now heed the single most common NEET Trap: students frequently see C and D in the denominator and subtract their errors! This is a fatal misconception! In worst-case error analysis, uncertainties never cancel out; they always reinforce each other. Furthermore, the variable with the highest power coefficient contributes the largest error and demands the highest measurement precision.")
+        ],
+        "hi-IN": [
+            ("beat_1", "भौतिकी और मापन में आपका स्वागत है। इस सत्र में हम त्रुटियों के संयोजन, संचरण और घात नियम का गहन अध्ययन करेंगे।"),
+            ("beat_2", "जब भौतिक राशियाँ गुणन, भाग या घात के रूप में Z बराबर A की घात p, गुणा B की घात q, बटे C की घात r से जुड़ी हों, तो आपेक्षिक त्रुटियाँ संचित होती हैं। आपेक्षिक त्रुटि डेल्टा Z बटे Z बराबर p गुणा डेल्टा A बटे A, प्लस q गुणा डेल्टा B बटे B, प्लस r गुणा डेल्टा C बटे C होती है। प्रत्येक घात उस राशि की आपेक्षिक अनिश्चितता के लिए एक रेखीय गुणक का कार्य करती है।"),
+            ("beat_3", "नीट का यह क्लासिक संख्यात्मक प्रश्न देखें: यदि Z बराबर A की घात चार, गुणा B की घात एक बटे तीन, बटे C, गुणा D की घात तीन बटे दो है, जहाँ त्रुटियाँ एक, तीन, दो और चार प्रतिशत हैं। घातों से गुणा करने पर A से चार प्रतिशत, B से एक प्रतिशत, C से दो प्रतिशत और D से छह प्रतिशत प्राप्त होता है। सभी को जोड़ने पर कुल अधिकतम प्रतिशत त्रुटि ठीक तेरह प्रतिशत प्राप्त होती है।"),
+            ("beat_4", "अब ध्यान दें नीट परीक्षा के सबसे घातक ट्रैप पॉइंट पर: छात्र अक्सर हर में स्थित C और D को देखकर उनकी त्रुटियों को घटा देते हैं! यह एक भयंकर भूल है! अधिकतम त्रुटि विश्लेषण में त्रुटियाँ कभी घटती या कटती नहीं हैं, वे सदैव जुड़ती हैं। इसके अलावा, जिस राशि की घात सबसे अधिक होती है, कुल अनिश्चितता में उसका योगदान सर्वाधिक होता है।")
+        ],
+        "ta-IN": [
+            ("beat_1", "இயற்பியல் மற்றும் அளவீட்டியல் பாடத்திற்கு வரவேற்கிறோம். இந்த அமர்வில் நாம் பிழைகளின் சேர்க்கை, பரவல் மற்றும் அடுக்கு விதியை விரிவாகக் கற்கிறோம்."),
+            ("beat_2", "இயற்பியல் அளவுகள் பெருக்கல், வகுத்தல் அல்லது அடுக்குகளின் மூலம் Z சமம் A அடுக்கு p, பெருக்கல் B அடுக்கு q, வகுத்தல் C அடுக்கு r என இணையும் போது, பின்னப் பிழைகள் ஒன்றுசேர்கின்றன. பின்னப் பிழை டெல்டா Z by Z சமம் p பெருக்கல் டெல்டா A by A, பிளஸ் q பெருக்கல் டெல்டா B by B, பிளஸ் r பெருக்கல் டெல்டா C by C ஆகும். ஒவ்வொரு அடுக்கும் அந்த அளவின் பிழைக்கான பெருக்கியாகச் செயல்படுகிறது."),
+            ("beat_3", "இந்த மாதிரி நீட் கணக்கீட்டைக் கவனியுங்கள்: Z சமம் A அடுக்கு நான்கு, பெருக்கல் B அடுக்கு ஒன்று கீழ் மூன்று, வகுத்தல் C, பெருக்கல் D அடுக்கு மூன்று கீழ் இரண்டு, இவற்றின் விழுக்காட்டுப் பிழைகள் ஒன்று, மூன்று, இரண்டு மற்றும் நான்கு சதவீதம் எனில்; அடுக்குகளால் பெருக்கினால் A-க்கு நான்கு சதவீதம், B-க்கு ஒரு சதவீதம், C-க்கு இரண்டு சதவீதம் மற்றும் D-க்கு ஆறு சதவீதம் கிடைக்கும். அனைத்தையும் கூட்டினால் மொத்த அதிகபட்ச விழுக்காட்டுப் பிழை பதிமூன்று சதவீதம் ஆகும்."),
+            ("beat_4", "இப்போது முக்கியமான நீட் தேர்வு பொறியைக் கவனியுங்கள்: வகுத்தலில் உள்ள C மற்றும் D அளவுகளின் பிழைகளைக் கழிக்க வேண்டும் என்று மாணவர்கள் அடிக்கடி தவறாகக் கருதுகிறார்கள்! அதிகபட்ச பிழைப் பகுப்பாய்வில் பிழைகள் ஒருபோதும் கழியாது, அவை எப்போதும் கூடும். மேலும், அதிக அடுக்குக் கொண்ட அளவே மொத்தப் பிழையைத் தீர்மானிப்பதால், அதை மிகத் துல்லியமான கருவியால் அளக்க வேண்டும்.")
+        ]
     }
 }
 

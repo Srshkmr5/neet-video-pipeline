@@ -466,7 +466,7 @@ class PowerRuleCalculationTreeScene(ModularUnit1Scene):
         tree_box = RoundedRectangle(corner_radius=0.12, height=4.8, width=11.6, stroke_color=self.accent_blue, stroke_width=1.5, fill_color="#0F172A", fill_opacity=0.0).move_to(DOWN * 0.1)
         tree_title = Text("NUMERICAL STEP TREE: NEET FREQUENT PYQ PATTERN", font=self.card_font, font_size=16, weight="BOLD", color=self.accent_gold).next_to(tree_box.get_top(), DOWN, buff=0.20)
 
-        prob = Text("Given: Z = ( A⁴ · B¹/³ ) / ( C · D³/² ), with errors: A=1%, B=3%, C=2%, D=4%", font=self.body_font, font_size=12, color=TEXT_WHITE).next_to(tree_title, DOWN, buff=0.22)
+        prob = Text("Given: Z = ( A⁴ · B¹/³ ) / ( C · D³/² ), with errors: A=1%, B=3%, C=2%, D=4%", font=self.body_font, font_size=12.5, color=TEXT_WHITE).next_to(tree_title, DOWN, buff=0.22)
         
         step_a = Text("• Contribution from A: 4 × (1%)          =  4.0%", font=self.body_font, font_size=12.5, color=self.accent_blue)
         step_b = Text("• Contribution from B: (1/3) × (3%)      =  1.0%", font=self.body_font, font_size=12.5, color=self.accent_blue)
@@ -483,11 +483,11 @@ class PowerRuleCalculationTreeScene(ModularUnit1Scene):
 
         lines = [
             Text("1. The Denominator Subtraction Trap (D.C. Pandey):", font=self.body_font, font_size=12.5, weight="BOLD", color=TEXT_WHITE),
-            Text("   Students see C in denominator and subtract: - r · (ΔC / C).", font=self.body_font, font_size=12, color=self.accent_gold),
-            Text("   FATAL ERROR! In worst-case analysis, ERRORS ALWAYS ACCUMULATE (ADD)!", font=self.body_font, font_size=12, weight="BOLD", color=self.accent_red),
+            Text("   Students see C in denominator and subtract: - r · (ΔC / C).", font=self.body_font, font_size=12.5, color=self.accent_gold),
+            Text("   FATAL ERROR! In worst-case analysis, ERRORS ALWAYS ACCUMULATE (ADD)!", font=self.body_font, font_size=12.5, weight="BOLD", color=self.accent_red),
             Text("2. Dominant Contributor Rule:", font=self.body_font, font_size=12.5, weight="BOLD", color=TEXT_WHITE),
-            Text("   The quantity with the HIGHEST power coefficient dominates total uncertainty.", font=self.body_font, font_size=12, color=self.accent_green),
-            Text("   It must always be measured with the highest precision instrument!", font=self.body_font, font_size=12, weight="BOLD", color=self.accent_gold)
+            Text("   The quantity with the HIGHEST power coefficient dominates total uncertainty.", font=self.body_font, font_size=12.5, color=self.accent_green),
+            Text("   It must always be measured with the highest precision instrument!", font=self.body_font, font_size=12.5, weight="BOLD", color=self.accent_gold)
         ]
         vg = VGroup(*lines).arrange(DOWN, buff=0.14, aligned_edge=LEFT).next_to(trap_title, DOWN, buff=0.20)
         vg.move_to(trap_box.get_center() + DOWN * 0.20)
