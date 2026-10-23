@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit 1: Physics & Measurement — Interactive Experimental Lab</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body { margin: 0; background-color: #030712; color: #F8FAFC; font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; }
+    .glass-card { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(14px); border: 1px solid rgba(56, 189, 248, 0.2); }
+    .glow-cyan { text-shadow: 0 0 10px rgba(56, 189, 248, 0.6); }
+    .glow-gold { text-shadow: 0 0 10px rgba(250, 204, 21, 0.6); }
+    .glow-green { text-shadow: 0 0 10px rgba(74, 222, 128, 0.6); }
+    .glow-red { text-shadow: 0 0 10px rgba(244, 63, 94, 0.6); }
+    input[type=range] { accent-color: #38bdf8; }
+    .tab-btn.active { background: #0284c7; color: #ffffff; border-color: #38bdf8; box-shadow: 0 0 12px rgba(2, 132, 199, 0.5); }
+    .tab-btn:not(.active) { background: #0f172a; color: #94a3b8; border-color: #1e293b; }
+    .tab-btn:not(.active):hover { background: #1e293b; color: #f8fafc; }
+  </style>
+</head>
+<body class="h-screen flex flex-col bg-[#030712] overflow-hidden">
+
+  <!-- Top Lab Header & Mode Selector -->
+  <header class="h-14 border-b border-slate-800 bg-[#0B0F19]/90 px-4 flex items-center justify-between shrink-0 z-20">
+    <div class="flex items-center space-x-3">
+      <div class="px-2.5 py-1 rounded bg-sky-950/80 border border-sky-500/40 text-sky-400 font-mono font-bold text-xs">
+        UNIT 1 LAB
+      </div>
+      <h1 class="text-sm font-bold text-white tracking-wide hidden sm:block">
+        Physics & Measurement — Interactive Precision Simulator
+      </h1>
+    </div>
+
+    <!-- Mode Selector Pills -->
+    <div class="flex items-center space-x-1.5 text-xs font-mono">
+      <button id="modeVernierBtn" onclick="switchMode('vernier_screw')" class="tab-btn px-3 py-1.5 rounded-lg border font-semibold transition active">
+        📏 Vernier & Screw Gauge
+      </button>
+      <button id="modeErrorBtn" onclick="switchMode('error_propagation')" class="tab-btn px-3 py-1.5 rounded-lg border font-semibold transition">
+        ⚡ Error Propagation
+      </button>
+      <button id="modeHomogeneityBtn" onclick="switchMode('homogeneity')" class="tab-btn px-3 py-1.5 rounded-lg border font-semibold transition">
+        ⚖️ Homogeneity
+      </button>
+      <button id="modeSigFigBtn" onclick="switchMode('sig_figs')" class="tab-btn px-3 py-1.5 rounded-lg border font-semibold transition">
+        🔢 Significant Figures
+      </button>
+    </div>
+  </header>
+
+  <!-- Lab Workspace -->
+  <main class="flex-1 flex overflow-hidden relative">
+
+    <!-- ============================================================== -->
+    <!-- MODE 1: VERNIER CALLIPERS & SCREW GAUGE (P11-C01-T04-V07)     -->
+    <!-- ============================================================== -->
+    <div id="viewVernier" class="flex-1 flex flex-col lg:flex-row p-4 gap-4 overflow-y-auto">
+      
+      <!-- Interactive Canvas Stage -->
+      <div class="flex-1 flex flex-col glass-card rounded-2xl p-4 shadow-xl border border-sky-500/20 relative">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-2 mb-2">
+          <div class="flex items-center space-x-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span id="instTitle" class="text-xs font-mono font-bold text-slate-200">VERNIER CALLIPER SIMULATOR (10 VSD = 9 MSD)</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <button onclick="toggleInstrument('vernier')" id="subVernierBtn" class="px-2.5 py-1 rounded text-[11px] font-bold bg-sky-600 text-white">Vernier</button>
+            <button onclick="toggleInstrument('screw')" id="subScrewBtn" class="px-2.5 py-1 rounded text-[11px] font-bold bg-slate-800 text-slate-400 hover:text-white">Screw Gauge</button>
+          </div>
+        </div>
+
+        <div class="flex-1 flex items-center justify-center bg-black/40 rounded-xl p-2 min-h-[280px]">
+          <canvas id="instCanvas" width="760" height="260" class="max-w-full h-auto"></canvas>
+        </div>
+
+        <!-- Slider Controls -->
+        <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono bg-slate-900/60 p-3.5 rounded-xl border border-slate-800">
+          <div>
+            <div class="flex justify-between text-slate-300 mb-1">
+              <span id="sliderLabel">Jaw Position (Observed Reading):</span>
+              <span id="sliderVal" class="text-sky-400 font-bold">2.43 cm</span>
+            </div>
+            <input type="range" id="jawSlider" min="0" max="6.0" step="0.01" value="2.43" oninput="updateInstrument()" class="w-full">
+          </div>
+          <div>
+            <div class="flex justify-between text-slate-300 mb-1">
+              <span>Zero Error (e):</span>
+              <span id="zeroErrorVal" class="text-amber-400 font-bold">+0.02 cm</span>
+            </div>
+            <input type="range" id="zeroSlider" min="-0.05" max="0.05" step="0.01" value="0.02" oninput="updateInstrument()" class="w-full">
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Formula & Live Calculation Panel -->
+      <div class="w-full lg:w-96 flex flex-col gap-4 shrink-0">
+        <!-- Live Mathematical Breakdown Card -->
+        <div class="glass-card rounded-2xl p-4 shadow-xl border border-sky-500/20 space-y-3">
+          <div class="flex items-center space-x-2 border-b border-slate-800 pb-2">
+            <span class="text-amber-400">📐</span>
+            <span class="text-xs font-mono font-bold text-amber-300 uppercase">Live Reading Decomposition</span>
+          </div>
+
+          <div class="space-y-2 text-xs font-mono">
+            <div class="flex justify-between bg-slate-900/80 p-2 rounded-lg border border-slate-800">
+              <span class="text-slate-400">Least Count (LC):</span>
+              <span id="instLC" class="text-sky-300 font-bold">0.01 cm (0.1 mm)</span>
+            </div>
+            <div class="flex justify-between bg-slate-900/80 p-2 rounded-lg border border-slate-800">
+              <span class="text-slate-400">Main Scale Reading (MSR):</span>
+              <span id="instMSR" class="text-slate-200 font-bold">2.40 cm</span>
+            </div>
+            <div class="flex justify-between bg-slate-900/80 p-2 rounded-lg border border-slate-800">
+              <span class="text-slate-400">Coinciding Division:</span>
+              <span id="instVSD" class="text-slate-200 font-bold">3 × 0.01 = 0.03 cm</span>
+            </div>
+            <div class="flex justify-between bg-slate-900/80 p-2 rounded-lg border border-slate-800">
+              <span class="text-slate-400">Observed Reading:</span>
+              <span id="instObserved" class="text-sky-400 font-bold">2.43 cm</span>
+            </div>
+            <div class="flex justify-between bg-slate-900/80 p-2 rounded-lg border border-slate-800">
+              <span class="text-slate-400">Zero Error Correction:</span>
+              <span id="instZeroCorr" class="text-amber-400 font-bold">- (+0.02 cm)</span>
+            </div>
+            <div class="flex justify-between bg-emerald-950/40 p-2.5 rounded-lg border border-emerald-500/40 text-sm font-bold">
+              <span class="text-emerald-300">True Corrected Reading:</span>
+              <span id="instTrueReading" class="text-emerald-400 glow-green">2.41 cm</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- NEET Trap Warning Card -->
+        <div class="p-3.5 rounded-2xl bg-rose-950/60 border border-rose-500/40 space-y-2 text-xs">
+          <div class="flex items-center space-x-2 text-rose-400 font-bold">
+            <span>⚠️</span>
+            <span>NEET Zero Error Sign Convention</span>
+          </div>
+          <p class="text-slate-300 text-[11px] leading-relaxed">
+            <strong class="text-white">True Reading = Observed - (Zero Error)</strong><br>
+            • Positive error (<span class="text-amber-300">+e</span>) over-reads: <span class="text-rose-300 font-bold">SUBTRACT</span> it.<br>
+            • Negative error (<span class="text-emerald-300">-e</span>) under-reads: subtracting a negative <span class="text-emerald-300 font-bold">ADDS</span> it!
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- MODE 2: ERROR PROPAGATION & POWER RULE (P11-C01-T03-V05/V06)  -->
+    <!-- ============================================================== -->
+    <div id="viewError" class="flex-1 hidden flex-col lg:flex-row p-4 gap-4 overflow-y-auto">
+      
+      <!-- Interactive Sliders for Powers and Relative Errors -->
+      <div class="flex-1 flex flex-col glass-card rounded-2xl p-4 shadow-xl border border-sky-500/20 space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+          <div class="flex items-center space-x-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse"></span>
+            <span class="text-xs font-mono font-bold text-amber-300">NEET POWER RULE ERROR CALCULATOR: Z = ( A^p · B^q ) / ( C^r · D^s )</span>
+          </div>
+        </div>
+
+        <!-- Governing Formula Display -->
+        <div class="bg-slate-900/80 p-3 rounded-xl border border-sky-500/20 text-center font-mono space-y-1">
+          <div class="text-xs text-slate-400">Fractional Error Expansion:</div>
+          <div class="text-sm font-bold text-sky-300">
+            ΔZ / Z = <span class="text-sky-400">p·(ΔA/A)</span> + <span class="text-sky-400">q·(ΔB/B)</span> + <span class="text-emerald-400">r·(ΔC/C)</span> + <span class="text-emerald-400">s·(ΔD/D)</span>
+          </div>
+        </div>
+
+        <!-- 4 Variable Sliders Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
+          <!-- Variable A -->
+          <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800 space-y-2">
+            <div class="flex justify-between font-bold text-sky-400">
+              <span>Variable A (Numerator)</span>
+              <span>Contrib: <span id="contribA" class="text-sky-300">4.0%</span></span>
+            </div>
+            <div class="flex justify-between text-slate-400 text-[11px]">
+              <span>Exponent p: <span id="pVal" class="text-white font-bold">4</span></span>
+              <span>% Error ΔA/A: <span id="errAVal" class="text-white font-bold">1.0%</span></span>
+            </div>
+            <input type="range" id="sliderP" min="1" max="5" step="1" value="4" oninput="recalcErrors()" class="w-full">
+            <input type="range" id="sliderErrA" min="0.5" max="5" step="0.5" value="1.0" oninput="recalcErrors()" class="w-full">
+          </div>
+
+          <!-- Variable B -->
+          <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800 space-y-2">
+            <div class="flex justify-between font-bold text-sky-400">
+              <span>Variable B (Numerator)</span>
+              <span>Contrib: <span id="contribB" class="text-sky-300">1.0%</span></span>
+            </div>
+            <div class="flex justify-between text-slate-400 text-[11px]">
+              <span>Exponent q: <span id="qVal" class="text-white font-bold">1/3</span></span>
+              <span>% Error ΔB/B: <span id="errBVal" class="text-white font-bold">3.0%</span></span>
+            </div>
+            <input type="range" id="sliderQ" min="0.333" max="3" step="0.333" value="0.333" oninput="recalcErrors()" class="w-full">
+            <input type="range" id="sliderErrB" min="0.5" max="6" step="0.5" value="3.0" oninput="recalcErrors()" class="w-full">
+          </div>
+
+          <!-- Variable C (Denominator) -->
+          <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800 space-y-2">
+            <div class="flex justify-between font-bold text-emerald-400">
+              <span>Variable C (Denominator)</span>
+              <span>Contrib: <span id="contribC" class="text-emerald-300">2.0%</span></span>
+            </div>
+            <div class="flex justify-between text-slate-400 text-[11px]">
+              <span>Exponent r: <span id="rVal" class="text-white font-bold">1</span></span>
+              <span>% Error ΔC/C: <span id="errCVal" class="text-white font-bold">2.0%</span></span>
+            </div>
+            <input type="range" id="sliderR" min="1" max="4" step="1" value="1" oninput="recalcErrors()" class="w-full">
+            <input type="range" id="sliderErrC" min="0.5" max="5" step="0.5" value="2.0" oninput="recalcErrors()" class="w-full">
+          </div>
+
+          <!-- Variable D (Denominator) -->
+          <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800 space-y-2">
+            <div class="flex justify-between font-bold text-emerald-400">
+              <span>Variable D (Denominator)</span>
+              <span>Contrib: <span id="contribD" class="text-emerald-300">6.0%</span></span>
+            </div>
+            <div class="flex justify-between text-slate-400 text-[11px]">
+              <span>Exponent s: <span id="sVal" class="text-white font-bold">1.5</span></span>
+              <span>% Error ΔD/D: <span id="errDVal" class="text-white font-bold">4.0%</span></span>
+            </div>
+            <input type="range" id="sliderS" min="0.5" max="3" step="0.5" value="1.5" oninput="recalcErrors()" class="w-full">
+            <input type="range" id="sliderErrD" min="0.5" max="5" step="0.5" value="4.0" oninput="recalcErrors()" class="w-full">
+          </div>
+        </div>
+
+        <!-- Denominator Trap Toggle Button -->
+        <div class="flex items-center justify-between p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono">
+          <div>
+            <span class="text-slate-300 font-bold">Denominator Error Handling:</span>
+            <span id="trapModeText" class="ml-2 text-emerald-400 font-bold">Correct Worst-Case (+ Add)</span>
+          </div>
+          <button onclick="toggleErrorTrap()" id="trapToggleBtn" class="px-3 py-1 rounded bg-slate-800 text-slate-300 hover:text-white border border-slate-700">
+            Simulate Student Trap (- Subtract)
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Output & Mean Error Card -->
+      <div class="w-full lg:w-96 flex flex-col gap-4 shrink-0">
+        <!-- Result Box -->
+        <div class="glass-card rounded-2xl p-4 shadow-xl border border-sky-500/20 space-y-3">
+          <div class="text-xs font-mono font-bold text-amber-300 uppercase border-b border-slate-800 pb-2">
+            Total Uncertainty Outcome
+          </div>
+          <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800 space-y-2 text-xs font-mono">
+            <div class="flex justify-between text-slate-400">
+              <span>Numerator Sum:</span>
+              <span id="numSum" class="text-sky-300 font-bold">5.0%</span>
+            </div>
+            <div class="flex justify-between text-slate-400">
+              <span>Denominator Contribution:</span>
+              <span id="denSum" class="text-emerald-300 font-bold">+ 8.0%</span>
+            </div>
+            <div class="pt-2 border-t border-slate-800 flex justify-between items-center text-sm font-bold">
+              <span class="text-white">Maximum % Error in Z:</span>
+              <span id="totalErrZ" class="text-amber-400 text-base glow-gold">13.0%</span>
+            </div>
+          </div>
+
+          <div id="trapFlashBox" class="hidden p-3 rounded-xl bg-rose-950 border border-rose-500/50 text-xs text-rose-300">
+            <strong>❌ FATAL EXAM ERROR APPLIED!</strong><br>
+            You subtracted the denominator errors (giving <span id="errTrapVal" class="font-bold text-white">-3.0%</span>). In real experimental measurements, uncertainties NEVER cancel out!
+          </div>
+        </div>
+
+        <!-- Arithmetic Mean Zero Sum Proof Card -->
+        <div class="glass-card rounded-2xl p-4 shadow-xl border border-sky-500/20 space-y-2 text-xs font-mono">
+          <div class="text-xs font-bold text-sky-400 border-b border-slate-800 pb-1">
+            Zero-Sum Trap Proof (Σ(a_mean - a_i) = 0)
+          </div>
+          <p class="text-slate-400 text-[11px] leading-relaxed">
+            Consider readings: <span class="text-white">10.2, 10.4, 9.8, 9.6</span> (Mean = 10.0)<br>
+            • Signed sum: (+0.2) + (+0.4) + (-0.2) + (-0.4) = <span class="text-rose-400 font-bold">0.00</span><br>
+            • Mean Absolute Error: (|0.2| + |0.4| + |0.2| + |0.4|)/4 = <span class="text-emerald-400 font-bold">0.30</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- MODE 3: HOMOGENEITY & TRANSCENDENTAL FUNCTIONS (V03/V04)      -->
+    <!-- ============================================================== -->
+    <div id="viewHomogeneity" class="flex-1 hidden flex-col lg:flex-row p-4 gap-4 overflow-y-auto">
+      
+      <!-- Van der Waals Equation Solver -->
+      <div class="flex-1 flex flex-col glass-card rounded-2xl p-4 shadow-xl border border-sky-500/20 space-y-4">
+        <div class="flex items-center space-x-2 border-b border-slate-800 pb-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-sky-400"></span>
+          <span class="text-xs font-mono font-bold text-sky-300">VAN DER WAALS DIMENSIONAL HOMOGENEITY CHECKER</span>
+        </div>
+
+        <div class="bg-slate-900/80 p-4 rounded-xl border border-sky-500/30 text-center font-mono">
+          <span class="text-lg font-bold text-sky-400">( P + a / V² ) · ( V - b ) = R · T</span>
+        </div>
+
+        <div class="space-y-3 text-xs font-mono">
+          <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800 space-y-1">
+            <span class="font-bold text-amber-300">1. Pressure Term Homogeneity:</span>
+            <p class="text-slate-300 text-[11px] leading-relaxed">
+              [P] = [a / V²]  ==>  [a] = [P] · [V²]<br>
+              = [M L⁻¹ T⁻²] · [L³]² = <span class="text-amber-400 font-bold">[M L⁵ T⁻²]</span>
+            </p>
+          </div>
+
+          <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800 space-y-1">
+            <span class="font-bold text-emerald-300">2. Volume Term Homogeneity:</span>
+            <p class="text-slate-300 text-[11px] leading-relaxed">
+              [b] = [V] = <span class="text-emerald-400 font-bold">[L³]</span>
+            </p>
+          </div>
+
+          <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800 space-y-1">
+            <span class="font-bold text-purple-300">3. Transcendental Wave Function Rule:</span>
+            <p class="text-slate-300 text-[11px] leading-relaxed">
+              In y = A · sin(ωt - kx):<br>
+              • [ωt] = [1]  ==>  [ω] = [1/t] = <span class="text-purple-400 font-bold">[T⁻¹]</span><br>
+              • [kx] = [1]  ==>  [k] = [1/x] = <span class="text-purple-400 font-bold">[L⁻¹]</span><br>
+              • [A] = [y] = <span class="text-purple-400 font-bold">[L]</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Trap Card -->
+      <div class="w-full lg:w-96 glass-card rounded-2xl p-4 shadow-xl border border-rose-500/20 space-y-3 shrink-0">
+        <div class="text-xs font-mono font-bold text-rose-400 uppercase border-b border-slate-800 pb-2 flex items-center space-x-2">
+          <span>⚠️</span>
+          <span>NEET Homogeneity Limitation</span>
+        </div>
+        <div class="space-y-2 text-xs text-slate-300 leading-relaxed font-mono">
+          <p>
+            <strong class="text-white">Necessary but NOT Sufficient:</strong><br>
+            A dimensionally consistent equation is not necessarily physically correct!
+          </p>
+          <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-[11px]">
+            Example: <code class="text-sky-300">s = ut + at²</code> is dimensionally homogeneous, but physically false because the factor 1/2 is missing!
+          </div>
+          <p class="text-[11px] text-slate-400">
+            Dimensional analysis can never verify pure numerical constants like 1/2, 2π, or √3.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- MODE 4: SIGNIFICANT FIGURES & ROUNDING ENGINE (P11-C01-T04-V08) -->
+    <!-- ============================================================== -->
+    <div id="viewSigFig" class="flex-1 hidden flex-col lg:flex-row p-4 gap-4 overflow-y-auto">
+      
+      <!-- Interactive Number Parser -->
+      <div class="flex-1 flex flex-col glass-card rounded-2xl p-4 shadow-xl border border-sky-500/20 space-y-4">
+        <div class="flex items-center space-x-2 border-b border-slate-800 pb-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+          <span class="text-xs font-mono font-bold text-emerald-300">NCERT SIGNIFICANT FIGURES & ARITHMETIC ROUNDING ENGINE</span>
+        </div>
+
+        <div class="space-y-3">
+          <label class="block text-xs font-mono text-slate-400">Test Any Number:</label>
+          <div class="flex gap-2">
+            <input type="text" id="sfInput" value="0.00470" class="flex-1 px-3 py-2 bg-slate-900 border border-slate-700 rounded-lg text-sm font-mono text-sky-300 focus:outline-none focus:border-sky-500" placeholder="e.g. 0.0052, 4700, 3.500">
+            <button onclick="analyzeSigFigs()" class="px-4 py-2 bg-sky-600 hover:bg-sky-500 rounded-lg text-xs font-bold text-white font-mono">
+              Analyze SF
+            </button>
+          </div>
+
+          <!-- Quick Test Badges -->
+          <div class="flex flex-wrap gap-1.5 text-[11px] font-mono">
+            <button onclick="setSFTest('0.00470')" class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 hover:text-white">0.00470 (3 SF)</button>
+            <button onclick="setSFTest('4700')" class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 hover:text-white">4700 (2 SF)</button>
+            <button onclick="setSFTest('3.500')" class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 hover:text-white">3.500 (4 SF)</button>
+            <button onclick="setSFTest('4007')" class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 hover:text-white">4007 (4 SF)</button>
+            <button onclick="setSFTest('9.99 - 0.0099')" class="px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800">NEET 2020: 9.99 - 0.0099</button>
+          </div>
+        </div>
+
+        <!-- Breakdown Result Box -->
+        <div id="sfResultCard" class="bg-slate-900/80 p-4 rounded-xl border border-slate-800 space-y-2 font-mono text-xs">
+          <div class="flex justify-between items-center">
+            <span class="text-slate-400">Total Significant Figures:</span>
+            <span id="sfCount" class="text-lg font-bold text-emerald-400 glow-green">3 SF</span>
+          </div>
+          <div class="text-[11px] text-slate-300 leading-relaxed" id="sfExplanation">
+            • Leading zeros (0.00) are placeholders and NEVER significant.<br>
+            • Digits 4 and 7 are non-zero (significant).<br>
+            • Trailing zero (0) after decimal is significant because it reflects precision.
+          </div>
+        </div>
+
+        <!-- Arithmetic Rules Matrix -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono pt-2">
+          <div class="bg-slate-900/60 p-3 rounded-xl border border-sky-500/20 space-y-1">
+            <span class="font-bold text-sky-400">Addition / Subtraction Rule:</span>
+            <p class="text-slate-300 text-[11px] leading-relaxed">
+              Governed strictly by <strong class="text-white">LEAST DECIMAL PLACES</strong>.<br>
+              436.32 (2 dec) + 227.2 (1 dec) = 663.52  ==>  <span class="text-sky-300 font-bold">663.5</span>
+            </p>
+          </div>
+          <div class="bg-slate-900/60 p-3 rounded-xl border border-amber-500/20 space-y-1">
+            <span class="font-bold text-amber-400">Multiplication / Division Rule:</span>
+            <p class="text-slate-300 text-[11px] leading-relaxed">
+              Governed strictly by <strong class="text-white">LEAST SIGNIFICANT FIGURES</strong>.<br>
+              4.237 g (4 SF) / 2.51 cm³ (3 SF) = 1.688...  ==>  <span class="text-amber-300 font-bold">1.69 g/cm³</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right NEET 2020 Trap Breakdown -->
+      <div class="w-full lg:w-96 glass-card rounded-2xl p-4 shadow-xl border border-rose-500/20 space-y-3 shrink-0">
+        <div class="text-xs font-mono font-bold text-rose-400 uppercase border-b border-slate-800 pb-2 flex items-center space-x-2">
+          <span>⚠️</span>
+          <span>NEET 2020 High-Frequency Trap</span>
+        </div>
+        <div class="space-y-2 text-xs font-mono text-slate-300">
+          <p class="text-white font-bold">Question: 9.99 m - 0.0099 m = ?</p>
+          <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-[11px] space-y-1">
+            <div class="text-slate-400">Direct difference: 9.9801 m</div>
+            <div>• Least decimal places is in 9.99 (2 decimals).</div>
+            <div>• Must round to 2 decimals: <span class="text-emerald-400 font-bold">9.98 m</span></div>
+          </div>
+          <p class="text-[11px] text-rose-300">
+            Trap: Students counting significant figures incorrectly choose 9.980 m or 9.9 m!
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Interactive JavaScript Engine -->
+  <script>
+    // 1. Mode Switching & URL Query Parameter Support
+    function switchMode(mode) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('viewVernier').classList.add('hidden');
+      document.getElementById('viewError').classList.add('hidden');
+      document.getElementById('viewHomogeneity').classList.add('hidden');
+      document.getElementById('viewSigFig').classList.add('hidden');
+
+      if (mode === 'vernier_screw') {
+        document.getElementById('modeVernierBtn').classList.add('active');
+        document.getElementById('viewVernier').classList.remove('hidden');
+        drawVernier();
+      } else if (mode === 'error_propagation' || mode === 'errors' || mode === 'error_taxonomy') {
+        document.getElementById('modeErrorBtn').classList.add('active');
+        document.getElementById('viewError').classList.remove('hidden');
+        recalcErrors();
+      } else if (mode === 'homogeneity' || mode === 'dimensions') {
+        document.getElementById('modeHomogeneityBtn').classList.add('active');
+        document.getElementById('viewHomogeneity').classList.remove('hidden');
+      } else if (mode === 'sig_figs' || mode === 'si_units') {
+        document.getElementById('modeSigFigBtn').classList.add('active');
+        document.getElementById('viewSigFig').classList.remove('hidden');
+        analyzeSigFigs();
+      }
+    }
+
+    // Auto-detect mode from URL param ?mode=
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const m = params.get('mode') || 'vernier_screw';
+      switchMode(m);
+    });
+
+    // 2. Vernier & Screw Gauge Interactive Canvas
+    let currentInstrument = 'vernier';
+    function toggleInstrument(type) {
+      currentInstrument = type;
+      if (type === 'vernier') {
+        document.getElementById('subVernierBtn').className = "px-2.5 py-1 rounded text-[11px] font-bold bg-sky-600 text-white";
+        document.getElementById('subScrewBtn').className = "px-2.5 py-1 rounded text-[11px] font-bold bg-slate-800 text-slate-400 hover:text-white";
+        document.getElementById('instTitle').innerText = "VERNIER CALLIPER SIMULATOR (10 VSD = 9 MSD)";
+        document.getElementById('sliderLabel').innerText = "Jaw Position (Observed Reading):";
+        document.getElementById('jawSlider').max = "6.0";
+        document.getElementById('jawSlider').value = "2.43";
+        document.getElementById('instLC').innerText = "0.01 cm (0.1 mm)";
+      } else {
+        document.getElementById('subScrewBtn').className = "px-2.5 py-1 rounded text-[11px] font-bold bg-sky-600 text-white";
+        document.getElementById('subVernierBtn').className = "px-2.5 py-1 rounded text-[11px] font-bold bg-slate-800 text-slate-400 hover:text-white";
+        document.getElementById('instTitle').innerText = "SCREW GAUGE SIMULATOR (PITCH = 1 mm, 100 CSR DIVISIONS)";
+        document.getElementById('sliderLabel').innerText = "Thimble Position (Observed Reading):";
+        document.getElementById('jawSlider').max = "15.0";
+        document.getElementById('jawSlider').value = "5.38";
+        document.getElementById('instLC').innerText = "0.01 mm (0.001 cm)";
+      }
+      updateInstrument();
+    }
+
+    function updateInstrument() {
+      const val = parseFloat(document.getElementById('jawSlider').value);
+      const zero = parseFloat(document.getElementById('zeroSlider').value);
+
+      document.getElementById('sliderVal').innerText = val.toFixed(2) + (currentInstrument === 'vernier' ? " cm" : " mm");
+      document.getElementById('zeroErrorVal').innerText = (zero >= 0 ? "+" : "") + zero.toFixed(2) + (currentInstrument === 'vernier' ? " cm" : " mm");
+
+      if (currentInstrument === 'vernier') {
+        const msr = Math.floor(val * 10) / 10;
+        const vsd = Math.round((val - msr) * 100);
+        const trueVal = val - zero;
+
+        document.getElementById('instMSR').innerText = msr.toFixed(1) + " cm";
+        document.getElementById('instVSD').innerText = vsd + " × 0.01 = " + (vsd * 0.01).toFixed(2) + " cm";
+        document.getElementById('instObserved').innerText = val.toFixed(2) + " cm";
+        document.getElementById('instZeroCorr').innerText = "- (" + (zero >= 0 ? "+" : "") + zero.toFixed(2) + " cm)";
+        document.getElementById('instTrueReading').innerText = trueVal.toFixed(2) + " cm";
+        drawVernier(val);
+      } else {
+        const psr = Math.floor(val);
+        const csr = Math.round((val - psr) * 100);
+        const trueVal = val - zero;
+
+        document.getElementById('instMSR').innerText = psr + " mm (Linear Pitch)";
+        document.getElementById('instVSD').innerText = csr + " × 0.01 = " + (csr * 0.01).toFixed(2) + " mm";
+        document.getElementById('instObserved').innerText = val.toFixed(2) + " mm";
+        document.getElementById('instZeroCorr').innerText = "- (" + (zero >= 0 ? "+" : "") + zero.toFixed(2) + " mm)";
+        document.getElementById('instTrueReading').innerText = trueVal.toFixed(2) + " mm";
+        drawScrewGauge(val);
+      }
+    }
+
+    function drawVernier(val = 2.43) {
+      const canvas = document.getElementById('instCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Main Scale Bar
+      ctx.fillStyle = "#1e293b";
+      ctx.fillRect(40, 50, 680, 70);
+      ctx.strokeStyle = "#38bdf8";
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(40, 50, 680, 70);
+
+      // Main scale markings (0 to 6 cm, 100 px per cm)
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "11px monospace";
+      for (let i = 0; i <= 60; i++) {
+        const x = 60 + i * 10;
+        const isCm = (i % 10 === 0);
+        const isHalf = (i % 5 === 0 && !isCm);
+        const h = isCm ? 25 : (isHalf ? 16 : 10);
+
+        ctx.strokeStyle = isCm ? "#facc15" : "#94a3b8";
+        ctx.beginPath();
+        ctx.moveTo(x, 120);
+        ctx.lineTo(x, 120 - h);
+        ctx.stroke();
+
+        if (isCm) {
+          ctx.fillText((i / 10).toString(), x - 4, 85);
+        }
+      }
+
+      // Vernier Scale Slider
+      const shiftX = (val * 100); // 100 px per cm
+      ctx.fillStyle = "rgba(14, 165, 233, 0.25)";
+      ctx.strokeStyle = "#0284c7";
+      ctx.lineWidth = 2;
+      ctx.fillRect(60 + shiftX, 122, 120, 55);
+      ctx.strokeRect(60 + shiftX, 122, 120, 55);
+
+      // Vernier scale markings (10 divisions = 9 MSD = 90 px -> 9 px per div)
+      ctx.fillStyle = "#38bdf8";
+      for (let j = 0; j <= 10; j++) {
+        const vx = 60 + shiftX + j * 9;
+        const vh = (j === 0 || j === 10) ? 20 : (j === 5 ? 14 : 10);
+
+        ctx.strokeStyle = (j === 0 || j === 10) ? "#38bdf8" : "#a855f7";
+        ctx.beginPath();
+        ctx.moveTo(vx, 122);
+        ctx.lineTo(vx, 122 + vh);
+        ctx.stroke();
+
+        if (j === 0 || j === 5 || j === 10) {
+          ctx.fillText(j.toString(), vx - 3, 162);
+        }
+      }
+    }
+
+    function drawScrewGauge(val = 5.38) {
+      const canvas = document.getElementById('instCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Linear Barrel Scale
+      ctx.fillStyle = "#1e293b";
+      ctx.fillRect(60, 80, 360, 90);
+      ctx.strokeStyle = "#38bdf8";
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(60, 80, 360, 90);
+
+      // Reference Datum Line
+      ctx.strokeStyle = "#facc15";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(60, 125);
+      ctx.lineTo(420, 125);
+      ctx.stroke();
+
+      // Pitch divisions (15 px per mm)
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "10px monospace";
+      for (let i = 0; i <= 15; i++) {
+        const x = 80 + i * 20;
+        ctx.strokeStyle = "#94a3b8";
+        ctx.beginPath();
+        ctx.moveTo(x, 125);
+        ctx.lineTo(x, 105);
+        ctx.stroke();
+        if (i % 5 === 0) ctx.fillText(i.toString(), x - 4, 98);
+
+        // Half-mm marks below datum line
+        if (i < 15) {
+          ctx.strokeStyle = "#a855f7";
+          ctx.beginPath();
+          ctx.moveTo(x + 10, 125);
+          ctx.lineTo(x + 10, 140);
+          ctx.stroke();
+        }
+      }
+
+      // Rotating Circular Thimble
+      const thimbleX = 80 + val * 20;
+      ctx.fillStyle = "rgba(2, 132, 199, 0.45)";
+      ctx.strokeStyle = "#38bdf8";
+      ctx.lineWidth = 2;
+      ctx.fillRect(thimbleX, 60, 140, 130);
+      ctx.strokeRect(thimbleX, 60, 140, 130);
+
+      // Thimble circular divisions
+      const csr = Math.round((val - Math.floor(val)) * 100);
+      ctx.fillStyle = "#38bdf8";
+      ctx.font = "11px monospace";
+      for (let d = -4; d <= 4; d++) {
+        const divNum = (csr + d + 100) % 100;
+        const dy = 125 - d * 14;
+        ctx.strokeStyle = (d === 0) ? "#f43f5e" : "#38bdf8";
+        ctx.lineWidth = (d === 0) ? 3 : 1;
+        ctx.beginPath();
+        ctx.moveTo(thimbleX, dy);
+        ctx.lineTo(thimbleX + 25, dy);
+        ctx.stroke();
+        ctx.fillText(divNum.toString(), thimbleX + 30, dy + 4);
+      }
+    }
+
+    // 3. Error Propagation Simulator
+    let isErrorTrapActive = false;
+    function recalcErrors() {
+      const p = parseFloat(document.getElementById('sliderP').value);
+      const q = parseFloat(document.getElementById('sliderQ').value);
+      const r = parseFloat(document.getElementById('sliderR').value);
+      const s = parseFloat(document.getElementById('sliderS').value);
+
+      const errA = parseFloat(document.getElementById('sliderErrA').value);
+      const errB = parseFloat(document.getElementById('sliderErrB').value);
+      const errC = parseFloat(document.getElementById('sliderErrC').value);
+      const errD = parseFloat(document.getElementById('sliderErrD').value);
+
+      document.getElementById('pVal').innerText = p;
+      document.getElementById('qVal').innerText = q < 0.5 ? "1/3" : q;
+      document.getElementById('rVal').innerText = r;
+      document.getElementById('sVal').innerText = s;
+
+      document.getElementById('errAVal').innerText = errA.toFixed(1) + "%";
+      document.getElementById('errBVal').innerText = errB.toFixed(1) + "%";
+      document.getElementById('errCVal').innerText = errC.toFixed(1) + "%";
+      document.getElementById('errDVal').innerText = errD.toFixed(1) + "%";
+
+      const cA = p * errA;
+      const cB = q * errB;
+      const cC = r * errC;
+      const cD = s * errD;
+
+      document.getElementById('contribA').innerText = cA.toFixed(1) + "%";
+      document.getElementById('contribB').innerText = cB.toFixed(1) + "%";
+      document.getElementById('contribC').innerText = cC.toFixed(1) + "%";
+      document.getElementById('contribD').innerText = cD.toFixed(1) + "%";
+
+      const numTotal = cA + cB;
+      const denTotal = cC + cD;
+      document.getElementById('numSum').innerText = numTotal.toFixed(1) + "%";
+      document.getElementById('denSum').innerText = (isErrorTrapActive ? "- " : "+ ") + denTotal.toFixed(1) + "%";
+
+      const total = isErrorTrapActive ? (numTotal - denTotal) : (numTotal + denTotal);
+      document.getElementById('totalErrZ').innerText = total.toFixed(1) + "%";
+      document.getElementById('errTrapVal').innerText = total.toFixed(1) + "%";
+    }
+
+    function toggleErrorTrap() {
+      isErrorTrapActive = !isErrorTrapActive;
+      const btn = document.getElementById('trapToggleBtn');
+      const text = document.getElementById('trapModeText');
+      const flash = document.getElementById('trapFlashBox');
+
+      if (isErrorTrapActive) {
+        btn.innerText = "Switch to Correct Rule (+ Add)";
+        btn.className = "px-3 py-1 rounded bg-rose-600 text-white font-bold";
+        text.innerText = "Student Mistake (- Subtract Denominator)";
+        text.className = "ml-2 text-rose-400 font-bold";
+        flash.classList.remove('hidden');
+      } else {
+        btn.innerText = "Simulate Student Trap (- Subtract)";
+        btn.className = "px-3 py-1 rounded bg-slate-800 text-slate-300 hover:text-white border border-slate-700";
+        text.innerText = "Correct Worst-Case (+ Add)";
+        text.className = "ml-2 text-emerald-400 font-bold";
+        flash.classList.add('hidden');
+      }
+      recalcErrors();
+    }
+
+    // 4. Significant Figures Engine
+    function setSFTest(val) {
+      document.getElementById('sfInput').value = val;
+      analyzeSigFigs();
+    }
+
+    function analyzeSigFigs() {
+      const raw = document.getElementById('sfInput').value.trim();
+      const countSpan = document.getElementById('sfCount');
+      const expSpan = document.getElementById('sfExplanation');
+
+      if (raw === "9.99 - 0.0099") {
+        countSpan.innerText = "9.98 m (2 Decimals)";
+        expSpan.innerHTML = "<strong>NEET 2020 Solution:</strong><br>• 9.99 has 2 decimal places.<br>• 0.0099 has 4 decimal places.<br>• Subtraction rule states result must have least decimal places (2 decimals).<br>• 9.99 - 0.0099 = 9.9801 ==> Rounds strictly to <strong>9.98 m</strong>!";
+        return;
+      }
+
+      // Check standard decimal number
+      const num = parseFloat(raw);
+      if (isNaN(num)) {
+        countSpan.innerText = "Invalid Number";
+        expSpan.innerText = "Please enter a valid numeric value.";
+        return;
+      }
+
+      // Basic NCERT parsing logic
+      if (raw === "0.00470" || raw === "0.00520") {
+        countSpan.innerText = "3 SF";
+        expSpan.innerHTML = "• Leading zeros before 4 are placeholders (NEVER significant).<br>• 4 and 7 are non-zero (significant).<br>• Trailing zero is after decimal (indicates measurement precision, significant).";
+      } else if (raw === "4700") {
+        countSpan.innerText = "2 SF";
+        expSpan.innerHTML = "• Non-zeros 4 and 7 are significant.<br>• Trailing zeros without a decimal point are NOT significant (ambiguous precision). Write as 4.70 × 10³ for 3 SF.";
+      } else if (raw === "3.500") {
+        countSpan.innerText = "4 SF";
+        expSpan.innerHTML = "• Non-zeros 3 and 5 are significant.<br>• Trailing zeros with a decimal point ARE significant (guarantees instrument precision to 0.001).";
+      } else if (raw === "4007") {
+        countSpan.innerText = "4 SF";
+        expSpan.innerHTML = "• Trapped zeros between non-zero digits are ALWAYS significant.";
+      } else {
+        // General calculation
+        let str = raw.replace(/^0+/, '');
+        if (str.includes('.')) {
+          str = str.replace('.', '');
+          const count = str.length;
+          countSpan.innerText = count + " SF";
+          expSpan.innerHTML = "• All digits following the first non-zero in a decimal number are significant.";
+        } else {
+          const count = str.replace(/0+$/, '').length;
+          countSpan.innerText = count + " SF";
+          expSpan.innerHTML = "• In an integer without decimal point, trailing zeros are not significant.";
+        }
+      }
+    }
+  </script>
+</body>
+</html>

@@ -32,37 +32,37 @@
         },
         "3d": {}
       },
-      "simulation": null,
+      "simulation": "/simulations/unit_01_measurement_lab.html?mode=si_units",
       "trap_quiz": {
-        "title": "NEET Trap: SI Base Quantities & Supplementary Units",
-        "warning": "Students assume all quantities with units have dimensions. Plane angle has unit radian but dimension [M^0 L^0 T^0].",
-        "pyq_year": "NEET 2022",
-        "question": "In a standard NEET problem on 'SI Base Quantities & Supplementary Units', which of the following statements represents the critical condition to prevent sign or angle errors?",
+        "title": "NEET Trap: Dimensionality of Radian and Steradian",
+        "warning": "Having units does NOT imply having physical dimensions! Radian and Steradian have recognized SI units, but are strictly dimensionless [M⁰ L⁰ T⁰].",
+        "pyq_year": "NEET 2021",
+        "question": "Which of the following statements is strictly correct regarding plane angle and solid angle in the SI system?",
         "options": [
           {
             "id": 0,
-            "text": "A) Verify coordinate axes orientation and component reference angle before applying formula.",
-            "trap": "Correct: Prevents sine/cosine and +/- direction inversion.",
+            "text": "A) Both have units (rad, sr) but are strictly dimensionless with dimensions [M⁰ L⁰ T⁰].",
+            "trap": "Correct: Supplementary units are pure geometric ratios (arc/r and area/r²).",
             "correct": true
           },
           {
             "id": 1,
-            "text": "B) The textbook scalar equation applies universally in all reference frames.",
-            "trap": "Trap: Scalar equations fail when acceleration changes or frame is non-inertial."
+            "text": "B) Both have physical dimensions [L] and [L²] because they derive from arc length and surface area.",
+            "trap": "Trap: Length and area cancel out in radius and radius-squared ratios."
           },
           {
             "id": 2,
-            "text": "C) Gravitational acceleration g is always negative regardless of chosen axis.",
-            "trap": "Trap: Sign of g depends strictly on positive axis definition."
+            "text": "C) Radian has dimension [L], while Steradian is dimensionless.",
+            "trap": "Trap: Neither has length dimension."
           },
           {
             "id": 3,
-            "text": "D) Horizontal velocity component alters vertical flight duration.",
-            "trap": "Trap: Horizontal and vertical motions are strictly independent."
+            "text": "D) Neither possesses units nor dimensions in modern SI convention.",
+            "trap": "Trap: Radian and steradian are explicitly defined SI supplementary units."
           }
         ],
         "correct_index": 0,
-        "explanation": "Key Rule: 7 fundamental SI base quantities define all physical measurement. Radian and steradian are supplementary dimensionless units. H.C. Verma: A quantity can possess units without dimensions (rad, sr), but no quantity can possess dimensions without units."
+        "explanation": "NCERT Section 2.2: Plane angle (dθ = ds/r) and solid angle (dΩ = dA/r²) possess units radian and steradian, yet both are strictly dimensionless with [M⁰ L⁰ T⁰]."
       }
     },
     {
@@ -93,37 +93,37 @@
         },
         "3d": {}
       },
-      "simulation": null,
+      "simulation": "/simulations/unit_01_measurement_lab.html?mode=si_units",
       "trap_quiz": {
-        "title": "NEET Trap: Derived Units & Standard Metric Prefixes",
-        "warning": "Attaching prefixes to kilogram instead of gram. Since kg already has 'kilo', write 1 mg for 10^-6 kg, not 1 μkg.",
-        "pyq_year": "NEET 2021",
-        "question": "In a standard NEET problem on 'Derived Units & Standard Metric Prefixes', which of the following statements represents the critical condition to prevent sign or angle errors?",
+        "title": "NEET Trap: Double Prefixes & Mass Prefix Attachment",
+        "warning": "SI conventions strictly forbid double prefixes (μμF → pF); all mass prefixes must attach to the gram, not kilogram (10⁻⁶ kg = 1 mg, never 1 μkg).",
+        "pyq_year": "NEET 2019",
+        "question": "A capacitor has capacitance 10⁻¹² F and a dust particle has mass 10⁻⁶ kg. According to standard SI conventions, how should these quantities be reported?",
         "options": [
           {
             "id": 0,
-            "text": "A) Verify coordinate axes orientation and component reference angle before applying formula.",
-            "trap": "Correct: Prevents sine/cosine and +/- direction inversion.",
+            "text": "A) 1 pF and 1 mg, because double prefixes are forbidden and mass prefixes attach to the gram.",
+            "trap": "Correct: Compound prefixes are illegal; mass prefixes attach to gram.",
             "correct": true
           },
           {
             "id": 1,
-            "text": "B) The textbook scalar equation applies universally in all reference frames.",
-            "trap": "Trap: Scalar equations fail when acceleration changes or frame is non-inertial."
+            "text": "B) 1 μμF and 1 μkg, matching direct decimal multipliers.",
+            "trap": "Trap: μμ is a double prefix (forbidden); prefix cannot attach to kilogram."
           },
           {
             "id": 2,
-            "text": "C) Gravitational acceleration g is always negative regardless of chosen axis.",
-            "trap": "Trap: Sign of g depends strictly on positive axis definition."
+            "text": "C) 1 pF and 1 μkg, since kilogram is the base standard.",
+            "trap": "Trap: Kilogram already contains 'kilo', so prefixes attach to gram."
           },
           {
             "id": 3,
-            "text": "D) Horizontal velocity component alters vertical flight duration.",
-            "trap": "Trap: Horizontal and vertical motions are strictly independent."
+            "text": "D) 1000 fF and 0.001 g.",
+            "trap": "Trap: Violates single standard prefix convention."
           }
         ],
         "correct_index": 0,
-        "explanation": "Key Rule: Derived units are algebraic combinations of base units. SI prefixes represent powers of 10 from 10^-15 to 10^12. D.C. Pandey: Double prefixes are strictly forbidden in SI rules (e.g., write pF, never μμF)."
+        "explanation": "SI rules strictly forbid compound prefixes like μμF (must use pF). Also, because kilogram contains 'kilo', prefixes attach to the gram: 10⁻⁶ kg = 1 mg."
       }
     },
     {
@@ -154,37 +154,37 @@
         },
         "3d": {}
       },
-      "simulation": null,
+      "simulation": "/simulations/unit_01_measurement_lab.html?mode=dimensions",
       "trap_quiz": {
-        "title": "NEET Trap: Dimensions of Physical Quantities & Common Equivalences",
-        "warning": "Confusing quantities that share identical dimensions with being physically identical. Never equate their physical nature.",
-        "pyq_year": "NEET 2023",
-        "question": "In a standard NEET problem on 'Dimensions of Physical Quantities & Common Equivalences', which of the following statements represents the critical condition to prevent sign or angle errors?",
+        "title": "NEET Trap: Dimensional Equivalence vs Physical Nature",
+        "warning": "Identical dimensions ([M L² T⁻²]) do NOT mean identical physical nature! Work is a scalar (Joules), while Torque is a rotational vector (N·m). Never add them!",
+        "pyq_year": "NEET 2022",
+        "question": "Work and Torque have identical dimensional formulas [M L² T⁻²]. Which of the following operations is physically meaningful and valid?",
         "options": [
           {
             "id": 0,
-            "text": "A) Verify coordinate axes orientation and component reference angle before applying formula.",
-            "trap": "Correct: Prevents sine/cosine and +/- direction inversion.",
+            "text": "A) Neither adding Work to Torque nor expressing Torque in Joules is physically permissible.",
+            "trap": "Correct: Work is scalar dot-product in Joules; Torque is vector cross-product in N·m.",
             "correct": true
           },
           {
             "id": 1,
-            "text": "B) The textbook scalar equation applies universally in all reference frames.",
-            "trap": "Trap: Scalar equations fail when acceleration changes or frame is non-inertial."
+            "text": "B) Work and Torque can be added directly because their dimensions match.",
+            "trap": "Trap: Having identical dimensions does not permit adding scalar energy to vector torque."
           },
           {
             "id": 2,
-            "text": "C) Gravitational acceleration g is always negative regardless of chosen axis.",
-            "trap": "Trap: Sign of g depends strictly on positive axis definition."
+            "text": "C) Torque can be expressed in Joules since 1 N·m = 1 J algebraically.",
+            "trap": "Trap: Joule is reserved strictly for energy and scalar work."
           },
           {
             "id": 3,
-            "text": "D) Horizontal velocity component alters vertical flight duration.",
-            "trap": "Trap: Horizontal and vertical motions are strictly independent."
+            "text": "D) Torque is a scalar quantity while Work is a vector.",
+            "trap": "Trap: Inversion error; Torque is a vector, Work is a scalar."
           }
         ],
         "correct_index": 0,
-        "explanation": "Key Rule: Dimensions of a physical quantity are powers to which base units are raised to represent that quantity. Halliday & Resnick: Torque and Work share identical dimensions [M L^2 T^-2] but are fundamentally different: Torque is a vector, Work is a scalar."
+        "explanation": "Work is scalar dot product (W = F · d in Joules). Torque is vector cross product (τ = r × F in N·m). They cannot be added, and Torque must never be reported in Joules."
       }
     },
     {
@@ -215,37 +215,37 @@
         },
         "3d": {}
       },
-      "simulation": null,
+      "simulation": "/simulations/unit_01_measurement_lab.html?mode=homogeneity",
       "trap_quiz": {
-        "title": "NEET Trap: Principle of Homogeneity of Dimensions",
-        "warning": "Assuming dimensional consistency guarantees physical correctness. Pure numbers (like 1/2 or 2π) cannot be derived or checked by dimensional analysis.",
+        "title": "NEET Trap: Principle of Homogeneity & Van der Waals Constants",
+        "warning": "In (P + a/V²)(V - b) = RT, [a/V²] = [P]. Dimensional consistency is necessary, but never sufficient to establish physical correctness.",
         "pyq_year": "NEET 2021",
-        "question": "In a standard NEET problem on 'Principle of Homogeneity of Dimensions', which of the following statements represents the critical condition to prevent sign or angle errors?",
+        "question": "In the van der Waals gas equation (P + a/V²)(V - b) = RT, what are the dimensions of the constant a?",
         "options": [
           {
             "id": 0,
-            "text": "A) Verify coordinate axes orientation and component reference angle before applying formula.",
-            "trap": "Correct: Prevents sine/cosine and +/- direction inversion.",
+            "text": "A) [M L⁵ T⁻²], derived from [a] = [P] · [V²].",
+            "trap": "Correct: [a] = [P][V²] = [M L⁻¹ T⁻²][L³]² = [M L⁵ T⁻²].",
             "correct": true
           },
           {
             "id": 1,
-            "text": "B) The textbook scalar equation applies universally in all reference frames.",
-            "trap": "Trap: Scalar equations fail when acceleration changes or frame is non-inertial."
+            "text": "B) [M L⁻¹ T⁻²], assuming a shares the dimensions of pressure directly.",
+            "trap": "Trap: Forgets to multiply by V²."
           },
           {
             "id": 2,
-            "text": "C) Gravitational acceleration g is always negative regardless of chosen axis.",
-            "trap": "Trap: Sign of g depends strictly on positive axis definition."
+            "text": "C) [M L⁴ T⁻²], incorrectly calculating [V²] as [L²] instead of [L³]².",
+            "trap": "Trap: Volume V has dimension L³, so V² is L⁶."
           },
           {
             "id": 3,
-            "text": "D) Horizontal velocity component alters vertical flight duration.",
-            "trap": "Trap: Horizontal and vertical motions are strictly independent."
+            "text": "D) [M⁰ L³ T⁰], confusing constant a with volume constant b.",
+            "trap": "Trap: [b] = [V] = [L³], not [a]."
           }
         ],
         "correct_index": 0,
-        "explanation": "Key Rule: Physical quantities having identical dimensions alone can be added, subtracted, or equated. Arguments of trig, exp, and log functions must be dimensionless. I.E. Irodov: In (P + a/V^2)(V - b) = RT, dimensional homogeneity dictates [a/V^2] = [P] and [b] = [V]."
+        "explanation": "By Homogeneity, [a/V²] = [P] ==> [a] = [P][V²] = [M L⁻¹ T⁻²][L³]² = [M L⁵ T⁻²]."
       }
     },
     {
@@ -276,37 +276,37 @@
         },
         "3d": {}
       },
-      "simulation": null,
+      "simulation": "/simulations/unit_01_measurement_lab.html?mode=errors",
       "trap_quiz": {
-        "title": "NEET Trap: Classification of Errors & Mean Absolute Error",
-        "warning": "Taking the algebraic sum of deviations instead of the magnitude |Δa_i|, which falsely gives zero mean error.",
-        "pyq_year": "NEET 2023",
-        "question": "In a standard NEET problem on 'Classification of Errors & Mean Absolute Error', which of the following statements represents the critical condition to prevent sign or angle errors?",
+        "title": "NEET Trap: Mean Absolute Error & The Zero Sum Trap",
+        "warning": "The algebraic sum of deviations Σ(a_mean - a_i) is identically zero! You MUST sum absolute magnitudes |Δa_i| to compute mean absolute error.",
+        "pyq_year": "NEET 2018",
+        "question": "In an experiment, four measurements of length are 10.2 cm, 10.4 cm, 9.8 cm, and 9.6 cm. What are the arithmetic mean and the mean absolute error?",
         "options": [
           {
             "id": 0,
-            "text": "A) Verify coordinate axes orientation and component reference angle before applying formula.",
-            "trap": "Correct: Prevents sine/cosine and +/- direction inversion.",
+            "text": "A) Mean = 10.0 cm, Mean Absolute Error = 0.30 cm.",
+            "trap": "Correct: Mean = 10.0 cm; deviations magnitudes are 0.2, 0.4, 0.2, 0.4; average = 1.2/4 = 0.30 cm.",
             "correct": true
           },
           {
             "id": 1,
-            "text": "B) The textbook scalar equation applies universally in all reference frames.",
-            "trap": "Trap: Scalar equations fail when acceleration changes or frame is non-inertial."
+            "text": "B) Mean = 10.0 cm, Mean Absolute Error = 0.00 cm.",
+            "trap": "Trap: The Zero Sum Trap! Summing signed deviations (+0.2 +0.4 -0.2 -0.4 = 0)."
           },
           {
             "id": 2,
-            "text": "C) Gravitational acceleration g is always negative regardless of chosen axis.",
-            "trap": "Trap: Sign of g depends strictly on positive axis definition."
+            "text": "C) Mean = 10.0 cm, Mean Absolute Error = 0.60 cm.",
+            "trap": "Trap: Forgets to divide the sum of magnitudes by n=4."
           },
           {
             "id": 3,
-            "text": "D) Horizontal velocity component alters vertical flight duration.",
-            "trap": "Trap: Horizontal and vertical motions are strictly independent."
+            "text": "D) Mean = 10.1 cm, Mean Absolute Error = 0.15 cm.",
+            "trap": "Trap: Arithmetic error in mean computation."
           }
         ],
         "correct_index": 0,
-        "explanation": "Key Rule: Systematic errors are unidirectional and eliminated by calibration. Random errors fluctuate and are minimized by taking the arithmetic mean of repeated readings. H.C. Verma: Absolute error is always positive. The sum of signed deviations from the mean is always identically zero."
+        "explanation": "Mean = (10.2 + 10.4 + 9.8 + 9.6)/4 = 10.0 cm. Absolute error magnitudes = |+0.2| + |+0.4| + |-0.2| + |-0.4| = 1.2 cm. Mean absolute error = 1.2/4 = 0.30 cm."
       }
     },
     {
@@ -337,37 +337,37 @@
         },
         "3d": {}
       },
-      "simulation": null,
+      "simulation": "/simulations/unit_01_measurement_lab.html?mode=error_propagation",
       "trap_quiz": {
-        "title": "NEET Trap: Combination & Propagation of Errors (Power Rule)",
-        "warning": "Subtracting errors for quantities in the denominator. Errors always accumulate in maximum uncertainty analysis.",
-        "pyq_year": "NEET 2023",
-        "question": "In a standard NEET problem on 'Combination & Propagation of Errors (Power Rule)', which of the following statements represents the critical condition to prevent sign or angle errors?",
+        "title": "NEET Trap: Error Propagation in Denominators",
+        "warning": "In worst-case error analysis, uncertainties NEVER cancel out! In P = A³ B² / (√C · D), the error contributions from C and D ALWAYS ADD.",
+        "pyq_year": "NEET 2019",
+        "question": "A physical quantity P = A³ B² / (√C · D). The percentage errors in A, B, C, D are 1%, 2%, 4%, 2%. What is the maximum percentage error in P?",
         "options": [
           {
             "id": 0,
-            "text": "A) Verify coordinate axes orientation and component reference angle before applying formula.",
-            "trap": "Correct: Prevents sine/cosine and +/- direction inversion.",
+            "text": "A) 11%, because all fractional error terms reinforce each other and add.",
+            "trap": "Correct: 3(1%) + 2(2%) + 0.5(4%) + 1(2%) = 3 + 4 + 2 + 2 = 11%.",
             "correct": true
           },
           {
             "id": 1,
-            "text": "B) The textbook scalar equation applies universally in all reference frames.",
-            "trap": "Trap: Scalar equations fail when acceleration changes or frame is non-inertial."
+            "text": "B) 3%, because denominator errors from C and D are subtracted.",
+            "trap": "Trap: Denominator subtraction fallacy (7% - 4% = 3%). In worst-case analysis, errors never subtract!"
           },
           {
             "id": 2,
-            "text": "C) Gravitational acceleration g is always negative regardless of chosen axis.",
-            "trap": "Trap: Sign of g depends strictly on positive axis definition."
+            "text": "C) 7%, forgetting the square root factor on C.",
+            "trap": "Trap: Missing exponent power factor."
           },
           {
             "id": 3,
-            "text": "D) Horizontal velocity component alters vertical flight duration.",
-            "trap": "Trap: Horizontal and vertical motions are strictly independent."
+            "text": "D) 15%, squaring percentage errors.",
+            "trap": "Trap: Confusing linear power rule with standard deviation."
           }
         ],
         "correct_index": 0,
-        "explanation": "Key Rule: In worst-case error estimation, fractional errors for product, quotient, and power relations always add with their positive power coefficients. D.C. Pandey: Even if C is in the denominator (C^r), its fractional error is added with coefficient +r, never subtracted!"
+        "explanation": "ΔP/P = 3(ΔA/A) + 2(ΔB/B) + (1/2)(ΔC/C) + 1(ΔD/D) = 3(1%) + 2(2%) + 0.5(4%) + 1(2%) = 3% + 4% + 2% + 2% = 11%."
       }
     },
     {
@@ -398,37 +398,37 @@
         },
         "3d": {}
       },
-      "simulation": null,
+      "simulation": "/simulations/unit_01_measurement_lab.html?mode=vernier_screw",
       "trap_quiz": {
-        "title": "NEET Trap: Measuring Instruments: Vernier Callipers & Screw Gauge",
-        "warning": "Inverting zero error signs: Positive zero error (+e) must be subtracted, while negative zero error (-e) must be added.",
-        "pyq_year": "NEET 2024",
-        "question": "In a standard NEET problem on 'Measuring Instruments: Vernier Callipers & Screw Gauge', which of the following statements represents the critical condition to prevent sign or angle errors?",
+        "title": "NEET Trap: Zero Error Sign Convention in Vernier & Screw Gauge",
+        "warning": "True Reading = Observed Reading - (Zero Error). Positive zero error is SUBTRACTED; negative zero error is ADDED!",
+        "pyq_year": "NEET 2020",
+        "question": "A screw gauge with least count 0.01 mm has a negative zero error of -0.04 mm. When measuring a wire, the main scale reads 3 mm and the 42nd circular division coincides with the datum line. What is the true diameter?",
         "options": [
           {
             "id": 0,
-            "text": "A) Verify coordinate axes orientation and component reference angle before applying formula.",
-            "trap": "Correct: Prevents sine/cosine and +/- direction inversion.",
+            "text": "A) 3.46 mm, because subtracting a negative zero error adds 0.04 mm to observed reading (3.42 - (-0.04)).",
+            "trap": "Correct: Observed = 3.42 mm; True = 3.42 - (-0.04) = 3.46 mm.",
             "correct": true
           },
           {
             "id": 1,
-            "text": "B) The textbook scalar equation applies universally in all reference frames.",
-            "trap": "Trap: Scalar equations fail when acceleration changes or frame is non-inertial."
+            "text": "B) 3.38 mm, incorrectly subtracting the magnitude of negative zero error (3.42 - 0.04).",
+            "trap": "Trap: Inverting negative error sign; subtracting instead of adding."
           },
           {
             "id": 2,
-            "text": "C) Gravitational acceleration g is always negative regardless of chosen axis.",
-            "trap": "Trap: Sign of g depends strictly on positive axis definition."
+            "text": "C) 3.42 mm, ignoring zero error correction entirely.",
+            "trap": "Trap: Fails to apply zero error correction."
           },
           {
             "id": 3,
-            "text": "D) Horizontal velocity component alters vertical flight duration.",
-            "trap": "Trap: Horizontal and vertical motions are strictly independent."
+            "text": "D) 3.82 mm, misreading circular scale division contribution.",
+            "trap": "Trap: Scaling error."
           }
         ],
         "correct_index": 0,
-        "explanation": "Key Rule: Vernier LC = 1 MSD - 1 VSD. Screw gauge LC = Pitch / Total circular divisions. True reading = Observed reading - (Zero Error). NCERT Lab Manual: Positive zero error is SUBTRACTED; negative zero error is ADDED (- (-e) = +e)."
+        "explanation": "Observed reading = PSR + (CSR × LC) = 3 mm + (42 × 0.01 mm) = 3.42 mm. True reading = Observed - Zero Error = 3.42 - (-0.04) = 3.46 mm."
       }
     },
     {
@@ -459,37 +459,37 @@
         },
         "3d": {}
       },
-      "simulation": null,
+      "simulation": "/simulations/unit_01_measurement_lab.html?mode=sig_figs",
       "trap_quiz": {
-        "title": "NEET Trap: Significant Figures & Arithmetic Rounding Rules",
-        "warning": "Applying the multiplication rule (least sig figs) to addition/subtraction, which is governed strictly by the least decimal places.",
-        "pyq_year": "NEET 2022",
-        "question": "In a standard NEET problem on 'Significant Figures & Arithmetic Rounding Rules', which of the following statements represents the critical condition to prevent sign or angle errors?",
+        "title": "NEET Trap: Significant Figures in Subtraction (NEET 2020)",
+        "warning": "In addition/subtraction (9.99 m - 0.0099 m), round to LEAST DECIMAL PLACES, not significant figures!",
+        "pyq_year": "NEET 2020",
+        "question": "Taking into account the significant figures, what is the value of 9.99 m - 0.0099 m? (NEET 2020 PYQ)",
         "options": [
           {
             "id": 0,
-            "text": "A) Verify coordinate axes orientation and component reference angle before applying formula.",
-            "trap": "Correct: Prevents sine/cosine and +/- direction inversion.",
+            "text": "A) 9.98 m, because 9.99 has 2 decimal places, dictating 2 decimal places in the final result.",
+            "trap": "Correct: Governed strictly by least decimal places (2 decimals).",
             "correct": true
           },
           {
             "id": 1,
-            "text": "B) The textbook scalar equation applies universally in all reference frames.",
-            "trap": "Trap: Scalar equations fail when acceleration changes or frame is non-inertial."
+            "text": "B) 9.980 m, mistakenly keeping 4 significant figures.",
+            "trap": "Trap: Applies multiplication rule instead of addition/subtraction rule."
           },
           {
             "id": 2,
-            "text": "C) Gravitational acceleration g is always negative regardless of chosen axis.",
-            "trap": "Trap: Sign of g depends strictly on positive axis definition."
+            "text": "C) 9.9 m, mistakenly rounding to the fewest significant figures.",
+            "trap": "Trap: Confuses decimal place rule with sig fig rule."
           },
           {
             "id": 3,
-            "text": "D) Horizontal velocity component alters vertical flight duration.",
-            "trap": "Trap: Horizontal and vertical motions are strictly independent."
+            "text": "D) 9.9801 m, retaining all calculated digits without rounding.",
+            "trap": "Trap: Ignores NCERT precision limits."
           }
         ],
         "correct_index": 0,
-        "explanation": "Key Rule: Significant figures reflect measurement precision. Leading zeros are never significant; trailing zeros with a decimal point are significant. H.C. Verma: In addition 100.1 + 0.003 = 100.103 -> 100.1 (1 decimal place). Do not count total significant figures in addition/subtraction."
+        "explanation": "NCERT Rule: In addition/subtraction, the result retains as many decimal places as there are in the number with the least decimal places. 9.99 m has 2 decimal places, so 9.9801 m rounds to 9.98 m."
       }
     },
     {
