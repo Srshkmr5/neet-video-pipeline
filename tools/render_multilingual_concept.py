@@ -98,6 +98,26 @@ CONCEPT_BEAT_SCRIPTS = {
             ("beat_3", "முக்கிய வேறுபாட்டைக் கவனியுங்கள்: ஒரே பரிமாணம் இருப்பதால் இரு அளவுகளும் ஒன்றல்ல! வேலை மற்றும் திருப்புவிசை இரண்டிற்கும் பரிமாணம் ஒன்றே, ஆனால் வேலை என்பது ஸ்கேலார் அளவாகும் இதன் அலகு ஜூல், திருப்புவிசை என்பது வெக்டார் அளவாகும் இதன் அலகு நியூட்டன்-மீட்டர். திருப்புவிசையை ஒருபோதும் ஜூல் என்று குறிப்பிடாதீர்கள்!"),
             ("beat_4", "இப்போது முக்கியமான நீட் தேர்வு பொறியைக் கவனியுங்கள்: பரிமாணங்கள் ஒன்றாக இருப்பதற்காக இரண்டு வெவ்வேறு அளவுகளை ஒருபோதும் கூட்ட முடியாது! வேலையையும் திருப்புவிசையையும் கூட்டுவது இயற்பியல் விதிகளுக்கு எதிரானது. நீட் தேர்வில் முழு மதிப்பெண் பெற இந்த விதிகளை நினைவில் நிறுத்துங்கள்.")
         ]
+    },
+    "P11-C01-T02-V04": {
+        "en-IN": [
+            ("beat_1", "Welcome to Physics and Measurement. In this masterclass, we explore the Principle of Homogeneity of Dimensions and its high-yield applications in NEET."),
+            ("beat_2", "The Principle of Homogeneity states that terms added, subtracted, or equated in any physical equation must possess identical dimensions. Consider the classic NEET example, the van der Waals gas equation: P plus a over V-squared, multiplied by V minus b, equals R T. By homogeneity, a over V-squared must match the dimension of Pressure, revealing that constant a has dimensions M L to the fifth T minus two; while constant b matches volume with dimension L cubed."),
+            ("beat_3", "Furthermore, the arguments of all trigonometric, exponential, and logarithmic functions must be strictly dimensionless pure numbers. In the wave equation y equals A sine omega t minus k x, omega t and k x must be dimensionless M zero L zero T zero. This immediately yields the dimensions of angular frequency omega as T minus one, wave number k as L minus one, and amplitude A matching displacement L."),
+            ("beat_4", "Now heed the critical NEET Trap: dimensional correctness is a necessary condition, but NEVER a sufficient condition for physical validity! An equation can be dimensionally consistent yet physically incorrect, such as s equals u t plus a t squared. Moreover, dimensional analysis can never determine dimensionless numerical coefficients like one-half or two pi. Remember these boundaries to secure full marks in NEET Physics.")
+        ],
+        "hi-IN": [
+            ("beat_1", "भौतिकी और मापन में आपका स्वागत है। इस सत्र में हम विमाओं की समांगता का सिद्धांत और नीट परीक्षा में इसके महत्वपूर्ण अनुप्रयोगों का अध्ययन करेंगे।"),
+            ("beat_2", "समांगता का सिद्धांत कहता है कि किसी भी भौतिक समीकरण में केवल समान विमाओं वाली राशियों को ही जोड़ा, घटाया या बराबर किया जा सकता है। नीट का क्लासिक उदाहरण देखें, वांडर वाल्स समीकरण: P plus a over V square, गुना V minus b, बराबर R T। समांगता के नियम से, a over V square की विमा दाब P के समान होनी चाहिए, जिससे नियतांक a की विमा M L to the power 5 T minus 2 प्राप्त होती है, और नियतांक b की विमा आयतन L cube के बराबर होती है।"),
+            ("beat_3", "इसके अतिरिक्त, सभी त्रिकोणमितीय, चरघातांकी और लघुगणकीय फलनों के कोणांक विशुद्ध विमाहीन संख्याएँ होने चाहिए। तरंग समीकरण y equals A sin omega t minus k x में, omega t और k x दोनों विमाहीन M zero L zero T zero हैं। इससे कोणीय आवृत्ति omega की विमा T minus 1, तरंग संख्या k की विमा L minus 1, और आयाम A की विमा विस्थापन L के समान प्राप्त होती है।"),
+            ("beat_4", "अब ध्यान दें नीट परीक्षा के सबसे बड़े ट्रैप पॉइंट पर: विमीय सत्यता किसी समीकरण के सही होने की आवश्यक शर्त तो है, परंतु पर्याप्त शर्त कभी नहीं है! कोई समीकरण विमीय रूप से सही होकर भी भौतिक रूप से असत्य हो सकता है, जैसे s equals u t plus a t square। इसके अलावा, विमीय विश्लेषण 1/2 या 2 pi जैसे संख्यात्मक नियतांकों की जाँच कभी नहीं कर सकता। नीट में पूरे अंक पाने के लिए इस नियम को कंठस्थ रखें।")
+        ],
+        "ta-IN": [
+            ("beat_1", "இயற்பியல் மற்றும் அளவீட்டியல் பாடத்திற்கு வரவேற்கிறோம். இந்த அமர்வில் நாம் பரிமாண ஒருபடித்தான நெறிமுறை மற்றும் நீட் தேர்வில் அதன் பயன்பாடுகளை விரிவாக ஆராய்கிறோம்."),
+            ("beat_2", "பரிமாண ஒருபடித்தான நெறிமுறையின்படி, ஒரு சமன்பாட்டில் கூட்டப்படும், கழிக்கப்படும் அல்லது சமப்படுத்தப்படும் அனைத்து உறுப்புகளும் ஒரே பரிமாணத்தைக் கொண்டிருக்க வேண்டும். நீட் தேர்வின் விருப்பமான வான் டெர் வால்ஸ் சமன்பாட்டைக் கவனியுங்கள்: P plus a over V squared பெருக்கல் V minus b சமம் R T. ஒருபடித்தான விதியின்படி, a over V squared அழுத்தத்திற்கு சமமான பரிமாணத்தைக் கொண்டுள்ளது. எனவே மாறிலி a-ன் பரிமாணம் M L to the power 5 T minus 2 ஆகும், மாறிலி b-ன் பரிமாணம் கனஅளவான L cubed ஆகும்."),
+            ("beat_3", "மேலும், அனைத்து திரிகோணமிதி, அடுக்கு மற்றும் மடக்கை சார்புகளின் உள்ளடக்கங்கள் முற்றிலும் பரிமாணமற்ற எண்களாக இருக்க வேண்டும். அலை சமன்பாடு y equals A sin omega t minus k x என்பதில், omega t மற்றும் k x ஆகியவை M zero L zero T zero ஆகும். இதிலிருந்து கோண அதிர்வெண் omega-வின் பரிமாணம் T minus 1 ஆகவும், அலை எண் k-ன் பரிமாணம் L minus 1 ஆகவும், வீச்சு A-ன் பரிமாணம் இடப்பெயர்ச்சி L ஆகவும் கிடைக்கின்றன."),
+            ("beat_4", "இப்போது முக்கியமான நீட் தேர்வு பொறியைக் கவனியுங்கள்: பரிமாண சமநிலை ஒரு சமன்பாடு சரியானது என்பதற்கு இன்றியமையாத நிபந்தனையே தவிர, முழுமையான உத்தரவாதம் அல்ல! ஒரு சமன்பாடு பரிமாண ரீதியாக சரியாக இருந்தாலும் இயற்பியல் ரீதியாக தவறாக இருக்கலாம், உதாரணமாக s equals u t plus a t squared. மேலும், அரை அல்லது இரண்டு பை போன்ற பரிமாணமற்ற எண்களை பரிமாணங்களால் அறிய முடியாது. நீட் தேர்வில் வெற்றி பெற இந்த விதிகளை நினைவில் நிறுத்துங்கள்.")
+        ]
     }
 }
 

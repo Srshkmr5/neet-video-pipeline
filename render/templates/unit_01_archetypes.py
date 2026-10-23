@@ -358,10 +358,10 @@ class HomogeneityVanDerWaalsScene(ModularUnit1Scene):
 
         lines = [
             Text("1. Common Trap: Assuming dimensional consistency proves an equation is correct.", font=self.body_font, font_size=12.5, weight="BOLD", color=TEXT_WHITE),
-            Text("   Reality: An equation can be dimensionally valid but false: e.g. s = ut + at².", font=self.body_font, font_size=12, color=self.accent_gold),
+            Text("   Reality: An equation can be dimensionally valid but false: e.g. s = ut + at².", font=self.body_font, font_size=12.5, color=self.accent_gold),
             Text("2. Blindness to Dimensionless Constants (H.C. Verma Classic):", font=self.body_font, font_size=12.5, weight="BOLD", color=TEXT_WHITE),
-            Text("   Dimensional analysis can NEVER determine pure coefficients (like 1/2, 2π).", font=self.body_font, font_size=12, color=self.accent_green),
-            Text("   It only checks the dimensional power balance, never the numerical magnitude!", font=self.body_font, font_size=12, weight="BOLD", color=self.accent_gold)
+            Text("   Dimensional analysis can NEVER determine pure coefficients (like 1/2, 2π).", font=self.body_font, font_size=12.5, color=self.accent_green),
+            Text("   It only checks the dimensional power balance, never the numerical magnitude!", font=self.body_font, font_size=12.5, weight="BOLD", color=self.accent_gold)
         ]
         vg = VGroup(*lines).arrange(DOWN, buff=0.16, aligned_edge=LEFT).next_to(trap_title, DOWN, buff=0.22)
         vg.move_to(trap_box.get_center() + DOWN * 0.20)
