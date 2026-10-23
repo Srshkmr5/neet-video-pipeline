@@ -260,17 +260,17 @@
         <!-- 3 Triad Tabs -->
         <div class="flex items-center space-x-2">
           <button id="tabWatchBtn" onclick="switchTab('watch')" class="px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 tab-active">
-            <i class="fa-solid fa-play"></i>
-            <span>1. WATCH (LEARN)</span>
+            <i class="fa-solid fa-play text-sky-400"></i>
+            <span id="tabWatchLabel">1 • WATCH (LEARN)</span>
           </button>
           <button id="tabLabBtn" onclick="switchTab('lab')" class="px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 tab-inactive">
             <i class="fa-solid fa-flask-vial text-purple-400"></i>
-            <span>2. 3D LAB (PLAY)</span>
-            <span class="px-1.5 py-0.2 rounded bg-purple-500/20 text-purple-300 text-[9px] font-mono">SIMULATION</span>
+            <span id="tabLabLabel">2 • INTERACTIVE LAB (PLAY)</span>
+            <span id="tabLabBadge" class="px-1.5 py-0.2 rounded bg-purple-500/20 text-purple-300 text-[9px] font-mono">VIRTUAL LAB</span>
           </button>
           <button id="tabSolveBtn" onclick="switchTab('solve')" class="px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 tab-inactive">
             <i class="fa-solid fa-bolt text-amber-400"></i>
-            <span>3. NEET TRAP (SOLVE)</span>
+            <span id="tabSolveLabel">3 • NEET TRAP (SOLVE)</span>
             <span class="px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 text-[9px] font-mono">+4 / -1</span>
           </button>
         </div>
@@ -335,14 +335,14 @@
           <!-- Left: Concept Identification -->
           <div class="flex items-center space-x-3 truncate">
             <span id="conceptBadge" class="px-2.5 py-1 rounded-lg bg-sky-950/80 border border-sky-500/40 text-sky-400 font-mono font-bold text-xs shrink-0">
-              S.2.3.2
+              S.1.1.1
             </span>
             <div class="truncate">
               <h2 id="videoTitleText" class="text-white font-bold text-sm tracking-tight truncate">
-                The Max Height Arc — Projectile Motion
+                SI Base Quantities & Supplementary Units — SI Units
               </h2>
               <p id="videoCitationText" class="text-slate-400 text-xs font-mono truncate mt-0.5">
-                NCERT Class 11 Part 1, Chapter 4, Page 78 • Concept ID: P11-C02-T03-V02
+                NCERT Class 11 Part 1, Chapter 2, Pages 16-19 • Concept ID: P11-C01-T01-V01
               </p>
             </div>
           </div>
@@ -371,7 +371,7 @@
 
       <!-- Tab Content 2: 3D Interactive Lab (Play) -->
       <section id="contentLab" class="flex-1 hidden relative overflow-hidden bg-slate-950">
-        <iframe id="simIframe" src="/simulations/projectile_3d_simulation.html" class="w-full h-full border-0"></iframe>
+        <iframe id="simIframe" src="/simulations/unit_01_measurement_lab.html?mode=si_units" class="w-full h-full border-0"></iframe>
       </section>
 
       <!-- Tab Content 3: NEET Trap & Practice Solver (Solve) -->
@@ -1573,7 +1573,7 @@
       });
 
       if (!currentConcept || !filtered.some(c => c.canonical_id === currentConcept.canonical_id)) {
-        const flagship = filtered.find(c => c.canonical_id === 'P11-C02-T03-V02');
+        const flagship = filtered.find(c => c.canonical_id === 'P11-C01-T01-V01');
         selectConcept(flagship || filtered[0]);
       } else {
         selectConcept(currentConcept);
@@ -1597,6 +1597,16 @@
       document.getElementById('conceptBadge').innerText = `S.${concept.chapter_no}.${concept.topic_no}.${concept.video_no}`;
       document.getElementById('videoTitleText').innerText = `${concept.title} — ${concept.topic_name}`;
       document.getElementById('videoCitationText').innerText = `${concept.ncert_citation || 'NCERT Physics'} • Concept ID: ${concept.canonical_id}`;
+
+      const tabLabLabel = document.getElementById('tabLabLabel');
+      const tabLabBadge = document.getElementById('tabLabBadge');
+      if (concept.dimension_support === '3d') {
+        if (tabLabLabel) tabLabLabel.innerText = '2 • 3D SPATIAL LAB (PLAY)';
+        if (tabLabBadge) tabLabBadge.innerText = '3D SPATIAL';
+      } else {
+        if (tabLabLabel) tabLabLabel.innerText = '2 • INTERACTIVE LAB (PLAY)';
+        if (tabLabBadge) tabLabBadge.innerText = 'VIRTUAL LAB';
+      }
 
       const dimSwitcher = document.getElementById('dimSwitcher');
       if (concept.streams['3d'] && Object.keys(concept.streams['3d']).length > 0) {
