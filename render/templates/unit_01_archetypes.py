@@ -534,10 +534,10 @@ class VernierDualScaleVisualizerScene(ModularUnit1Scene):
 
         lines = [
             Text("1. Inverting Zero Error Signs (The #1 Negative Mark Trap in NEET):", font=self.body_font, font_size=12.5, weight="BOLD", color=TEXT_WHITE),
-            Text("   POSITIVE Zero Error (+e)  ===>  SUBTRACT from observed reading:", font=self.body_font, font_size=12, color=self.accent_gold),
-            Text("   True Reading = Observed Reading - (+e)", font=self.body_font, font_size=12, weight="BOLD", color=self.accent_gold),
-            Text("   NEGATIVE Zero Error (-e)  ===>  ADD to observed reading:", font=self.body_font, font_size=12, color=self.accent_green),
-            Text("   True Reading = Observed Reading - (-e) = Observed Reading + e", font=self.body_font, font_size=12, weight="BOLD", color=self.accent_green)
+            Text("   POSITIVE Zero Error (+e)  ===>  SUBTRACT from observed reading:", font=self.body_font, font_size=12.5, color=self.accent_gold),
+            Text("   True Reading = Observed Reading - (+e)", font=self.body_font, font_size=12.5, weight="BOLD", color=self.accent_gold),
+            Text("   NEGATIVE Zero Error (-e)  ===>  ADD to observed reading:", font=self.body_font, font_size=12.5, color=self.accent_green),
+            Text("   True Reading = Observed Reading - (-e) = Observed Reading + e", font=self.body_font, font_size=12.5, weight="BOLD", color=self.accent_green)
         ]
         vg = VGroup(*lines).arrange(DOWN, buff=0.14, aligned_edge=LEFT).next_to(trap_title, DOWN, buff=0.20)
         vg.move_to(trap_box.get_center() + DOWN * 0.20)
@@ -560,9 +560,9 @@ class SignificantFiguresRulesBoxScene(ModularUnit1Scene):
 
         r1 = Text("1. All non-zero digits are significant:           e.g. 2384  ==> 4 SF", font=self.body_font, font_size=12.5, color=TEXT_WHITE)
         r2 = Text("2. Trapped zeros between non-zeros are sig:       e.g. 4007  ==> 4 SF", font=self.body_font, font_size=12.5, color=TEXT_WHITE)
-        r3 = Text("3. Leading zeros before first non-zero NEVER sig: e.g. 0.0052 ==> 2 SF (zeros indicate position)", font=self.body_font, font_size=12, color=self.accent_green)
-        r4 = Text("4. Trailing zeros WITH decimal point are sig:     e.g. 3.500 ==> 4 SF (indicates precision)", font=self.body_font, font_size=12, color=self.accent_green)
-        r5 = Text("5. Trailing zeros WITHOUT decimal are NOT sig:    e.g. 4700  ==> 2 SF (use sci notation: 4.70 × 10³)", font=self.body_font, font_size=12, color=self.accent_gold)
+        r3 = Text("3. Leading zeros before first non-zero NEVER sig: e.g. 0.0052 ==> 2 SF (zeros indicate position)", font=self.body_font, font_size=12.5, color=self.accent_green)
+        r4 = Text("4. Trailing zeros WITH decimal point are sig:     e.g. 3.500 ==> 4 SF (indicates precision)", font=self.body_font, font_size=12.5, color=self.accent_green)
+        r5 = Text("5. Trailing zeros WITHOUT decimal are NOT sig:    e.g. 4700  ==> 2 SF (use sci notation: 4.70 × 10³)", font=self.body_font, font_size=12.5, color=self.accent_gold)
 
         rules_vg = VGroup(r1, r2, r3, r4, r5).arrange(DOWN, buff=0.18, aligned_edge=LEFT).next_to(sf_title, DOWN, buff=0.22).shift(LEFT * 0.2)
         return VGroup(sf_box, sf_title, rules_vg)
@@ -572,11 +572,11 @@ class SignificantFiguresRulesBoxScene(ModularUnit1Scene):
         ops_title = Text("ROUNDING IN ARITHMETIC OPERATIONS: ADDITION VS MULTIPLICATION", font=self.card_font, font_size=15, weight="BOLD", color=self.accent_gold).next_to(ops_box.get_top(), DOWN, buff=0.20)
 
         a1 = Text("ADDITION / SUBTRACTION RULE: Governed by LEAST DECIMAL PLACES", font=self.body_font, font_size=12.5, weight="BOLD", color=self.accent_blue).next_to(ops_title, DOWN, buff=0.22, aligned_edge=LEFT).shift(RIGHT * 0.3)
-        a2 = Text("• 436.32 (2 dec) + 227.2 (1 dec) + 0.301 (3 dec) = 663.821", font=self.body_font, font_size=12, color=TEXT_WHITE).next_to(a1, DOWN, buff=0.10, aligned_edge=LEFT)
+        a2 = Text("• 436.32 (2 dec) + 227.2 (1 dec) + 0.301 (3 dec) = 663.821", font=self.body_font, font_size=12.5, color=TEXT_WHITE).next_to(a1, DOWN, buff=0.10, aligned_edge=LEFT)
         a3 = Text("• Result must retain only 1 decimal place  ==>  663.8", font=self.body_font, font_size=12.5, weight="BOLD", color=self.accent_green).next_to(a2, DOWN, buff=0.08, aligned_edge=LEFT)
 
         m1 = Text("MULTIPLICATION / DIVISION RULE: Governed by LEAST SIGNIFICANT FIGURES", font=self.body_font, font_size=12.5, weight="BOLD", color=self.accent_gold).next_to(a3, DOWN, buff=0.18, aligned_edge=LEFT)
-        m2 = Text("• Density = Mass / Volume = 4.237 g (4 SF) / 2.51 cm³ (3 SF) = 1.68804...", font=self.body_font, font_size=12, color=TEXT_WHITE).next_to(m1, DOWN, buff=0.10, aligned_edge=LEFT)
+        m2 = Text("• Density = Mass / Volume = 4.237 g (4 SF) / 2.51 cm³ (3 SF) = 1.68804...", font=self.body_font, font_size=12.5, color=TEXT_WHITE).next_to(m1, DOWN, buff=0.10, aligned_edge=LEFT)
         m3 = Text("• Result must retain only 3 significant figures  ==>  1.69 g/cm³", font=self.body_font, font_size=12.5, weight="BOLD", color=self.accent_green).next_to(m2, DOWN, buff=0.08, aligned_edge=LEFT)
 
         return VGroup(ops_box, ops_title, a1, a2, a3, m1, m2, m3)
@@ -587,11 +587,11 @@ class SignificantFiguresRulesBoxScene(ModularUnit1Scene):
 
         lines = [
             Text("1. Applying Multiplication Rule to Addition/Subtraction (NEET 2020 Trap):", font=self.body_font, font_size=12.5, weight="BOLD", color=TEXT_WHITE),
-            Text("   Addition/Subtraction is governed strictly by LEAST DECIMAL PLACES, not sig figs!", font=self.body_font, font_size=12, color=self.accent_gold),
-            Text("   Example: 9.99 m - 0.0099 m = 9.9801 m  ===>  Round to 2 decimal places: 9.98 m", font=self.body_font, font_size=12, weight="BOLD", color=self.accent_green),
+            Text("   Addition/Subtraction is governed strictly by LEAST DECIMAL PLACES, not sig figs!", font=self.body_font, font_size=12.5, color=self.accent_gold),
+            Text("   Example: 9.99 m - 0.0099 m = 9.9801 m  ===>  Round to 2 decimal places: 9.98 m", font=self.body_font, font_size=12.5, weight="BOLD", color=self.accent_green),
             Text("2. Trailing Zeros Ambiguity Rule:", font=self.body_font, font_size=12.5, weight="BOLD", color=TEXT_WHITE),
-            Text("   4.700 m has 4 sig figs (decimal present), but 4700 m has only 2 sig figs!", font=self.body_font, font_size=12, color=self.accent_green),
-            Text("   To avoid ambiguity, always write in scientific notation: 4.700 × 10³ m.", font=self.body_font, font_size=12, weight="BOLD", color=self.accent_gold)
+            Text("   4.700 m has 4 sig figs (decimal present), but 4700 m has only 2 sig figs!", font=self.body_font, font_size=12.5, color=self.accent_green),
+            Text("   To avoid ambiguity, always write in scientific notation: 4.700 × 10³ m.", font=self.body_font, font_size=12.5, weight="BOLD", color=self.accent_gold)
         ]
         vg = VGroup(*lines).arrange(DOWN, buff=0.14, aligned_edge=LEFT).next_to(trap_title, DOWN, buff=0.20)
         vg.move_to(trap_box.get_center() + DOWN * 0.20)
