@@ -643,11 +643,35 @@ def render_concept_video(
     voice_id: Optional[str] = None,
     dimension: str = "auto",
     theme: Optional[str] = None,
-    skip_cache: bool = False
+    skip_cache: bool = False,
+    output_dir: Optional[str] = None
 ) -> Dict[str, Any]:
     t_start = time.time()
     from config import DEFAULT_THEME
     effective_theme = (theme or DEFAULT_THEME).strip().lower()
+
+    # ---------------------------------------------------------
+    # MANDATORY PRE-FLIGHT APPROVAL GATE
+    # ---------------------------------------------------------
+    manifest_path = BASE_DIR / "queue" / "approval_manifest.json"
+    manifest = {}
+    if manifest_path.exists():
+        try:
+            with open(manifest_path, "r", encoding="utf-8") as mf:
+                manifest = json.load(mf)
+        except Exception:
+            manifest = {}
+    
+    concept_entry = manifest.get(canonical_id, {})
+    if concept_entry.get("status") != "APPROVED":
+        status_label = concept_entry.get("status", "UNVERIFIED")
+        raise PermissionError(
+            f"\n🚨 PRE-FLIGHT RENDER GATE LOCKED!\n"
+            f"   Concept {canonical_id} is currently '{status_label}'.\n"
+            f"   You MUST generate and approve static proof screenshots before rendering final video.\n"
+            f"   Run: python pipeline/preflight_gatekeeper.py --unit queue/curriculum/physics/unit_01_measurement.csv\n"
+            f"   Then approve: python pipeline/preflight_gatekeeper.py --approve {canonical_id}\n"
+        )
 
     # 1. Fetch Metadata
     concept = load_concept_record(canonical_id)
@@ -782,7 +806,9 @@ def render_concept_video(
 
     # 6. Audio-Visual Synchronization & FFmpeg Muxing
     filename_stem = f"{canonical_id}_{lang}" if effective_dim == "2d" else f"{canonical_id}_3d_{lang}"
-    output_final_path = FINAL_VIDEOS_DIR / f"{filename_stem}.mp4"
+    target_out_dir = Path(output_dir) if output_dir else FINAL_VIDEOS_DIR
+    target_out_dir.mkdir(parents=True, exist_ok=True)
+    output_final_path = target_out_dir / f"{filename_stem}.mp4"
     print(f"\n🎬 Muxing Audio + Video + Metadata Container...")
     print(f"   Video Duration : {video_duration:.2f}s")
     print(f"   Audio Duration : {audio_duration:.2f}s")
@@ -920,6 +946,7 @@ def main():
                         choices=["modern_edtech", "academic_masterclass", "3b1b", "cupertino"],
                         help="Visual typography & color theme")
     parser.add_argument("--skip_cache", action="store_true", help="Force re-rendering without cache")
+    parser.add_argument("--output_dir", type=str, default=None, help="Custom output directory for final MP4 video")
 
     args = parser.parse_args()
 
@@ -931,7 +958,8 @@ def main():
         voice_id=args.voice,
         dimension=args.dimension,
         theme=args.theme,
-        skip_cache=args.skip_cache
+        skip_cache=args.skip_cache,
+        output_dir=args.output_dir
     )
 
 if __name__ == "__main__":

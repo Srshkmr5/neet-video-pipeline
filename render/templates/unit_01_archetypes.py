@@ -383,19 +383,19 @@ class MeasurementErrorDistributionScene(ModularUnit1Scene):
         tax_title = Text("TAXONOMY OF EXPERIMENTAL MEASUREMENT ERRORS", font=self.card_font, font_size=16, weight="BOLD", color=self.accent_gold).next_to(tax_box.get_top(), DOWN, buff=0.20)
 
         c1_box = RoundedRectangle(corner_radius=0.08, height=3.2, width=5.5, stroke_color=self.accent_blue, stroke_width=1.2, fill_color="#0F172A", fill_opacity=0.0).move_to(LEFT * 2.85 + DOWN * 0.3)
-        c1_hdr = Text("SYSTEMATIC ERRORS (UNIDIRECTIONAL)", font=self.body_font, font_size=12, weight="BOLD", color=self.accent_blue).next_to(c1_box.get_top(), DOWN, buff=0.15)
-        c1_t1 = Text("• Constant bias in ONE direction (+ or -)", font=self.body_font, font_size=11.5, color=TEXT_WHITE)
-        c1_t2 = Text("• Sources: Instrumental (zero error),", font=self.body_font, font_size=11.5, color=TEXT_WHITE)
-        c1_t3 = Text("  imperfection in technique, personal bias", font=self.body_font, font_size=11.5, color=TEXT_WHITE)
-        c1_t4 = Text("• Remedy: Re-calibration of apparatus", font=self.body_font, font_size=11.5, weight="BOLD", color=self.accent_green)
+        c1_hdr = Text("SYSTEMATIC ERRORS (UNIDIRECTIONAL)", font=self.body_font, font_size=13, weight="BOLD", color=self.accent_blue).next_to(c1_box.get_top(), DOWN, buff=0.15)
+        c1_t1 = Text("• Constant bias in ONE direction (+ or -)", font=self.body_font, font_size=12.5, color=TEXT_WHITE)
+        c1_t2 = Text("• Sources: Instrumental (zero error),", font=self.body_font, font_size=12.5, color=TEXT_WHITE)
+        c1_t3 = Text("  imperfection in technique, personal bias", font=self.body_font, font_size=12.5, color=TEXT_WHITE)
+        c1_t4 = Text("• Remedy: Re-calibration of apparatus", font=self.body_font, font_size=12.5, weight="BOLD", color=self.accent_green)
         c1_vg = VGroup(c1_t1, c1_t2, c1_t3, c1_t4).arrange(DOWN, buff=0.14, aligned_edge=LEFT).next_to(c1_hdr, DOWN, buff=0.18)
 
         c2_box = RoundedRectangle(corner_radius=0.08, height=3.2, width=5.5, stroke_color=self.accent_gold, stroke_width=1.2, fill_color="#0F172A", fill_opacity=0.0).move_to(RIGHT * 2.85 + DOWN * 0.3)
-        c2_hdr = Text("RANDOM ERRORS (GAUSSIAN FLUCTUATIONS)", font=self.body_font, font_size=12, weight="BOLD", color=self.accent_gold).next_to(c2_box.get_top(), DOWN, buff=0.15)
-        c2_t1 = Text("• Unpredictable variations in sign & size", font=self.body_font, font_size=11.5, color=TEXT_WHITE)
-        c2_t2 = Text("• Sources: Ambient temp, line voltage swings,", font=self.body_font, font_size=11.5, color=TEXT_WHITE)
-        c2_t3 = Text("  unavoidable mechanical vibrations", font=self.body_font, font_size=11.5, color=TEXT_WHITE)
-        c2_t4 = Text("• Remedy: Arithmetic mean of N readings", font=self.body_font, font_size=11.5, weight="BOLD", color=self.accent_green)
+        c2_hdr = Text("RANDOM ERRORS (GAUSSIAN FLUCTUATIONS)", font=self.body_font, font_size=13, weight="BOLD", color=self.accent_gold).next_to(c2_box.get_top(), DOWN, buff=0.15)
+        c2_t1 = Text("• Unpredictable variations in sign & size", font=self.body_font, font_size=12.5, color=TEXT_WHITE)
+        c2_t2 = Text("• Sources: Ambient temp, line voltage swings,", font=self.body_font, font_size=12.5, color=TEXT_WHITE)
+        c2_t3 = Text("  unavoidable mechanical vibrations", font=self.body_font, font_size=12.5, color=TEXT_WHITE)
+        c2_t4 = Text("• Remedy: Arithmetic mean of N readings", font=self.body_font, font_size=12.5, weight="BOLD", color=self.accent_green)
         c2_vg = VGroup(c2_t1, c2_t2, c2_t3, c2_t4).arrange(DOWN, buff=0.14, aligned_edge=LEFT).next_to(c2_hdr, DOWN, buff=0.18)
 
         return VGroup(tax_box, tax_title, c1_box, c1_hdr, c1_vg, c2_box, c2_hdr, c2_vg)
@@ -419,11 +419,11 @@ class MeasurementErrorDistributionScene(ModularUnit1Scene):
 
         lines = [
             Text("1. The Zero Sum Trap (H.C. Verma Classic):", font=self.body_font, font_size=12.5, weight="BOLD", color=TEXT_WHITE),
-            Text("   The algebraic sum of deviations from arithmetic mean is IDENTICALLY ZERO:", font=self.body_font, font_size=12, color=TEXT_WHITE),
-            Text("   Σ (a_mean - a_i) = 0   ===> NEVER use signed deviations for mean error!", font=self.body_font, font_size=12, weight="BOLD", color=self.accent_gold),
+            Text("   The algebraic sum of deviations from arithmetic mean is IDENTICALLY ZERO:", font=self.body_font, font_size=12.5, color=TEXT_WHITE),
+            Text("   Σ (a_mean - a_i) = 0   ===> NEVER use signed deviations for mean error!", font=self.body_font, font_size=12.5, weight="BOLD", color=self.accent_gold),
             Text("2. Absolute Error Magnitude Rule:", font=self.body_font, font_size=12.5, weight="BOLD", color=TEXT_WHITE),
-            Text("   You MUST take the absolute magnitude |Δa_i| before taking the arithmetic mean.", font=self.body_font, font_size=12, color=self.accent_green),
-            Text("   Absolute error is non-negative by definition (Δa_mean > 0).", font=self.body_font, font_size=12, weight="BOLD", color=self.accent_gold)
+            Text("   You MUST take the absolute magnitude |Δa_i| before taking the arithmetic mean.", font=self.body_font, font_size=12.5, color=self.accent_green),
+            Text("   Absolute error is non-negative by definition (Δa_mean > 0).", font=self.body_font, font_size=12.5, weight="BOLD", color=self.accent_gold)
         ]
         vg = VGroup(*lines).arrange(DOWN, buff=0.14, aligned_edge=LEFT).next_to(trap_title, DOWN, buff=0.20)
         vg.move_to(trap_box.get_center() + DOWN * 0.20)

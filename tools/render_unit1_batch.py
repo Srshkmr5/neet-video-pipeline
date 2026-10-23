@@ -16,7 +16,9 @@ if hasattr(sys.stdout, 'reconfigure'):
     sys.stderr.reconfigure(encoding='utf-8')
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-FINAL_VIDEOS_DIR = BASE_DIR / "output" / "final_videos"
+UNIT1_VIDEOS_DIR = BASE_DIR / "output" / "unit_01_physics_and_measurement"
+UNIT1_VIDEOS_DIR.mkdir(parents=True, exist_ok=True)
+FINAL_VIDEOS_DIR = UNIT1_VIDEOS_DIR
 SECURE_STREAMS_DIR = BASE_DIR / "output" / "secure_streams"
 REPORT_PATH = BASE_DIR / "output" / "reports" / "unit1_batch_render_report.json"
 
@@ -52,6 +54,12 @@ def run_step(cmd, desc):
         return True, dt, res.stdout
 
 def main():
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--languages", type=str, default="en-IN", help="Comma-separated language codes, e.g. 'en-IN' or 'en-IN,hi-IN,ta-IN'")
+    args, _ = parser.parse_known_args()
+    active_languages = [l.strip() for l in args.languages.split(",") if l.strip()]
+
     print("=" * 80)
     print("🚀 BATCH RENDER & PACKAGING ENGINE: UNIT 1 (PHYSICS & MEASUREMENT)")
     print(f"   Target: {len(UNIT_1_CONCEPTS)} Concepts x {len(LANGUAGES)} Languages = {len(UNIT_1_CONCEPTS) * len(LANGUAGES)} Streams")
@@ -64,11 +72,24 @@ def main():
         "results": []
     }
 
+    manifest_path = BASE_DIR / "queue" / "approval_manifest.json"
+    manifest = {}
+    if manifest_path.exists():
+        try:
+            with open(manifest_path, "r", encoding="utf-8") as mf:
+                manifest = json.load(mf)
+        except Exception:
+            manifest = {}
+
     for idx, cid in enumerate(UNIT_1_CONCEPTS):
         print(f"\n[{idx + 1}/{len(UNIT_1_CONCEPTS)}] Processing Concept: {cid}")
+        c_status = manifest.get(cid, {}).get("status", "UNVERIFIED")
+        if c_status != "APPROVED":
+            print(f"   ⚠️ SKIPPED {cid}: Pre-flight status is '{c_status}'. Must approve static proofs before batch render!")
+            continue
         concept_result = {"canonical_id": cid, "languages": {}}
 
-        for lang in LANGUAGES:
+        for lang in active_languages:
             video_tag = f"{cid}_{lang}"
             final_mp4 = FINAL_VIDEOS_DIR / f"{video_tag}.mp4"
             stream_dir = SECURE_STREAMS_DIR / video_tag
@@ -86,7 +107,9 @@ def main():
                     "--id", cid,
                     "--lang", lang,
                     "--quality", "draft",
-                    "--provider", "edge_tts"
+                    "--provider", "edge_tts",
+                    "--output_dir", str(UNIT1_VIDEOS_DIR),
+                    "--skip_cache"
                 ]
                 success, dt, out = run_step(render_cmd, f"Render {video_tag}")
                 lang_status["render"] = "success" if success else "failed"

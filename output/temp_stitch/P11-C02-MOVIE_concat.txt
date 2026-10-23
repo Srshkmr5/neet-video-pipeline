@@ -1,2 +1,0 @@
-file 'C:/Software check/neet-video-pipeline_1/output/temp_stitch/P11-C02-MOVIE_intro_bumper.mp4'
-file 'C:/Software check/neet-video-pipeline_1/output/temp_stitch/norm_P11-C02-T03-V02.mp4'
