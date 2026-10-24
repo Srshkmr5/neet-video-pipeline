@@ -265,8 +265,8 @@
           </button>
           <button id="tabLabBtn" onclick="switchTab('lab')" class="px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 tab-inactive">
             <i class="fa-solid fa-flask-vial text-purple-400"></i>
-            <span id="tabLabLabel">2 • INTERACTIVE LAB (PLAY)</span>
-            <span id="tabLabBadge" class="px-1.5 py-0.2 rounded bg-purple-500/20 text-purple-300 text-[9px] font-mono">VIRTUAL LAB</span>
+            <span id="tabLabLabel">2 • CONCEPT LAB (CARDS)</span>
+            <span id="tabLabBadge" class="px-1.5 py-0.2 rounded bg-purple-500/20 text-purple-300 text-[9px] font-mono">CONCEPT CARDS</span>
           </button>
           <button id="tabSolveBtn" onclick="switchTab('solve')" class="px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 tab-inactive">
             <i class="fa-solid fa-bolt text-amber-400"></i>
@@ -369,7 +369,7 @@
         </div>
       </section>
 
-      <!-- Tab Content 2: 3D Interactive Lab (Play) -->
+      <!-- Tab Content 2: Interactive Lab / Concept Cards (Play) -->
       <section id="contentLab" class="flex-1 hidden relative overflow-hidden bg-slate-950">
         <iframe id="simIframe" src="/simulations/unit_01_measurement_lab.html?mode=si_units" class="w-full h-full border-0"></iframe>
       </section>
@@ -1604,8 +1604,8 @@
         if (tabLabLabel) tabLabLabel.innerText = '2 • 3D SPATIAL LAB (PLAY)';
         if (tabLabBadge) tabLabBadge.innerText = '3D SPATIAL';
       } else {
-        if (tabLabLabel) tabLabLabel.innerText = '2 • INTERACTIVE LAB (PLAY)';
-        if (tabLabBadge) tabLabBadge.innerText = 'VIRTUAL LAB';
+        if (tabLabLabel) tabLabLabel.innerText = '2 • CONCEPT LAB (CARDS)';
+        if (tabLabBadge) tabLabBadge.innerText = 'CONCEPT CARDS';
       }
 
       const dimSwitcher = document.getElementById('dimSwitcher');
@@ -1620,7 +1620,10 @@
       loadTrapQuiz(concept.trap_quiz);
 
       if (concept.simulation) {
-        document.getElementById('simIframe').src = concept.simulation;
+        const sim = document.getElementById('simIframe');
+        if (sim && (!sim.src || !sim.src.includes(concept.simulation))) {
+          sim.src = concept.simulation;
+        }
       }
 
       updateCompleteButtonState();
@@ -1717,6 +1720,12 @@
           content.classList.add('hidden');
         }
       });
+      if (tab === 'lab' && currentConcept && currentConcept.simulation) {
+        const sim = document.getElementById('simIframe');
+        if (sim && (!sim.src || !sim.src.includes(currentConcept.simulation))) {
+          sim.src = currentConcept.simulation;
+        }
+      }
     }
 
     // 8. NEET Trap & Quiz Solver

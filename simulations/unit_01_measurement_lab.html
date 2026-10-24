@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Unit 1: Physics & Measurement — Interactive Experimental Lab</title>
+  <title>Unit 1: Physics & Measurement — Interactive Concept Lab</title>
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     body { margin: 0; background-color: #030712; color: #F8FAFC; font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; }
-    .glass-card { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(14px); border: 1px solid rgba(56, 189, 248, 0.2); }
+    .glass-card { background: rgba(15, 23, 42, 0.88); backdrop-filter: blur(14px); border: 1px solid rgba(56, 189, 248, 0.22); }
     .glow-cyan { text-shadow: 0 0 10px rgba(56, 189, 248, 0.6); }
     .glow-gold { text-shadow: 0 0 10px rgba(250, 204, 21, 0.6); }
     .glow-green { text-shadow: 0 0 10px rgba(74, 222, 128, 0.6); }
@@ -17,6 +17,7 @@
     .tab-btn.active { background: #0284c7; color: #ffffff; border-color: #38bdf8; box-shadow: 0 0 12px rgba(2, 132, 199, 0.5); }
     .tab-btn:not(.active) { background: #0f172a; color: #94a3b8; border-color: #1e293b; }
     .tab-btn:not(.active):hover { background: #1e293b; color: #f8fafc; }
+    .si-row:hover { background: rgba(2, 132, 199, 0.15); border-color: rgba(56, 189, 248, 0.4); }
   </style>
 </head>
 <body class="h-screen flex flex-col bg-[#030712] overflow-hidden">
@@ -28,23 +29,26 @@
         UNIT 1 LAB
       </div>
       <h1 class="text-sm font-bold text-white tracking-wide hidden sm:block">
-        Physics & Measurement — Interactive Precision Simulator
+        Physics & Measurement — Interactive Concept & Experimental Lab
       </h1>
     </div>
 
     <!-- Mode Selector Pills -->
-    <div class="flex items-center space-x-1.5 text-xs font-mono">
-      <button id="modeVernierBtn" onclick="switchMode('vernier_screw')" class="tab-btn px-3 py-1.5 rounded-lg border font-semibold transition active">
-        📏 Vernier & Screw Gauge
+    <div class="flex items-center space-x-1.5 text-xs font-mono overflow-x-auto">
+      <button id="modeSIUnitsBtn" onclick="switchMode('si_units')" class="tab-btn px-3 py-1.5 rounded-lg border font-semibold transition active">
+        📐 1.1.1 SI Units Cards
+      </button>
+      <button id="modeVernierBtn" onclick="switchMode('vernier_screw')" class="tab-btn px-3 py-1.5 rounded-lg border font-semibold transition">
+        📏 1.4.7 Vernier & Screw
       </button>
       <button id="modeErrorBtn" onclick="switchMode('error_propagation')" class="tab-btn px-3 py-1.5 rounded-lg border font-semibold transition">
-        ⚡ Error Propagation
+        ⚡ 1.3.5 & 1.3.6 Error Tree
       </button>
       <button id="modeHomogeneityBtn" onclick="switchMode('homogeneity')" class="tab-btn px-3 py-1.5 rounded-lg border font-semibold transition">
-        ⚖️ Homogeneity
+        ⚖️ 1.2.3 & 1.2.4 Homogeneity
       </button>
       <button id="modeSigFigBtn" onclick="switchMode('sig_figs')" class="tab-btn px-3 py-1.5 rounded-lg border font-semibold transition">
-        🔢 Significant Figures
+        🔢 1.4.8 Significant Figs
       </button>
     </div>
   </header>
@@ -53,9 +57,208 @@
   <main class="flex-1 flex overflow-hidden relative">
 
     <!-- ============================================================== -->
+    <!-- MODE 0: 1.1.1 & 1.1.2 SI BASE & SUPPLEMENTARY UNITS CARDS      -->
+    <!-- ============================================================== -->
+    <div id="viewSIUnits" class="flex-1 flex flex-col lg:flex-row p-4 gap-4 overflow-y-auto">
+      
+      <!-- LEFT: 7 Fundamental SI Base Standards Card -->
+      <div class="flex-1 flex flex-col glass-card rounded-2xl p-4 shadow-xl border border-sky-500/20 space-y-3">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+          <div class="flex items-center space-x-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-sky-400 animate-pulse"></span>
+            <span class="text-xs font-mono font-bold text-sky-300">7 FUNDAMENTAL BASE QUANTITIES (NCERT TABLE 2.1)</span>
+          </div>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-sky-950 text-sky-400 border border-sky-500/30">SI FRAMEWORK</span>
+        </div>
+
+        <p class="text-slate-300 text-xs leading-relaxed">
+          The International System of Units (SI) defines exactly <strong class="text-white">seven mutually independent base quantities</strong> that form the irreducible algebraic foundation for all derived units in mechanics, electromagnetism, and thermodynamics.
+        </p>
+
+        <!-- 7 Base Quantities Interactive Table -->
+        <div class="space-y-1.5 text-xs font-mono">
+          <!-- Header -->
+          <div class="grid grid-cols-12 px-3 py-1.5 text-[11px] font-bold text-amber-400 uppercase border-b border-slate-800">
+            <div class="col-span-4">Base Quantity</div>
+            <div class="col-span-4">SI Unit (Symbol)</div>
+            <div class="col-span-2">Dim</div>
+            <div class="col-span-2 text-right">Standard</div>
+          </div>
+
+          <!-- 1. Length -->
+          <div class="si-row grid grid-cols-12 px-3 py-2 rounded-xl bg-slate-900/70 border border-slate-800 transition items-center">
+            <div class="col-span-4 font-bold text-white flex items-center gap-1.5">
+              <span class="text-sky-400">1.</span> Length
+            </div>
+            <div class="col-span-4 text-slate-200">metre (<code class="text-sky-300 font-bold">m</code>)</div>
+            <div class="col-span-2 text-emerald-400 font-bold">[L]</div>
+            <div class="col-span-2 text-right text-[10px] text-slate-400">c / Δt</div>
+          </div>
+
+          <!-- 2. Mass -->
+          <div class="si-row grid grid-cols-12 px-3 py-2 rounded-xl bg-slate-900/70 border border-slate-800 transition items-center">
+            <div class="col-span-4 font-bold text-white flex items-center gap-1.5">
+              <span class="text-sky-400">2.</span> Mass
+            </div>
+            <div class="col-span-4 text-slate-200">kilogram (<code class="text-sky-300 font-bold">kg</code>)</div>
+            <div class="col-span-2 text-emerald-400 font-bold">[M]</div>
+            <div class="col-span-2 text-right text-[10px] text-slate-400">Planck h</div>
+          </div>
+
+          <!-- 3. Time -->
+          <div class="si-row grid grid-cols-12 px-3 py-2 rounded-xl bg-slate-900/70 border border-slate-800 transition items-center">
+            <div class="col-span-4 font-bold text-white flex items-center gap-1.5">
+              <span class="text-sky-400">3.</span> Time
+            </div>
+            <div class="col-span-4 text-slate-200">second (<code class="text-sky-300 font-bold">s</code>)</div>
+            <div class="col-span-2 text-emerald-400 font-bold">[T]</div>
+            <div class="col-span-2 text-right text-[10px] text-slate-400">Cs-133</div>
+          </div>
+
+          <!-- 4. Electric Current -->
+          <div class="si-row grid grid-cols-12 px-3 py-2 rounded-xl bg-slate-900/70 border border-slate-800 transition items-center">
+            <div class="col-span-4 font-bold text-white flex items-center gap-1.5">
+              <span class="text-sky-400">4.</span> Electric Current
+            </div>
+            <div class="col-span-4 text-slate-200">ampere (<code class="text-sky-300 font-bold">A</code>)</div>
+            <div class="col-span-2 text-emerald-400 font-bold">[A]</div>
+            <div class="col-span-2 text-right text-[10px] text-slate-400">e-charge</div>
+          </div>
+
+          <!-- 5. Temperature -->
+          <div class="si-row grid grid-cols-12 px-3 py-2 rounded-xl bg-slate-900/70 border border-slate-800 transition items-center">
+            <div class="col-span-4 font-bold text-white flex items-center gap-1.5">
+              <span class="text-sky-400">5.</span> Thermodynamic Temp
+            </div>
+            <div class="col-span-4 text-slate-200">kelvin (<code class="text-sky-300 font-bold">K</code>)</div>
+            <div class="col-span-2 text-emerald-400 font-bold">[K]</div>
+            <div class="col-span-2 text-right text-[10px] text-slate-400">Boltzmann k</div>
+          </div>
+
+          <!-- 6. Amount of Substance -->
+          <div class="si-row grid grid-cols-12 px-3 py-2 rounded-xl bg-slate-900/70 border border-slate-800 transition items-center">
+            <div class="col-span-4 font-bold text-white flex items-center gap-1.5">
+              <span class="text-sky-400">6.</span> Amount of Substance
+            </div>
+            <div class="col-span-4 text-slate-200">mole (<code class="text-sky-300 font-bold">mol</code>)</div>
+            <div class="col-span-2 text-emerald-400 font-bold">[mol]</div>
+            <div class="col-span-2 text-right text-[10px] text-slate-400">N_A</div>
+          </div>
+
+          <!-- 7. Luminous Intensity -->
+          <div class="si-row grid grid-cols-12 px-3 py-2 rounded-xl bg-slate-900/70 border border-slate-800 transition items-center">
+            <div class="col-span-4 font-bold text-white flex items-center gap-1.5">
+              <span class="text-sky-400">7.</span> Luminous Intensity
+            </div>
+            <div class="col-span-4 text-slate-200">candela (<code class="text-sky-300 font-bold">cd</code>)</div>
+            <div class="col-span-2 text-emerald-400 font-bold">[cd]</div>
+            <div class="col-span-2 text-right text-[10px] text-slate-400">540 THz</div>
+          </div>
+        </div>
+
+        <!-- 1.1.2 SI Prefix Ladder Helper -->
+        <div class="mt-2 p-3 rounded-xl bg-slate-950/80 border border-slate-800 text-xs font-mono space-y-1.5">
+          <div class="flex items-center justify-between text-[11px] font-bold text-slate-300">
+            <span>Standard Decimal Metric Prefixes (Femto to Exa):</span>
+            <span class="text-rose-400 font-bold">No Double Prefixes!</span>
+          </div>
+          <div class="flex flex-wrap gap-1.5 text-[10px] text-slate-400">
+            <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-sky-300">f (10⁻¹⁵)</span>
+            <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-sky-300">p (10⁻¹²)</span>
+            <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-sky-300">n (10⁻⁹)</span>
+            <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-sky-300">μ (10⁻⁶)</span>
+            <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-sky-300">m (10⁻³)</span>
+            <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-amber-300">k (10³)</span>
+            <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-amber-300">M (10⁶)</span>
+            <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-amber-300">G (10⁹)</span>
+            <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-amber-300">T (10¹²)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: 2 Supplementary Units Interactive Visual Cards -->
+      <div class="w-full lg:w-96 flex flex-col gap-4 shrink-0">
+        
+        <!-- Plane Angle Interactive Card -->
+        <div class="glass-card rounded-2xl p-4 shadow-xl border border-sky-500/20 space-y-3">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+            <div class="flex items-center space-x-2">
+              <span class="text-sky-400 font-bold">1.</span>
+              <span class="text-xs font-mono font-bold text-white uppercase">Plane Angle (Radian)</span>
+            </div>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-500/30">[M⁰ L⁰ T⁰]</span>
+          </div>
+
+          <div class="text-xs font-mono space-y-1 text-slate-300">
+            <div>• Formula: <strong class="text-amber-300">dθ = ds / r</strong> (Arc length / Radius)</div>
+            <div>• SI Unit: <strong class="text-emerald-300">Radian (rad)</strong></div>
+            <div>• Dimensional Formula: <strong class="text-sky-300">[M⁰ L⁰ T⁰]</strong> (Strictly Dimensionless)</div>
+          </div>
+
+          <!-- Interactive Plane Angle Circle Visualizer -->
+          <div class="bg-black/50 rounded-xl p-3 flex flex-col items-center justify-center space-y-2">
+            <svg id="planeAngleSvg" width="160" height="120" viewBox="-70 -60 140 120">
+              <!-- Base Circle Background -->
+              <circle cx="0" cy="0" r="45" fill="none" stroke="#1e293b" stroke-width="2"/>
+              <!-- Initial Radius Line -->
+              <line x1="0" y1="0" x2="45" y2="0" stroke="#facc15" stroke-width="2"/>
+              <!-- Dynamic Terminal Radius Line -->
+              <line id="terminalRadiusLine" x1="0" y1="0" x2="27" y2="-36" stroke="#38bdf8" stroke-width="2"/>
+              <!-- Arc Path -->
+              <path id="planeArcPath" d="M 45 0 A 45 45 0 0 0 27 -36" fill="none" stroke="#4ade80" stroke-width="3"/>
+              <!-- Center Dot -->
+              <circle cx="0" cy="0" r="3" fill="#ffffff"/>
+            </svg>
+
+            <!-- Angle Slider -->
+            <div class="w-full text-xs font-mono space-y-1">
+              <div class="flex justify-between text-slate-300 text-[11px]">
+                <span>Angle θ: <span id="angleDegDisplay" class="text-amber-300 font-bold">53°</span></span>
+                <span>= <span id="angleRadDisplay" class="text-emerald-300 font-bold">0.93 rad</span></span>
+              </div>
+              <input type="range" id="angleSlider" min="10" max="360" value="53" oninput="updatePlaneAngle(this.value)" class="w-full">
+            </div>
+          </div>
+        </div>
+
+        <!-- Solid Angle Card -->
+        <div class="glass-card rounded-2xl p-4 shadow-xl border border-sky-500/20 space-y-2.5">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+            <div class="flex items-center space-x-2">
+              <span class="text-sky-400 font-bold">2.</span>
+              <span class="text-xs font-mono font-bold text-white uppercase">Solid Angle (Steradian)</span>
+            </div>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-500/30">[M⁰ L⁰ T⁰]</span>
+          </div>
+
+          <div class="text-xs font-mono space-y-1 text-slate-300">
+            <div>• Formula: <strong class="text-amber-300">dΩ = dA / r²</strong> (Intercepted Area / Radius²)</div>
+            <div>• SI Unit: <strong class="text-emerald-300">Steradian (sr)</strong></div>
+            <div>• Full Sphere Solid Angle: <strong class="text-sky-300">4π sr ≈ 12.57 sr</strong></div>
+          </div>
+        </div>
+
+        <!-- NEET GOLDEN TRAP CARD -->
+        <div class="p-3.5 rounded-2xl bg-rose-950/70 border border-rose-500/40 space-y-2 text-xs font-mono">
+          <div class="flex items-center space-x-2 text-rose-400 font-bold">
+            <span>⚠️</span>
+            <span>NEET High-Yield Trap (H.C. Verma Classic)</span>
+          </div>
+          <p class="text-slate-300 text-[11px] leading-relaxed">
+            <strong class="text-white">"A physical quantity CAN have units without dimensions, but NO quantity can EVER have dimensions without units!"</strong><br><br>
+            • Radian and Steradian have recognized units (<code class="text-amber-300">rad</code>, <code class="text-amber-300">sr</code>) with zero dimensions (<code class="text-emerald-300">[M⁰ L⁰ T⁰]</code>).<br>
+            • But if an equation yields dimensions like <code class="text-sky-300">[M L T⁻²]</code>, it MUST possess corresponding units (N, kg·m/s²).
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ============================================================== -->
     <!-- MODE 1: VERNIER CALLIPERS & SCREW GAUGE (P11-C01-T04-V07)     -->
     <!-- ============================================================== -->
-    <div id="viewVernier" class="flex-1 flex flex-col lg:flex-row p-4 gap-4 overflow-y-auto">
+    <div id="viewVernier" class="flex-1 hidden flex-col lg:flex-row p-4 gap-4 overflow-y-auto">
       
       <!-- Interactive Canvas Stage -->
       <div class="flex-1 flex flex-col glass-card rounded-2xl p-4 shadow-xl border border-sky-500/20 relative">
@@ -435,12 +638,17 @@
     // 1. Mode Switching & URL Query Parameter Support
     function switchMode(mode) {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('viewSIUnits').classList.add('hidden');
       document.getElementById('viewVernier').classList.add('hidden');
       document.getElementById('viewError').classList.add('hidden');
       document.getElementById('viewHomogeneity').classList.add('hidden');
       document.getElementById('viewSigFig').classList.add('hidden');
 
-      if (mode === 'vernier_screw') {
+      if (mode === 'si_units' || mode === 'base_units') {
+        document.getElementById('modeSIUnitsBtn').classList.add('active');
+        document.getElementById('viewSIUnits').classList.remove('hidden');
+        updatePlaneAngle(document.getElementById('angleSlider').value);
+      } else if (mode === 'vernier_screw') {
         document.getElementById('modeVernierBtn').classList.add('active');
         document.getElementById('viewVernier').classList.remove('hidden');
         drawVernier();
@@ -451,7 +659,7 @@
       } else if (mode === 'homogeneity' || mode === 'dimensions') {
         document.getElementById('modeHomogeneityBtn').classList.add('active');
         document.getElementById('viewHomogeneity').classList.remove('hidden');
-      } else if (mode === 'sig_figs' || mode === 'si_units') {
+      } else if (mode === 'sig_figs') {
         document.getElementById('modeSigFigBtn').classList.add('active');
         document.getElementById('viewSigFig').classList.remove('hidden');
         analyzeSigFigs();
@@ -461,9 +669,29 @@
     // Auto-detect mode from URL param ?mode=
     window.addEventListener('DOMContentLoaded', () => {
       const params = new URLSearchParams(window.location.search);
-      const m = params.get('mode') || 'vernier_screw';
+      const m = params.get('mode') || 'si_units';
       switchMode(m);
     });
+
+    // Plane Angle Interactive SVG Arc
+    function updatePlaneAngle(deg) {
+      deg = parseFloat(deg);
+      const rad = deg * (Math.PI / 180);
+      document.getElementById('angleDegDisplay').innerText = deg + "°";
+      document.getElementById('angleRadDisplay').innerText = rad.toFixed(2) + " rad";
+
+      const r = 45;
+      const x = r * Math.cos(-rad);
+      const y = r * Math.sin(-rad);
+
+      const terminal = document.getElementById('terminalRadiusLine');
+      terminal.setAttribute('x2', x);
+      terminal.setAttribute('y2', y);
+
+      const arc = document.getElementById('planeArcPath');
+      const largeArc = deg > 180 ? 1 : 0;
+      arc.setAttribute('d', `M 45 0 A 45 45 0 ${largeArc} 0 ${x} ${y}`);
+    }
 
     // 2. Vernier & Screw Gauge Interactive Canvas
     let currentInstrument = 'vernier';
@@ -613,7 +841,6 @@
         ctx.stroke();
         if (i % 5 === 0) ctx.fillText(i.toString(), x - 4, 98);
 
-        // Half-mm marks below datum line
         if (i < 15) {
           ctx.strokeStyle = "#a855f7";
           ctx.beginPath();
@@ -730,7 +957,6 @@
         return;
       }
 
-      // Check standard decimal number
       const num = parseFloat(raw);
       if (isNaN(num)) {
         countSpan.innerText = "Invalid Number";
@@ -738,7 +964,6 @@
         return;
       }
 
-      // Basic NCERT parsing logic
       if (raw === "0.00470" || raw === "0.00520") {
         countSpan.innerText = "3 SF";
         expSpan.innerHTML = "• Leading zeros before 4 are placeholders (NEVER significant).<br>• 4 and 7 are non-zero (significant).<br>• Trailing zero is after decimal (indicates measurement precision, significant).";
@@ -752,7 +977,6 @@
         countSpan.innerText = "4 SF";
         expSpan.innerHTML = "• Trapped zeros between non-zero digits are ALWAYS significant.";
       } else {
-        // General calculation
         let str = raw.replace(/^0+/, '');
         if (str.includes('.')) {
           str = str.replace('.', '');
