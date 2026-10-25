@@ -538,7 +538,7 @@
       "dimension_support": "2d",
       "latex_formula": "v = \\frac{dx}{dt}",
       "plain_formula": "v = dx / dt",
-      "ncert_citation": "NCERT Class 11 Part 1, Ch 3, Page 43",
+      "ncert_citation": "NCERT Class 11 Physics Part 1 • Unit 2: Kinematics • Chapter 3: Motion in a Straight Line (Section 3.2)",
       "ncert_core_rule": "Slope of the position-time curve represents instantaneous velocity.",
       "author_book_nuance": "HCV Ch 3: Negative slope indicates velocity in opposite direction, not necessarily deceleration.",
       "neet_trap_point": "Confusing slope of x-t graph (velocity) with slope of v-t graph (acceleration).",
@@ -582,7 +582,11 @@
           }
         ],
         "correct_index": 0,
-        "explanation": "Key Rule: Slope of the position-time curve represents instantaneous velocity. HCV Ch 3: Negative slope indicates velocity in opposite direction, not necessarily deceleration."
+        "explanation": "Key Rule: Slope of the position-time curve represents instantaneous velocity. HCV Ch 3: Negative slope indicates velocity in opposite direction, not necessarily deceleration.",
+        "formula_card": {
+          "incorrect": "Flat line on x-t graph ⇒ Moving with constant velocity",
+          "correct": "Slope dx/dt = 0 ⇒ Object is at REST (v = 0)"
+        }
       }
     },
     {
@@ -599,7 +603,7 @@
       "dimension_support": "2d",
       "latex_formula": "\\vec{A} = A_x\\hat{i} + A_y\\hat{j}",
       "plain_formula": "A = Ax i + Ay j",
-      "ncert_citation": "NCERT Class 11 Part 1, Ch 4, Page 67",
+      "ncert_citation": "NCERT Class 11 Physics Part 1 • Unit 2: Kinematics • Chapter 4: Motion in a Plane (Section 4.5)",
       "ncert_core_rule": "Any 2D vector can be resolved into two mutually perpendicular orthogonal components.",
       "author_book_nuance": "HCV Ch 2: Components of a vector behave independently along x and y coordinates.",
       "neet_trap_point": "Assigning cosine to vertical axis when angle was given with horizontal.",
@@ -643,7 +647,11 @@
           }
         ],
         "correct_index": 0,
-        "explanation": "Key Rule: Any 2D vector can be resolved into two mutually perpendicular orthogonal components. HCV Ch 2: Components of a vector behave independently along x and y coordinates."
+        "explanation": "Key Rule: Any 2D vector can be resolved into two mutually perpendicular orthogonal components. HCV Ch 2: Components of a vector behave independently along x and y coordinates.",
+        "formula_card": {
+          "incorrect": "A_x is ALWAYS A cos θ (blind formula)",
+          "correct": "Component ADJACENT to angle is cos θ; OPPOSITE is sin θ"
+        }
       }
     },
     {
@@ -660,7 +668,7 @@
       "dimension_support": "2d",
       "latex_formula": "T = \\frac{2v_0 \\sin\\theta}{g}",
       "plain_formula": "T = (2 · v₀ · sin(θ)) / g",
-      "ncert_citation": "NCERT Class 11 Part 1, Ch 4, Page 78",
+      "ncert_citation": "NCERT Class 11 Physics Part 1 • Unit 2: Kinematics • Chapter 4: Motion in a Plane (Section 4.10)",
       "ncert_core_rule": "Time of flight is determined purely by the vertical component of initial velocity.",
       "author_book_nuance": "HCV Ch 3: The horizontal velocity component vx has zero acceleration and does not affect the time spent in the air.",
       "neet_trap_point": "Question specifies angle with vertical axis instead of horizontal (swapping sin with cos).",
@@ -704,7 +712,11 @@
           }
         ],
         "correct_index": 0,
-        "explanation": "Since H_max = vy²/(2g), same H_max strictly means same vertical speed vy. Time of flight T = 2vy/g depends exclusively on vertical speed. Therefore T1/T2 = 1:1, regardless of their ranges or horizontal components!"
+        "explanation": "Since H_max = vy²/(2g), same H_max strictly means same vertical speed vy. Time of flight T = 2vy/g depends exclusively on vertical speed. Therefore T1/T2 = 1:1, regardless of their ranges or horizontal components!",
+        "formula_card": {
+          "incorrect": "T = (2u sin θ)/g (applied when θ is with vertical)",
+          "correct": "T = 2u_y/g = (2u cos θ)/g (when θ is with vertical axis)"
+        }
       }
     },
     {
@@ -721,7 +733,7 @@
       "dimension_support": "3d",
       "latex_formula": "H_{\\max} = \\frac{v_0^2 \\sin^2\\theta}{2g}",
       "plain_formula": "H_max = (v₀² · sin²(θ)) / (2g)",
-      "ncert_citation": "NCERT Class 11 Part 1, Ch 4, Page 78",
+      "ncert_citation": "NCERT Class 11 Physics Part 1 • Unit 2: Kinematics • Chapter 4: Motion in a Plane (Section 4.10)",
       "ncert_core_rule": "At maximum height, the vertical component of velocity is zero while horizontal velocity remains v0*cos(theta).",
       "author_book_nuance": "HCV Ch 3: Speed at the top is not zero; it equals v0*cos(theta). Kinetic energy is minimum but non-zero.",
       "neet_trap_point": "Confusing total velocity being zero with only vertical velocity component being zero at top of trajectory.",
@@ -788,7 +800,7 @@
       "dimension_support": "2d",
       "latex_formula": "R = \\frac{v_0^2 \\sin(2\\theta)}{g}",
       "plain_formula": "R = (v₀² · sin(2θ)) / g",
-      "ncert_citation": "NCERT Class 11 Part 1, Ch 4, Page 79",
+      "ncert_citation": "NCERT Class 11 Physics Part 1 • Unit 2: Kinematics • Chapter 4: Motion in a Plane (Section 4.10)",
       "ncert_core_rule": "Horizontal range is identical for complementary projection angles theta and (90 - theta) at the same initial speed.",
       "author_book_nuance": "HCV Ch 3: Although ranges are equal for theta and 90-theta, maximum heights and times of flight are strictly unequal.",
       "neet_trap_point": "Assuming time of flight and maximum height are also equal when ranges are equal for complementary angles.",
@@ -832,7 +844,11 @@
           }
         ],
         "correct_index": 0,
-        "explanation": "Key Rule: Horizontal range is identical for complementary projection angles theta and (90 - theta) at the same initial speed. HCV Ch 3: Although ranges are equal for theta and 90-theta, maximum heights and times of flight are strictly unequal."
+        "explanation": "Key Rule: Horizontal range is identical for complementary projection angles theta and (90 - theta) at the same initial speed. HCV Ch 3: Although ranges are equal for theta and 90-theta, maximum heights and times of flight are strictly unequal.",
+        "formula_card": {
+          "incorrect": "Same Range R ⇒ Same Max Height H and Time T",
+          "correct": "Range R(θ) = R(90°-θ), but H₁/H₂ = tan²θ and T₁T₂ = 2R/g"
+        }
       }
     },
     {
@@ -849,7 +865,7 @@
       "dimension_support": "2d",
       "latex_formula": "y = x\\tan\\theta - \\frac{gx^2}{2v_0^2\\cos^2\\theta}",
       "plain_formula": "y = x · tan(θ) - (g · x²) / (2 · v₀² · cos²(θ))",
-      "ncert_citation": "NCERT Class 11 Part 1, Ch 4, Page 77",
+      "ncert_citation": "NCERT Class 11 Physics Part 1 • Unit 2: Kinematics • Chapter 4: Motion in a Plane (Section 4.10)",
       "ncert_core_rule": "The trajectory of a projectile is parabolic in nature, relating vertical coordinate y to horizontal coordinate x.",
       "author_book_nuance": "HCV Ch 3: Alternative formulation y = x*tan(theta)*(1 - x/R) simplifies range-based NEET problems instantly.",
       "neet_trap_point": "Confusing tan(theta) factor with cot(theta) when comparing experimental trajectory equations.",
@@ -893,7 +909,11 @@
           }
         ],
         "correct_index": 0,
-        "explanation": "Key Rule: The trajectory of a projectile is parabolic in nature, relating vertical coordinate y to horizontal coordinate x. HCV Ch 3: Alternative formulation y = x*tan(theta)*(1 - x/R) simplifies range-based NEET problems instantly."
+        "explanation": "Key Rule: The trajectory of a projectile is parabolic in nature, relating vertical coordinate y to horizontal coordinate x. HCV Ch 3: Alternative formulation y = x*tan(theta)*(1 - x/R) simplifies range-based NEET problems instantly.",
+        "formula_card": {
+          "incorrect": "y = x tan θ + (g x²) / (2 v₀² cos²θ)",
+          "correct": "y = x tan θ - (g x²) / (2 v₀² cos²θ) = x tan θ [1 - x/R]"
+        }
       }
     },
     {
@@ -910,7 +930,7 @@
       "dimension_support": "2d",
       "latex_formula": "a_c = \\frac{v^2}{r} = \\omega^2 r",
       "plain_formula": "a_c = v² / r = ω² · r",
-      "ncert_citation": "NCERT Class 11 Part 1, Ch 4, Page 81",
+      "ncert_citation": "NCERT Class 11 Physics Part 1 • Unit 2: Kinematics • Chapter 4: Motion in a Plane (Section 4.11)",
       "ncert_core_rule": "Acceleration in uniform circular motion always points radially inward toward the center of the circle.",
       "author_book_nuance": "HCV Ch 7: Speed is constant but velocity continuously changes direction; therefore acceleration is non-zero and perpendicular to velocity.",
       "neet_trap_point": "Assuming acceleration is zero because speed is constant in uniform circular motion.",
@@ -954,7 +974,11 @@
           }
         ],
         "correct_index": 0,
-        "explanation": "Key Rule: Acceleration in uniform circular motion always points radially inward toward the center of the circle. HCV Ch 7: Speed is constant but velocity continuously changes direction; therefore acceleration is non-zero and perpendicular to velocity."
+        "explanation": "Key Rule: Acceleration in uniform circular motion always points radially inward toward the center of the circle. HCV Ch 7: Speed is constant but velocity continuously changes direction; therefore acceleration is non-zero and perpendicular to velocity.",
+        "formula_card": {
+          "incorrect": "Constant Speed in UCM ⇒ Zero Acceleration (a = 0)",
+          "correct": "Direction changes continuously ⇒ a_c = v²/r = ω²r ≠ 0 (Centripetal)"
+        }
       }
     },
     {
@@ -971,7 +995,7 @@
       "dimension_support": "2d",
       "latex_formula": "s = \\int v \\, dt",
       "plain_formula": "s = v · t + (1/2) · a · t²",
-      "ncert_citation": "NCERT Class 11 Part 1, Ch 3, Page 45",
+      "ncert_citation": "NCERT Class 11 Physics Part 1 • Unit 2: Kinematics • Chapter 3: Motion in a Straight Line (Section 3.3)",
       "ncert_core_rule": "Area under velocity-time graph equals displacement; slope equals acceleration.",
       "author_book_nuance": "HCV Ch 3: Negative area represents negative displacement, not distance traveled.",
       "neet_trap_point": "Calculating distance instead of displacement by ignoring sign of negative area!",
@@ -1015,7 +1039,11 @@
           }
         ],
         "correct_index": 0,
-        "explanation": "Key Rule: Area under velocity-time graph equals displacement; slope equals acceleration. HCV Ch 3: Negative area represents negative displacement, not distance traveled."
+        "explanation": "Key Rule: Area under velocity-time graph equals displacement; slope equals acceleration. HCV Ch 3: Negative area represents negative displacement, not distance traveled.",
+        "formula_card": {
+          "incorrect": "Distance = Net Area (Upper Area - Lower Area)",
+          "correct": "Displacement = Area₁ - Area₂ | Distance = |Area₁| + |Area₂|"
+        }
       }
     },
     {
@@ -1032,7 +1060,7 @@
       "dimension_support": "2d",
       "latex_formula": "\\vec{v}_{AB} = \\vec{v}_A - \\vec{v}_B",
       "plain_formula": "v_AB = v_A - v_B",
-      "ncert_citation": "NCERT Class 11 Part 1, Ch 4, Page 75",
+      "ncert_citation": "NCERT Class 11 Physics Part 1 • Unit 2: Kinematics • Chapter 4: Motion in a Plane (Section 4.6)",
       "ncert_core_rule": "Relative velocity of object A with respect to B is vector difference v_A - v_B.",
       "author_book_nuance": "HCV Ch 3: Shortest time to cross river requires heading directly perpendicular to flow.",
       "neet_trap_point": "Confusing shortest path with shortest time in river-boat problems!",
@@ -1076,7 +1104,11 @@
           }
         ],
         "correct_index": 0,
-        "explanation": "Key Rule: Relative velocity of object A with respect to B is vector difference v_A - v_B. HCV Ch 3: Shortest time to cross river requires heading directly perpendicular to flow."
+        "explanation": "Key Rule: Relative velocity of object A with respect to B is vector difference v_A - v_B. HCV Ch 3: Shortest time to cross river requires heading directly perpendicular to flow.",
+        "formula_card": {
+          "incorrect": "Shortest Path (zero drift) = Shortest Crossing Time",
+          "correct": "Shortest Time: steer straight across | Shortest Path: steer upstream"
+        }
       }
     },
     {
@@ -1093,7 +1125,7 @@
       "dimension_support": "2d",
       "latex_formula": "t = \\sqrt{\\frac{2h}{g}}, \\quad R = v_0 \\sqrt{\\frac{2h}{g}}",
       "plain_formula": "t = sqrt(2h / g), R = v₀ · sqrt(2h / g)",
-      "ncert_citation": "NCERT Class 11 Part 1, Ch 4, Page 79",
+      "ncert_citation": "NCERT Class 11 Physics Part 1 • Unit 2: Kinematics • Chapter 4: Motion in a Plane (Section 4.10)",
       "ncert_core_rule": "Vertical motion is identical to free fall from height h; initial vertical velocity is zero.",
       "author_book_nuance": "HCV Ch 3: Horizontal speed v0 has zero effect on the time taken to hit the ground.",
       "neet_trap_point": "Believing a faster launched projectile takes longer to hit the ground than one dropped!",
@@ -1137,7 +1169,11 @@
           }
         ],
         "correct_index": 0,
-        "explanation": "Key Rule: Vertical motion is identical to free fall from height h; initial vertical velocity is zero. HCV Ch 3: Horizontal speed v0 has zero effect on the time taken to hit the ground."
+        "explanation": "Key Rule: Vertical motion is identical to free fall from height h; initial vertical velocity is zero. HCV Ch 3: Horizontal speed v0 has zero effect on the time taken to hit the ground.",
+        "formula_card": {
+          "incorrect": "Higher horizontal speed u_x ⇒ Takes longer to hit ground",
+          "correct": "Vertical motion is independent: u_y = 0 ⇒ t = √(2h/g) always"
+        }
       }
     },
     {
@@ -1154,7 +1190,7 @@
       "dimension_support": "2d",
       "latex_formula": "T = \\frac{2v_0 \\sin(\\alpha - \\beta)}{g \\cos\\beta}",
       "plain_formula": "T = (2 · v₀ · sin(α - β)) / (g · cos(β))",
-      "ncert_citation": "NCERT Class 11 Part 1, Ch 4, Page 80",
+      "ncert_citation": "NCERT Class 11 Physics Part 1 • Unit 2: Kinematics • Chapter 4: Motion in a Plane (Section 4.10)",
       "ncert_core_rule": "Resolve g into components parallel (g sin beta) and perpendicular (g cos beta) to incline.",
       "author_book_nuance": "HCV Ch 3: Treat incline as new x-axis with effective gravity components.",
       "neet_trap_point": "Forgetting that acceleration along incline is non-zero (g sin beta)!",
@@ -1198,7 +1234,11 @@
           }
         ],
         "correct_index": 0,
-        "explanation": "Key Rule: Resolve g into components parallel (g sin beta) and perpendicular (g cos beta) to incline. HCV Ch 3: Treat incline as new x-axis with effective gravity components."
+        "explanation": "Key Rule: Resolve g into components parallel (g sin beta) and perpendicular (g cos beta) to incline. HCV Ch 3: Treat incline as new x-axis with effective gravity components.",
+        "formula_card": {
+          "incorrect": "On inclined plane, a_x = 0 as in flat ground",
+          "correct": "Rotate axes: a_x = -g sin β and a_y = -g cos β (Both accelerate!)"
+        }
       }
     },
     {
@@ -1215,7 +1255,7 @@
       "dimension_support": "2d",
       "latex_formula": "\\rho = \\frac{v_0^2 \\cos^2\\theta}{g}",
       "plain_formula": "ρ = (v₀² · cos²(θ)) / g",
-      "ncert_citation": "NCERT Class 11 Part 1, Ch 4, Page 80",
+      "ncert_citation": "NCERT Class 11 Physics Part 1 • Unit 2: Kinematics • Chapter 4: Motion in a Plane (Section 4.10)",
       "ncert_core_rule": "Radius of curvature equals speed squared divided by normal acceleration component.",
       "author_book_nuance": "HCV Ch 3: At apex, total speed is vx = v0 cos theta and gravity g is purely normal.",
       "neet_trap_point": "Using total launch speed v0 instead of horizontal velocity v0 cos theta at the apex!",
@@ -1259,7 +1299,11 @@
           }
         ],
         "correct_index": 0,
-        "explanation": "Key Rule: Radius of curvature equals speed squared divided by normal acceleration component. HCV Ch 3: At apex, total speed is vx = v0 cos theta and gravity g is purely normal."
+        "explanation": "Key Rule: Radius of curvature equals speed squared divided by normal acceleration component. HCV Ch 3: At apex, total speed is vx = v0 cos theta and gravity g is purely normal.",
+        "formula_card": {
+          "incorrect": "Apex speed = 0 ⇒ Radius of Curvature ρ = 0",
+          "correct": "v_apex = v₀ cos θ, a_n = g ⇒ ρ = (v₀² cos²θ) / g"
+        }
       }
     },
     {
@@ -1276,7 +1320,7 @@
       "dimension_support": "2d",
       "latex_formula": "v = \\omega \\cdot r",
       "plain_formula": "v = ω · r",
-      "ncert_citation": "NCERT Class 11 Part 1, Ch 4, Page 81",
+      "ncert_citation": "NCERT Class 11 Physics Part 1 • Unit 2: Kinematics • Chapter 4: Motion in a Plane (Section 4.11)",
       "ncert_core_rule": "Linear speed is directly proportional to radius r for particles on a rotating rigid body.",
       "author_book_nuance": "HCV Ch 7: All points on a rotating wheel have the same omega but different linear speeds v.",
       "neet_trap_point": "Thinking points closer to center move with higher linear velocity than the outer rim!",
@@ -1320,7 +1364,11 @@
           }
         ],
         "correct_index": 0,
-        "explanation": "Key Rule: Linear speed is directly proportional to radius r for particles on a rotating rigid body. HCV Ch 7: All points on a rotating wheel have the same omega but different linear speeds v."
+        "explanation": "Key Rule: Linear speed is directly proportional to radius r for particles on a rotating rigid body. HCV Ch 7: All points on a rotating wheel have the same omega but different linear speeds v.",
+        "formula_card": {
+          "incorrect": "v⃗ = r⃗ × ω⃗ (Scalar v = rω transposed to vectors)",
+          "correct": "Vector form is strictly v⃗ = ω⃗ × r⃗ (Anti-commutative: r⃗ × ω⃗ = -v⃗)"
+        }
       }
     },
     {
@@ -1337,7 +1385,7 @@
       "dimension_support": "2d",
       "latex_formula": "a_{\\text{net}} = \\sqrt{a_c^2 + a_t^2}",
       "plain_formula": "a_net = sqrt(a_c² + a_t²)",
-      "ncert_citation": "NCERT Class 11 Part 1, Ch 4, Page 82",
+      "ncert_citation": "NCERT Class 11 Physics Part 1 • Unit 2: Kinematics • Chapter 4: Motion in a Plane (Section 4.11)",
       "ncert_core_rule": "Total acceleration has two orthogonal components: radial (centripetal) and tangential.",
       "author_book_nuance": "HCV Ch 7: Tangential acceleration changes speed; centripetal acceleration changes direction.",
       "neet_trap_point": "Forgetting tangential acceleration when speed is increasing in circular motion!",
@@ -1381,7 +1429,11 @@
           }
         ],
         "correct_index": 0,
-        "explanation": "Key Rule: Total acceleration has two orthogonal components: radial (centripetal) and tangential. HCV Ch 7: Tangential acceleration changes speed; centripetal acceleration changes direction."
+        "explanation": "Key Rule: Total acceleration has two orthogonal components: radial (centripetal) and tangential. HCV Ch 7: Tangential acceleration changes speed; centripetal acceleration changes direction.",
+        "formula_card": {
+          "incorrect": "Net acceleration a_net = v²/r (ignored tangential)",
+          "correct": "a_net = √(a_c² + a_t²) where a_c = v²/r and a_t = dv/dt = rα"
+        }
       }
     },
     {

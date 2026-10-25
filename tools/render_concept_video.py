@@ -784,7 +784,7 @@ def render_concept_video(
             "ncertRule": concept.get("ncert_core_rule", ""),
             "authorNuance": concept.get("author_book_nuance", ""),
             "ncertCitation": concept.get("ncert_citation", ""),
-            "pyqBadge": f"NEET PYQ: {concept.get('pyq_years')}" if concept.get("pyq_years") else "HIGH YIELD",
+            "pyqBadge": "HIGH-YIELD CORE",
             "conceptTitle": title,
             "topicName": concept.get("topic_name", ""),
             "chapterName": concept.get("chapter_name", ""),

@@ -223,11 +223,12 @@ class NEETVideoScene(Scene):
 
         header_items = [center_title]
 
-        # 2. Top-Right: NEET PYQ Badge at maximum right on the First Line
+        # 2. Top-Right: High-Yield Telemetry Badge (Option A + B: ash-gray, subtle 55% opacity, mono font)
         pyq_text = self.parameters.get("pyqBadge")
         right_pyq = None
         if pyq_text:
-            right_pyq = Text(pyq_text, font=FONT_MONO, font_size=13, weight="BOLD", color=self.accent_gold)
+            right_pyq = Text(pyq_text, font=self.body_font, font_size=11, color=self.muted_text)
+            right_pyq.set_opacity(0.55)
             right_pyq.to_edge(UP, buff=0.45).to_edge(RIGHT, buff=0.25)
             header_items.append(right_pyq)
 
@@ -568,11 +569,12 @@ class NEETVideoScene3D(ThreeDScene):
 
         header_items = [center_title]
 
-        # 2. Top-Right: NEET PYQ Badge at maximum right on the First Line
+        # 2. Top-Right: High-Yield Telemetry Badge (Option A + B: ash-gray, subtle 55% opacity, mono font)
         pyq_text = self.parameters.get("pyqBadge")
         right_pyq = None
         if pyq_text:
-            right_pyq = Text(pyq_text, font=FONT_MONO, font_size=13, weight="BOLD", color=self.accent_gold)
+            right_pyq = Text(pyq_text, font=self.body_font, font_size=11, color=self.muted_text)
+            right_pyq.set_opacity(0.55)
             right_pyq.to_edge(UP, buff=0.45).to_edge(RIGHT, buff=0.25)
             header_items.append(right_pyq)
 
