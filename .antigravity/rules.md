@@ -60,3 +60,18 @@ Derived from MASTER_BLUEPRINT.md v1.1
       2. **3.0-Second Silent Trap Freeze**: The visual NEET Trap card must remain completely static on screen for exactly 3.0 seconds in total audio silence after narration ends.
       3. **Beat 5 Next Video End Card**: A 3.5-second sequence card displaying `"UP NEXT IN SEQUENCE: Concept (N+1)/Total - Next Title"`, `"Canonical ID"`, and `"INTERACTIVE LAB AVAILABLE IN APP TAB 2"`.
     - **Zero Mux Truncation**: Never pass `-shortest` with subtitle streams in FFmpeg muxing, as subtitle stream completion prematurely terminates the video and cuts off the silent freeze and end card.
+
+14. **Pure Triad Dynamic Binding & Schema Integrity (Zero Cross-Unit Bleed)**:
+    - **No Hardcoded Static Fallbacks**: Client UI templates (such as `apps/edapp_player.html`) must NEVER contain hardcoded formulas, warnings, or questions tied to a specific unit (e.g. projectile motion equations appearing in measurement units). Initial static HTML templates must either match the syllabus root (Unit 1.1.1) or render a clean generic skeleton until populated dynamically by `selectConcept()`.
+    - **Dynamic Lab/Cards Binding (Tab 2)**: Both `selectConcept()` and `switchTab('lab')` must dynamically bind `simIframe.src` to `currentConcept.simulation`. Hardcoded simulation defaults or cross-unit fallbacks (e.g. defaulting to Unit 2's 3D projectile lab inside Unit 1) are strictly prohibited. Tab 2 labels must dynamically adapt between `2 • CONCEPT LAB (CARDS)` (2D concepts) and `2 • 3D SPATIAL LAB` (3D concepts).
+    - **Mandatory NEET Trap Formula Card Schema (Tab 3)**:
+      - Every concept entry in `curriculum_manifest.json` MUST provide a structured `trap_quiz.formula_card`:
+        ```json
+        "formula_card": {
+          "incorrect": "Common Student Misconception / Trap Formula",
+          "correct": "Authentic NCERT / Exam Correction"
+        }
+        ```
+      - `loadTrapQuiz()` must dynamically render this card on every concept change or cleanly hide the container element if no formula is applicable, eliminating persistent stale formulas.
+    - **Zero Filter Bias in Curriculum Navigation**: Filter dropdown functions (`populateUnits()`, `populateTopics()`) must initialize dynamically from the curriculum manifest without hardcoded unit/topic overrides (e.g. forcing `KINEMATICS` or `Projectile`), ensuring the syllabus always opens sequentially from the user's active unit.
+

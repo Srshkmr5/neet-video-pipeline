@@ -216,3 +216,17 @@
      - Exactly **3.0 seconds of audio silence** while holding the NEET Trap card on screen.
      - A 3.5-second **Beat 5 Next Video Title End Card** ("UP NEXT IN SEQUENCE: Concept (N+1)/Total: [Title]").
    - **Mux Truncation Guardrail**: FFmpeg muxing commands must never truncate via `-shortest` against subtitle streams.
+---
+
+## Pillar 14: Pure Triad Dynamic Binding & Schema Completeness (Zero Cross-Unit Bleed)
+1. **Dynamic Triad Architecture (Watch • Lab • Solve)**:
+   - Client viewing applications must never statically bake specific unit artifacts (such as formulas, warning cards, or simulations from other chapters) into template HTML.
+   - Initial DOM states must either match Unit 1.1.1 (`P11-C01-T01-V01`) or provide neutral skeleton states until `selectConcept()` executes.
+2. **Dynamic Lab & Simulation Routing (Tab 2)**:
+   - `simIframe.src` must dynamically resolve from `currentConcept.simulation`. Hardcoded defaults (such as defaulting to Unit 2 kinematics inside Unit 1) are strictly prohibited.
+   - Tab header dynamically badges `2 • CONCEPT LAB (CARDS)` for 2D card suites and `2 • 3D SPATIAL LAB` for WebGL/3D simulations.
+3. **Mandatory Formula Card Schema in Manifest (Tab 3)**:
+   - Every concept node in `apps/curriculum_manifest.json` must include a structured `trap_quiz.formula_card` object (`incorrect` and `correct` strings).
+   - `loadTrapQuiz()` actively updates `<div id="trapFormulaCard">` on every concept selection, or cleanly hides it if unpopulated, preventing obsolete trap cards from persisting across different units.
+4. **Zero-Bias Navigation Filters**:
+   - Navigation dropdowns (`populateUnits()`, `populateTopics()`) must strictly derive options from the active curriculum manifest without hardcoded unit/topic overrides.
