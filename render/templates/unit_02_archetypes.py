@@ -202,3 +202,148 @@ class PositionTimeGraphsScene(ModularUnit2Scene):
         takeaway_txt = Text("NEET RULE: On an x-t graph, slope gives VELOCITY, never acceleration. Flat line = REST!", font=self.card_font, font_size=11, weight="BOLD", color=self.accent_gold).move_to(takeaway_box.get_center())
 
         return VGroup(trap_box, trap_banner, trap_title, trap_sub, table_group, takeaway_box, takeaway_txt)
+
+
+# ---------------------------------------------------------------------------
+# 2. VelocityTimeGraphsScene (P11-C02-T03-V08)
+# ---------------------------------------------------------------------------
+class VelocityTimeGraphsScene(ModularUnit2Scene):
+    def build_beat_1(self):
+        settle_tag = Text("Kinematics • Straight Line Motion", font=self.card_font, font_size=18, color=self.muted_text)
+        settle_title = Text("Velocity-Time Graphs & Displacement", font=self.header_font, font_size=30, weight="BOLD", color=self.accent_blue)
+        ncert_ref = Text("NCERT Class 11 Physics Part 1 • Unit 2: Kinematics • Chapter 3", font=self.card_font, font_size=14, color=self.accent_gold)
+        return VGroup(settle_tag, settle_title, ncert_ref).arrange(DOWN, buff=0.35).move_to(ORIGIN)
+
+    def build_beat_2(self):
+        card_box = RoundedRectangle(
+            corner_radius=0.12, height=5.0, width=11.6,
+            stroke_color=self.accent_blue, stroke_width=1.5,
+            fill_color="#0F172A", fill_opacity=0.0
+        ).move_to(DOWN * 0.1)
+
+        card_title = Text("VELOCITY-TIME GRAPHICAL ANALYSIS (v-t)", font=self.card_font, font_size=15, weight="BOLD", color=self.accent_gold).next_to(card_box.get_top(), DOWN, buff=0.15)
+        card_sub = Text("NCERT Section 3.3 • Slope = dv/dt (Acceleration) • Area Under Curve = Displacement", font=self.body_font, font_size=10, color=self.muted_text).next_to(card_title, DOWN, buff=0.08)
+
+        h_div = Line(start=card_box.get_left() + RIGHT * 0.3, end=card_box.get_right() + LEFT * 0.3, color="#334155", stroke_width=1.0).next_to(card_sub, DOWN, buff=0.10)
+        v_div = Line(start=h_div.get_center() + DOWN * 0.05, end=card_box.get_bottom() + UP * 0.2, color="#334155", stroke_width=1.0).shift(LEFT * 0.2)
+
+        # --- LEFT PANE: Coordinate Graph Stage ---
+        axes = Axes(
+            x_range=[0, 5.0, 1],
+            y_range=[-1.0, 4.0, 1],
+            x_length=4.6,
+            y_length=3.0,
+            tips=True,
+            axis_config={"color": "#64748B", "stroke_width": 1.5}
+        ).move_to(card_box.get_left() + RIGHT * 2.7 + DOWN * 0.3)
+
+        x_lbl = Text("Time t (s)", font=self.body_font, font_size=11, color=self.muted_text).next_to(axes.x_axis, DOWN, buff=0.15)
+        y_lbl = Text("Velocity v (m/s)", font=self.body_font, font_size=11, color=self.muted_text).next_to(axes.y_axis.get_top(), UP, buff=0.12).shift(RIGHT * 0.3)
+
+        # Trapezoidal velocity profile
+        pt_origin = axes.c2p(0, 0)
+        pt_start = axes.c2p(0, 1.0)
+        pt_ramp = axes.c2p(2.5, 3.5)
+        pt_const = axes.c2p(4.0, 3.5)
+        pt_end_x = axes.c2p(4.0, 0)
+
+        # Shaded area under curve (displacement)
+        area_polygon = Polygon(
+            pt_origin, pt_start, pt_ramp, pt_const, pt_end_x,
+            fill_color=self.accent_blue, fill_opacity=0.35, stroke_width=0
+        )
+        area_label = Text("Area = Displacement Δx", font=self.body_font, font_size=10, weight="BOLD", color=self.accent_blue).move_to(axes.c2p(2.0, 1.3))
+
+        # Velocity line
+        line1 = Line(pt_start, pt_ramp, color=self.accent_gold, stroke_width=3)
+        line2 = Line(pt_ramp, pt_const, color=self.accent_green, stroke_width=3)
+        slope_tag = Text("Slope = a", font=self.body_font, font_size=10, color=self.accent_gold).next_to(line1.get_center(), UL, buff=0.10)
+
+        left_group = VGroup(axes, x_lbl, y_lbl, area_polygon, line1, line2, area_label, slope_tag)
+
+        # --- RIGHT PANE: Mathematical Derivations ---
+        right_center_x = card_box.get_right()[0] - 2.8
+
+        eq1_box = RoundedRectangle(corner_radius=0.08, width=5.2, height=0.75, stroke_color=self.accent_gold, stroke_width=1.2, fill_color="#1E293B", fill_opacity=0.5).move_to(np.array([right_center_x, card_box.get_center()[1] + 1.25, 0]))
+        eq1_text = Text("Slope: a = dv / dt", font=self.card_font, font_size=15, weight="BOLD", color=self.accent_gold).move_to(eq1_box.get_center())
+
+        eq2_box = RoundedRectangle(corner_radius=0.08, width=5.2, height=0.75, stroke_color=self.accent_blue, stroke_width=1.2, fill_color="#1E293B", fill_opacity=0.5).next_to(eq1_box, DOWN, buff=0.15)
+        eq2_text = Text("Area: Δx = ∫ v dt", font=self.card_font, font_size=15, weight="BOLD", color=self.accent_blue).move_to(eq2_box.get_center())
+
+        rule1 = Text("• Slope > 0: Acceleration (Speeding up forward)", font=self.body_font, font_size=11, color=self.accent_gold)
+        rule2 = Text("• Slope = 0: Uniform Velocity (Zero net force)", font=self.body_font, font_size=11, color=self.accent_green)
+        rule3 = Text("• Area Above Axis: Positive Displacement (+x)", font=self.body_font, font_size=11, color=self.accent_blue)
+        rule4 = Text("• Area Below Axis: Negative Displacement (-x)", font=self.body_font, font_size=11, color=self.accent_red)
+        rules_v = VGroup(rule1, rule2, rule3, rule4).arrange(DOWN, aligned_edge=LEFT, buff=0.14).next_to(eq2_box, DOWN, buff=0.20).align_to(eq2_box, LEFT).shift(RIGHT * 0.15)
+
+        right_group = VGroup(eq1_box, eq1_text, eq2_box, eq2_text, rules_v)
+
+        return VGroup(card_box, card_title, card_sub, h_div, v_div, left_group, right_group)
+
+    def build_beat_3(self):
+        card_box = RoundedRectangle(
+            corner_radius=0.12, height=5.0, width=11.6,
+            stroke_color=self.accent_blue, stroke_width=1.5,
+            fill_color="#0F172A", fill_opacity=0.0
+        ).move_to(DOWN * 0.1)
+
+        card_title = Text("CORE KINEMATIC PRINCIPLES: DISPLACEMENT VS DISTANCE", font=self.card_font, font_size=15, weight="BOLD", color=self.accent_gold).next_to(card_box.get_top(), DOWN, buff=0.15)
+        card_sub = Text("Evaluating Positive and Negative Signed Areas on Velocity-Time Graphs", font=self.body_font, font_size=10, color=self.muted_text).next_to(card_title, DOWN, buff=0.08)
+
+        h_div = Line(start=card_box.get_left() + RIGHT * 0.3, end=card_box.get_right() + LEFT * 0.3, color="#334155", stroke_width=1.0).next_to(card_sub, DOWN, buff=0.10)
+
+        rows = []
+        scenarios = [
+            ("DISPLACEMENT (Vector Δx)", "Algebraic Net Sum: Δx = Area_up - Area_down", "Vector change in position; can be positive, negative, or zero.", self.accent_blue),
+            ("DISTANCE TRAVELED (Scalar s)", "Total Geometric Area: s = |Area_up| + |Area_down|", "Total path length traversed; strictly positive and non-decreasing.", self.accent_green),
+            ("UNIFORM ACCELERATION", "Constant Slope: a = (v - v₀) / t", "Enables kinematic relations: v² = v₀² + 2as and s = v₀t + 1/2 at².", self.accent_gold)
+        ]
+
+        for title, formula_txt, phys_meaning, color in scenarios:
+            row_box = RoundedRectangle(corner_radius=0.08, width=11.0, height=0.92, stroke_color=color, stroke_width=1.0, fill_color="#1E293B", fill_opacity=0.35)
+            t_txt = Text(title, font=self.card_font, font_size=12, weight="BOLD", color=color).next_to(row_box.get_left(), RIGHT, buff=0.25).shift(UP * 0.18)
+            c_txt = Text(formula_txt, font=self.body_font, font_size=11, color=TEXT_WHITE).next_to(t_txt, RIGHT, buff=0.30)
+            p_txt = Text(phys_meaning, font=self.body_font, font_size=10, color=self.muted_text).next_to(row_box.get_left(), RIGHT, buff=0.25).shift(DOWN * 0.18)
+            rows.append(VGroup(row_box, t_txt, c_txt, p_txt))
+
+        rows_group = VGroup(*rows).arrange(DOWN, buff=0.15).next_to(h_div, DOWN, buff=0.18)
+
+        nuance_box = RoundedRectangle(corner_radius=0.08, width=11.0, height=0.65, stroke_color="#A855F7", stroke_width=1.0, fill_color="#3B0764", fill_opacity=0.30).next_to(rows_group, DOWN, buff=0.15)
+        nuance_tag = Text("H.C. VERMA NUANCE:", font=self.card_font, font_size=10, weight="BOLD", color="#C084FC").next_to(nuance_box.get_left(), RIGHT, buff=0.20)
+        nuance_txt = Text("Negative area represents motion in reverse direction; never ignore the sign when finding displacement!", font=self.body_font, font_size=10, color="#E9D5FF").next_to(nuance_tag, RIGHT, buff=0.15)
+        nuance_group = VGroup(nuance_box, nuance_tag, nuance_txt)
+
+        return VGroup(card_box, card_title, card_sub, h_div, rows_group, nuance_group)
+
+    def build_beat_4(self):
+        trap_box = RoundedRectangle(
+            corner_radius=0.14, height=5.0, width=11.6,
+            stroke_color=self.accent_red, stroke_width=1.8,
+            fill_color="#18080C", fill_opacity=0.45
+        ).move_to(DOWN * 0.1)
+
+        trap_banner = RoundedRectangle(corner_radius=0.08, width=11.0, height=0.55, stroke_color=self.accent_red, stroke_width=1.0, fill_color=self.accent_red, fill_opacity=0.20).next_to(trap_box.get_top(), DOWN, buff=0.15)
+        trap_title = Text("CRITICAL NEET TRAP: DISTANCE VS DISPLACEMENT AREA ERROR", font=self.card_font, font_size=14, weight="BOLD", color=self.accent_red).move_to(trap_banner.get_center())
+
+        trap_sub = Text("Students frequently subtract negative area when asked for total distance, or ignore sign for displacement!", font=self.body_font, font_size=11, color=self.muted_text).next_to(trap_banner, DOWN, buff=0.15)
+
+        comp_box = RoundedRectangle(corner_radius=0.10, width=11.0, height=2.2, stroke_color="#334155", stroke_width=1.0, fill_color="#0F172A", fill_opacity=0.6).next_to(trap_sub, DOWN, buff=0.15)
+
+        h_mid = Line(start=comp_box.get_left(), end=comp_box.get_right(), color="#334155", stroke_width=1.0).move_to(comp_box.get_center())
+        v_mid = Line(start=comp_box.get_top(), end=comp_box.get_bottom(), color="#334155", stroke_width=1.0).move_to(comp_box.get_center())
+
+        col1_hdr = Text("CALCULATING DISPLACEMENT (Δx)", font=self.card_font, font_size=12, weight="BOLD", color=self.accent_blue).move_to(comp_box.get_corner(UL) + RIGHT * 2.75 + DOWN * 0.25)
+        col2_hdr = Text("CALCULATING TOTAL DISTANCE (s)", font=self.card_font, font_size=12, weight="BOLD", color=self.accent_green).move_to(comp_box.get_corner(UR) + LEFT * 2.75 + DOWN * 0.25)
+
+        row1_left = Text("Δx = Area(Up) - Area(Down)", font=self.body_font, font_size=11, color=TEXT_WHITE).move_to(comp_box.get_corner(UL) + RIGHT * 2.75 + DOWN * 0.70)
+        row1_right = Text("s = |Area(Up)| + |Area(Down)|", font=self.body_font, font_size=11, color=TEXT_WHITE).move_to(comp_box.get_corner(UR) + LEFT * 2.75 + DOWN * 0.70)
+
+        row2_left = Text("Result can be NEGATIVE or ZERO", font=self.body_font, font_size=11, weight="BOLD", color=self.accent_red).move_to(comp_box.get_corner(DL) + RIGHT * 2.75 + UP * 0.45)
+        row2_right = Text("Result is ALWAYS POSITIVE (> 0)", font=self.body_font, font_size=11, weight="BOLD", color=self.accent_green).move_to(comp_box.get_corner(DR) + LEFT * 2.75 + UP * 0.45)
+
+        table_group = VGroup(comp_box, h_mid, v_mid, col1_hdr, col2_hdr, row1_left, row1_right, row2_left, row2_right)
+
+        takeaway_box = RoundedRectangle(corner_radius=0.08, width=11.0, height=0.65, stroke_color=self.accent_gold, stroke_width=1.0, fill_color="#2D1C03", fill_opacity=0.4).next_to(comp_box, DOWN, buff=0.18)
+        takeaway_txt = Text("NEET RULE: Distance sums absolute area magnitudes. Displacement takes signed net area!", font=self.card_font, font_size=11, weight="BOLD", color=self.accent_gold).move_to(takeaway_box.get_center())
+
+        return VGroup(trap_box, trap_banner, trap_title, trap_sub, table_group, takeaway_box, takeaway_txt)

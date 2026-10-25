@@ -119,7 +119,7 @@ class AudioEngine:
         cache_key = self._compute_cache_key(chosen_provider, effective_voice, language, clean_text, rate, pitch)
         cached_file = CACHE_DIR / f"{cache_key}.mp3"
 
-        if use_cache and cached_file.exists():
+        if use_cache and cached_file.exists() and cached_file.stat().st_size > 0:
             output_path.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(str(cached_file), str(output_path))
             return output_path

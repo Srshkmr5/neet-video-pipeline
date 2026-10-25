@@ -39,6 +39,26 @@ VOICES = {
 
 # Curated 4-Beat Scripts Registry for Unit 2
 CONCEPT_BEAT_SCRIPTS = {
+    "P11-C02-T03-V08": {
+        "en-IN": [
+            ("beat_1", "Continuing Straight Line Motion: in this masterclass, we explore the geometry of Velocity-Time graphs, where slope represents acceleration and area yields displacement."),
+            ("beat_2", "On a velocity-time graph, the instantaneous slope dv by dt defines acceleration: a positive slope means speeding up, a negative slope represents deceleration, and a horizontal line denotes uniform velocity. Simultaneously, the definite integral of velocity over time—the area between the curve and the time axis—equals the particle's displacement."),
+            ("beat_3", "Distinguish between signed and unsigned areas: displacement is a vector, calculated as the net algebraic sum of areas, where regions below the time axis are negative. Conversely, total distance traveled is a scalar, found by adding the absolute geometric magnitudes of all areas. For uniform acceleration, the linear graph leads directly to the core kinematic formulas."),
+            ("beat_4", "Now, heed the fatal NEET Trap: calculating distance instead of displacement! In NEET exam problems, when asked for distance, students mistakenly subtract the negative area below the time axis. Remember: distance always sums absolute areas and is always positive, while displacement uses signed net area. Master this distinction to secure top marks!")
+        ],
+        "hi-IN": [
+            ("beat_1", "सरल रेखा में गति को आगे बढ़ाते हुए: इस सत्र में हम वेग-समय ग्राफ यानी वी-टी ग्राफ की ज्यामिति का अध्ययन करेंगे, जहाँ प्रवणता त्वरण और क्षेत्रफल विस्थापन देता है।"),
+            ("beat_2", "वेग-समय ग्राफ पर तात्क्षणिक प्रवणता डी-वी बटे डी-टी त्वरण को दर्शाती है: धनात्मक ढाल का अर्थ है त्वरित गति, ऋणात्मक ढाल मंदन, और क्षैतिज रेखा एकसमान वेग को दर्शाती है। साथ ही, समय अक्ष और वक्र के बीच का समाकलित क्षेत्रफल कण के कुल विस्थापन को दर्शाता है।"),
+            ("beat_3", "चिन्हित और अचिन्हित क्षेत्रफलों का अंतर समझें: विस्थापन एक सदिश राशि है, जो क्षेत्रफलों का बीजीय योग है, जहाँ समय अक्ष के नीचे का क्षेत्रफल ऋणात्मक होता है। इसके विपरीत, तय की गई कुल दूरी एक अदिश राशि है, जो सभी क्षेत्रफलों के परिमाण का योग होती है।"),
+            ("beat_4", "अब ध्यान दें सबसे घातक नीट ट्रैप पॉइंट पर: कुल दूरी और विस्थापन में भ्रम! नीट परीक्षा में जब दूरी पूछी जाती है, तो छात्र नीचे वाले क्षेत्रफल को घटाने की गलती कर बैठते हैं। याद रखें: दूरी के लिए सभी क्षेत्रफलों का धनात्मक योग लें, जबकि विस्थापन के लिए चिन्ह सहित गणना करें। इसे याद रखें और नीट में पूरे अंक प्राप्त करें।")
+        ],
+        "ta-IN": [
+            ("beat_1", "நேர்க்கோட்டு இயக்கத்தை தொடர்கிறோம்: இந்த அமர்வில் நாம் திசைவேக-கால வரைபடங்களின் வடிவியலை ஆராய்கிறோம், இதில் சாய்வு முடுக்கத்தையும் பரப்பு இடப்பெயர்ச்சியையும் தருகிறது."),
+            ("beat_2", "திசைவேக-கால வரைபடத்தில் உடனடி சாய்வு டி-வி பை டி-டி முடுக்கத்தைக் குறிக்கிறது: நேர்மறை சாய்வு முடுக்கத்தையும், எதிர்மறை சாய்வு வேகக்குறைவையும், கிடைமட்டக் கோடு சீரான திசைவேகத்தையும் குறிக்கிறது. அதே நேரத்தில், வளைவரைக்கு கீழுள்ள பரப்பு துகளின் இடப்பெயர்ச்சியைத் தருகிறது."),
+            ("beat_3", "குறிக்கப்பட்ட பரப்புகளுக்கு இடையேயான வேறுபாட்டைப் புரிந்து கொள்ளுங்கள்: இடப்பெயர்ச்சி என்பது ஒரு வெக்டார் அளவு, இது கால அச்சுக்கு கீழேயுள்ள பரப்பை கழித்து கணக்கிடப்படும் நிகர பரப்பாகும். ஆனால் பயணித்த மொத்த தொலைவு ஒரு ஸ்கேலார் அளவு, இது அனைத்து பரப்புகளின் கூட்டலாகும்."),
+            ("beat_4", "இப்போது முக்கியமான நீட் தேர்வு பொறியைக் கவனியுங்கள்: தொலைவு மற்றும் இடப்பெயர்ச்சி கணக்கீட்டுப் பிழை! நீட் தேர்வில் தொலைவு கேட்கப்படும் போது, மாணவர்கள் கீழ் பரப்பைக் கழித்து தவறிழைக்கிறார்கள். நினைவில் கொள்ளுங்கள்: தொலைவுக்கு அனைத்து பரப்புகளையும் கூட்ட வேண்டும், இடப்பெயர்ச்சிக்கு மட்டுமே குறியீட்டுடன் கழிக்க வேண்டும். இந்த விதியை சரியாகப் பின்பற்றுங்கள்.")
+        ]
+    },
     "P11-C02-T01-V01": {
         "en-IN": [
             ("beat_1", "Welcome to Kinematics. In this masterclass, we explore motion in a straight line through the geometry of Position-Time graphs."),
@@ -59,6 +79,12 @@ CONCEPT_BEAT_SCRIPTS = {
             ("beat_4", "இப்போது முக்கியமான நீட் தேர்வு பொறியைக் கவனியுங்கள்: மாணவர்கள் எக்ஸ்-டி வரைபடத்தின் சாய்வை வி-டி வரைபடத்தின் சாய்வுடன் அடிக்கடி குழப்பிக் கொள்கிறார்கள்! நிலை-கால வரைபடத்தில் கிடைமட்டக் கோடு என்பது ஓய்வு நிலையைக் குறிக்கும், சீரான திசைவேகத்தை அல்ல. மேலும் எக்ஸ்-டி வரைபடத்தின் சாய்வு திசைவேகத்தை மட்டுமே தரும், முடுக்கத்தை அல்ல. நீட் தேர்வில் முழு மதிப்பெண் பெற இந்த விதிகளை நினைவில் நிறுத்துங்கள்.")
         ]
     }
+}
+
+
+ARCHETYPE_SCENE_MAP = {
+    "P11-C02-T01-V01": "PositionTimeGraphsScene",
+    "P11-C02-T03-V08": "VelocityTimeGraphsScene",
 }
 
 def load_concept_row(canonical_id: str) -> Dict[str, Any]:
@@ -121,14 +147,22 @@ def render_concept_multilingual_unit2(canonical_id: str, languages: List[str] = 
         for b_name, text in scripts:
             b_file = beat_dir / f"{b_name}.mp3"
             if not b_file.exists() or b_file.stat().st_size == 0:
-                audio_engine.generate_narration(
-                    text=text,
-                    output_path=b_file,
-                    provider="edge_tts",
-                    voice_id=voice,
-                    language=lang,
-                    use_cache=True
-                )
+                for attempt in range(4):
+                    try:
+                        audio_engine.generate_narration(
+                            text=text,
+                            output_path=b_file,
+                            provider="edge_tts",
+                            voice_id=voice,
+                            language=lang,
+                            use_cache=True
+                        )
+                        break
+                    except Exception as e:
+                        if attempt == 3:
+                            raise
+                        print(f"      [!] TTS retry {attempt+1}/3 after network warning: {e}")
+                        time.sleep(2.5)
             cmd_probe = ["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "json", str(b_file)]
             res_p = subprocess.run(cmd_probe, capture_output=True, text=True, check=True)
             dur = float(json.loads(res_p.stdout)["format"]["duration"])
@@ -198,6 +232,7 @@ def render_concept_multilingual_unit2(canonical_id: str, languages: List[str] = 
 
         # Step 4: Generate Manim Runner Script
         runner_scene_class = f"Synced_{canonical_id.replace('-', '_')}_{lang.replace('-', '_')}"
+        base_class = ARCHETYPE_SCENE_MAP.get(canonical_id, "ModularUnit2Scene")
         runner_code = f'''import sys
 from pathlib import Path
 BASE_DIR = Path({repr(str(BASE_DIR))})
@@ -235,7 +270,7 @@ NODE_DATA = {{
     }}
 }}
 
-class {runner_scene_class}(u2.PositionTimeGraphsScene):
+class {runner_scene_class}(u2.{base_class}):
     def __init__(self, **kwargs):
         super().__init__(node_data=NODE_DATA, **kwargs)
 
