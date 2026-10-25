@@ -382,16 +382,16 @@
             <span class="w-8 h-8 rounded-lg bg-rose-500/20 text-rose-400 flex items-center justify-center text-base">⚠️</span>
             <div>
               <span class="text-xs font-mono uppercase tracking-wider text-rose-400 font-bold">CRITICAL NEET TRAP POINT</span>
-              <h3 id="trapTitleText" class="text-white font-bold text-base">Swapping Sine and Cosine (Angle with Vertical Axis)</h3>
+              <h3 id="trapTitleText" class="text-white font-bold text-base">NEET Trap: Dimensionality of Radian and Steradian</h3>
             </div>
           </div>
           <p id="trapWarningText" class="text-slate-300 text-xs leading-relaxed">
-            The textbook maximum height formula <code class="text-amber-400 font-mono">H_max = (v₀² sin²θ) / 2g</code> is valid <strong>ONLY</strong> when angle θ is measured with the horizontal ground! If an exam question specifies angle θ relative to the <strong>vertical axis</strong>, vertical velocity becomes <code class="text-sky-400 font-mono">vy = v₀ cos θ</code>.
+            Having units does NOT imply having physical dimensions! Radian and Steradian have recognized SI units, but are strictly dimensionless [M⁰ L⁰ T⁰].
           </p>
           <div id="trapFormulaCard" class="p-3 bg-slate-950/90 rounded-xl border border-rose-500/30 font-mono text-xs text-center flex items-center justify-center space-x-4">
-            <span class="text-rose-400 line-through">H_max = (v₀² sin²θ) / 2g</span>
+            <span class="text-rose-400 line-through">Has Unit ⇒ Must Have Dimension [M L T]</span>
             <span class="text-slate-500">➔</span>
-            <span class="text-emerald-400 font-bold text-sm">H_max = (v₀² cos²θ) / 2g</span>
+            <span class="text-emerald-400 font-bold text-sm">rad & sr: Unit [rad, sr] but [M⁰ L⁰ T⁰] Dimensionless</span>
           </div>
         </div>
 
@@ -399,14 +399,14 @@
         <div class="glass-panel p-5 rounded-2xl space-y-4">
           <div class="flex items-center justify-between border-b border-slate-800 pb-3">
             <div class="flex items-center space-x-2">
-              <span id="pyqYearBadge" class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 font-mono text-xs font-bold">NEET PYQ 2024</span>
+              <span id="pyqYearBadge" class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 font-mono text-xs font-bold">NEET 2021</span>
               <span class="text-xs text-slate-400">High-Yield Trap Verification</span>
             </div>
             <span class="text-xs font-bold text-emerald-400">+4 Marks / -1 Mark</span>
           </div>
 
           <p id="quizQuestionText" class="text-slate-200 text-sm leading-relaxed">
-            A projectile is projected with an initial velocity <code class="text-sky-300 font-mono">v₀ = 50 m/s</code> at an angle of <code class="text-amber-300 font-mono">θ = 30°</code> with the <strong>VERTICAL</strong>. What is the maximum vertical height reached by the projectile? (Take g = 10 m/s²)
+            Which of the following statements is strictly correct regarding plane angle and solid angle in the SI system?
           </p>
 
           <div id="quizOptionsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono"></div>
@@ -1416,8 +1416,8 @@
         unitSelect.appendChild(opt);
       });
 
-      if (currentSubject === 'Physics' && units.some(u => u.includes('KINEMATICS'))) {
-        currentUnit = units.find(u => u.includes('KINEMATICS'));
+      if (currentSubject === 'Physics' && units.some(u => u.includes('PHYSICS AND MEASUREMENT'))) {
+        currentUnit = units.find(u => u.includes('PHYSICS AND MEASUREMENT'));
       } else {
         currentUnit = units[0] || '';
       }
@@ -1484,12 +1484,8 @@
         topicSelect.appendChild(opt);
       });
 
-      if (topics.some(t => t.includes('Projectile'))) {
-        currentTopic = topics.find(t => t.includes('Projectile'));
-        topicSelect.value = currentTopic;
-      } else {
-        currentTopic = '';
-      }
+      currentTopic = '';
+      topicSelect.value = '';
 
       renderFilteredConcepts();
     }
@@ -1736,6 +1732,20 @@
       document.getElementById('trapWarningText').innerText = quiz.warning;
       document.getElementById('pyqYearBadge').innerText = quiz.pyq_year;
       document.getElementById('quizQuestionText').innerText = quiz.question;
+
+      const formulaCard = document.getElementById('trapFormulaCard');
+      if (formulaCard) {
+        if (quiz.formula_card && quiz.formula_card.incorrect && quiz.formula_card.correct) {
+          formulaCard.classList.remove('hidden');
+          formulaCard.innerHTML = `
+            <span class="text-rose-400 line-through">${quiz.formula_card.incorrect}</span>
+            <span class="text-slate-500">➔</span>
+            <span class="text-emerald-400 font-bold text-sm">${quiz.formula_card.correct}</span>
+          `;
+        } else {
+          formulaCard.classList.add('hidden');
+        }
+      }
 
       const grid = document.getElementById('quizOptionsGrid');
       grid.innerHTML = '';

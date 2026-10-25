@@ -62,7 +62,11 @@
           }
         ],
         "correct_index": 0,
-        "explanation": "NCERT Section 2.2: Plane angle (dθ = ds/r) and solid angle (dΩ = dA/r²) possess units radian and steradian, yet both are strictly dimensionless with [M⁰ L⁰ T⁰]."
+        "explanation": "NCERT Section 2.2: Plane angle (dθ = ds/r) and solid angle (dΩ = dA/r²) possess units radian and steradian, yet both are strictly dimensionless with [M⁰ L⁰ T⁰].",
+        "formula_card": {
+          "incorrect": "Has Unit ⇒ Must Have Dimension [M L T]",
+          "correct": "rad & sr: Unit [rad, sr] but [M⁰ L⁰ T⁰] Dimensionless"
+        }
       }
     },
     {
@@ -123,7 +127,11 @@
           }
         ],
         "correct_index": 0,
-        "explanation": "SI rules strictly forbid compound prefixes like μμF (must use pF). Also, because kilogram contains 'kilo', prefixes attach to the gram: 10⁻⁶ kg = 1 mg."
+        "explanation": "SI rules strictly forbid compound prefixes like μμF (must use pF). Also, because kilogram contains 'kilo', prefixes attach to the gram: 10⁻⁶ kg = 1 mg.",
+        "formula_card": {
+          "incorrect": "1 μkg = 10⁻⁹ kg  |  1 μμF = 10⁻¹² F",
+          "correct": "1 mg = 10⁻⁶ kg (Prefix to gram)  |  1 pF (No double prefix)"
+        }
       }
     },
     {
@@ -184,7 +192,11 @@
           }
         ],
         "correct_index": 0,
-        "explanation": "Work is scalar dot product (W = F · d in Joules). Torque is vector cross product (τ = r × F in N·m). They cannot be added, and Torque must never be reported in Joules."
+        "explanation": "Work is scalar dot product (W = F · d in Joules). Torque is vector cross product (τ = r × F in N·m). They cannot be added, and Torque must never be reported in Joules.",
+        "formula_card": {
+          "incorrect": "Work = Torque ⇒ Can Add (W + τ)",
+          "correct": "Both [M L² T⁻²], but Work = Scalar (J) ≠ Torque = Vector (N·m)"
+        }
       }
     },
     {
@@ -245,7 +257,11 @@
           }
         ],
         "correct_index": 0,
-        "explanation": "By Homogeneity, [a/V²] = [P] ==> [a] = [P][V²] = [M L⁻¹ T⁻²][L³]² = [M L⁵ T⁻²]."
+        "explanation": "By Homogeneity, [a/V²] = [P] ==> [a] = [P][V²] = [M L⁻¹ T⁻²][L³]² = [M L⁵ T⁻²].",
+        "formula_card": {
+          "incorrect": "[P + a/V²] ⇒ [a] = [P] = [M L⁻¹ T⁻²]",
+          "correct": "[a/V²] = [P] ⇒ [a] = [P][V²] = [M L⁵ T⁻²]"
+        }
       }
     },
     {
@@ -306,7 +322,11 @@
           }
         ],
         "correct_index": 0,
-        "explanation": "Mean = (10.2 + 10.4 + 9.8 + 9.6)/4 = 10.0 cm. Absolute error magnitudes = |+0.2| + |+0.4| + |-0.2| + |-0.4| = 1.2 cm. Mean absolute error = 1.2/4 = 0.30 cm."
+        "explanation": "Mean = (10.2 + 10.4 + 9.8 + 9.6)/4 = 10.0 cm. Absolute error magnitudes = |+0.2| + |+0.4| + |-0.2| + |-0.4| = 1.2 cm. Mean absolute error = 1.2/4 = 0.30 cm.",
+        "formula_card": {
+          "incorrect": "Δa_mean = Σ(a_mean - a_i) / n = 0 (Zero Sum)",
+          "correct": "Δa_mean = Σ|a_mean - a_i| / n (Sum of ABSOLUTE Deviations!)"
+        }
       }
     },
     {
@@ -367,7 +387,11 @@
           }
         ],
         "correct_index": 0,
-        "explanation": "ΔP/P = 3(ΔA/A) + 2(ΔB/B) + (1/2)(ΔC/C) + 1(ΔD/D) = 3(1%) + 2(2%) + 0.5(4%) + 1(2%) = 3% + 4% + 2% + 2% = 11%."
+        "explanation": "ΔP/P = 3(ΔA/A) + 2(ΔB/B) + (1/2)(ΔC/C) + 1(ΔD/D) = 3(1%) + 2(2%) + 0.5(4%) + 1(2%) = 3% + 4% + 2% + 2% = 11%.",
+        "formula_card": {
+          "incorrect": "In P = A³B² / (√C · D), denominator errors subtract",
+          "correct": "ΔP/P = 3(ΔA/A) + 2(ΔB/B) + ½(ΔC/C) + (ΔD/D) (Errors ALWAYS ADD!)"
+        }
       }
     },
     {
@@ -428,7 +452,11 @@
           }
         ],
         "correct_index": 0,
-        "explanation": "Observed reading = PSR + (CSR × LC) = 3 mm + (42 × 0.01 mm) = 3.42 mm. True reading = Observed - Zero Error = 3.42 - (-0.04) = 3.46 mm."
+        "explanation": "Observed reading = PSR + (CSR × LC) = 3 mm + (42 × 0.01 mm) = 3.42 mm. True reading = Observed - Zero Error = 3.42 - (-0.04) = 3.46 mm.",
+        "formula_card": {
+          "incorrect": "True Reading = Observed Reading + Zero Error",
+          "correct": "True Reading = Observed - (Zero Error) [Subtract +ve, Add -ve]"
+        }
       }
     },
     {
@@ -489,7 +517,11 @@
           }
         ],
         "correct_index": 0,
-        "explanation": "NCERT Rule: In addition/subtraction, the result retains as many decimal places as there are in the number with the least decimal places. 9.99 m has 2 decimal places, so 9.9801 m rounds to 9.98 m."
+        "explanation": "NCERT Rule: In addition/subtraction, the result retains as many decimal places as there are in the number with the least decimal places. 9.99 m has 2 decimal places, so 9.9801 m rounds to 9.98 m.",
+        "formula_card": {
+          "incorrect": "9.99 m - 0.0099 m = 9.9801 m (kept 4 sig figs)",
+          "correct": "9.99 m - 0.0099 m = 9.98 m (Round to LEAST Decimal Places: 2)"
+        }
       }
     },
     {
@@ -735,7 +767,11 @@
           }
         ],
         "correct_index": 1,
-        "explanation": "Since angle is given with the vertical axis, the vertical velocity component is vy = v0·cos(30°) = 50·(√3/2) = 25√3 m/s. H_max = vy²/(2g) = (25√3)² / 20 = (625·3)/20 = 1875/20 = 93.75 m. Option A (31.25 m) is the exact trap distractor chosen by students who didn't read 'with vertical'!"
+        "explanation": "Since angle is given with the vertical axis, the vertical velocity component is vy = v0·cos(30°) = 50·(√3/2) = 25√3 m/s. H_max = vy²/(2g) = (25√3)² / 20 = (625·3)/20 = 1875/20 = 93.75 m. Option A (31.25 m) is the exact trap distractor chosen by students who didn't read 'with vertical'!",
+        "formula_card": {
+          "incorrect": "H_max = (v₀² sin²θ) / 2g",
+          "correct": "H_max = (v₀² cos²θ) / 2g (θ with Vertical Axis!)"
+        }
       }
     },
     {
