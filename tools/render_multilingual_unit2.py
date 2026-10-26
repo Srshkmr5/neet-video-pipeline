@@ -39,6 +39,206 @@ VOICES = {
 
 # Curated 4-Beat Scripts Registry for Unit 2
 CONCEPT_BEAT_SCRIPTS = {
+    "P11-C02-T04-V01": {
+        "en-IN": [
+            ("beat_1", "Welcome to Circular Motion. In this masterclass, we explore the dynamics of Uniform Circular Motion and Centripetal Acceleration."),
+            ("beat_2", "A particle moving in a circular path of radius r at constant speed v experiences continuous redirection of its velocity vector, resulting in radial inward acceleration: a-c equals v squared divided by r, or omega squared into r."),
+            ("beat_3", "Because the centripetal acceleration vector is strictly perpendicular to the instantaneous velocity vector at all times, no work is performed on the particle: power equals force dot velocity equals zero, keeping kinetic energy strictly invariant."),
+            ("beat_4", "Now heed the fatal NEET Trap: assuming acceleration is zero because speed is constant! In circular motion, velocity direction changes continuously every millisecond. Centripetal acceleration is strictly non-zero and always directed towards the center!")
+        ],
+        "hi-IN": [
+            ("beat_1", "वृत्तीय गति यानी सर्कुलर मोशन में आपका स्वागत है। इस सत्र में हम एकसमान वृत्तीय गति और अभिकेंद्रीय त्वरण यानी सेंट्रीपीटल एक्सेलेरेशन का अध्ययन करेंगे।"),
+            ("beat_2", "त्रिज्या आर के वृत्ताकार पथ पर नियत चाल वी से गतिमान कण के वेग की दिशा लगातार बदलती रहती है, जिससे केंद्र की ओर त्रिज्या के अनुदिश त्वरण उत्पन्न होता है: ए-सी बराबर वी वर्ग बटे आर या ओमेगा वर्ग गुणा आर।"),
+            ("beat_3", "चूंकि अभिकेंद्रीय त्वरण हमेशा वेग के लंबवत होता है, इसलिए अभिकेंद्रीय बल द्वारा किया गया कार्य शून्य होता है: शक्ति बराबर बल डॉट वेग बराबर शून्य, जिससे गतिज ऊर्जा सदैव नियत रहती है।"),
+            ("beat_4", "अब ध्यान दें सबसे घातक नीट ट्रैप पर: चाल नियत होने के कारण त्वरण को शून्य मान लेना! वृत्तीय गति में वेग की दिशा हर पल बदलती है। अभिकेंद्रीय त्वरण अशून्य होता है और हमेशा केंद्र की ओर निर्देशित रहता है!")
+        ],
+        "ta-IN": [
+            ("beat_1", "வட்ட இயக்கத்திற்கு வரவேற்கிறோம். இந்த அமர்வில் நாம் சீரான வட்ட இயக்கம் மற்றும் மையநோக்கு முடுக்கத்தை ஆராய்கிறோம்."),
+            ("beat_2", "ஆரம் ஆர் கொண்ட வட்டப் பாதையில் மாறாத வேகம் வி-யில் செல்லும் துகளின் திசைவேக திசை தொடர்ந்து மாறுவதால், மையத்தை நோக்கி முடுக்கம் உருவாகிறது: ஏ-சி சமம் வி ஸ்கொயர் பை ஆர் அல்லது ஒமேகா ஸ்கொயர் ஆர்."),
+            ("beat_3", "மையநோக்கு முடுக்கம் திசைவேகத்திற்கு செங்குத்தாக இருப்பதால், செய்யப்பட்ட வேலை பூஜ்ஜியமாகும்: திறன் சமம் விசை டாட் திசைவேகம் சமம் பூஜ்ஜியம், இதனால் இயக்க ஆற்றல் மாறாமல் இருக்கும்."),
+            ("beat_4", "இப்போது முக்கியமான நீட் தேர்வு பொறியைக் கவனியுங்கள்: வேகம் மாறாததால் முடுக்கம் பூஜ்ஜியம் என்ற தவறான கணிப்பு! வட்ட இயக்கத்தில் திசைவேகத்தின் திசை தொடர்ந்து மாறுகிறது. மையநோக்கு முடுக்கம் எப்போதும் செயல்படுகிறது!")
+        ]
+    },
+    "P11-C02-T05-V13": {
+        "en-IN": [
+            ("beat_1", "Mastering Rotational Relations: in this masterclass, we establish the fundamental link between Angular Velocity omega and Linear Speed v."),
+            ("beat_2", "For any particle rotating at radius r, linear speed is directly proportional to angular velocity: v equals omega into r. On a rigid rotating body like a wheel, all particles share the identical angular speed omega regardless of radial position."),
+            ("beat_3", "Because linear speed scales linearly with distance from the rotation axis, points located further outward on the perimeter travel along longer circular arcs per second, experiencing higher linear speeds and centripetal accelerations."),
+            ("beat_4", "Now heed the fatal NEET Trap: believing points closer to the center move faster! On a rigid rotating body, angular velocity omega is constant, so linear speed increases strictly with radius r. Outer perimeter points always move fastest!")
+        ],
+        "hi-IN": [
+            ("beat_1", "घूर्णन संबंधों का अध्ययन: इस सत्र में हम कोणीय वेग ओमेगा और रैखिक चाल वी के बीच मूलभूत संबंध का अध्ययन करेंगे।"),
+            ("beat_2", "त्रिज्या आर पर घूमते कण की रैखिक चाल कोणीय वेग के समानुपाती होती है: वी बराबर ओमेगा गुणा आर। किसी दृढ़ घूर्णन पिंड जैसे पहिए के सभी कणों का कोणीय वेग ओमेगा समान रहता है।"),
+            ("beat_3", "चूंकि रैखिक चाल घूर्णन अक्ष से दूरी के साथ बढ़ती है, इसलिए बाहरी परिधि पर स्थित कण प्रति सेकंड अधिक दूरी तय करते हैं और उनकी रैखिक चाल तथा अभिकेंद्रीय त्वरण अधिक होता है।"),
+            ("beat_4", "अब ध्यान दें सबसे घातक नीट ट्रैप पर: यह सोचना कि केंद्र के पास वाले बिंदु तेज गति करते हैं! दृढ़ पिंड पर कोणीय वेग समान होता है, इसलिए बाहरी परिधि के बिंदु सबसे अधिक रैखिक चाल से गति करते हैं!")
+        ],
+        "ta-IN": [
+            ("beat_1", "சுழற்சி இயக்கவியல்: இந்த அமர்வில் நாம் கோணத் திசைவேகம் ஒமேகா மற்றும் நேர்க்கோட்டு வேகம் வி-க்கு இடையிலான தொடர்பை ஆராய்கிறோம்."),
+            ("beat_2", "ஆரம் ஆர் தூரத்தில் சுழலும் துகளின் நேர்க்கோட்டு வேகம் கோணத் திசைவேகத்திற்கு நேர்விகிதத்தில் இருக்கும்: வி சமம் ஒமேகா இன்டு ஆர். ஒரு சக்கரத்தில் உள்ள அனைத்து புள்ளிகளுக்கும் கோண வேகம் சமமாகும்."),
+            ("beat_3", "நேர்க்கோட்டு வேகம் ஆரத்திற்கு ஏற்ப மாறுவதால், வெளிப்புற விளிம்பில் உள்ள புள்ளிகள் வினாடிக்கு அதிக தூரம் கடக்கின்றன, எனவே அவற்றின் வேகம் அதிகமாக இருக்கும்."),
+            ("beat_4", "இப்போது முக்கியமான நீட் தேர்வு பொறியைக் கவனியுங்கள்: மையத்திற்கு அருகிலுள்ள புள்ளிகள் வேகமாக நகரும் என்ற பிழை! கோண வேகம் மாறாததால், வெளிப்புற புள்ளிகளே அதிக வேகத்தில் நகரும்!")
+        ]
+    },
+    "P11-C02-T05-V14": {
+        "en-IN": [
+            ("beat_1", "Advanced Circular Dynamics: in this masterclass, we calculate Net Acceleration in Non-Uniform Circular Motion."),
+            ("beat_2", "When the speed of a particle changes along a circular path, it possesses two orthogonal acceleration components: centripetal acceleration a-c equals v squared by r pointing inward, and tangential acceleration a-t equals dv by dt pointing along the tangent."),
+            ("beat_3", "The total resultant acceleration vector is the vector sum: a-net equals square root of a-c squared plus a-t squared, directed at an angle theta equals arctan of a-t divided by a-c with respect to the radius vector."),
+            ("beat_4", "Now heed the fatal NEET Trap: forgetting the tangential acceleration component! When an exam problem states that speed increases at rate alpha, never calculate acceleration as just v squared by r. You must compute the vector hypotenuse of both components!")
+        ],
+        "hi-IN": [
+            ("beat_1", "उन्नत वृत्तीय गति: इस सत्र में हम असमान वृत्तीय गति यानी नॉन-यूनिफॉर्म सर्कुलर मोशन में कुल परिणामी त्वरण की गणना करेंगे।"),
+            ("beat_2", "जब वृत्ताकार पथ पर कण की चाल बदलती है, तो दो लंबवत त्वरण घटक होते हैं: केंद्र की ओर अभिकेंद्रीय त्वरण ए-सी बराबर वी वर्ग बटे आर, और स्पर्श रेखा के अनुदिश स्पर्शरेखीय त्वरण ए-टी बराबर डी-वी बटे डी-टी।"),
+            ("beat_3", "कुल परिणामी त्वरण दोनों घटकों का सदिश योग होता है: ए-नेट बराबर रूट में ए-सी वर्ग प्लस ए-टी वर्ग, जो त्रिज्या से टेन थीटा बराबर ए-टी बटे ए-सी के कोण पर झुका होता है।"),
+            ("beat_4", "अब ध्यान दें सबसे घातक नीट ट्रैप पर: स्पर्शरेखीय त्वरण को भूल जाना! जब प्रश्न में चाल में परिवर्तन की दर दी गई हो, तो कुल त्वरण केवल वी वर्ग बटे आर नहीं होता। दोनों घटकों के परिणामी की गणना अवश्य करें!")
+        ],
+        "ta-IN": [
+            ("beat_1", "மேம்பட்ட வட்ட இயக்கவியல்: இந்த அமர்வில் நாம் சீரற்ற வட்ட இயக்கத்தில் நிகர முடுக்கத்தைக் கணக்கிடுகிறோம்."),
+            ("beat_2", "வட்டப் பாதையில் வேகம் மாறும் போது இரண்டு செங்குத்து முடுக்கங்கள் செயல்படுகின்றன: மையத்தை நோக்கி மையநோக்கு முடுக்கம் ஏ-சி சமம் வி ஸ்கொயர் பை ஆர், மற்றும் தொடுகோட்டு முடுக்கம் ஏ-டி சமம் டி-வி பை டி-டி."),
+            ("beat_3", "மொத்த நிகர முடுக்கம் இவ்விரண்டின் வெக்டார் கூட்டுத்தொகையாகும்: ஏ-நெட் சமம் ரூட் ஆஃப் ஏ-சி ஸ்கொயர் பிளஸ் ஏ-டி ஸ்கொயர்."),
+            ("beat_4", "இப்போது முக்கியமான நீட் தேர்வு பொறியைக் கவனியுங்கள்: தொடுகோட்டு முடுக்கத்தை மறந்துவிடுவது! வேகம் மாறும் போது முடுக்கம் வி ஸ்கொயர் பை ஆர் மட்டுமே அல்ல. இரண்டு கூறுகளின் விளைவு முடுக்கத்தையே கணக்கிட வேண்டும்!")
+        ]
+    },
+    "P11-C02-T03-V01": {
+        "en-IN": [
+            ("beat_1", "Welcome to Projectile Motion. In this masterclass, we explore the duration of ballistic flight: the Time of Flight T."),
+            ("beat_2", "The total time of flight is governed exclusively by the vertical velocity component: T equals 2 v0 sin theta divided by g. The horizontal velocity v0 cos theta proceeds at constant speed with zero acceleration, exerting no effect on time in the air."),
+            ("beat_3", "Due to gravitational symmetry, the time taken to reach the highest point equals the time taken to descend back to ground: t-ascent equals t-descent equals v0 sin theta by g. At launch angle 90 degrees, flight time is maximum."),
+            ("beat_4", "Now heed the fatal NEET Trap: when launch angle phi is specified with the VERTICAL axis! In that case, the vertical velocity becomes v0 cos phi, so time of flight is 2 v0 cos phi by g. Never blindly write sine without checking which axis theta is measured from!")
+        ],
+        "hi-IN": [
+            ("beat_1", "प्रक्षेप्य गति यानी प्रोजेक्टाइल मोशन में आपका स्वागत है। इस सत्र में हम उड्डयन काल यानी टाइम ऑफ फ्लाइट टी का अध्ययन करेंगे।"),
+            ("beat_2", "कुल उड्डयन काल केवल प्रारंभिक वेग के ऊर्ध्वाधर घटक पर निर्भर करता है: टी बराबर 2 वी-शून्य साइन थीटा बटे जी। क्षैतिज वेग वी-शून्य कॉस थीटा एकसमान रहता है और उड्डयन काल पर इसका कोई प्रभाव नहीं पड़ता।"),
+            ("beat_3", "गुरुत्वाकर्षण की सममिति के कारण उच्चतम बिंदु तक पहुँचने का समय और वापस जमीन तक आने का समय ठीक बराबर होता है: टी-आरोहण बराबर टी-अवरोहण बराबर वी-शून्य साइन थीटा बटे जी।"),
+            ("beat_4", "अब ध्यान दें सबसे घातक नीट ट्रैप पर: जब कोण ऊर्ध्वाधर अक्ष से दिया गया हो! ऐसी स्थिति में ऊर्ध्वाधर घटक वी-शून्य कॉस फाई बनता है और उड्डयन काल 2 वी-शून्य कॉस फाई बटे जी हो जाता है। हमेशा कोण के संदर्भ अक्ष की जांच करें!")
+        ],
+        "ta-IN": [
+            ("beat_1", "எறிபொருள் இயக்கத்திற்கு வரவேற்கிறோம். இந்த அமர்வில் நாம் எறிபொருளின் பறக்கும் காலத்தை ஆராய்கிறோம்."),
+            ("beat_2", "மொத்த பறக்கும் காலம் செங்குத்து திசைவேகக் கூறினால் மட்டுமே தீர்மானிக்கப்படுகிறது: டி சமம் 2 வி-0 சைன் தீட்டா பை ஜி. கிடைமட்ட திசைவேகம் பறக்கும் காலத்தை எந்த வகையிலும் மாற்றுவதில்லை."),
+            ("beat_3", "புவியீர்ப்பு சமச்சீர்நிலையின் காரணமாக, உச்சியை அடையும் நேரமும் தரையை வந்தடையும் நேரமும் சமமாகும்: ஏறும் நேரம் சமம் இறங்கும் நேரம் சமம் வி-0 சைன் தீட்டா பை ஜி."),
+            ("beat_4", "இப்போது முக்கியமான நீட் தேர்வு பொறியைக் கவனியுங்கள்: கோணம் செங்குத்து அச்சுடன் கொடுக்கப்படும் போது! அப்போது பறக்கும் காலம் 2 வி-0 காஸ் பை ஜி ஆக மாறும். எந்த அச்சுடன் கோணம் உள்ளது என்பதை உறுதிப்படுத்தாமல் சைன் பயன்படுத்தாதீர்கள்!")
+        ]
+    },
+    "P11-C02-T03-V02": {
+        "en-IN": [
+            ("beat_1", "Continuing Projectile Motion: in this masterclass, we analyze the highest point of the parabolic arc: Maximum Height H-max."),
+            ("beat_2", "Maximum height is achieved when the vertical velocity component momentarily drops to zero: vy equals zero, yielding H-max equals v0 squared sin squared theta divided by 2g. Crucially, the horizontal velocity vx equals v0 cos theta remains completely intact!"),
+            ("beat_3", "At the apex, mechanical energy is conserved: potential energy is maximum, while kinetic energy reaches its minimum non-zero value: K-apex equals half m v0 squared cos squared theta. Furthermore, velocity and gravitational acceleration are strictly perpendicular at the top."),
+            ("beat_4", "Now heed the fatal NEET Trap: assuming velocity is zero at the apex! Only the vertical velocity component is zero; the particle continues moving forward at v0 cos theta. Speed and kinetic energy are minimum, never zero!")
+        ],
+        "hi-IN": [
+            ("beat_1", "प्रक्षेप्य गति को आगे बढ़ाते हुए: इस सत्र में हम परवलयाकार पथ के उच्चतम बिंदु यानी महत्तम ऊंचाई एच-मैक्स का विश्लेषण करेंगे।"),
+            ("beat_2", "महत्तम ऊंचाई तब प्राप्त होती है जब ऊर्ध्वाधर वेग वी-वाई क्षण भर के लिए शून्य हो जाता है, जिससे एच-मैक्स बराबर वी-शून्य वर्ग साइन वर्ग थीटा बटे 2 जी मिलता है। ध्यान रखें कि क्षैतिज वेग वी-शून्य कॉस थीटा निरंतर बना रहता है!"),
+            ("beat_3", "शीर्ष बिंदु पर गतिज ऊर्जा न्यूनतम लेकिन अशून्य होती है: के बराबर आधा एम वी-शून्य वर्ग कॉस वर्ग थीटा। साथ ही उच्चतम बिंदु पर वेग और त्वरण परस्पर लंबवत होते हैं।"),
+            ("beat_4", "अब ध्यान दें सबसे घातक नीट ट्रैप पर: शीर्ष पर कुल वेग को शून्य मान लेना! केवल ऊर्ध्वाधर वेग शून्य होता है, क्षैतिज गति निरंतर जारी रहती है। गतिज ऊर्जा न्यूनतम होती है, शून्य कभी नहीं!")
+        ],
+        "ta-IN": [
+            ("beat_1", "எறிபொருள் இயக்கத்தை தொடர்கிறோம்: இந்த அமர்வில் நாம் பரவளையப் பாதையின் உச்ச உயரத்தை ஆராய்கிறோம்."),
+            ("beat_2", "செங்குத்து திசைவேகம் வி-ஒய் பூஜ்ஜியமாகும் போது உச்ச உயரம் எட்டப்படுகிறது: எச்-மேக்ஸ் சமம் வி-0 ஸ்கொயர் சைன் ஸ்கொயர் தீட்டா பை 2 ஜி. ஆனால் கிடைமட்ட திசைவேகம் தொடர்ந்து இயங்குகிறது!"),
+            ("beat_3", "உச்சியில் இயக்க ஆற்றல் பூஜ்ஜியம் அல்ல, அது குறைந்தபட்ச மதிப்பை அடைகிறது. மேலும் உச்சிப் புள்ளியில் திசைவேகமும் புவியீர்ப்பு முடுக்கமும் சரியாக செங்குத்தாக இருக்கும்."),
+            ("beat_4", "இப்போது முக்கியமான நீட் தேர்வு பொறியைக் கவனியுங்கள்: உச்சியில் திசைவேகம் பூஜ்ஜியம் என்ற தவறான கணிப்பு! செங்குத்து திசைவேகம் மட்டுமே பூஜ்ஜியம்; துகள் தொடர்ந்து முன்னோக்கி நகர்கிறது. இயக்க ஆற்றல் எப்போதும் பூஜ்ஜியமாகாது!")
+        ]
+    },
+    "P11-C02-T03-V03": {
+        "en-IN": [
+            ("beat_1", "Continuing Projectile Dynamics: in this masterclass, we explore Horizontal Range R and the fascinating symmetry of Complementary Projection Angles."),
+            ("beat_2", "Horizontal range is the total horizontal displacement: R equals v0 squared sin 2 theta divided by g. Range achieves its absolute maximum value R-max equals v0 squared by g at launch angle theta equals 45 degrees."),
+            ("beat_3", "Remarkably, horizontal range is identical for complementary launch angles theta and 90 minus theta! Furthermore, the product of their flight times T1 into T2 equals 2R by g, and the product of their maximum heights H1 into H2 equals R squared by 16."),
+            ("beat_4", "Now heed the fatal NEET Trap: assuming equal heights and flight times for complementary angles! Although the landing range is identical, the larger angle 90 minus theta attains a vastly greater height and spends much longer in the air!")
+        ],
+        "hi-IN": [
+            ("beat_1", "प्रक्षेप्य गति के अगले भाग में: इस सत्र में हम क्षैतिज परास यानी हॉरिजॉन्टल रेंज आर और पूरक कोणों की सममिति का अध्ययन करेंगे।"),
+            ("beat_2", "क्षैतिज परास कुल क्षैतिज दूरी होती है: आर बराबर वी-शून्य वर्ग साइन 2 थीटा बटे जी। 45 डिग्री के प्रक्षेपण कोण पर परास अधिकतम प्राप्त होती है: आर-मैक्स बराबर वी-शून्य वर्ग बटे जी।"),
+            ("beat_3", "पूरक कोणों थीटा और 90 माइनस थीटा के लिए क्षैतिज परास बिल्कुल एक समान होती है! साथ ही दोनों उड्डयन कालों का गुणनफल 2 आर बटे जी और महत्तम ऊंचाइयों का गुणनफल आर वर्ग बटे 16 होता है।"),
+            ("beat_4", "अब ध्यान दें सबसे घातक नीट ट्रैप पर: पूरक कोणों के लिए ऊंचाई को भी बराबर मान लेना! हालांकि परास समान होती है, लेकिन बड़े कोण के लिए उड्डयन काल और महत्तम ऊंचाई दोनों काफी अधिक होते हैं!")
+        ],
+        "ta-IN": [
+            ("beat_1", "எறிபொருள் இயக்கத்தின் அடுத்த பகுதி: இந்த அமர்வில் நாம் கிடைமட்ட வீச்சு மற்றும் நிரப்புக் கோணங்களின் சமச்சீர்நிலையை ஆராய்கிறோம்."),
+            ("beat_2", "கிடைமட்ட வீச்சு என்பது மொத்த கிடைமட்ட இடப்பெயர்ச்சியாகும்: ஆர் சமம் வி-0 ஸ்கொயர் சைன் 2 தீட்டா பை ஜி. 45 டிகிரி கோணத்தில் அதிகபட்ச வீச்சு கிடைக்கிறது."),
+            ("beat_3", "தீட்டா மற்றும் 90 மைனஸ் தீட்டா ஆகிய நிரப்புக் கோணங்களுக்கு கிடைமட்ட வீச்சு ஒரே மாதிரியாக இருக்கும்! மேலும் அவற்றின் பறக்கும் காலங்களின் பெருக்கற்பலன் 2 ஆர் பை ஜி ஆகும்."),
+            ("beat_4", "இப்போது முக்கியமான நீட் தேர்வு பொறியைக் கவனியுங்கள்: நிரப்புக் கோணங்களுக்கு உயரமும் சமம் என்று நினைப்பது! வீச்சு சமமாக இருந்தாலும், அதிக கோணத்தில் செல்லும் எறிபொருளின் உயரமும் பறக்கும் நேரமும் அதிகமாக இருக்கும்!")
+        ]
+    },
+    "P11-C02-T03-V04": {
+        "en-IN": [
+            ("beat_1", "Mastering Trajectory Geometry: in this masterclass, we derive and apply the Cartesian Equation of Trajectory for projectile flight."),
+            ("beat_2", "By eliminating time t from the horizontal and vertical parametric equations, we obtain y equals x tan theta minus g x squared divided by 2 v0 squared cos squared theta, proving the path is a downward-opening parabola."),
+            ("beat_3", "H C Verma highlights an invaluable alternative formulation: y equals x tan theta into 1 minus x by R, which relates coordinates directly to horizontal range R and solves complex numericals in seconds."),
+            ("beat_4", "Now heed the fatal NEET Trap: misidentifying trajectory coefficients! In given polynomial equations like y equals root 3 x minus 5 x squared, remember that tan theta equals the linear coefficient, while the quadratic denominator strictly contains cos squared theta, never sin squared theta!")
+        ],
+        "hi-IN": [
+            ("beat_1", "प्रक्षेप्य पथ की ज्यामिति: इस सत्र में हम प्रक्षेप्य के परवलयाकार पथ का समीकरण यानी इक्वेशन ऑफ ट्रेजेक्टरी का अध्ययन करेंगे।"),
+            ("beat_2", "समय टी को विलोपित करने पर हमें पथ का समीकरण प्राप्त होता है: वाई बराबर एक्स टेन थीटा माइनस जी एक्स वर्ग बटे 2 वी-शून्य वर्ग कॉस वर्ग थीटा, जो यह सिद्ध करता है कि पथ परवलयाकार है।"),
+            ("beat_3", "एच सी वर्मा का संक्षिप्त रूप याद रखें: वाई बराबर एक्स टेन थीटा कोष्ठक में 1 माइनस एक्स बटे आर। यह सूत्र नीट के कठिन प्रश्नों को सीधे हल कर देता है।"),
+            ("beat_4", "अब ध्यान दें सबसे घातक नीट ट्रैप पर: समीकरण के गुणांकों को गलत पहचानना! याद रखें कि रैखिक गुणांक टेन थीटा देता है, जबकि द्विघात पद के हर में हमेशा कॉस वर्ग थीटा होता है!")
+        ],
+        "ta-IN": [
+            ("beat_1", "எறிபாதை வடிவியல்: இந்த அமர்வில் நாம் எறிபொருளின் கார்ட்டீசியன் பாதை சமன்பாட்டை ஆராய்கிறோம்."),
+            ("beat_2", "காலம் டி-யை நீக்குவதன் மூலம், ஒய் சமம் எக்ஸ் டான் தீட்டா மைனஸ் ஜி எக்ஸ் ஸ்கொயர் பை 2 வி-0 ஸ்கொயர் காஸ் ஸ்கொயர் தீட்டா என்ற பரவளைய பாதை சமன்பாடு கிடைக்கிறது."),
+            ("beat_3", "எச் சி வர்மா குறிப்பிடும் குறுக்கு வழி சூத்திரம்: ஒய் சமம் எக்ஸ் டான் தீட்டா இன்டு 1 மைனஸ் எக்ஸ் பை ஆர். இது வீச்சு கொடுக்கப்பட்ட கணக்குகளை எளிதில் தீர்க்கும்."),
+            ("beat_4", "இப்போது முக்கியமான நீட் தேர்வு பொறியைக் கவனியுங்கள்: சமன்பாட்டின் குணகங்களை அடையாளம் காண்பதில் தவறு! பகுதியில் எப்போதும் காஸ் ஸ்கொயர் தீட்டா மட்டுமே வரும் என்பதை நினைவில் கொள்ளுங்கள்!")
+        ]
+    },
+    "P11-C02-T04-V10": {
+        "en-IN": [
+            ("beat_1", "Extending Ballistics: in this masterclass, we investigate Horizontal Projection from a Cliff of Height h."),
+            ("beat_2", "Because the launch is purely horizontal, initial vertical velocity vy is zero. Therefore, the time to strike the ground is t equals root of 2h by g, exactly identical to a body dropped freely from rest!"),
+            ("beat_3", "Horizontal motion proceeds independently at constant speed v0, yielding range R equals v0 into root of 2h by g. The resultant impact velocity is root of v0 squared plus 2gh."),
+            ("beat_4", "Now heed the fatal NEET Trap: believing a high-speed projectile takes longer to hit the ground! The horizontal velocity has zero impact on vertical acceleration. A dropped bullet and a horizontally fired bullet hit the ground simultaneously!")
+        ],
+        "hi-IN": [
+            ("beat_1", "प्रक्षेप्य गति का महत्वपूर्ण प्रयोग: इस सत्र में हम किसी ऊंचाई एच से क्षैतिज प्रक्षेपण का अध्ययन करेंगे।"),
+            ("beat_2", "चूंकि प्रक्षेपण पूरी तरह क्षैतिज है, प्रारंभिक ऊर्ध्वाधर वेग शून्य होता है। इसलिए जमीन तक पहुँचने का समय टी बराबर रूट 2 एच बटे जी होता है, जो मुक्त रूप से गिराई गई वस्तु के समान है!"),
+            ("beat_3", "क्षैतिज गति निरंतर वेग वी-शून्य से चलती है, जिससे क्षैतिज परास आर बराबर वी-शून्य गुणा रूट 2 एच बटे जी मिलती है। जमीन पर टकराते समय कुल वेग रूट वी-शून्य वर्ग प्लस 2 जी एच होता है।"),
+            ("beat_4", "अब ध्यान दें सबसे घातक नीट ट्रैप पर: यह सोचना कि तेज गति से दागी गई गोली देर से गिरेगी! क्षैतिज वेग का ऊर्ध्वाधर गति पर कोई प्रभाव नहीं पड़ता। गिराई गई और क्षैतिज दागी गई दोनों वस्तुएं एक साथ जमीन पर टकराती हैं!")
+        ],
+        "ta-IN": [
+            ("beat_1", "எறிபொருளின் அடுத்த பயன்பாடு: இந்த அமர்வில் நாம் ஒரு உயரத்திலிருந்து கிடைமட்டமாக எறியப்படும் பொருளின் இயக்கத்தை ஆராய்கிறோம்."),
+            ("beat_2", "தொடக்க செங்குத்து திசைவேகம் பூஜ்ஜியமாக இருப்பதால், தரையை அடையும் நேரம் டி சமம் ரூட் 2 எச் பை ஜி. இது தானாக கீழே விழும் பொருளின் நேரத்திற்கு சமமாகும்!"),
+            ("beat_3", "கிடைமட்ட திசைவேகம் மாறாமல் வி-0 ஆக நீடிக்கிறது, எனவே வீச்சு ஆர் சமம் வி-0 இன்டு ரூட் 2 எச் பை ஜி. தரையைத் தாக்கும் இறுதி வேகம் ரூட் வி-0 ஸ்கொயர் பிளஸ் 2 ஜி எச்."),
+            ("beat_4", "இப்போது முக்கியமான நீட் தேர்வு பொறியைக் கவனியுங்கள்: வேகமாக எறியப்பட்ட பொருள் தரையைத் தாமதமாகத் தொடும் என்ற தவறான எண்ணம்! கிடைமட்ட வேகம் செங்குத்து வீழ்ச்சியை மாற்றுவதில்லை. இரண்டும் ஒரே நேரத்தில் தரையைத் தாக்கும்!")
+        ]
+    },
+    "P11-C02-T04-V11": {
+        "en-IN": [
+            ("beat_1", "Advanced Kinematics: in this masterclass, we solve Projectiles on an Inclined Plane of angle beta."),
+            ("beat_2", "We establish a rotated coordinate system: x-prime along the incline, and y-prime perpendicular to the incline. Acceleration due to gravity decomposes into ax-prime equals minus g sin beta and ay-prime equals minus g cos beta."),
+            ("beat_3", "The time of flight is T equals 2 v0 sin(alpha minus beta) divided by g cos beta. Maximum range up the incline is achieved at launch angle alpha equals 45 degrees plus beta by 2."),
+            ("beat_4", "Now heed the fatal NEET Trap: assuming zero acceleration along the inclined plane! Unlike flat ground, the motion along the incline is retarded by g sin beta. Range calculations must include minus half g sin beta T squared!")
+        ],
+        "hi-IN": [
+            ("beat_1", "उन्नत प्रक्षेप्य गति: इस सत्र में हम आनत तल यानी इंक्लाइंड प्लेन पर प्रक्षेप्य गति का विश्लेषण करेंगे।"),
+            ("beat_2", "हम निर्देशांक अक्षों को घुमाते हैं: तल के अनुदिश एक्स-डैश और तल के लंबवत वाई-डैश। गुरुत्वीय त्वरण दो घटकों में टूटता है: तल के अनुदिश माइनस जी साइन बीटा और लंबवत माइनस जी कॉस बीटा।"),
+            ("beat_3", "उड्डयन काल टी बराबर 2 वी-शून्य साइन(अल्फा माइनस बीटा) बटे जी कॉस बीटा होता है। आनत तल पर अधिकतम परास के लिए प्रक्षेपण कोण अल्फा बराबर 45 डिग्री प्लस बीटा बटे 2 होना चाहिए।"),
+            ("beat_4", "अब ध्यान दें सबसे घातक नीट ट्रैप पर: आनत तल के अनुदिश त्वरण को शून्य मान लेना! समतल जमीन के विपरीत, यहाँ तल पर मंदन जी साइन बीटा कार्य करता है। परास में माइनस आधा जी साइन बीटा टी वर्ग को कभी न भूलें!")
+        ],
+        "ta-IN": [
+            ("beat_1", "மேம்பட்ட இயக்கவியல்: இந்த அமர்வில் நாம் சாய்வு தளத்தின் மீதான எறிபொருள் இயக்கத்தை ஆராய்கிறோம்."),
+            ("beat_2", "நாம் ஆய அச்சுகளை சாய்வு தளத்திற்கு ஏற்ப திருப்புகிறோம்: சாய்வின் திசையில் முடுக்கம் மைனஸ் ஜி சைன் பீட்டா மற்றும் செங்குத்தாக மைனஸ் ஜி காஸ் பீட்டா."),
+            ("beat_3", "பறக்கும் காலம் டி சமம் 2 வி-0 சைன்(ஆல்பா மைனஸ் பீட்டா) பை ஜி காஸ் பீட்டா. அதிகபட்ச வீச்சுக்கான கோணம் ஆல்பா சமம் 45 டிகிரி பிளஸ் பீட்டா பை 2."),
+            ("beat_4", "இப்போது முக்கியமான நீட் தேர்வு பொறியைக் கவனியுங்கள்: சாய்வு தளத்தில் முடுக்கம் பூஜ்ஜியம் என நினைப்பது! சாய்வின் திசையில் ஜி சைன் பீட்டா என்ற எதிர் முடுக்கம் செயல்படுகிறது. இதை கணக்கில் கொள்ள தவறாதீர்கள்!")
+        ]
+    },
+    "P11-C02-T04-V12": {
+        "en-IN": [
+            ("beat_1", "Curvature Analysis: in this masterclass, we calculate the Radius of Curvature at the apex of a projectile trajectory."),
+            ("beat_2", "The radius of curvature rho equals speed squared divided by normal acceleration: rho equals v squared by a-n. At the apex, speed is strictly v0 cos theta, and gravitational acceleration g is purely normal to the velocity!"),
+            ("beat_3", "Therefore, the radius of curvature at the apex simplifies to rho-apex equals v0 squared cos squared theta divided by g. This is the sharpest, most curved point along the entire ballistic trajectory."),
+            ("beat_4", "Now heed the fatal NEET Trap: substituting total launch speed v0 at the apex! Speed at the apex is only the horizontal component v0 cos theta. Using v0 yields a radius too large by a factor of sec squared theta!")
+        ],
+        "hi-IN": [
+            ("beat_1", "वक्रता विश्लेषण: इस सत्र में हम प्रक्षेप्य पथ के उच्चतम बिंदु पर वक्रता त्रिज्या यानी रेडियस ऑफ कर्वेचर की गणना करेंगे।"),
+            ("beat_2", "वक्रता त्रिज्या रो बराबर चाल का वर्ग बटे अभिलंब त्वरण होती है। शीर्ष बिंदु पर चाल केवल वी-शून्य कॉस थीटा होती है, और गुरुत्वीय त्वरण जी पूर्णतः वेग के लंबवत होता है!"),
+            ("beat_3", "अतः शीर्ष पर वक्रता त्रिज्या रो-शीर्ष बराबर वी-शून्य वर्ग कॉस वर्ग थीटा बटे जी प्राप्त होती है। यह पूरे प्रक्षेप्य पथ का सबसे तीव्र मोड़ वाला बिंदु होता है।"),
+            ("beat_4", "अब ध्यान दें सबसे घातक नीट ट्रैप पर: शीर्ष पर प्रारंभिक चाल वी-शून्य रख देना! शीर्ष पर चाल केवल क्षैतिज घटक होती है। पूरे वी-शून्य का उपयोग करने से उत्तर गलत हो जाता है!")
+        ],
+        "ta-IN": [
+            ("beat_1", "வளைவு பகுப்பாய்வு: இந்த அமர்வில் நாம் எறிபாதை உச்சியில் வளைவு ஆரத்தை கணக்கிடுகிறோம்."),
+            ("beat_2", "வளைவு ஆரம் ரோ சமம் வேகம் ஸ்கொயர் பை செங்குத்து முடுக்கம். உச்சியில் வேகம் வி-0 காஸ் தீட்டா மட்டுமே, மற்றும் புவியீர்ப்பு முடுக்கம் ஜி முழுமையாக திசைவேகத்திற்கு செங்குத்தாக உள்ளது!"),
+            ("beat_3", "எனவே உச்சியில் வளைவு ஆரம் ரோ சமம் வி-0 ஸ்கொயர் காஸ் ஸ்கொயர் தீட்டா பை ஜி. இது முழு பாதையிலும் மிகக் கூர்மையான வளைவுப் புள்ளியாகும்."),
+            ("beat_4", "இப்போது முக்கியமான நீட் தேர்வு பொறியைக் கவனியுங்கள்: உச்சியில் தொடக்க வேகம் வி-0 வைப் பயன்படுத்துவது! உச்சியில் கிடைமட்ட கூறு மட்டுமே உள்ளது, எனவே வி-0 காஸ் தீட்டாவையே பயன்படுத்த வேண்டும்!")
+        ]
+    },
     "P11-C02-T02-V01": {
         "en-IN": [
             ("beat_1", "Welcome to 2D Kinematics. In this masterclass, we unlock the foundation of plane motion: the Orthogonal Resolution of Vectors."),
@@ -127,6 +327,16 @@ ARCHETYPE_SCENE_MAP = {
     "P11-C02-T03-V08": "VelocityTimeGraphsScene",
     "P11-C02-T02-V01": "ResolutionOfVectorsScene",
     "P11-C02-T03-V09": "RelativeVelocityScene",
+    "P11-C02-T03-V01": "TimeOfFlightScene",
+    "P11-C02-T03-V02": "MaxHeightArcScene",
+    "P11-C02-T03-V03": "HorizontalRangeScene",
+    "P11-C02-T03-V04": "TrajectoryEquationScene",
+    "P11-C02-T04-V10": "HorizontalProjectionScene",
+    "P11-C02-T04-V11": "InclinedPlaneProjectileScene",
+    "P11-C02-T04-V12": "RadiusOfCurvatureScene",
+    "P11-C02-T04-V01": "CentripetalAccelerationScene",
+    "P11-C02-T05-V13": "AngularVelocityScene",
+    "P11-C02-T05-V14": "NonUniformCircularScene",
 }
 
 def load_concept_row(canonical_id: str) -> Dict[str, Any]:
