@@ -481,7 +481,7 @@ def render_concept_multilingual_unit2(canonical_id: str, languages: List[str] = 
             f"[1:a]adelay={int(offset_b2*1000)}|{int(offset_b2*1000)}[a2]; "
             f"[2:a]adelay={int(offset_b3*1000)}|{int(offset_b3*1000)}[a3]; "
             f"[3:a]adelay={int(offset_b4*1000)}|{int(offset_b4*1000)}[a4]; "
-            f"[a1][a2][a3][a4]amix=inputs=4:duration=longest:dropout_transition=0,volume=1.0[outa]"
+            f"[a1][a2][a3][a4]amix=inputs=4:duration=longest:dropout_transition=0,volume=1.0,apad[outa]"
         )
         cmd_audio = [
             "ffmpeg", "-y",

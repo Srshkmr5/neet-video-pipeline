@@ -35,6 +35,19 @@
     }
 
     /* Video Player Shield */
+        /* Subtitles & Closed Captions Styling */
+    video::cue {
+      background: rgba(15, 23, 42, 0.92) !important;
+      color: #F8FAFC !important;
+      font-family: ui-sans-serif, system-ui, -apple-system, sans-serif !important;
+      font-size: 15px !important;
+      line-height: 1.4 !important;
+      font-weight: 600 !important;
+      border-radius: 8px !important;
+      padding: 5px 12px !important;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9) !important;
+    }
+
     .video-shield {
       position: relative;
       overflow: hidden;
@@ -284,6 +297,14 @@
             <button id="langEnBtn" onclick="setLanguage('en')" class="px-2 py-0.5 rounded text-[11px] font-bold bg-sky-600 text-white">English</button>
             <button id="langHiBtn" onclick="setLanguage('hi')" class="px-2 py-0.5 rounded text-[11px] font-bold text-slate-400 hover:text-white">हिन्दी</button>
             <button id="langTaBtn" onclick="setLanguage('ta')" class="px-2 py-0.5 rounded text-[11px] font-bold text-slate-400 hover:text-white">தமிழ்</button>
+          </div>
+
+                    <!-- Subtitles / Closed Captions Toggle -->
+          <div class="flex items-center space-x-1 bg-slate-900 border border-slate-800 px-2 py-1 rounded-xl text-xs">
+            <button id="subtitlesToggleBtn" onclick="toggleSubtitles()" class="px-2 py-0.5 rounded text-[11px] font-bold bg-sky-600 text-white flex items-center space-x-1 transition" title="Toggle Subtitles / Closed Captions">
+              <i class="fa-solid fa-closed-captioning"></i>
+              <span id="subtitlesBtnLabel">CC ON</span>
+            </button>
           </div>
 
           <!-- Dimension Switcher (2D vs 3D) -->
@@ -1625,6 +1646,58 @@
       updateCompleteButtonState();
     }
 
+        // Subtitles & Closed Captions Engine
+    let subtitlesEnabled = true;
+
+    function toggleSubtitles() {
+      subtitlesEnabled = !subtitlesEnabled;
+      const btn = document.getElementById('subtitlesToggleBtn');
+      const label = document.getElementById('subtitlesBtnLabel');
+      if (btn && label) {
+        if (subtitlesEnabled) {
+          btn.className = 'px-2 py-0.5 rounded text-[11px] font-bold bg-sky-600 text-white flex items-center space-x-1 transition';
+          label.innerText = 'CC ON';
+        } else {
+          btn.className = 'px-2 py-0.5 rounded text-[11px] font-bold bg-slate-800 text-slate-400 hover:text-white flex items-center space-x-1 transition';
+          label.innerText = 'CC OFF';
+        }
+      }
+      updateSubtitleTracks();
+    }
+
+    function updateSubtitleTracks() {
+      const video = document.getElementById('mainVideoPlayer');
+      if (!video) return;
+
+      // Remove existing tracks
+      const existing = video.querySelectorAll('track');
+      existing.forEach(t => video.removeChild(t));
+
+      if (!subtitlesEnabled || !currentConcept) return;
+
+      const vttLang = currentLang === 'en' ? 'en-IN' : (currentLang === 'hi' ? 'hi-IN' : 'ta-IN');
+      const vttPath = `/output/beat_audio/${currentConcept.canonical_id}_${vttLang}/${currentConcept.canonical_id}_${vttLang}.vtt`;
+
+      const track = document.createElement('track');
+      track.kind = 'subtitles';
+      track.label = currentLang === 'en' ? 'English' : (currentLang === 'hi' ? 'Hindi' : 'Tamil');
+      track.srclang = currentLang;
+      track.src = vttPath;
+      track.default = true;
+      video.appendChild(track);
+
+      // Force showing mode
+      const setMode = () => {
+        if (video.textTracks && video.textTracks.length > 0) {
+          for (let i = 0; i < video.textTracks.length; i++) {
+            video.textTracks[i].mode = subtitlesEnabled ? 'showing' : 'hidden';
+          }
+        }
+      };
+      track.addEventListener('load', setMode);
+      setTimeout(setMode, 100);
+    }
+
     // 7. Secure HLS Playback Engine
     function loadSecureStream() {
       if (!currentConcept) return;
@@ -1646,6 +1719,9 @@
 
       if (Hls.isSupported()) {
         hlsInstance = new Hls({
+          maxBufferHole: 0.5,
+          nudgeOffset: 0.2,
+          nudgeMaxRetry: 10,
           xhrSetup: function(xhr, url) {
             if (url.includes('/api/stream/key/') || url.includes('/api/stream/')) {
               if (sessionToken) {
