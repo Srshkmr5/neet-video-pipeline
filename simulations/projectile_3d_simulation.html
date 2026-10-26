@@ -2,16 +2,32 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Visual Physics 3D Simulation â€” Projectile Motion & Live Formula Decomposition</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visual Physics 3D Simulation — Projectile Motion & Live Formula Decomposition</title>
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body { margin: 0; background-color: #020408; color: #f8fafc; font-family: ui-sans-serif, system-ui, sans-serif; overflow: hidden; }
+    body {
+      margin: 0;
+      background-color: #020408;
+      color: #F8FAFC;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      overflow: hidden;
+      user-select: none;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
     canvas { display: block; width: 100%; height: 100vh; }
-    .glass-card { background: rgba(10, 15, 26, 0.88); backdrop-filter: blur(14px); border: 1px solid rgba(56, 189, 248, 0.25); }
+    .glass-card {
+      background: rgba(10, 15, 26, 0.88);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(56, 189, 248, 0.22);
+    }
     .glow-cyan { text-shadow: 0 0 10px rgba(56, 189, 248, 0.6); }
     .glow-gold { text-shadow: 0 0 10px rgba(250, 204, 21, 0.6); }
     .glow-green { text-shadow: 0 0 10px rgba(74, 222, 128, 0.6); }
-    input[type=range] { accent-color: #38bdf8; }
+    input[type=range] { accent-color: #38BDF8; }
+    .math-font { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; }
   </style>
 </head>
 <body class="bg-[#020408] text-white">
@@ -51,8 +67,8 @@
     <!-- 1. Maximum Height Equation & Live Substitution -->
     <div class="bg-slate-900/80 rounded-xl p-3 border border-amber-500/30 space-y-2">
       <div class="flex justify-between items-center text-xs text-slate-400">
-        <span class="font-semibold text-slate-200">Maximum Height (H_max):</span>
-        <span class="font-mono text-[11px] text-amber-400">At Apex vy = 0</span>
+        <span class="font-semibold text-slate-200">Maximum Height (H<sub>max</sub>):</span>
+        <span class="font-mono text-[11px] text-amber-400">At Apex v<sub>y</sub> = 0</span>
       </div>
       <!-- Stacked Textbook Formula -->
       <div class="text-xs font-mono text-amber-300 text-center py-1.5 bg-slate-950/80 rounded flex items-center justify-center space-x-2 border border-amber-400/20">
@@ -68,8 +84,8 @@
       </div>
       <!-- Calculated arithmetic step -->
       <div class="flex items-center justify-between text-xs font-mono pt-1 border-t border-slate-800/80">
-        <span class="text-slate-400">= (<span id="calcV0Sq" class="text-sky-300">625</span> Â· <span id="calcSinSq" class="text-amber-300">0.638</span>) / 19.6</span>
-        <span class="text-sm font-bold text-amber-400 glow-gold" id="calcHmaxResult">= 20.4 m</span>
+        <span class="text-slate-400">= (<span id="calcV0Sq" class="text-sky-300">625</span> · <span id="calcSinSq" class="text-amber-300">0.638</span>) / 19.6</span>
+        <span class="text-sm font-bold text-amber-400 glow-gold" id="calcHmaxResult">= 20.3 m</span>
       </div>
     </div>
 
@@ -77,21 +93,21 @@
     <div class="grid grid-cols-2 gap-2 text-xs font-mono">
       <div class="bg-slate-900/60 rounded-xl p-2.5 border border-sky-500/20">
         <div class="text-[11px] text-slate-400">Range (R):</div>
-        <div class="text-[10px] text-slate-500 py-0.5">(vâ‚€Â² Â· sin 2Î¸) / g</div>
-        <div class="text-sm font-bold text-sky-400 glow-cyan mt-1" id="calcRangeResult">59.7 m</div>
+        <div class="text-[10px] text-slate-500 py-0.5">(v₀² · sin 2θ) / g</div>
+        <div class="text-sm font-bold text-sky-400 glow-cyan mt-1" id="calcRangeResult">61.3 m</div>
       </div>
       <div class="bg-slate-900/60 rounded-xl p-2.5 border border-emerald-500/20">
         <div class="text-[11px] text-slate-400">Flight Time (T):</div>
-        <div class="text-[10px] text-slate-500 py-0.5">(2 vâ‚€ sin Î¸) / g</div>
-        <div class="text-sm font-bold text-emerald-400 glow-green mt-1" id="calcTimeResult">4.08 s</div>
+        <div class="text-[10px] text-slate-500 py-0.5">(2 v₀ sin θ) / g</div>
+        <div class="text-sm font-bold text-emerald-400 glow-green mt-1" id="calcTimeResult">4.07 s</div>
       </div>
     </div>
 
     <!-- 3. NEET Trap Alert Warning -->
     <div id="trapBox" class="p-2.5 rounded-xl bg-rose-950/40 border border-rose-500/40 text-[11px] flex items-start space-x-2">
-      <span class="text-rose-400 text-sm">âš ï¸</span>
-      <div class="text-slate-300">
-        <span class="font-bold text-rose-400">NEET Trap:</span> Launch angle Î¸ MUST be from horizontal. If given relative to vertical, replace sinÂ²Î¸ with cosÂ²Î¸!
+      <i class="fa-solid fa-triangle-exclamation text-rose-400 text-sm mt-0.5"></i>
+      <div class="text-slate-300 leading-snug">
+        <span class="font-bold text-rose-400">NEET Trap:</span> Launch angle θ MUST be measured from the horizontal. If given relative to the vertical, replace sin²θ with cos²θ!
       </div>
     </div>
   </div>
@@ -104,11 +120,11 @@
     </div>
     <div class="space-y-1.5 text-[11px]">
       <div class="flex justify-between">
-        <span class="text-slate-400">Horizontal vx (Constant):</span>
+        <span class="text-slate-400">Horizontal v<sub>x</sub> (Constant):</span>
         <span id="teleVx" class="text-emerald-400 font-bold">15.0 m/s</span>
       </div>
       <div class="flex justify-between">
-        <span class="text-slate-400">Current vy (Live):</span>
+        <span class="text-slate-400">Current v<sub>y</sub> (Live):</span>
         <span id="teleVy" class="text-amber-400 font-bold">19.9 m/s</span>
       </div>
       <div class="flex justify-between">
@@ -127,52 +143,55 @@
     <!-- Row 1: High Yield Conceptual Presets -->
     <div class="flex flex-wrap items-center gap-2 border-b border-slate-700/60 pb-2.5">
       <span class="text-slate-400 font-mono text-[11px] font-semibold">NEET PRESETS:</span>
-      <button onclick="setPreset(25, 45)" class="px-2.5 py-1 bg-sky-950/80 hover:bg-sky-900 border border-sky-500/40 rounded-lg text-sky-300 font-mono transition cursor-pointer">
-        ðŸŽ¯ Max Range (Î¸ = 45Â°)
+      <button onclick="setPreset(25, 45)" class="px-2.5 py-1 bg-sky-950/80 hover:bg-sky-900 border border-sky-500/40 rounded-lg text-sky-300 font-mono transition cursor-pointer flex items-center space-x-1.5">
+        <i class="fa-solid fa-bullseye text-sky-400"></i>
+        <span>Max Range (θ = 45°)</span>
       </button>
-      <button onclick="setPreset(25, 89)" class="px-2.5 py-1 bg-amber-950/80 hover:bg-amber-900 border border-amber-500/40 rounded-lg text-amber-300 font-mono transition cursor-pointer">
-        â¬†ï¸ Max Height (Î¸ â‰ˆ 90Â°)
+      <button onclick="setPreset(25, 89)" class="px-2.5 py-1 bg-amber-950/80 hover:bg-amber-900 border border-amber-500/40 rounded-lg text-amber-300 font-mono transition cursor-pointer flex items-center space-x-1.5">
+        <i class="fa-solid fa-arrow-up text-amber-400"></i>
+        <span>Max Height (θ ≈ 90°)</span>
       </button>
-      <button onclick="setPreset(25, 53)" class="px-2.5 py-1 bg-emerald-950/80 hover:bg-emerald-900 border border-emerald-500/40 rounded-lg text-emerald-300 font-mono transition cursor-pointer">
-        ðŸ“ Standard 53Â° (3-4-5 Triangle)
+      <button onclick="setPreset(25, 53)" class="px-2.5 py-1 bg-emerald-950/80 hover:bg-emerald-900 border border-emerald-500/40 rounded-lg text-emerald-300 font-mono transition cursor-pointer flex items-center space-x-1.5">
+        <i class="fa-solid fa-ruler-combined text-emerald-400"></i>
+        <span>Standard 53° (3-4-5 Triangle)</span>
       </button>
-      <button onclick="toggleComplementary()" id="compBtn" class="px-2.5 py-1 bg-purple-950/80 hover:bg-purple-900 border border-purple-500/40 rounded-lg text-purple-300 font-mono transition cursor-pointer">
-        ðŸ”„ Complementary (30Â° vs 60Â°)
+      <button onclick="toggleComplementary()" id="compBtn" class="px-2.5 py-1 bg-purple-950/80 hover:bg-purple-900 border border-purple-500/40 rounded-lg text-purple-300 font-mono transition cursor-pointer flex items-center space-x-1.5">
+        <i class="fa-solid fa-arrows-rotate text-purple-400"></i>
+        <span>Complementary (30° vs 60°)</span>
       </button>
     </div>
 
     <!-- Row 2: Sliders & Actions -->
     <div class="flex flex-wrap items-center justify-between gap-5">
       <div class="flex items-center space-x-3">
-        <label class="text-slate-300 font-medium">Launch Velocity (vâ‚€):</label>
+        <label class="text-slate-300 font-medium">Launch Velocity (v₀):</label>
         <input type="range" id="v0Slider" min="10" max="40" value="25" class="w-28 cursor-pointer">
         <span id="v0Display" class="text-sky-400 font-mono font-bold w-12 text-right">25 m/s</span>
       </div>
 
       <div class="flex items-center space-x-3">
-        <label class="text-slate-300 font-medium">Launch Angle (Î¸):</label>
+        <label class="text-slate-300 font-medium">Launch Angle (θ):</label>
         <input type="range" id="thetaSlider" min="15" max="89" value="53" class="w-28 cursor-pointer">
-        <span id="thetaDisplay" class="text-amber-400 font-mono font-bold w-10 text-right">53Â°</span>
+        <span id="thetaDisplay" class="text-amber-400 font-mono font-bold w-10 text-right">53°</span>
       </div>
 
       <div class="flex items-center space-x-2">
-        <button id="resetBtn" class="px-3.5 py-1.5 bg-sky-600 hover:bg-sky-500 rounded-lg text-white font-semibold transition cursor-pointer shadow-lg shadow-sky-600/30">
-          â–¶ Relaunch
+        <button id="resetBtn" class="px-3.5 py-1.5 bg-sky-600 hover:bg-sky-500 rounded-lg text-white font-semibold transition cursor-pointer shadow-lg shadow-sky-600/30 flex items-center space-x-1.5">
+          <i class="fa-solid fa-rotate-right"></i>
+          <span>Relaunch</span>
         </button>
-        <button id="toggleVectorsBtn" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded-lg text-slate-200 transition cursor-pointer">
-          Toggle Vectors
-        </button>
-        <button id="recordBtn" onclick="toggleRecording()" class="px-3 py-1.5 bg-rose-950/80 hover:bg-rose-900 border border-rose-500/50 rounded-lg text-rose-300 font-semibold transition cursor-pointer flex items-center gap-1.5 shadow-lg shadow-rose-950/40">
-          <span id="recordDot" class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
-          <span id="recordLabel">ðŸŽ¥ Export 60FPS Video</span>
+        <button id="toggleVectorsBtn" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded-lg text-slate-200 transition cursor-pointer flex items-center space-x-1.5">
+          <i class="fa-solid fa-arrows-split-up-and-left text-sky-400"></i>
+          <span>Toggle Vectors</span>
         </button>
       </div>
     </div>
   </div>
 
   <!-- Orbit Hint -->
-  <div class="absolute bottom-5 right-5 text-[11px] font-mono text-slate-400 pointer-events-none hidden md:block">
-    ðŸ–±ï¸ Drag mouse to orbit 3D camera â€¢ Scroll to zoom
+  <div class="absolute bottom-5 right-5 text-[11px] font-mono text-slate-400 pointer-events-none hidden md:flex items-center space-x-1.5">
+    <i class="fa-solid fa-computer-mouse text-slate-500"></i>
+    <span>Drag mouse to orbit 3D camera • Scroll to zoom</span>
   </div>
 
   <script>
@@ -251,7 +270,7 @@
 
       // Update Formula Decomposition Card
       document.getElementById("calcV0").textContent = v0;
-      document.getElementById("calcTheta").textContent = `${thetaDeg}Â°`;
+      document.getElementById("calcTheta").textContent = `${thetaDeg}°`;
       document.getElementById("calcV0Sq").textContent = v0Sq.toFixed(0);
       document.getElementById("calcSinSq").textContent = sinSqVal.toFixed(3);
       document.getElementById("calcHmaxResult").textContent = `= ${hMax.toFixed(1)} m`;
@@ -268,7 +287,7 @@
 
     thetaSlider.addEventListener("input", (e) => {
       thetaDeg = parseFloat(e.target.value);
-      thetaDisplay.textContent = `${thetaDeg}Â°`;
+      thetaDisplay.textContent = `${thetaDeg}°`;
       updateLiveDecomposition();
       simTime = 0;
     });
@@ -282,7 +301,7 @@
       v0Slider.value = v;
       thetaSlider.value = t;
       v0Display.textContent = `${v} m/s`;
-      thetaDisplay.textContent = `${t}Â°`;
+      thetaDisplay.textContent = `${t}°`;
       isComplementaryMode = false;
       updateLiveDecomposition();
       simTime = 0;
@@ -429,7 +448,7 @@
 
         // Floating H_max Label
         ctx.fillStyle = "#facc15";
-        ctx.font = "bold 13px ui-monospace";
+        ctx.font = "bold 13px ui-monospace, Consolas, monospace";
         ctx.fillText(`H_max = ${hMax.toFixed(1)}m`, pApex.x + 8, pApex.y - 8);
       }
 
@@ -470,7 +489,7 @@
           ctx.arc(pVx.x, pVx.y, 3.5, 0, Math.PI * 2);
           ctx.fill();
 
-          ctx.font = "bold 11px ui-monospace";
+          ctx.font = "bold 11px ui-monospace, Consolas, monospace";
           ctx.fillText("vx (const)", pVx.x + 5, pVx.y);
         }
 
@@ -489,7 +508,7 @@
           ctx.arc(pVy.x, pVy.y, 3.5, 0, Math.PI * 2);
           ctx.fill();
 
-          ctx.font = "bold 11px ui-monospace";
+          ctx.font = "bold 11px ui-monospace, Consolas, monospace";
           ctx.fillText(curVy > 0 ? "vy (rising)" : "vy (falling)", pVy.x + 5, pVy.y);
         }
 
@@ -502,7 +521,7 @@
           ctx.strokeStyle = "#f87171";
           ctx.lineWidth = 2;
           ctx.stroke();
-          ctx.font = "bold 10px ui-monospace";
+          ctx.font = "bold 10px ui-monospace, Consolas, monospace";
           ctx.fillStyle = "#f87171";
           ctx.fillText("g = 9.8", pG.x - 14, pG.y);
         }
@@ -516,7 +535,7 @@
         ctx.beginPath();
         const ballRadius = Math.max(4.5, 8.5 * pBall.scale);
         ctx.arc(pBall.x, pBall.y, ballRadius, 0, Math.PI * 2);
-        
+
         // Metallic sphere shading gradient
         const sphereGrad = ctx.createRadialGradient(
           pBall.x - ballRadius*0.3, pBall.y - ballRadius*0.3, 1,
@@ -533,53 +552,7 @@
       requestAnimationFrame(animate);
     }
 
-    // --- 60 FPS IN-BROWSER SIMULATION RECORDER ---
-    let mediaRecorder = null;
-    let recordedChunks = [];
-
-    function toggleRecording() {
-      const dot = document.getElementById("recordDot");
-      const label = document.getElementById("recordLabel");
-      const btn = document.getElementById("recordBtn");
-
-      if (mediaRecorder && mediaRecorder.state === "recording") {
-        mediaRecorder.stop();
-        dot.className = "w-2 h-2 rounded-full bg-rose-500 animate-pulse";
-        label.innerText = "ðŸŽ¥ Export 60FPS Video";
-        btn.className = "px-3 py-1.5 bg-rose-950/80 hover:bg-rose-900 border border-rose-500/50 rounded-lg text-rose-300 font-semibold transition cursor-pointer flex items-center gap-1.5 shadow-lg shadow-rose-950/40";
-        return;
-      }
-
-      recordedChunks = [];
-      const stream = canvas.captureStream(60);
-      const mime = MediaRecorder.isTypeSupported("video/webm;codecs=vp9") ? "video/webm;codecs=vp9" : "video/webm";
-      mediaRecorder = new MediaRecorder(stream, { mimeType: mime });
-
-      mediaRecorder.ondataavailable = (e) => {
-        if (e.data.size > 0) recordedChunks.push(e.data);
-      };
-
-      mediaRecorder.onstop = () => {
-        const blob = new Blob(recordedChunks, { type: mime });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = `neet_3d_simulation_${Math.round(v0)}mps_${Math.round(thetaDeg)}deg_60fps.webm`;
-        a.click();
-        URL.revokeObjectURL(url);
-      };
-
-      mediaRecorder.start();
-      dot.className = "w-2 h-2 rounded-full bg-emerald-400 animate-ping";
-      label.innerText = "â¹ Stop & Save Video";
-      btn.className = "px-3 py-1.5 bg-emerald-950/90 hover:bg-emerald-900 border border-emerald-500/60 rounded-lg text-emerald-300 font-semibold transition cursor-pointer flex items-center gap-1.5 shadow-lg shadow-emerald-950/50";
-
-      // Automatically trigger a clean relaunch to capture pristine flight
-      simTime = 0;
-    }
-
     animate();
   </script>
 </body>
 </html>
-
