@@ -1,1085 +1,2071 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Unit 2: Kinematics — Interactive Concept & Experimental Lab</title>
+
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
+
     body {
+
       margin: 0;
+
       background-color: #030712;
+
       color: #F8FAFC;
+
       font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
       user-select: none;
+
       -webkit-font-smoothing: antialiased;
+
       -moz-osx-font-smoothing: grayscale;
+
     }
+
     .glass-card {
+
       background: rgba(15, 23, 42, 0.88);
+
       backdrop-filter: blur(14px);
+
       border: 1px solid rgba(56, 189, 248, 0.22);
+
     }
+
     .glow-cyan { text-shadow: 0 0 10px rgba(56, 189, 248, 0.6); }
+
     .glow-gold { text-shadow: 0 0 10px rgba(250, 204, 21, 0.6); }
+
     .glow-green { text-shadow: 0 0 10px rgba(74, 222, 128, 0.6); }
+
     .glow-red { text-shadow: 0 0 10px rgba(244, 63, 94, 0.6); }
+
     .glow-purple { text-shadow: 0 0 10px rgba(192, 132, 252, 0.6); }
+
     input[type=range] { accent-color: #38bdf8; }
-    
+
     .tab-btn.active {
+
       background: #0284c7;
+
       color: #ffffff;
+
       border-color: #38bdf8;
+
       box-shadow: 0 0 12px rgba(2, 132, 199, 0.5);
+
     }
+
     .tab-btn:not(.active) {
+
       background: #0f172a;
+
       color: #94a3b8;
+
       border-color: #1e293b;
+
     }
+
     .tab-btn:not(.active):hover {
+
       background: #1e293b;
+
       color: #f8fafc;
+
     }
 
     .sub-preset-btn.active {
+
       background: #0369a1;
+
       color: #ffffff;
+
       border-color: #38bdf8;
+
       font-weight: 700;
+
     }
+
     .sub-preset-btn:not(.active) {
+
       background: rgba(15, 23, 42, 0.8);
+
       color: #94a3b8;
+
       border-color: #334155;
+
     }
+
     .sub-preset-btn:not(.active):hover {
+
       background: #1e293b;
+
       color: #e2e8f0;
+
     }
+
   </style>
+
 </head>
+
 <body class="h-screen flex flex-col bg-[#030712] overflow-hidden">
 
   <!-- Top Lab Header & Mode Selector (4 Core Physics Engines) -->
+
   <header class="h-14 border-b border-slate-800 bg-[#0B0F19]/95 px-4 flex items-center justify-between shrink-0 z-20">
+
     <div class="flex items-center space-x-3">
+
       <div class="px-2.5 py-1 rounded bg-sky-950/80 border border-sky-500/40 text-sky-400 font-mono font-bold text-xs tracking-wider">
+
         UNIT 2 LAB
+
       </div>
+
       <h1 class="text-sm font-bold text-white tracking-wide hidden sm:block">
+
         Kinematics — Interactive Concept & Experimental Lab
+
       </h1>
+
     </div>
 
     <!-- Mode Selector Pills -->
+
     <div class="flex items-center space-x-1.5 text-xs font-mono overflow-x-auto">
+
       <button id="modeGraphsBtn" onclick="switchMode('graphs')" class="tab-btn px-3 py-1.5 rounded-lg border font-semibold transition active flex items-center space-x-1.5">
+
         <i class="fa-solid fa-chart-line"></i>
+
         <span>1 • Graphs</span>
+
       </button>
+
       <button id="modeVectorsBtn" onclick="switchMode('vectors')" class="tab-btn px-3 py-1.5 rounded-lg border font-semibold transition flex items-center space-x-1.5">
+
         <i class="fa-solid fa-compass-drafting"></i>
+
         <span>2 • Vectors</span>
+
       </button>
+
       <button id="modeProjectileBtn" onclick="switchMode('projectile')" class="tab-btn px-3 py-1.5 rounded-lg border font-semibold transition flex items-center space-x-1.5">
+
         <i class="fa-solid fa-rocket"></i>
+
         <span>3 • Projectile</span>
+
       </button>
+
       <button id="modeCircularBtn" onclick="switchMode('circular')" class="tab-btn px-3 py-1.5 rounded-lg border font-semibold transition flex items-center space-x-1.5">
+
         <i class="fa-solid fa-rotate"></i>
+
         <span>4 • Circular</span>
+
       </button>
+
     </div>
+
   </header>
 
   <!-- Main Viewport Area -->
+
   <main class="flex-1 overflow-hidden relative">
 
     <!-- ======================================================== -->
+
     <!-- ENGINE 1: Straight Line Motion Graphs (Concepts 1 & 2) -->
+
     <!-- ======================================================== -->
+
     <section id="view-graphs" class="h-full w-full flex flex-col p-3 gap-3 overflow-hidden">
+
       <!-- Concept Preset Switcher Bar -->
+
       <div class="flex items-center space-x-2 bg-slate-900/90 border border-slate-800 rounded-xl p-1.5 shrink-0 text-xs font-mono">
+
         <span class="text-slate-400 text-[11px] px-2 font-bold uppercase tracking-wider">Target Concept:</span>
+
         <button id="subGraphXtBtn" onclick="setGraphConcept('xt')" class="sub-preset-btn active px-3 py-1 rounded-lg border text-xs transition flex items-center space-x-1.5">
+
           <span>Concept 1: Position-Time (x-t) • Slope = Velocity</span>
+
         </button>
+
         <button id="subGraphVtBtn" onclick="setGraphConcept('vt')" class="sub-preset-btn px-3 py-1 rounded-lg border text-xs transition flex items-center space-x-1.5">
+
           <span>Concept 2: Velocity-Time (v-t) • Area = Displacement</span>
+
         </button>
+
       </div>
 
       <!-- Main Canvas & Controls Split -->
+
       <div class="flex-1 flex flex-col md:flex-row gap-3 min-h-0">
+
         <!-- Canvas Viewport -->
+
         <div class="flex-1 glass-card rounded-2xl p-4 flex flex-col relative min-h-0">
+
           <div class="flex items-center justify-between mb-2 shrink-0">
+
             <div class="flex items-center space-x-2">
+
               <span class="w-2.5 h-2.5 rounded-full bg-sky-400 animate-pulse"></span>
+
               <span id="graphTitleLabel" class="text-xs font-mono font-bold text-sky-300 tracking-wider">POSITION-TIME (x-t) DYNAMIC ENGINE</span>
+
             </div>
+
             <div class="flex items-center space-x-2 text-xs font-mono">
+
               <span class="text-slate-400">Curve Profile:</span>
+
               <select id="graphPreset" onchange="applyGraphPreset()" class="bg-slate-900 border border-slate-700 rounded px-2 py-1 text-sky-400 text-xs focus:outline-none">
+
                 <option value="accelerated">Accelerated (Concave Up)</option>
+
                 <option value="decelerated">Decelerated (Concave Down)</option>
+
                 <option value="uniform">Uniform Velocity (Straight Line)</option>
+
                 <option value="rest">At Rest (Horizontal Flat Line)</option>
+
               </select>
+
             </div>
+
           </div>
 
           <div class="flex-1 bg-slate-950/80 rounded-xl border border-slate-800 relative overflow-hidden min-h-0">
+
             <canvas id="graphCanvas" class="w-full h-full block"></canvas>
+
           </div>
 
           <!-- Dynamic Readout Bar -->
+
           <div class="mt-2.5 grid grid-cols-3 gap-2 text-center text-xs font-mono shrink-0">
+
             <div class="bg-slate-900/90 rounded-lg p-2 border border-slate-800">
+
               <div class="text-slate-400 text-[10px]">EVALUATION TIME (t)</div>
+
               <div id="readoutT" class="text-sky-400 font-bold text-sm">2.50 s</div>
+
             </div>
+
             <div class="bg-slate-900/90 rounded-lg p-2 border border-slate-800">
+
               <div id="readoutMetric1Label" class="text-slate-400 text-[10px]">POSITION x(t)</div>
+
               <div id="readoutMetric1" class="text-amber-400 font-bold text-sm">6.25 m</div>
+
             </div>
+
             <div class="bg-slate-900/90 rounded-lg p-2 border border-slate-800">
+
               <div id="readoutMetric2Label" class="text-slate-400 text-[10px]">TANGENT SLOPE v = dx/dt</div>
+
               <div id="readoutMetric2" class="text-emerald-400 font-bold text-sm">+2.50 m/s</div>
+
             </div>
+
           </div>
+
         </div>
 
         <!-- Right Control Panel -->
+
         <div class="w-full md:w-80 flex flex-col gap-3 shrink-0">
+
           <div class="glass-card rounded-2xl p-4 space-y-3.5">
+
             <div class="text-xs font-mono font-bold text-amber-300 tracking-wider flex items-center justify-between border-b border-slate-700/50 pb-2">
+
               <span id="graphControlHeading">PARAMETER CONTROLS</span>
+
               <span id="graphNcertBadge" class="text-[10px] text-slate-400">NCERT CH. 3</span>
+
             </div>
 
             <div class="space-y-3 text-xs">
+
               <div>
+
                 <div class="flex justify-between text-slate-300 font-mono mb-1">
+
                   <span>Evaluation Time (t):</span>
+
                   <span id="sliderTVal" class="text-sky-400 font-bold">2.50 s</span>
+
                 </div>
+
                 <input type="range" id="sliderT" min="0.2" max="5.0" step="0.05" value="2.5" oninput="updateGraph()" class="w-full">
+
               </div>
 
               <div>
+
                 <div class="flex justify-between text-slate-300 font-mono mb-1">
+
                   <span>Acceleration (a):</span>
+
                   <span id="sliderAVal" class="text-sky-400 font-bold">1.0 m/s²</span>
+
                 </div>
+
                 <input type="range" id="sliderA" min="-2.0" max="2.0" step="0.1" value="1.0" oninput="updateGraph()" class="w-full">
+
               </div>
 
               <div>
+
                 <div class="flex justify-between text-slate-300 font-mono mb-1">
+
                   <span>Initial Velocity (v₀):</span>
+
                   <span id="sliderV0Val" class="text-sky-400 font-bold">0.0 m/s</span>
+
                 </div>
+
                 <input type="range" id="sliderV0" min="-2.0" max="4.0" step="0.5" value="0.0" oninput="updateGraph()" class="w-full">
+
               </div>
+
             </div>
+
           </div>
 
           <!-- NEET Trap Card -->
+
           <div id="graphTrapCard" class="glass-card rounded-2xl p-3.5 border-rose-500/40 bg-rose-950/20 text-xs">
+
             <div class="flex items-center space-x-2 text-rose-400 font-bold mb-1.5">
+
               <i class="fa-solid fa-triangle-exclamation"></i>
+
               <span id="graphTrapTitle">CRITICAL NEET TRAP: x-t SLOPES</span>
+
             </div>
+
             <p id="graphTrapBody" class="text-slate-300 text-[11px] leading-relaxed">
+
               A flat line on an <strong class="text-amber-300">x-t graph</strong> denotes <strong class="text-rose-400">REST (v = 0)</strong>, NOT uniform velocity! Furthermore, the slope of an x-t curve yields velocity, never acceleration.
+
             </p>
+
           </div>
+
         </div>
+
       </div>
+
     </section>
 
     <!-- ======================================================== -->
+
     <!-- ENGINE 2: 2D Vectors & Relative Motion (Concepts 3 & 4) -->
+
     <!-- ======================================================== -->
+
     <section id="view-vectors" class="h-full w-full hidden flex flex-col p-3 gap-3 overflow-hidden">
+
       <!-- Concept Preset Switcher Bar -->
+
       <div class="flex items-center space-x-2 bg-slate-900/90 border border-slate-800 rounded-xl p-1.5 shrink-0 text-xs font-mono">
+
         <span class="text-slate-400 text-[11px] px-2 font-bold uppercase tracking-wider">Target Concept:</span>
+
         <button id="subVecResBtn" onclick="setVectorConcept('resolution')" class="sub-preset-btn active px-3 py-1 rounded-lg border text-xs transition flex items-center space-x-1.5">
+
           <span>Concept 3: Orthogonal Resolution (Ax, Ay)</span>
+
         </button>
+
         <button id="subVecRiverBtn" onclick="setVectorConcept('river')" class="sub-preset-btn px-3 py-1 rounded-lg border text-xs transition flex items-center space-x-1.5">
+
           <span>Concept 4: River-Boat Relative Velocity (v_AB = v_A - v_B)</span>
+
         </button>
+
       </div>
 
       <!-- Main Canvas & Controls Split -->
+
       <div class="flex-1 flex flex-col md:flex-row gap-3 min-h-0">
+
         <!-- Canvas Viewport -->
+
         <div class="flex-1 glass-card rounded-2xl p-4 flex flex-col relative min-h-0">
+
           <div class="flex items-center justify-between mb-2 shrink-0">
+
             <span id="vecHeaderTitle" class="text-xs font-mono font-bold text-sky-300 tracking-wider">ORTHOGONAL VECTOR DECOMPOSITION</span>
+
             <span id="vecFormulaBadge" class="text-xs font-mono text-slate-400">A = A_x î + A_y ĵ</span>
+
           </div>
+
           <div class="flex-1 bg-slate-950/80 rounded-xl border border-slate-800 relative overflow-hidden min-h-0">
+
             <canvas id="vectorCanvas" class="w-full h-full block"></canvas>
+
           </div>
+
         </div>
 
         <!-- Right Control Panel -->
+
         <div class="w-full md:w-80 flex flex-col gap-3 shrink-0">
+
           <div class="glass-card rounded-2xl p-4 space-y-3.5">
+
             <div class="text-xs font-mono font-bold text-amber-300 tracking-wider border-b border-slate-700/50 pb-2">
+
               <span id="vecControlTitle">VECTOR PARAMETERS</span>
+
             </div>
 
             <!-- Resolution Controls -->
+
             <div id="controlsVecRes" class="space-y-3 text-xs">
+
               <div>
+
                 <div class="flex justify-between text-slate-300 font-mono mb-1">
+
                   <span>Magnitude (|A|):</span>
+
                   <span id="vecMagVal" class="text-sky-400 font-bold">10.0 N</span>
+
                 </div>
+
                 <input type="range" id="vecMagSlider" min="2" max="20" step="0.5" value="10" oninput="updateVector()" class="w-full">
+
               </div>
+
               <div>
+
                 <div class="flex justify-between text-slate-300 font-mono mb-1">
+
                   <span>Angle (θ):</span>
+
                   <span id="vecAngleVal" class="text-sky-400 font-bold">30°</span>
+
                 </div>
+
                 <input type="range" id="vecAngleSlider" min="0" max="90" step="1" value="30" oninput="updateVector()" class="w-full">
+
               </div>
+
             </div>
 
             <!-- River Boat Controls -->
+
             <div id="controlsVecRiver" class="hidden space-y-3 text-xs">
+
               <div>
+
                 <div class="flex justify-between text-slate-300 font-mono mb-1">
+
                   <span>River Flow Speed (v_r):</span>
+
                   <span id="riverSpeedVal" class="text-sky-400 font-bold">3.0 m/s</span>
+
                 </div>
+
                 <input type="range" id="riverSpeedSlider" min="1" max="8" step="0.5" value="3" oninput="updateRiver()" class="w-full">
+
               </div>
+
               <div>
+
                 <div class="flex justify-between text-slate-300 font-mono mb-1">
+
                   <span>Boat Speed in Water (v_b):</span>
+
                   <span id="boatSpeedVal" class="text-amber-400 font-bold">5.0 m/s</span>
+
                 </div>
+
                 <input type="range" id="boatSpeedSlider" min="2" max="10" step="0.5" value="5" oninput="updateRiver()" class="w-full">
+
               </div>
+
               <div>
+
                 <div class="flex justify-between text-slate-300 font-mono mb-1">
+
                   <span>Steering Heading (θ upstream):</span>
+
                   <span id="boatAngleVal" class="text-emerald-400 font-bold">90°</span>
+
                 </div>
+
                 <input type="range" id="boatAngleSlider" min="30" max="150" step="1" value="90" oninput="updateRiver()" class="w-full">
+
               </div>
+
               <div class="grid grid-cols-2 gap-1.5 pt-1">
+
                 <button onclick="setRiverPreset('shortest_time')" class="px-2 py-1 bg-sky-950/80 hover:bg-sky-900 border border-sky-500/40 rounded text-[10px] font-mono text-sky-300 font-bold">
+
                   ⚡ Shortest Time (90°)
+
                 </button>
+
                 <button onclick="setRiverPreset('shortest_path')" class="px-2 py-1 bg-amber-950/80 hover:bg-amber-900 border border-amber-500/40 rounded text-[10px] font-mono text-amber-300 font-bold">
+
                   🎯 Zero Drift (Upstream)
+
                 </button>
+
               </div>
+
             </div>
 
             <!-- Live Solver Readout Box -->
+
             <div id="vecReadoutBox" class="p-3 bg-slate-900 rounded-xl border border-sky-500/20 font-mono text-xs space-y-1.5">
+
               <div id="vecResContent">
+
                 <div class="text-slate-400 text-[10px]">RESOLVED COMPONENTS</div>
+
                 <div class="text-sky-300">A_x = A · cos(θ) = <span id="resAx" class="font-bold text-amber-400">8.66 N</span></div>
+
                 <div class="text-sky-300">A_y = A · sin(θ) = <span id="resAy" class="font-bold text-emerald-400">5.00 N</span></div>
+
               </div>
+
               <div id="riverResContent" class="hidden">
+
                 <div class="text-slate-400 text-[10px]">RIVER-BOAT OUTCOMES (Width = 100m)</div>
+
                 <div class="text-sky-300">Crossing Time (t): <span id="riverTime" class="font-bold text-amber-400">20.0 s</span></div>
+
                 <div class="text-sky-300">Downstream Drift (x): <span id="riverDrift" class="font-bold text-rose-400">60.0 m</span></div>
+
                 <div class="text-sky-300">Ground Velocity |v|: <span id="riverNetV" class="font-bold text-emerald-400">5.83 m/s</span></div>
+
               </div>
+
             </div>
+
           </div>
 
           <!-- NEET Trap Card -->
+
           <div class="glass-card rounded-2xl p-3.5 border-rose-500/40 bg-rose-950/20 text-xs">
+
             <div class="flex items-center space-x-2 text-rose-400 font-bold mb-1.5">
+
               <i class="fa-solid fa-triangle-exclamation"></i>
+
               <span id="vecTrapTitle">NEET TRAP: VERTICAL ANGLES</span>
+
             </div>
+
             <p id="vecTrapBody" class="text-slate-300 text-[11px] leading-relaxed">
+
               If angle θ is given relative to the <strong class="text-amber-300">vertical axis</strong>, components swap! A_y = A·cosθ and A_x = A·sinθ. Always verify the reference axis!
+
             </p>
+
           </div>
+
         </div>
+
       </div>
+
     </section>
 
     <!-- ======================================================== -->
+
     <!-- ENGINE 3: Ballistic & Projectile Motion (Concepts 5–11) -->
+
     <!-- ======================================================== -->
+
     <section id="view-projectile" class="h-full w-full hidden flex flex-col p-3 gap-3 overflow-hidden">
+
       <!-- Concept Preset Switcher Bar -->
+
       <div class="flex items-center space-x-2 bg-slate-900/90 border border-slate-800 rounded-xl p-1.5 shrink-0 text-xs font-mono overflow-x-auto">
+
         <span class="text-slate-400 text-[11px] px-2 font-bold uppercase tracking-wider shrink-0">Target Concept:</span>
+
         <button id="subProjGroundBtn" onclick="setProjectileConcept('ground')" class="sub-preset-btn active px-3 py-1 rounded-lg border text-xs transition shrink-0">
+
           <span>Concepts 5–8: Ground Trajectory, T, Hmax, Range</span>
+
         </button>
+
         <button id="subProjCliffBtn" onclick="setProjectileConcept('cliff')" class="sub-preset-btn px-3 py-1 rounded-lg border text-xs transition shrink-0">
+
           <span>Concept 9: Elevated Cliff (h) • uy = 0</span>
+
         </button>
+
         <button id="subProjInclineBtn" onclick="setProjectileConcept('incline')" class="sub-preset-btn px-3 py-1 rounded-lg border text-xs transition shrink-0">
+
           <span>Concept 10: Inclined Plane (β)</span>
+
         </button>
+
         <button id="subProjCurvBtn" onclick="setProjectileConcept('curvature')" class="sub-preset-btn px-3 py-1 rounded-lg border text-xs transition shrink-0">
+
           <span>Concept 11: Apex Curvature Circle (ρ)</span>
+
         </button>
+
       </div>
 
       <!-- Main Canvas & Controls Split -->
+
       <div class="flex-1 flex flex-col md:flex-row gap-3 min-h-0">
+
         <!-- Canvas Viewport -->
+
         <div class="flex-1 glass-card rounded-2xl p-4 flex flex-col relative min-h-0">
+
           <div class="flex items-center justify-between mb-2 shrink-0">
+
             <span id="projHeaderTitle" class="text-xs font-mono font-bold text-sky-300 tracking-wider">PROJECTILE TRAJECTORY ENGINE</span>
+
             <span id="projFormulaBadge" class="text-xs font-mono text-slate-400">y = x·tanθ - gx²/(2v₀²cos²θ)</span>
+
           </div>
+
           <div class="flex-1 bg-slate-950/80 rounded-xl border border-slate-800 relative overflow-hidden min-h-0">
+
             <canvas id="projectileCanvas" class="w-full h-full block"></canvas>
+
           </div>
+
         </div>
 
         <!-- Right Control Panel -->
+
         <div class="w-full md:w-80 flex flex-col gap-3 shrink-0">
+
           <div class="glass-card rounded-2xl p-4 space-y-3.5">
+
             <div class="text-xs font-mono font-bold text-amber-300 tracking-wider border-b border-slate-700/50 pb-2">
+
               <span id="projControlTitle">LAUNCH PARAMETERS</span>
+
             </div>
 
             <div class="space-y-3 text-xs">
-              <div>
-                <div class="flex justify-between text-slate-300 font-mono mb-1">
-                  <span>Initial Speed (v₀):</span>
-                  <span id="projV0Val" class="text-sky-400 font-bold">25 m/s</span>
-                </div>
-                <input type="range" id="projV0Slider" min="10" max="45" step="1" value="25" oninput="updateProjectile()" class="w-full">
-              </div>
 
               <div>
+
                 <div class="flex justify-between text-slate-300 font-mono mb-1">
-                  <span id="projAngleLabel">Launch Angle (θ):</span>
-                  <span id="projThetaVal" class="text-amber-400 font-bold">53°</span>
+
+                  <span>Initial Speed (v₀):</span>
+
+                  <span id="projV0Val" class="text-sky-400 font-bold">25 m/s</span>
+
                 </div>
+
+                <input type="range" id="projV0Slider" min="10" max="45" step="1" value="25" oninput="updateProjectile()" class="w-full">
+
+              </div>
+
+              <!-- Launch Angle Slider Block -->
+
+              <div id="projAngleSliderBlock">
+
+                <div class="flex justify-between text-slate-300 font-mono mb-1">
+
+                  <span id="projAngleLabel">Launch Angle (θ):</span>
+
+                  <span id="projThetaVal" class="text-amber-400 font-bold">53°</span>
+
+                </div>
+
                 <input type="range" id="projThetaSlider" min="15" max="85" step="1" value="53" oninput="updateProjectile()" class="w-full">
+
+              </div>
+
+              <!-- Locked Horizontal Info Badge for Concept 9 (Cliff) -->
+
+              <div id="projCliffLockBadge" class="hidden p-2.5 rounded-xl bg-sky-950/70 border border-sky-500/40 text-xs font-mono text-sky-300 space-y-1">
+
+                <div class="flex items-center space-x-2 text-amber-400 font-bold">
+
+                  <i class="fa-solid fa-lock text-xs"></i>
+
+                  <span>Launch Angle: 0° (Horizontal)</span>
+
+                </div>
+
+                <div class="text-[11px] text-slate-400 leading-tight">
+
+                  Horizontal release means initial vertical velocity is strictly <span class="text-rose-400 font-bold">uy = 0</span>.
+
+                </div>
+
               </div>
 
               <!-- Special Dynamic Slider for Cliff / Incline -->
+
               <div id="projExtraSliderBlock" class="hidden">
+
                 <div class="flex justify-between text-slate-300 font-mono mb-1">
+
                   <span id="projExtraLabel">Cliff Height (h):</span>
+
                   <span id="projExtraVal" class="text-emerald-400 font-bold">20 m</span>
+
                 </div>
+
                 <input type="range" id="projExtraSlider" min="5" max="50" step="1" value="20" oninput="updateProjectile()" class="w-full">
+
               </div>
+
             </div>
 
             <!-- Live Projectile Solver Readout Box -->
+
             <div class="p-3 bg-slate-900 rounded-xl border border-sky-500/20 font-mono text-xs space-y-1.5">
+
               <div class="text-slate-400 text-[10px]">BALLISTIC METRICS</div>
+
               <div class="flex justify-between text-sky-300">
-                <span>Flight Time (T):</span>
+
+                <span id="projResTLabel">Flight Time (T):</span>
+
                 <span id="projResT" class="font-bold text-amber-400">4.07 s</span>
+
               </div>
+
               <div class="flex justify-between text-sky-300">
-                <span>Max Height (H_max):</span>
+
+                <span id="projResHLabel">Max Height (H_max):</span>
+
                 <span id="projResH" class="font-bold text-emerald-400">20.3 m</span>
+
               </div>
+
               <div class="flex justify-between text-sky-300">
-                <span>Horizontal Range (R):</span>
+
+                <span id="projResRLabel">Horizontal Range (R):</span>
+
                 <span id="projResR" class="font-bold text-cyan-400">61.3 m</span>
+
               </div>
+
+              <div id="projImpactRow" class="hidden flex justify-between text-emerald-300 pt-1 border-t border-slate-800">
+
+                <span>Impact Speed |v|:</span>
+
+                <span id="projResImpact" class="font-bold text-emerald-400">29.6 m/s</span>
+
+              </div>
+
               <div id="projCurvRow" class="hidden flex justify-between text-purple-300 pt-1 border-t border-slate-800">
+
                 <span>Apex Curvature Radius (ρ):</span>
+
                 <span id="projResRho" class="font-bold text-purple-400">36.7 m</span>
+
               </div>
+
             </div>
+
           </div>
 
           <!-- NEET Trap Card -->
+
           <div class="glass-card rounded-2xl p-3.5 border-rose-500/40 bg-rose-950/20 text-xs">
+
             <div class="flex items-center space-x-2 text-rose-400 font-bold mb-1.5">
+
               <i class="fa-solid fa-triangle-exclamation"></i>
+
               <span id="projTrapTitle">NEET TRAP: LAUNCH ANGLE</span>
+
             </div>
+
             <p id="projTrapBody" class="text-slate-300 text-[11px] leading-relaxed">
+
               Launch angle θ MUST be measured from horizontal! If given relative to vertical, replace sin²θ with cos²θ!
+
             </p>
+
           </div>
+
         </div>
+
       </div>
+
     </section>
 
     <!-- ======================================================== -->
+
     <!-- ENGINE 4: Circular Motion Dynamics (Concepts 12–14) -->
+
     <!-- ======================================================== -->
+
     <section id="view-circular" class="h-full w-full hidden flex flex-col p-3 gap-3 overflow-hidden">
+
       <!-- Concept Preset Switcher Bar -->
+
       <div class="flex items-center space-x-2 bg-slate-900/90 border border-slate-800 rounded-xl p-1.5 shrink-0 text-xs font-mono overflow-x-auto">
+
         <span class="text-slate-400 text-[11px] px-2 font-bold uppercase tracking-wider shrink-0">Target Concept:</span>
+
         <button id="subCircAcBtn" onclick="setCircularConcept('centripetal')" class="sub-preset-btn active px-3 py-1 rounded-lg border text-xs transition shrink-0">
+
           <span>Concept 12: Centripetal Acceleration (ac = v²/r)</span>
+
         </button>
+
         <button id="subCircLinBtn" onclick="setCircularConcept('linear_angular')" class="sub-preset-btn px-3 py-1 rounded-lg border text-xs transition shrink-0">
+
           <span>Concept 13: Linear vs Angular (v = ω·r)</span>
+
         </button>
+
         <button id="subCircNonBtn" onclick="setCircularConcept('non_uniform')" class="sub-preset-btn px-3 py-1 rounded-lg border text-xs transition shrink-0">
+
           <span>Concept 14: Non-Uniform Circular Motion (a_net)</span>
+
         </button>
+
       </div>
 
       <!-- Main Canvas & Controls Split -->
+
       <div class="flex-1 flex flex-col md:flex-row gap-3 min-h-0">
+
         <!-- Canvas Viewport -->
+
         <div class="flex-1 glass-card rounded-2xl p-4 flex flex-col relative min-h-0">
+
           <div class="flex items-center justify-between mb-2 shrink-0">
+
             <span id="circHeaderTitle" class="text-xs font-mono font-bold text-purple-300 tracking-wider">CENTRIPETAL ACCELERATION DYNAMICS</span>
+
             <span id="circFormulaBadge" class="text-xs font-mono text-slate-400">a_c = v² / r = ω² · r</span>
+
           </div>
+
           <div class="flex-1 bg-slate-950/80 rounded-xl border border-slate-800 relative overflow-hidden min-h-0">
+
             <canvas id="circularCanvas" class="w-full h-full block"></canvas>
+
           </div>
+
         </div>
 
         <!-- Right Control Panel -->
+
         <div class="w-full md:w-80 flex flex-col gap-3 shrink-0">
+
           <div class="glass-card rounded-2xl p-4 space-y-3.5">
+
             <div class="text-xs font-mono font-bold text-amber-300 tracking-wider border-b border-slate-700/50 pb-2">
+
               <span id="circControlTitle">CIRCULAR PARAMETERS</span>
+
             </div>
 
             <div class="space-y-3 text-xs">
+
               <div>
+
                 <div class="flex justify-between text-slate-300 font-mono mb-1">
+
                   <span>Radius (r):</span>
+
                   <span id="circRVal" class="text-purple-400 font-bold">2.0 m</span>
+
                 </div>
+
                 <input type="range" id="circRSlider" min="0.8" max="4.5" step="0.1" value="2.0" oninput="updateCircular()" class="w-full">
+
               </div>
 
               <div>
+
                 <div class="flex justify-between text-slate-300 font-mono mb-1">
+
                   <span>Angular Velocity (ω):</span>
+
                   <span id="circWVal" class="text-purple-400 font-bold">2.0 rad/s</span>
+
                 </div>
+
                 <input type="range" id="circWSlider" min="0.5" max="5.0" step="0.1" value="2.0" oninput="updateCircular()" class="w-full">
+
               </div>
 
               <div id="circAlphaBlock" class="hidden">
+
                 <div class="flex justify-between text-slate-300 font-mono mb-1">
+
                   <span>Angular Acceleration (α):</span>
+
                   <span id="circAlphaVal" class="text-rose-400 font-bold">1.5 rad/s²</span>
+
                 </div>
+
                 <input type="range" id="circAlphaSlider" min="0.0" max="4.0" step="0.2" value="1.5" oninput="updateCircular()" class="w-full">
+
               </div>
+
             </div>
 
             <!-- Live Circular Readout Box -->
+
             <div class="p-3 bg-slate-900 rounded-xl border border-purple-500/20 font-mono text-xs space-y-1.5">
+
               <div class="text-slate-400 text-[10px]">DYNAMIC READOUTS</div>
+
               <div class="text-purple-300">Linear Speed (v = ω·r): <span id="circV" class="font-bold text-amber-400">4.00 m/s</span></div>
+
               <div class="text-purple-300">Centripetal (a_c = v²/r): <span id="circAc" class="font-bold text-rose-400">8.00 m/s²</span></div>
+
               <div id="circAtRow" class="hidden text-rose-300">Tangential (a_t = r·α): <span id="circAt" class="font-bold text-amber-400">3.00 m/s²</span></div>
+
               <div id="circAnetRow" class="hidden text-emerald-300 pt-1 border-t border-slate-800">
+
                 Net Acceleration (a_net): <span id="circAnet" class="font-bold text-emerald-400">8.54 m/s²</span>
+
               </div>
+
             </div>
+
           </div>
 
           <!-- NEET Trap Card -->
+
           <div class="glass-card rounded-2xl p-3.5 border-rose-500/40 bg-rose-950/20 text-xs">
+
             <div class="flex items-center space-x-2 text-rose-400 font-bold mb-1.5">
+
               <i class="fa-solid fa-triangle-exclamation"></i>
+
               <span id="circTrapTitle">NEET TRAP: ACCELERATION DIRECTION</span>
+
             </div>
+
             <p id="circTrapBody" class="text-slate-300 text-[11px] leading-relaxed">
+
               In uniform circular motion, speed is constant but acceleration is NEVER zero! a_c = v²/r always points <strong class="text-amber-300">strictly toward center</strong>.
+
             </p>
+
           </div>
+
         </div>
+
       </div>
+
     </section>
 
   </main>
 
   <script>
+
     // ========================================================
+
     // GLOBAL STATE & TAB NAVIGATION (Approach A)
+
     // ========================================================
+
     let currentMode = 'graphs';
+
     let currentGraphConcept = 'xt';       // 'xt' (Concept 1) or 'vt' (Concept 2)
+
     let currentVectorConcept = 'resolution'; // 'resolution' (Concept 3) or 'river' (Concept 4)
+
     let currentProjConcept = 'ground';    // 'ground' (5-8), 'cliff' (9), 'incline' (10), 'curvature' (11)
+
     let currentCircConcept = 'centripetal'; // 'centripetal' (12), 'linear_angular' (13), 'non_uniform' (14)
 
     function switchMode(mode) {
+
       currentMode = mode;
+
       const views = ['graphs', 'vectors', 'projectile', 'circular'];
+
       views.forEach(v => {
+
         const el = document.getElementById('view-' + v);
+
         const btn = document.getElementById('mode' + v.charAt(0).toUpperCase() + v.slice(1) + 'Btn');
+
         if (v === mode) {
+
           el.classList.remove('hidden');
+
           if (btn) btn.classList.add('active');
+
         } else {
+
           el.classList.add('hidden');
+
           if (btn) btn.classList.remove('active');
+
         }
+
       });
 
       setTimeout(() => {
+
         if (mode === 'graphs') drawGraphCanvas();
+
         if (mode === 'vectors') drawVectorCanvas();
+
         if (mode === 'projectile') drawProjectileCanvas();
+
         if (mode === 'circular') drawCircularCanvas();
+
       }, 50);
+
     }
 
     // ========================================================
+
     // CONCEPT DEEP-LINK PARSER (Matches All 14 Concepts)
+
     // ========================================================
+
     const urlParams = new URLSearchParams(window.location.search);
+
     const conceptParam = urlParams.get('concept');
+
     const modeParam = urlParams.get('mode');
 
     if (conceptParam) {
+
       // Map Canonical ID to Engine & Sub-Preset
+
       if (conceptParam === 'P11-C02-T01-V01') { switchMode('graphs'); setGraphConcept('xt'); }
+
       else if (conceptParam === 'P11-C02-T03-V08') { switchMode('graphs'); setGraphConcept('vt'); }
+
       else if (conceptParam === 'P11-C02-T02-V01') { switchMode('vectors'); setVectorConcept('resolution'); }
+
       else if (conceptParam === 'P11-C02-T03-V09') { switchMode('vectors'); setVectorConcept('river'); }
+
       else if (['P11-C02-T03-V01', 'P11-C02-T03-V02', 'P11-C02-T03-V03', 'P11-C02-T03-V04'].includes(conceptParam)) {
+
         switchMode('projectile'); setProjectileConcept('ground');
+
       }
+
       else if (conceptParam === 'P11-C02-T04-V10') { switchMode('projectile'); setProjectileConcept('cliff'); }
+
       else if (conceptParam === 'P11-C02-T04-V11') { switchMode('projectile'); setProjectileConcept('incline'); }
+
       else if (conceptParam === 'P11-C02-T04-V12') { switchMode('projectile'); setProjectileConcept('curvature'); }
+
       else if (conceptParam === 'P11-C02-T04-V01') { switchMode('circular'); setCircularConcept('centripetal'); }
+
       else if (conceptParam === 'P11-C02-T05-V13') { switchMode('circular'); setCircularConcept('linear_angular'); }
+
       else if (conceptParam === 'P11-C02-T05-V14') { switchMode('circular'); setCircularConcept('non_uniform'); }
+
       else { switchMode('graphs'); }
+
     } else if (modeParam) {
+
       switchMode(modeParam);
+
     } else {
+
       switchMode('graphs');
+
     }
 
     // ========================================================
+
     // ENGINE 1: STRAIGHT LINE MOTION (CONCEPTS 1 & 2)
+
     // ========================================================
+
     const gCanvas = document.getElementById('graphCanvas');
+
     const gCtx = gCanvas.getContext('2d');
 
     function resizeCanvas(c) {
+
       const rect = c.parentElement.getBoundingClientRect();
+
       if (rect.width > 0 && rect.height > 0) {
+
         c.width = rect.width;
+
         c.height = rect.height;
+
       }
+
     }
 
     function setGraphConcept(sub) {
+
       currentGraphConcept = sub;
+
       document.getElementById('subGraphXtBtn').className = sub === 'xt' ? 'sub-preset-btn active px-3 py-1 rounded-lg border text-xs transition' : 'sub-preset-btn px-3 py-1 rounded-lg border text-xs transition';
+
       document.getElementById('subGraphVtBtn').className = sub === 'vt' ? 'sub-preset-btn active px-3 py-1 rounded-lg border text-xs transition' : 'sub-preset-btn px-3 py-1 rounded-lg border text-xs transition';
 
       if (sub === 'xt') {
+
         document.getElementById('graphTitleLabel').innerText = "POSITION-TIME (x-t) ENGINE • CONCEPT 1";
+
         document.getElementById('readoutMetric1Label').innerText = "POSITION x(t)";
+
         document.getElementById('readoutMetric2Label').innerText = "TANGENT SLOPE v = dx/dt";
+
         document.getElementById('graphTrapTitle').innerText = "CRITICAL NEET TRAP: x-t SLOPES";
+
         document.getElementById('graphTrapBody').innerHTML = 'A flat line on an <strong class="text-amber-300">x-t graph</strong> denotes <strong class="text-rose-400">REST (v = 0)</strong>, NOT uniform velocity! Slope yields velocity, never acceleration.';
+
       } else {
+
         document.getElementById('graphTitleLabel').innerText = "VELOCITY-TIME (v-t) ENGINE • CONCEPT 2";
+
         document.getElementById('readoutMetric1Label').innerText = "VELOCITY v(t)";
+
         document.getElementById('readoutMetric2Label').innerText = "SHADED AREA = DISPLACEMENT Δx";
+
         document.getElementById('graphTrapTitle').innerText = "CRITICAL NEET TRAP: v-t SHADED AREA";
+
         document.getElementById('graphTrapBody').innerHTML = 'Area under a <strong class="text-amber-300">v-t curve</strong> yields <strong class="text-emerald-400">Displacement Δx</strong> (can be negative if below time axis), NOT distance! Slope yields acceleration.';
+
       }
+
       updateGraph();
+
     }
 
     function applyGraphPreset() {
+
       const val = document.getElementById('graphPreset').value;
+
       if (val === 'accelerated') {
+
         document.getElementById('sliderA').value = 1.0;
+
         document.getElementById('sliderV0').value = 0.0;
+
       } else if (val === 'decelerated') {
+
         document.getElementById('sliderA').value = -0.8;
+
         document.getElementById('sliderV0').value = 3.0;
+
       } else if (val === 'uniform') {
+
         document.getElementById('sliderA').value = 0.0;
+
         document.getElementById('sliderV0').value = 1.5;
+
       } else if (val === 'rest') {
+
         document.getElementById('sliderA').value = 0.0;
+
         document.getElementById('sliderV0').value = 0.0;
+
       }
+
       updateGraph();
+
     }
 
     function updateGraph() {
+
       const t = parseFloat(document.getElementById('sliderT').value);
+
       const a = parseFloat(document.getElementById('sliderA').value);
+
       const v0 = parseFloat(document.getElementById('sliderV0').value);
 
       document.getElementById('sliderTVal').innerText = t.toFixed(2) + ' s';
+
       document.getElementById('sliderAVal').innerText = a.toFixed(1) + ' m/s²';
+
       document.getElementById('sliderV0Val').innerText = v0.toFixed(1) + ' m/s';
 
       const x = v0 * t + 0.5 * a * t * t;
+
       const v = v0 + a * t;
 
       document.getElementById('readoutT').innerText = t.toFixed(2) + ' s';
+
       if (currentGraphConcept === 'xt') {
+
         document.getElementById('readoutMetric1').innerText = x.toFixed(2) + ' m';
+
         document.getElementById('readoutMetric2').innerText = (v >= 0 ? '+' : '') + v.toFixed(2) + ' m/s';
+
       } else {
+
         document.getElementById('readoutMetric1').innerText = (v >= 0 ? '+' : '') + v.toFixed(2) + ' m/s';
+
         document.getElementById('readoutMetric2').innerText = x.toFixed(2) + ' m (Area)';
+
       }
 
       drawGraphCanvas();
+
     }
 
     function drawGraphCanvas() {
+
       resizeCanvas(gCanvas);
+
       const w = gCanvas.width;
+
       const h = gCanvas.height;
+
       if (!w || !h) return;
 
       gCtx.clearRect(0, 0, w, h);
 
       const originX = 60;
+
       const originY = h - 60;
+
       const plotW = w - originX - 30;
+
       const plotH = h - 100;
 
       // Coordinate axes
+
       gCtx.strokeStyle = 'rgba(51, 65, 85, 0.5)';
+
       gCtx.lineWidth = 1;
+
       for (let i = 0; i <= 5; i++) {
+
         const x = originX + (i / 5) * plotW;
+
         gCtx.beginPath();
+
         gCtx.moveTo(x, originY);
+
         gCtx.lineTo(x, originY - plotH);
+
         gCtx.stroke();
+
         gCtx.fillStyle = '#64748B';
+
         gCtx.font = '11px Consolas, monospace';
+
         gCtx.fillText(i + 's', x - 8, originY + 20);
+
       }
 
       gCtx.strokeStyle = '#94A3B8';
+
       gCtx.lineWidth = 2;
+
       gCtx.beginPath();
+
       gCtx.moveTo(originX, originY);
+
       gCtx.lineTo(originX + plotW + 15, originY);
+
       gCtx.moveTo(originX, originY);
+
       gCtx.lineTo(originX, originY - plotH - 15);
+
       gCtx.stroke();
 
       gCtx.fillStyle = '#38BDF8';
+
       gCtx.font = 'bold 12px Consolas, monospace';
+
       gCtx.fillText(currentGraphConcept === 'xt' ? 'Position x (m)' : 'Velocity v (m/s)', originX - 50, originY - plotH - 22);
 
       const evalT = parseFloat(document.getElementById('sliderT').value);
+
       const a = parseFloat(document.getElementById('sliderA').value);
+
       const v0 = parseFloat(document.getElementById('sliderV0').value);
 
       // Curve Points
+
       const points = [];
+
       const numSteps = 80;
+
       const maxVal = currentGraphConcept === 'xt' ? 20 : 10;
 
       for (let i = 0; i <= numSteps; i++) {
+
         const tVal = (i / numSteps) * 5.0;
+
         const val = currentGraphConcept === 'xt' ? (v0 * tVal + 0.5 * a * tVal * tVal) : (v0 + a * tVal);
+
         const px = originX + (tVal / 5.0) * plotW;
+
         const py = originY - (val / maxVal) * plotH;
+
         points.push({ t: tVal, val, px, py });
+
       }
 
       // Shaded Area under curve (For v-t Mode)
+
       if (currentGraphConcept === 'vt') {
+
         gCtx.beginPath();
+
         gCtx.moveTo(originX, originY);
+
         points.forEach(p => {
+
           if (p.t <= evalT) gCtx.lineTo(p.px, Math.min(originY, Math.max(originY - plotH, p.py)));
+
         });
+
         const evalPx = originX + (evalT / 5.0) * plotW;
+
         gCtx.lineTo(evalPx, originY);
+
         gCtx.closePath();
+
         gCtx.fillStyle = 'rgba(56, 189, 248, 0.25)';
+
         gCtx.fill();
+
         gCtx.strokeStyle = '#38BDF8';
+
         gCtx.stroke();
+
       }
 
       // Draw Main Curve
+
       gCtx.beginPath();
+
       gCtx.strokeStyle = '#38BDF8';
+
       gCtx.lineWidth = 3;
+
       points.forEach((p, idx) => {
+
         if (idx === 0) gCtx.moveTo(p.px, p.py);
+
         else gCtx.lineTo(p.px, p.py);
+
       });
+
       gCtx.stroke();
 
       // Draw Current Evaluation Point & Tangent (for x-t Mode)
+
       const curX = originX + (evalT / 5.0) * plotW;
+
       const curVal = currentGraphConcept === 'xt' ? (v0 * evalT + 0.5 * a * evalT * evalT) : (v0 + a * evalT);
+
       const curY = originY - (curVal / maxVal) * plotH;
 
       if (currentGraphConcept === 'xt') {
+
         // Tangent Line
+
         const slope = v0 + a * evalT;
+
         const tanDx = 40;
+
         const tanDy = (slope / maxVal) * plotH * (tanDx / plotW * 5.0);
 
         gCtx.beginPath();
+
         gCtx.strokeStyle = '#FACC15';
+
         gCtx.lineWidth = 2.5;
+
         gCtx.moveTo(curX - tanDx, curY + tanDy);
+
         gCtx.lineTo(curX + tanDx, curY - tanDy);
+
         gCtx.stroke();
+
       }
 
       // Indicator Dot
+
       gCtx.beginPath();
+
       gCtx.arc(curX, curY, 6, 0, Math.PI * 2);
+
       gCtx.fillStyle = '#FACC15';
+
       gCtx.fill();
+
       gCtx.strokeStyle = '#020408';
+
       gCtx.lineWidth = 2;
+
       gCtx.stroke();
+
     }
 
     // ========================================================
+
     // ENGINE 2: VECTORS & RELATIVE MOTION (CONCEPTS 3 & 4)
+
     // ========================================================
+
     const vCanvas = document.getElementById('vectorCanvas');
+
     const vCtx = vCanvas.getContext('2d');
 
     function setVectorConcept(sub) {
+
       currentVectorConcept = sub;
+
       document.getElementById('subVecResBtn').className = sub === 'resolution' ? 'sub-preset-btn active px-3 py-1 rounded-lg border text-xs transition' : 'sub-preset-btn px-3 py-1 rounded-lg border text-xs transition';
+
       document.getElementById('subVecRiverBtn').className = sub === 'river' ? 'sub-preset-btn active px-3 py-1 rounded-lg border text-xs transition' : 'sub-preset-btn px-3 py-1 rounded-lg border text-xs transition';
 
       if (sub === 'resolution') {
+
         document.getElementById('vecHeaderTitle').innerText = "ORTHOGONAL VECTOR DECOMPOSITION • CONCEPT 3";
+
         document.getElementById('vecFormulaBadge').innerText = "A = A_x î + A_y ĵ";
+
         document.getElementById('vecControlTitle').innerText = "CARTESIAN PARAMETERS";
+
         document.getElementById('controlsVecRes').classList.remove('hidden');
+
         document.getElementById('controlsVecRiver').classList.add('hidden');
+
         document.getElementById('vecResContent').classList.remove('hidden');
+
         document.getElementById('riverResContent').classList.add('hidden');
+
         document.getElementById('vecTrapTitle').innerText = "NEET TRAP: VERTICAL AXIS ANGLES";
+
         document.getElementById('vecTrapBody').innerHTML = 'If angle θ is given relative to the <strong class="text-amber-300">vertical axis</strong>, components swap! A_y = A·cosθ and A_x = A·sinθ.';
+
         updateVector();
+
       } else {
+
         document.getElementById('vecHeaderTitle').innerText = "RIVER-BOAT RELATIVE VELOCITY • CONCEPT 4";
+
         document.getElementById('vecFormulaBadge').innerText = "v_ground = v_boat_water + v_river";
+
         document.getElementById('vecControlTitle').innerText = "RIVER-BOAT VECTORS";
+
         document.getElementById('controlsVecRes').classList.add('hidden');
+
         document.getElementById('controlsVecRiver').classList.remove('hidden');
+
         document.getElementById('vecResContent').classList.add('hidden');
+
         document.getElementById('riverResContent').classList.remove('hidden');
+
         document.getElementById('vecTrapTitle').innerText = "NEET TRAP: SHORTEST PATH VS TIME";
+
         document.getElementById('vecTrapBody').innerHTML = 'To cross in <strong class="text-sky-300">shortest time</strong>, steer straight across (90°); drift occurs! For <strong class="text-amber-300">shortest path (zero drift)</strong>, steer upstream (sinθ = v_r/v_b), but crossing takes longer!';
+
         updateRiver();
+
       }
+
     }
 
     function updateVector() {
+
       const mag = parseFloat(document.getElementById('vecMagSlider').value);
+
       const angleDeg = parseFloat(document.getElementById('vecAngleSlider').value);
 
       document.getElementById('vecMagVal').innerText = mag.toFixed(1) + ' N';
+
       document.getElementById('vecAngleVal').innerText = angleDeg + '°';
 
       const rad = angleDeg * Math.PI / 180;
+
       const ax = mag * Math.cos(rad);
+
       const ay = mag * Math.sin(rad);
 
       document.getElementById('resAx').innerText = ax.toFixed(2) + ' N';
+
       document.getElementById('resAy').innerText = ay.toFixed(2) + ' N';
 
       drawVectorCanvas();
+
     }
 
     let riverBoatSimT = 0;
+
     function setRiverPreset(type) {
+
       const vr = parseFloat(document.getElementById('riverSpeedSlider').value);
+
       const vb = parseFloat(document.getElementById('boatSpeedSlider').value);
+
       if (type === 'shortest_time') {
+
         document.getElementById('boatAngleSlider').value = 90;
+
       } else if (type === 'shortest_path') {
+
         const thetaUp = Math.asin(Math.min(0.99, vr / vb)) * 180 / Math.PI;
+
         document.getElementById('boatAngleSlider').value = Math.round(90 + thetaUp);
+
       }
+
       updateRiver();
+
     }
 
     function updateRiver() {
+
       const vr = parseFloat(document.getElementById('riverSpeedSlider').value);
+
       const vb = parseFloat(document.getElementById('boatSpeedSlider').value);
+
       const theta = parseFloat(document.getElementById('boatAngleSlider').value);
 
       document.getElementById('riverSpeedVal').innerText = vr.toFixed(1) + ' m/s';
+
       document.getElementById('boatSpeedVal').innerText = vb.toFixed(1) + ' m/s';
+
       document.getElementById('boatAngleVal').innerText = theta + '°';
 
       const rad = theta * Math.PI / 180;
+
       const vy = vb * Math.sin(rad);
+
       const vx = vr - vb * Math.cos(rad);
 
       const width = 100;
+
       const t = width / Math.max(0.1, vy);
+
       const drift = vx * t;
+
       const vNet = Math.sqrt(vx * vx + vy * vy);
 
       document.getElementById('riverTime').innerText = t.toFixed(1) + ' s';
+
       document.getElementById('riverDrift').innerText = (drift >= 0 ? '+' : '') + drift.toFixed(1) + ' m';
+
       document.getElementById('riverNetV').innerText = vNet.toFixed(2) + ' m/s';
 
       drawVectorCanvas();
+
     }
 
     function drawVectorCanvas() {
+
       resizeCanvas(vCanvas);
+
       const w = vCanvas.width;
+
       const h = vCanvas.height;
+
       if (!w || !h) return;
 
       vCtx.clearRect(0, 0, w, h);
 
       if (currentVectorConcept === 'resolution') {
+
         const originX = 80;
+
         const originY = h - 70;
+
         const mag = parseFloat(document.getElementById('vecMagSlider').value);
+
         const angleDeg = parseFloat(document.getElementById('vecAngleSlider').value);
+
         const rad = angleDeg * Math.PI / 180;
+
         const scale = (Math.min(w, h) - 140) / 20;
 
         const ax = mag * Math.cos(rad);
+
         const ay = mag * Math.sin(rad);
+
         const targetX = originX + ax * scale;
+
         const targetY = originY - ay * scale;
 
         // Axes
+
         vCtx.strokeStyle = '#475569';
+
         vCtx.lineWidth = 1.5;
+
         vCtx.beginPath();
+
         vCtx.moveTo(originX - 20, originY);
+
         vCtx.lineTo(w - 40, originY);
+
         vCtx.moveTo(originX, originY + 20);
+
         vCtx.lineTo(originX, 40);
+
         vCtx.stroke();
 
         // Dashed drop lines
+
         vCtx.setLineDash([4, 4]);
+
         vCtx.strokeStyle = '#64748B';
+
         vCtx.beginPath();
+
         vCtx.moveTo(targetX, originY);
+
         vCtx.lineTo(targetX, targetY);
+
         vCtx.lineTo(originX, targetY);
+
         vCtx.stroke();
+
         vCtx.setLineDash([]);
 
         // Component Ax (Gold)
+
         vCtx.strokeStyle = '#FACC15';
+
         vCtx.lineWidth = 4;
+
         vCtx.beginPath();
+
         vCtx.moveTo(originX, originY);
+
         vCtx.lineTo(targetX, originY);
+
         vCtx.stroke();
 
         // Component Ay (Green)
+
         vCtx.strokeStyle = '#4ADE80';
+
         vCtx.lineWidth = 4;
+
         vCtx.beginPath();
+
         vCtx.moveTo(originX, originY);
+
         vCtx.lineTo(originX, targetY);
+
         vCtx.stroke();
 
         // Main Vector A (Cyan)
+
         vCtx.strokeStyle = '#38BDF8';
+
         vCtx.lineWidth = 4.5;
+
         vCtx.beginPath();
+
         vCtx.moveTo(originX, originY);
+
         vCtx.lineTo(targetX, targetY);
+
         vCtx.stroke();
 
         // Labels
+
         vCtx.fillStyle = '#38BDF8';
+
         vCtx.font = 'bold 13px Consolas, monospace';
+
         vCtx.fillText('A (' + mag.toFixed(1) + 'N)', targetX + 10, targetY - 10);
 
         vCtx.fillStyle = '#FACC15';
+
         vCtx.fillText('Ax = ' + ax.toFixed(1) + 'N', originX + (ax*scale)/2 - 25, originY + 25);
 
         vCtx.fillStyle = '#4ADE80';
+
         vCtx.fillText('Ay = ' + ay.toFixed(1) + 'N', originX - 70, originY - (ay*scale)/2);
+
       } else {
+
         // RIVER-BOAT VISUALIZER
+
         const bankLeft = 80;
+
         const bankRight = w - 80;
+
         const riverW = bankRight - bankLeft;
 
         // River Water Fill
+
         vCtx.fillStyle = '#0f1f38';
+
         vCtx.fillRect(bankLeft, 40, riverW, h - 80);
 
         // Water Current Flow Arrows
+
         vCtx.strokeStyle = 'rgba(56, 189, 248, 0.25)';
+
         vCtx.lineWidth = 1.5;
+
         for (let y = 70; y < h - 70; y += 40) {
+
           vCtx.beginPath();
+
           vCtx.moveTo(bankLeft + 30, y);
+
           vCtx.lineTo(bankRight - 30, y);
+
           vCtx.stroke();
+
         }
 
         // River Banks
+
         vCtx.strokeStyle = '#64748B';
+
         vCtx.lineWidth = 4;
+
         vCtx.beginPath();
+
         vCtx.moveTo(bankLeft, 20); vCtx.lineTo(bankLeft, h - 20);
+
         vCtx.moveTo(bankRight, 20); vCtx.lineTo(bankRight, h - 20);
+
         vCtx.stroke();
 
         // Boat start & motion
+
         const startX = (bankLeft + bankRight) / 2;
+
         const startY = h - 60;
+
         const vr = parseFloat(document.getElementById('riverSpeedSlider').value);
+
         const vb = parseFloat(document.getElementById('boatSpeedSlider').value);
+
         const theta = parseFloat(document.getElementById('boatAngleSlider').value);
+
         const rad = theta * Math.PI / 180;
 
         const vbx = -vb * Math.cos(rad) * 12;
+
         const vby = -vb * Math.sin(rad) * 12;
+
         const vrx = vr * 12;
 
         // Boat Position
+
         vCtx.fillStyle = '#FACC15';
+
         vCtx.beginPath();
+
         vCtx.arc(startX, startY, 7, 0, Math.PI * 2);
+
         vCtx.fill();
 
         // Vector: Boat in Water (Amber)
+
         vCtx.strokeStyle = '#FACC15';
+
         vCtx.lineWidth = 3;
+
         vCtx.beginPath();
+
         vCtx.moveTo(startX, startY);
+
         vCtx.lineTo(startX + vbx, startY + vby);
+
         vCtx.stroke();
 
         // Vector: River Current (Cyan)
+
         vCtx.strokeStyle = '#38BDF8';
+
         vCtx.beginPath();
+
         vCtx.moveTo(startX + vbx, startY + vby);
+
         vCtx.lineTo(startX + vbx + vrx, startY + vby);
+
         vCtx.stroke();
 
         // Resultant Vector: Ground Motion (Green)
+
         vCtx.strokeStyle = '#4ADE80';
+
         vCtx.lineWidth = 3.5;
+
         vCtx.beginPath();
+
         vCtx.moveTo(startX, startY);
+
         vCtx.lineTo(startX + vbx + vrx, startY + vby);
+
         vCtx.stroke();
 
         vCtx.font = '11px Consolas, monospace';
+
         vCtx.fillStyle = '#FACC15';
+
         vCtx.fillText('v_boat', startX + vbx - 20, startY + vby - 5);
+
         vCtx.fillStyle = '#4ADE80';
+
         vCtx.fillText('v_net', startX + vbx + vrx + 10, startY + vby);
+
       }
+
     }
 
     // ========================================================
+
     // ENGINE 3: PROJECTILE MOTION (CONCEPTS 5–11)
+
     // ========================================================
+
     const pCanvas = document.getElementById('projectileCanvas');
+
     const pCtx = pCanvas.getContext('2d');
 
     function setProjectileConcept(sub) {
+
       currentProjConcept = sub;
+
       ['ground', 'cliff', 'incline', 'curvature'].forEach(c => {
+
         const btn = document.getElementById('subProj' + c.charAt(0).toUpperCase() + c.slice(1) + 'Btn');
+
         if (btn) btn.className = c === sub ? 'sub-preset-btn active px-3 py-1 rounded-lg border text-xs transition shrink-0' : 'sub-preset-btn px-3 py-1 rounded-lg border text-xs transition shrink-0';
+
       });
 
+      const angleBlock = document.getElementById('projAngleSliderBlock');
+
+      const cliffBadge = document.getElementById('projCliffLockBadge');
+
       const extraBlock = document.getElementById('projExtraSliderBlock');
+
       const extraLabel = document.getElementById('projExtraLabel');
+
       const curvRow = document.getElementById('projCurvRow');
 
+      const impactRow = document.getElementById('projImpactRow');
+
       if (sub === 'ground') {
+
         document.getElementById('projHeaderTitle').innerText = "GROUND PROJECTILE • CONCEPTS 5–8";
+
         document.getElementById('projFormulaBadge').innerText = "T = 2v₀sinθ/g • Hmax = v₀²sin²θ/2g • R = v₀²sin2θ/g";
+
+        angleBlock.classList.remove('hidden');
+
+        cliffBadge.classList.add('hidden');
+
         extraBlock.classList.add('hidden');
+
         curvRow.classList.add('hidden');
+
+        impactRow.classList.add('hidden');
+
+        document.getElementById('projAngleLabel').innerText = "Launch Angle (θ):";
+
         document.getElementById('projTrapTitle').innerText = "NEET TRAP: COMPLEMENTARY ANGLES";
+
         document.getElementById('projTrapBody').innerHTML = 'Horizontal Range is identical for angles <strong class="text-amber-300">θ and (90° - θ)</strong>, but Time of Flight and Maximum Height are DIFFERENT!';
+
       } else if (sub === 'cliff') {
+
         document.getElementById('projHeaderTitle').innerText = "HORIZONTAL CLIFF PROJECTION • CONCEPT 9";
+
         document.getElementById('projFormulaBadge').innerText = "t = √(2h/g) • R = v₀·√(2h/g) • Initial uy = 0";
+
+        angleBlock.classList.add('hidden');
+
+        cliffBadge.classList.remove('hidden');
+
         extraBlock.classList.remove('hidden');
+
         extraLabel.innerText = "Cliff Height (h):";
+
         curvRow.classList.add('hidden');
+
+        impactRow.classList.remove('hidden');
+
         document.getElementById('projTrapTitle').innerText = "NEET TRAP: VERTICAL VELOCITY AT RELEASE";
+
         document.getElementById('projTrapBody').innerHTML = 'For purely horizontal projection from a height, initial vertical velocity is <strong class="text-rose-400">uy = 0</strong>! Time of flight depends ONLY on height h, not on horizontal speed v₀!';
+
       } else if (sub === 'incline') {
+
         document.getElementById('projHeaderTitle').innerText = "PROJECTILE ON INCLINED PLANE • CONCEPT 10";
+
         document.getElementById('projFormulaBadge').innerText = "T = 2v₀sin(α-β) / (g·cosβ)";
+
+        angleBlock.classList.remove('hidden');
+
+        cliffBadge.classList.add('hidden');
+
         extraBlock.classList.remove('hidden');
-        extraLabel.innerText = "Incline Angle (β):";
+
+        extraLabel.innerText = "Incline Ramp Angle (β):";
+
+        document.getElementById('projAngleLabel').innerText = "Launch Angle (α):";
+
         curvRow.classList.add('hidden');
+
+        impactRow.classList.add('hidden');
+
         document.getElementById('projTrapTitle').innerText = "NEET TRAP: EFFECTIVE GRAVITY ALONG INCLINE";
+
         document.getElementById('projTrapBody').innerHTML = 'Gravity decomposes into <strong class="text-amber-300">g·cosβ</strong> perpendicular to plane and <strong class="text-rose-400">g·sinβ</strong> down the plane, causing deceleration along the incline!';
+
       } else if (sub === 'curvature') {
+
         document.getElementById('projHeaderTitle').innerText = "APEX RADIUS OF CURVATURE • CONCEPT 11";
+
         document.getElementById('projFormulaBadge').innerText = "ρ = v_x² / g = v₀²·cos²θ / g";
+
+        angleBlock.classList.remove('hidden');
+
+        cliffBadge.classList.add('hidden');
+
         extraBlock.classList.add('hidden');
+
         curvRow.classList.remove('hidden');
+
+        impactRow.classList.add('hidden');
+
+        document.getElementById('projAngleLabel').innerText = "Launch Angle (θ):";
+
         document.getElementById('projTrapTitle').innerText = "NEET TRAP: NORMAL ACCELERATION AT APEX";
+
         document.getElementById('projTrapBody').innerHTML = 'At the trajectory apex, velocity is strictly horizontal (v = v₀cosθ), and gravity g is perpendicular to velocity! Thus <strong class="text-purple-300">an = g</strong>, giving ρ = (v₀cosθ)²/g.';
+
       }
+
       updateProjectile();
+
     }
 
     function updateProjectile() {
+
       const v0 = parseFloat(document.getElementById('projV0Slider').value);
+
       const theta = parseFloat(document.getElementById('projThetaSlider').value);
+
       const g = 9.8;
 
       document.getElementById('projV0Val').innerText = v0 + ' m/s';
+
       document.getElementById('projThetaVal').innerText = theta + '°';
 
       const rad = theta * Math.PI / 180;
-      const tFlight = (2 * v0 * Math.sin(rad)) / g;
-      const hMax = (v0 * v0 * Math.sin(rad) * Math.sin(rad)) / (2 * g);
-      const range = (v0 * v0 * Math.sin(2 * rad)) / g;
-      const rho = (v0 * v0 * Math.cos(rad) * Math.cos(rad)) / g;
 
-      document.getElementById('projResT').innerText = tFlight.toFixed(2) + ' s';
-      document.getElementById('projResH').innerText = hMax.toFixed(1) + ' m';
-      document.getElementById('projResR').innerText = range.toFixed(1) + ' m';
-      document.getElementById('projResRho').innerText = rho.toFixed(1) + ' m';
+      if (currentProjConcept === 'cliff') {
+
+        const cliffH = parseFloat(document.getElementById('projExtraSlider').value);
+
+        document.getElementById('projExtraVal').innerText = cliffH + ' m';
+
+        const tFlight = Math.sqrt((2 * cliffH) / g);
+
+        const range = v0 * tFlight;
+
+        const vImpact = Math.sqrt(v0 * v0 + 2 * g * cliffH);
+
+        document.getElementById('projResTLabel').innerText = "Flight Time t = √(2h/g):";
+
+        document.getElementById('projResT').innerText = tFlight.toFixed(2) + ' s';
+
+        document.getElementById('projResHLabel').innerText = "Release Height (h):";
+
+        document.getElementById('projResH').innerText = cliffH.toFixed(1) + ' m';
+
+        document.getElementById('projResRLabel').innerText = "Horizontal Range (R):";
+
+        document.getElementById('projResR').innerText = range.toFixed(1) + ' m';
+
+        document.getElementById('projResImpact').innerText = vImpact.toFixed(1) + ' m/s';
+
+      } else if (currentProjConcept === 'incline') {
+
+        const beta = parseFloat(document.getElementById('projExtraSlider').value);
+
+        document.getElementById('projExtraVal').innerText = beta + '°';
+
+        const betaRad = beta * Math.PI / 180;
+
+        const alphaRad = Math.max(betaRad + 0.05, rad);
+
+        const effectiveAngle = alphaRad - betaRad;
+
+        const tFlight = (2 * v0 * Math.sin(effectiveAngle)) / (g * Math.cos(betaRad));
+
+        const rIncline = (v0 * v0 / (g * Math.cos(betaRad) * Math.cos(betaRad))) * (Math.sin(2 * alphaRad - betaRad) - Math.sin(betaRad));
+
+        const hMaxPlane = (v0 * v0 * Math.sin(effectiveAngle) * Math.sin(effectiveAngle)) / (2 * g * Math.cos(betaRad));
+
+        document.getElementById('projResTLabel').innerText = "Incline Flight Time (T):";
+
+        document.getElementById('projResT').innerText = tFlight.toFixed(2) + ' s';
+
+        document.getElementById('projResHLabel').innerText = "Height over Plane:";
+
+        document.getElementById('projResH').innerText = Math.max(0, hMaxPlane).toFixed(1) + ' m';
+
+        document.getElementById('projResRLabel').innerText = "Range on Incline (R):";
+
+        document.getElementById('projResR').innerText = Math.max(0, rIncline).toFixed(1) + ' m';
+
+      } else {
+
+        const tFlight = (2 * v0 * Math.sin(rad)) / g;
+
+        const hMax = (v0 * v0 * Math.sin(rad) * Math.sin(rad)) / (2 * g);
+
+        const range = (v0 * v0 * Math.sin(2 * rad)) / g;
+
+        const rho = (v0 * v0 * Math.cos(rad) * Math.cos(rad)) / g;
+
+        document.getElementById('projResTLabel').innerText = "Flight Time (T):";
+
+        document.getElementById('projResT').innerText = tFlight.toFixed(2) + ' s';
+
+        document.getElementById('projResHLabel').innerText = "Max Height (H_max):";
+
+        document.getElementById('projResH').innerText = hMax.toFixed(1) + ' m';
+
+        document.getElementById('projResRLabel').innerText = "Horizontal Range (R):";
+
+        document.getElementById('projResR').innerText = range.toFixed(1) + ' m';
+
+        document.getElementById('projResRho').innerText = rho.toFixed(1) + ' m';
+
+      }
 
       drawProjectileCanvas();
+
     }
 
     function drawProjectileCanvas() {
@@ -1110,53 +2096,110 @@
 
       if (currentProjConcept === 'cliff') {
         const cliffH = parseFloat(document.getElementById('projExtraSlider').value);
-        const cliffPxH = cliffH * scale * 1.5;
-        const cliffX = originX + 50;
+        const vertScale = Math.min((h - 150) / 55, scale * 1.6);
+        const horizScale = scale * 1.1;
+        const cliffPxH = cliffH * vertScale;
+        const cliffX = originX + 60;
 
-        // Cliff structure
+        // Cliff structure (Slate 800 with border)
         pCtx.fillStyle = '#1e293b';
-        pCtx.fillRect(originX - 30, groundY - cliffPxH, 80, cliffPxH);
+        pCtx.fillRect(originX - 40, groundY - cliffPxH, 100, cliffPxH);
         pCtx.strokeStyle = '#64748b';
-        pCtx.strokeRect(originX - 30, groundY - cliffPxH, 80, cliffPxH);
+        pCtx.lineWidth = 2;
+        pCtx.strokeRect(originX - 40, groundY - cliffPxH, 100, cliffPxH);
 
-        // Cliff Trajectory (Horizontal Launch)
-        const tTotal = Math.sqrt(2 * cliffH / g);
+        // Height dimension label along cliff
+        pCtx.fillStyle = '#38BDF8';
+        pCtx.font = 'bold 12px Consolas, monospace';
+        pCtx.fillText('h = ' + cliffH.toFixed(0) + ' m', originX - 32, groundY - cliffPxH / 2);
+
+        // Horizontal initial velocity vector arrow (Gold)
+        pCtx.strokeStyle = '#FACC15';
+        pCtx.lineWidth = 3;
+        pCtx.beginPath();
+        pCtx.moveTo(cliffX, groundY - cliffPxH);
+        pCtx.lineTo(cliffX + 45, groundY - cliffPxH);
+        pCtx.stroke();
+        pCtx.fillStyle = '#FACC15';
+        pCtx.fillText('v₀ = ' + v0 + ' m/s (uy = 0)', cliffX + 5, groundY - cliffPxH - 10);
+
+        // Trajectory: horizontal launch x = v0*t, y = 0.5*g*t^2 down
+        const tTotal = Math.sqrt((2 * cliffH) / g);
+        const range = v0 * tTotal;
+        const impactX = cliffX + range * horizScale;
+
         pCtx.beginPath();
         pCtx.strokeStyle = '#38BDF8';
-        pCtx.lineWidth = 3;
-        for (let i = 0; i <= 50; i++) {
-          const t = (i / 50) * tTotal;
-          const px = cliffX + v0 * t * scale;
-          const py = groundY - cliffPxH + 0.5 * g * t * t * scale;
+        pCtx.lineWidth = 3.5;
+        for (let i = 0; i <= 60; i++) {
+          const t = (i / 60) * tTotal;
+          const px = cliffX + v0 * t * horizScale;
+          const py = groundY - cliffPxH + 0.5 * g * t * t * vertScale;
           if (i === 0) pCtx.moveTo(px, py);
           else pCtx.lineTo(px, py);
         }
         pCtx.stroke();
+
+        // Impact dot on ground
+        pCtx.fillStyle = '#FACC15';
+        pCtx.beginPath();
+        pCtx.arc(impactX, groundY, 6, 0, Math.PI * 2);
+        pCtx.fill();
+
+        // Range dimension line on ground
+        pCtx.setLineDash([3, 3]);
+        pCtx.strokeStyle = '#38BDF8';
+        pCtx.lineWidth = 1.5;
+        pCtx.beginPath();
+        pCtx.moveTo(cliffX, groundY + 18);
+        pCtx.lineTo(impactX, groundY + 18);
+        pCtx.stroke();
+        pCtx.setLineDash([]);
+        pCtx.fillStyle = '#38BDF8';
+        pCtx.fillText('R = ' + range.toFixed(1) + ' m', cliffX + (range * horizScale) / 2 - 25, groundY + 36);
       } else if (currentProjConcept === 'incline') {
         const beta = parseFloat(document.getElementById('projExtraSlider').value);
         const betaRad = beta * Math.PI / 180;
+        const alphaRad = Math.max(betaRad + 0.05, rad);
 
-        // Incline Ramp
+        const effectiveAngle = alphaRad - betaRad;
+        const tFlight = (2 * v0 * Math.sin(effectiveAngle)) / (g * Math.cos(betaRad));
+        const rIncline = (v0 * v0 / (g * Math.cos(betaRad) * Math.cos(betaRad))) * (Math.sin(2 * alphaRad - betaRad) - Math.sin(betaRad));
+        const rampLen = Math.max(80 * scale, (rIncline + 15) * scale);
+
+        // Incline Ramp (Gold Line)
         pCtx.strokeStyle = '#FACC15';
-        pCtx.lineWidth = 2.5;
+        pCtx.lineWidth = 3;
         pCtx.beginPath();
         pCtx.moveTo(originX, groundY);
-        pCtx.lineTo(originX + 100 * scale, groundY - 100 * Math.tan(betaRad) * scale);
+        pCtx.lineTo(originX + rampLen * Math.cos(betaRad), groundY - rampLen * Math.sin(betaRad));
         pCtx.stroke();
 
-        // Parabola
-        const tFlight = (2 * v0 * Math.sin(rad)) / g;
+        pCtx.fillStyle = '#FACC15';
+        pCtx.font = 'bold 12px Consolas, monospace';
+        pCtx.fillText('Incline Ramp β = ' + beta.toFixed(0) + '°', originX + 35, groundY - 12);
+
+        // Parabola along incline
         pCtx.beginPath();
         pCtx.strokeStyle = '#38BDF8';
-        pCtx.lineWidth = 3;
+        pCtx.lineWidth = 3.5;
         for (let i = 0; i <= 60; i++) {
           const t = (i / 60) * tFlight;
-          const px = originX + v0 * Math.cos(rad) * t * scale;
-          const py = groundY - (v0 * Math.sin(rad) * t - 0.5 * g * t * t) * scale;
+          const px = originX + v0 * Math.cos(alphaRad) * t * scale;
+          const py = groundY - (v0 * Math.sin(alphaRad) * t - 0.5 * g * t * t) * scale;
           if (i === 0) pCtx.moveTo(px, py);
           else pCtx.lineTo(px, py);
         }
         pCtx.stroke();
+
+        // Landing impact point on the incline
+        const impactX = originX + rIncline * Math.cos(betaRad) * scale;
+        const impactY = groundY - rIncline * Math.sin(betaRad) * scale;
+        pCtx.fillStyle = '#4ADE80';
+        pCtx.beginPath();
+        pCtx.arc(impactX, impactY, 6, 0, Math.PI * 2);
+        pCtx.fill();
+        pCtx.fillText('Landing Point (R_incline = ' + Math.max(0, rIncline).toFixed(1) + ' m)', impactX + 10, impactY - 5);
       } else {
         // Standard Parabola (Concepts 5-8 & 11)
         const tFlight = (2 * v0 * Math.sin(rad)) / g;
@@ -1204,200 +2247,348 @@
 
     // ========================================================
     // ENGINE 4: CIRCULAR MOTION (CONCEPTS 12–14)
+
     // ========================================================
+
     const cCanvas = document.getElementById('circularCanvas');
+
     const cCtx = cCanvas.getContext('2d');
+
     let circAnimAngle = 0;
 
     function setCircularConcept(sub) {
+
       currentCircConcept = sub;
+
       ['centripetal', 'linear_angular', 'non_uniform'].forEach(c => {
+
         const btnId = c === 'centripetal' ? 'subCircAcBtn' : (c === 'linear_angular' ? 'subCircLinBtn' : 'subCircNonBtn');
+
         const btn = document.getElementById(btnId);
+
         if (btn) btn.className = c === sub ? 'sub-preset-btn active px-3 py-1 rounded-lg border text-xs transition shrink-0' : 'sub-preset-btn px-3 py-1 rounded-lg border text-xs transition shrink-0';
+
       });
 
       const alphaBlock = document.getElementById('circAlphaBlock');
+
       const atRow = document.getElementById('circAtRow');
+
       const anetRow = document.getElementById('circAnetRow');
 
       if (sub === 'centripetal') {
+
         document.getElementById('circHeaderTitle').innerText = "CENTRIPETAL ACCELERATION • CONCEPT 12";
+
         document.getElementById('circFormulaBadge').innerText = "ac = v²/r = ω²·r (Radially Inward)";
+
         alphaBlock.classList.add('hidden');
+
         atRow.classList.add('hidden');
+
         anetRow.classList.add('hidden');
+
         document.getElementById('circTrapTitle').innerText = "NEET TRAP: ACCELERATION IS NEVER ZERO";
+
         document.getElementById('circTrapBody').innerHTML = 'Even in uniform circular motion where speed is constant, <strong class="text-rose-400">acceleration is non-zero</strong> because the velocity vector direction changes continually!';
+
       } else if (sub === 'linear_angular') {
+
         document.getElementById('circHeaderTitle').innerText = "LINEAR VS ANGULAR SPEED (v = ω·r) • CONCEPT 13";
+
         document.getElementById('circFormulaBadge').innerText = "v₁ = ω·r₁ • v₂ = ω·r₂ (Linear Speed Scales with Radius)";
+
         alphaBlock.classList.add('hidden');
+
         atRow.classList.add('hidden');
+
         anetRow.classList.add('hidden');
+
         document.getElementById('circTrapTitle').innerText = "NEET TRAP: RIGID BODY ROTATION";
+
         document.getElementById('circTrapBody').innerHTML = 'All points on a rotating rigid body share identical <strong class="text-purple-300">angular velocity ω</strong>, but outer points possess proportionally <strong class="text-amber-300">larger linear speed (v = ω·r)</strong>!';
+
       } else if (sub === 'non_uniform') {
+
         document.getElementById('circHeaderTitle').innerText = "NON-UNIFORM CIRCULAR MOTION • CONCEPT 14";
+
         document.getElementById('circFormulaBadge').innerText = "a_net = √(a_c² + a_t²) • a_t = r·α";
+
         alphaBlock.classList.remove('hidden');
+
         atRow.classList.remove('hidden');
+
         anetRow.classList.remove('hidden');
+
         document.getElementById('circTrapTitle').innerText = "NEET TRAP: NET ACCELERATION DIRECTION";
+
         document.getElementById('circTrapBody').innerHTML = 'In non-uniform circular motion, the net acceleration vector <strong class="text-emerald-400">DOES NOT point to the center</strong>! It tilts toward the tangential acceleration at an angle tanφ = a_t / a_c.';
+
       }
+
       updateCircular();
+
     }
 
     function updateCircular() {
+
       const r = parseFloat(document.getElementById('circRSlider').value);
+
       const wVal = parseFloat(document.getElementById('circWSlider').value);
+
       const alpha = parseFloat(document.getElementById('circAlphaSlider').value);
 
       document.getElementById('circRVal').innerText = r.toFixed(1) + ' m';
+
       document.getElementById('circWVal').innerText = wVal.toFixed(1) + ' rad/s';
+
       document.getElementById('circAlphaVal').innerText = alpha.toFixed(1) + ' rad/s²';
 
       const v = wVal * r;
+
       const ac = (v * v) / r;
+
       const at = r * alpha;
+
       const anet = Math.sqrt(ac * ac + at * at);
 
       document.getElementById('circV').innerText = v.toFixed(2) + ' m/s';
+
       document.getElementById('circAc').innerText = ac.toFixed(2) + ' m/s²';
+
       document.getElementById('circAt').innerText = at.toFixed(2) + ' m/s²';
+
       document.getElementById('circAnet').innerText = anet.toFixed(2) + ' m/s²';
 
       drawCircularCanvas();
+
     }
 
     function drawCircularCanvas() {
+
       resizeCanvas(cCanvas);
+
       const w = cCanvas.width;
+
       const h = cCanvas.height;
+
       if (!w || !h) return;
 
       cCtx.clearRect(0, 0, w, h);
 
       const centerX = w / 2;
+
       const centerY = h / 2;
+
       const r = parseFloat(document.getElementById('circRSlider').value);
+
       const wVal = parseFloat(document.getElementById('circWSlider').value);
+
       const scale = (Math.min(w, h) - 120) / 9.0;
+
       const rPx = r * scale;
 
       // Circular Path Orbit
+
       cCtx.strokeStyle = '#334155';
+
       cCtx.lineWidth = 2;
+
       cCtx.beginPath();
+
       cCtx.arc(centerX, centerY, rPx, 0, Math.PI * 2);
+
       cCtx.stroke();
 
       // Dual concentric track for Concept 13
+
       if (currentCircConcept === 'linear_angular') {
+
         cCtx.strokeStyle = 'rgba(192, 132, 252, 0.4)';
+
         cCtx.setLineDash([4, 4]);
+
         cCtx.beginPath();
+
         cCtx.arc(centerX, centerY, rPx * 0.5, 0, Math.PI * 2);
+
         cCtx.stroke();
+
         cCtx.setLineDash([]);
+
       }
 
       // Center Pivot
+
       cCtx.fillStyle = '#64748B';
+
       cCtx.beginPath();
+
       cCtx.arc(centerX, centerY, 5, 0, Math.PI * 2);
+
       cCtx.fill();
 
       // Particle Position
+
       circAnimAngle += wVal * 0.02;
+
       const partX = centerX + rPx * Math.cos(circAnimAngle);
+
       const partY = centerY + rPx * Math.sin(circAnimAngle);
 
       // Radial Arm
+
       cCtx.strokeStyle = '#475569';
+
       cCtx.lineWidth = 1.5;
+
       cCtx.beginPath();
+
       cCtx.moveTo(centerX, centerY);
+
       cCtx.lineTo(partX, partY);
+
       cCtx.stroke();
 
       // Particle Body
+
       cCtx.fillStyle = '#FACC15';
+
       cCtx.beginPath();
+
       cCtx.arc(partX, partY, 7, 0, Math.PI * 2);
+
       cCtx.fill();
 
       // Velocity Vector (Tangential - Cyan)
+
       const vLen = 40;
+
       const vx = -Math.sin(circAnimAngle) * vLen;
+
       const vy = Math.cos(circAnimAngle) * vLen;
+
       cCtx.strokeStyle = '#38BDF8';
+
       cCtx.lineWidth = 3;
+
       cCtx.beginPath();
+
       cCtx.moveTo(partX, partY);
+
       cCtx.lineTo(partX + vx, partY + vy);
+
       cCtx.stroke();
+
       cCtx.fillStyle = '#38BDF8';
+
       cCtx.font = 'bold 11px Consolas, monospace';
+
       cCtx.fillText('v', partX + vx + 5, partY + vy);
 
       // Centripetal Acceleration (Radially Inward - Rose)
+
       const acLen = 45;
+
       const acx = -Math.cos(circAnimAngle) * acLen;
+
       const acy = -Math.sin(circAnimAngle) * acLen;
+
       cCtx.strokeStyle = '#F43F5E';
+
       cCtx.lineWidth = 3;
+
       cCtx.beginPath();
+
       cCtx.moveTo(partX, partY);
+
       cCtx.lineTo(partX + acx, partY + acy);
+
       cCtx.stroke();
+
       cCtx.fillStyle = '#F43F5E';
+
       cCtx.fillText('a_c', partX + acx * 0.6 - 10, partY + acy * 0.6 - 5);
 
       // Non-Uniform Net Acceleration Vector (Concept 14)
+
       if (currentCircConcept === 'non_uniform') {
+
         const atLen = 25;
+
         const atx = -Math.sin(circAnimAngle) * atLen;
+
         const aty = Math.cos(circAnimAngle) * atLen;
 
         // Tangential Acceleration Arrow
+
         cCtx.strokeStyle = '#FBBF24';
+
         cCtx.lineWidth = 2.5;
+
         cCtx.beginPath();
+
         cCtx.moveTo(partX, partY);
+
         cCtx.lineTo(partX + atx, partY + aty);
+
         cCtx.stroke();
 
         // Net Acceleration Arrow (Green)
+
         cCtx.strokeStyle = '#4ADE80';
+
         cCtx.lineWidth = 3.5;
+
         cCtx.beginPath();
+
         cCtx.moveTo(partX, partY);
+
         cCtx.lineTo(partX + acx + atx, partY + acy + aty);
+
         cCtx.stroke();
 
         cCtx.fillStyle = '#4ADE80';
+
         cCtx.fillText('a_net', partX + acx + atx + 5, partY + acy + aty);
+
       }
+
     }
 
     // Continuous Animation Loop for smooth physics movements
+
     function globalAnimationLoop() {
+
       if (currentMode === 'circular') {
+
         drawCircularCanvas();
+
       }
+
       requestAnimationFrame(globalAnimationLoop);
+
     }
+
     globalAnimationLoop();
 
     // Responsive Canvas Resizing
+
     window.addEventListener('resize', () => {
+
       if (currentMode === 'graphs') drawGraphCanvas();
+
       if (currentMode === 'vectors') drawVectorCanvas();
+
       if (currentMode === 'projectile') drawProjectileCanvas();
+
       if (currentMode === 'circular') drawCircularCanvas();
+
     });
+
   </script>
+
 </body>
+
 </html>
+
