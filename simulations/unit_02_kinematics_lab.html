@@ -1046,60 +1046,6 @@
 
     // ========================================================
 
-    // CONCEPT DEEP-LINK PARSER (Matches All 14 Concepts)
-
-    // ========================================================
-
-    const urlParams = new URLSearchParams(window.location.search);
-
-    const conceptParam = urlParams.get('concept');
-
-    const modeParam = urlParams.get('mode');
-
-    if (conceptParam) {
-
-      // Map Canonical ID to Engine & Sub-Preset
-
-      if (conceptParam === 'P11-C02-T01-V01') { switchMode('graphs'); setGraphConcept('xt'); }
-
-      else if (conceptParam === 'P11-C02-T03-V08') { switchMode('graphs'); setGraphConcept('vt'); }
-
-      else if (conceptParam === 'P11-C02-T02-V01') { switchMode('vectors'); setVectorConcept('resolution'); }
-
-      else if (conceptParam === 'P11-C02-T03-V09') { switchMode('vectors'); setVectorConcept('river'); }
-
-      else if (['P11-C02-T03-V01', 'P11-C02-T03-V02', 'P11-C02-T03-V03', 'P11-C02-T03-V04'].includes(conceptParam)) {
-
-        switchMode('projectile'); setProjectileConcept('ground');
-
-      }
-
-      else if (conceptParam === 'P11-C02-T04-V10') { switchMode('projectile'); setProjectileConcept('cliff'); }
-
-      else if (conceptParam === 'P11-C02-T04-V11') { switchMode('projectile'); setProjectileConcept('incline'); }
-
-      else if (conceptParam === 'P11-C02-T04-V12') { switchMode('projectile'); setProjectileConcept('curvature'); }
-
-      else if (conceptParam === 'P11-C02-T04-V01') { switchMode('circular'); setCircularConcept('centripetal'); }
-
-      else if (conceptParam === 'P11-C02-T05-V13') { switchMode('circular'); setCircularConcept('linear_angular'); }
-
-      else if (conceptParam === 'P11-C02-T05-V14') { switchMode('circular'); setCircularConcept('non_uniform'); }
-
-      else { switchMode('graphs'); }
-
-    } else if (modeParam) {
-
-      switchMode(modeParam);
-
-    } else {
-
-      switchMode('graphs');
-
-    }
-
-    // ========================================================
-
     // ENGINE 1: STRAIGHT LINE MOTION (CONCEPTS 1 & 2)
 
     // ========================================================
@@ -1109,17 +1055,14 @@
     const gCtx = gCanvas.getContext('2d');
 
     function resizeCanvas(c) {
-
-      const rect = c.parentElement.getBoundingClientRect();
-
-      if (rect.width > 0 && rect.height > 0) {
-
-        c.width = rect.width;
-
-        c.height = rect.height;
-
+      if (!c) return;
+      const rect = c.parentElement ? c.parentElement.getBoundingClientRect() : { width: 0, height: 0 };
+      const w = rect.width > 0 ? rect.width : (c.parentElement ? c.parentElement.clientWidth : 0);
+      const h = rect.height > 0 ? rect.height : (c.parentElement ? c.parentElement.clientHeight : 0);
+      if (w > 0 && h > 0) {
+        c.width = Math.round(w);
+        c.height = Math.round(h);
       }
-
     }
 
     function setGraphConcept(sub) {
@@ -2574,17 +2517,95 @@
 
     // Responsive Canvas Resizing
 
+    function redrawActiveMode() {
+      if (currentMode === 'graphs') {
+        resizeCanvas(gCanvas);
+        drawGraphCanvas();
+      } else if (currentMode === 'vectors') {
+        resizeCanvas(vCanvas);
+        drawVectorCanvas();
+      } else if (currentMode === 'projectile') {
+        resizeCanvas(pCanvas);
+        drawProjectileCanvas();
+      } else if (currentMode === 'circular') {
+        resizeCanvas(cCanvas);
+        drawCircularCanvas();
+      }
+    }
+
+    // Responsive Canvas Resizing on window resize
     window.addEventListener('resize', () => {
-
-      if (currentMode === 'graphs') drawGraphCanvas();
-
-      if (currentMode === 'vectors') drawVectorCanvas();
-
-      if (currentMode === 'projectile') drawProjectileCanvas();
-
-      if (currentMode === 'circular') drawCircularCanvas();
-
+      redrawActiveMode();
     });
+
+    // ResizeObserver to detect when canvas containers become visible (e.g. parent iframe unhidden)
+    try {
+      const resizeObserver = new ResizeObserver((entries) => {
+        let needsRedraw = false;
+        for (const entry of entries) {
+          if (entry.contentRect && entry.contentRect.width > 0 && entry.contentRect.height > 0) {
+            needsRedraw = true;
+          }
+        }
+        if (needsRedraw) {
+          redrawActiveMode();
+        }
+      });
+      [gCanvas, vCanvas, pCanvas, cCanvas].forEach(c => {
+        if (c && c.parentElement) {
+          resizeObserver.observe(c.parentElement);
+        }
+      });
+    } catch (e) {
+      console.warn('ResizeObserver setup:', e);
+    }
+
+    // ========================================================
+    // CONCEPT DEEP-LINK ROUTER (Matches All 14 Canonical Concepts)
+    // ========================================================
+    function applyConceptOrMode(concept, mode) {
+      if (concept) {
+        if (concept === 'P11-C02-T01-V01') { switchMode('graphs'); setGraphConcept('xt'); }
+        else if (concept === 'P11-C02-T03-V08') { switchMode('graphs'); setGraphConcept('vt'); }
+        else if (concept === 'P11-C02-T02-V01') { switchMode('vectors'); setVectorConcept('resolution'); }
+        else if (concept === 'P11-C02-T03-V09') { switchMode('vectors'); setVectorConcept('river'); }
+        else if (['P11-C02-T03-V01', 'P11-C02-T03-V02', 'P11-C02-T03-V03', 'P11-C02-T03-V04'].includes(concept)) {
+          switchMode('projectile'); setProjectileConcept('ground');
+        }
+        else if (concept === 'P11-C02-T04-V10') { switchMode('projectile'); setProjectileConcept('cliff'); }
+        else if (concept === 'P11-C02-T04-V11') { switchMode('projectile'); setProjectileConcept('incline'); }
+        else if (concept === 'P11-C02-T04-V12') { switchMode('projectile'); setProjectileConcept('curvature'); }
+        else if (concept === 'P11-C02-T04-V01') { switchMode('circular'); setCircularConcept('centripetal'); }
+        else if (concept === 'P11-C02-T05-V13') { switchMode('circular'); setCircularConcept('linear_angular'); }
+        else if (concept === 'P11-C02-T05-V14') { switchMode('circular'); setCircularConcept('non_uniform'); }
+        else { switchMode('graphs'); }
+      } else if (mode) {
+        switchMode(mode);
+      } else {
+        switchMode('graphs');
+      }
+      setTimeout(redrawActiveMode, 30);
+      setTimeout(redrawActiveMode, 100);
+    }
+
+    // Handle postMessage communication from parent EdApp Player
+    window.addEventListener('message', (event) => {
+      if (event.data && (event.data.type === 'REDRAW_SIMULATION' || event.data.type === 'SWITCH_CONCEPT')) {
+        if (event.data.concept) {
+          applyConceptOrMode(event.data.concept, null);
+        } else {
+          redrawActiveMode();
+        }
+        setTimeout(redrawActiveMode, 30);
+        setTimeout(redrawActiveMode, 120);
+      }
+    });
+
+    // Execute URL parameter routing at bottom of script
+    const urlParams = new URLSearchParams(window.location.search);
+    const conceptParam = urlParams.get('concept');
+    const modeParam = urlParams.get('mode');
+    applyConceptOrMode(conceptParam, modeParam);
 
   </script>
 

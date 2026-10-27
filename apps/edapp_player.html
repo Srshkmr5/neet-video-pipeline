@@ -1638,8 +1638,15 @@
 
       if (concept.simulation) {
         const sim = document.getElementById('simIframe');
-        if (sim && (!sim.src || !sim.src.includes(concept.simulation))) {
-          sim.src = concept.simulation;
+        if (sim) {
+          const targetUrl = new URL(concept.simulation, window.location.origin).href;
+          if (sim.src !== targetUrl) {
+            sim.src = targetUrl;
+          } else {
+            try {
+              sim.contentWindow.postMessage({ type: 'SWITCH_CONCEPT', concept: concept.canonical_id }, '*');
+            } catch (e) {}
+          }
         }
       }
 
@@ -1794,8 +1801,22 @@
       });
       if (tab === 'lab' && currentConcept && currentConcept.simulation) {
         const sim = document.getElementById('simIframe');
-        if (sim && (!sim.src || !sim.src.includes(currentConcept.simulation))) {
-          sim.src = currentConcept.simulation;
+        if (sim) {
+          const targetUrl = new URL(currentConcept.simulation, window.location.origin).href;
+          if (!sim.src || sim.src !== targetUrl) {
+            sim.src = targetUrl;
+          }
+          // Post redraw message once container is unhidden
+          setTimeout(() => {
+            try {
+              sim.contentWindow.postMessage({ type: 'REDRAW_SIMULATION', concept: currentConcept.canonical_id }, '*');
+            } catch (e) {}
+          }, 40);
+          setTimeout(() => {
+            try {
+              sim.contentWindow.postMessage({ type: 'REDRAW_SIMULATION', concept: currentConcept.canonical_id }, '*');
+            } catch (e) {}
+          }, 150);
         }
       }
     }
