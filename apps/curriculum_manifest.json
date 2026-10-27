@@ -552,7 +552,7 @@
         },
         "3d": {}
       },
-      "simulation": "/simulations/unit_02_kinematics_lab.html?mode=graphs",
+      "simulation": "/simulations/unit_02_kinematics_lab.html?concept=P11-C02-T01-V01",
       "trap_quiz": {
         "title": "NEET Trap: Position-Time Graphs",
         "warning": "Confusing slope of x-t graph (velocity) with slope of v-t graph (acceleration).",
@@ -617,7 +617,7 @@
         },
         "3d": {}
       },
-      "simulation": "/simulations/unit_02_kinematics_lab.html?mode=vectors",
+      "simulation": "/simulations/unit_02_kinematics_lab.html?concept=P11-C02-T02-V01",
       "trap_quiz": {
         "title": "NEET Trap: Resolution of Vectors",
         "warning": "Assigning cosine to vertical axis when angle was given with horizontal.",
@@ -682,7 +682,7 @@
         },
         "3d": {}
       },
-      "simulation": "/simulations/unit_02_kinematics_lab.html?mode=projectile",
+      "simulation": "/simulations/unit_02_kinematics_lab.html?concept=P11-C02-T03-V01",
       "trap_quiz": {
         "title": "Horizontal Acceleration Assumption Trap",
         "warning": "Students frequently try to incorporate horizontal speed vx into time of flight calculations.",
@@ -749,7 +749,7 @@
           "en": "/api/stream/P11-C02-T03-V02_3d_en-IN/master.m3u8"
         }
       },
-      "simulation": "/simulations/unit_02_kinematics_lab.html?mode=projectile",
+      "simulation": "/simulations/unit_02_kinematics_lab.html?concept=P11-C02-T03-V02",
       "trap_quiz": {
         "title": "Swapping Sine and Cosine (Angle with Vertical Axis)",
         "warning": "The textbook formula H_max = (v0² sin²θ)/(2g) is valid ONLY when θ is measured from the horizontal! If measured from vertical, vertical speed is v0 cos θ, turning sin²θ into cos²θ.",
@@ -814,7 +814,7 @@
         },
         "3d": {}
       },
-      "simulation": "/simulations/unit_02_kinematics_lab.html?mode=projectile",
+      "simulation": "/simulations/unit_02_kinematics_lab.html?concept=P11-C02-T03-V03",
       "trap_quiz": {
         "title": "NEET Trap: Horizontal Range and Complementary Angles",
         "warning": "Assuming time of flight and maximum height are also equal when ranges are equal for complementary angles.",
@@ -879,7 +879,7 @@
         },
         "3d": {}
       },
-      "simulation": "/simulations/unit_02_kinematics_lab.html?mode=projectile",
+      "simulation": "/simulations/unit_02_kinematics_lab.html?concept=P11-C02-T03-V04",
       "trap_quiz": {
         "title": "NEET Trap: Equation of Trajectory",
         "warning": "Confusing tan(theta) factor with cot(theta) when comparing experimental trajectory equations.",
@@ -944,7 +944,7 @@
         },
         "3d": {}
       },
-      "simulation": "/simulations/unit_02_kinematics_lab.html?mode=circular",
+      "simulation": "/simulations/unit_02_kinematics_lab.html?concept=P11-C02-T04-V01",
       "trap_quiz": {
         "title": "NEET Trap: Centripetal Acceleration",
         "warning": "Assuming acceleration is zero because speed is constant in uniform circular motion.",
@@ -1009,7 +1009,7 @@
         },
         "3d": {}
       },
-      "simulation": "/simulations/unit_02_kinematics_lab.html?mode=graphs",
+      "simulation": "/simulations/unit_02_kinematics_lab.html?concept=P11-C02-T03-V08",
       "trap_quiz": {
         "title": "NEET Trap: Velocity-Time Graphs & Displacement",
         "warning": "Calculating distance instead of displacement by ignoring sign of negative area!",
@@ -1074,7 +1074,7 @@
         },
         "3d": {}
       },
-      "simulation": "/simulations/unit_02_kinematics_lab.html?mode=vectors",
+      "simulation": "/simulations/unit_02_kinematics_lab.html?concept=P11-C02-T03-V09",
       "trap_quiz": {
         "title": "NEET Trap: Relative Velocity & River-Boat Vectors",
         "warning": "Confusing shortest path with shortest time in river-boat problems!",
@@ -1139,7 +1139,7 @@
         },
         "3d": {}
       },
-      "simulation": "/simulations/unit_02_kinematics_lab.html?mode=projectile",
+      "simulation": "/simulations/unit_02_kinematics_lab.html?concept=P11-C02-T04-V10",
       "trap_quiz": {
         "title": "NEET Trap: Horizontal Projection from a Height",
         "warning": "Believing a faster launched projectile takes longer to hit the ground than one dropped!",
@@ -1204,7 +1204,7 @@
         },
         "3d": {}
       },
-      "simulation": "/simulations/unit_02_kinematics_lab.html?mode=projectile",
+      "simulation": "/simulations/unit_02_kinematics_lab.html?concept=P11-C02-T04-V11",
       "trap_quiz": {
         "title": "NEET Trap: Projectile on an Inclined Plane",
         "warning": "Forgetting that acceleration along incline is non-zero (g sin beta)!",
@@ -1269,7 +1269,7 @@
         },
         "3d": {}
       },
-      "simulation": "/simulations/unit_02_kinematics_lab.html?mode=projectile",
+      "simulation": "/simulations/unit_02_kinematics_lab.html?concept=P11-C02-T04-V12",
       "trap_quiz": {
         "title": "NEET Trap: Radius of Curvature at Apex",
         "warning": "Using total launch speed v0 instead of horizontal velocity v0 cos theta at the apex!",
@@ -1334,7 +1334,7 @@
         },
         "3d": {}
       },
-      "simulation": "/simulations/unit_02_kinematics_lab.html?mode=circular",
+      "simulation": "/simulations/unit_02_kinematics_lab.html?concept=P11-C02-T05-V13",
       "trap_quiz": {
         "title": "NEET Trap: Angular Velocity & Linear Speed Relation",
         "warning": "Thinking points closer to center move with higher linear velocity than the outer rim!",
@@ -1399,7 +1399,7 @@
         },
         "3d": {}
       },
-      "simulation": "/simulations/unit_02_kinematics_lab.html?mode=circular",
+      "simulation": "/simulations/unit_02_kinematics_lab.html?concept=P11-C02-T05-V14",
       "trap_quiz": {
         "title": "NEET Trap: Non-Uniform Circular Motion Acceleration",
         "warning": "Forgetting tangential acceleration when speed is increasing in circular motion!",
