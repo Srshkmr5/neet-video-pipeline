@@ -174,5 +174,192 @@
     "ncert_citation": "NCERT Class 11 Part 1, Chapter 2, Pages 27-30",
     "typo_warnings_count": 0,
     "approved_at": "2026-10-21T17:43:33.729272"
+  },
+  "P11-C03-T01-V01": {
+    "canonical_id": "P11-C03-T01-V01",
+    "concept_title": "First Law of Motion, Inertia and Free-Body Diagrams",
+    "template_name": "ModularUnit3Scene",
+    "status": "APPROVED",
+    "last_verified_at": "2026-10-27T17:03:17.749466",
+    "proofs": {
+      "beat_1": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T01-V01\\beat_1_intro.png",
+      "beat_2": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T01-V01\\beat_2_hero.png",
+      "beat_3": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T01-V01\\beat_3_scenarios.png",
+      "beat_4": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T01-V01\\beat_4_trap.png",
+      "beat_5": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T01-V01\\beat_5_teaser.png"
+    },
+    "ncert_citation": "NCERT Class 11 Physics, Chapter 4, Sec 4.2 - 4.3",
+    "typo_warnings_count": 0,
+    "approved_at": "2026-10-27T17:03:17.749466"
+  },
+  "P11-C03-T01-V02": {
+    "canonical_id": "P11-C03-T01-V02",
+    "concept_title": "Second Law of Motion, Elevators and Pseudo Forces",
+    "template_name": "ModularUnit3Scene",
+    "status": "APPROVED",
+    "last_verified_at": "2026-10-27T17:03:17.749466",
+    "proofs": {
+      "beat_1": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T01-V02\\beat_1_intro.png",
+      "beat_2": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T01-V02\\beat_2_hero.png",
+      "beat_3": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T01-V02\\beat_3_scenarios.png",
+      "beat_4": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T01-V02\\beat_4_trap.png",
+      "beat_5": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T01-V02\\beat_5_teaser.png"
+    },
+    "ncert_citation": "NCERT Class 11 Physics, Chapter 4, Sec 4.4",
+    "typo_warnings_count": 0,
+    "approved_at": "2026-10-27T17:03:17.749466"
+  },
+  "P11-C03-T01-V03": {
+    "canonical_id": "P11-C03-T01-V03",
+    "concept_title": "Third Law of Motion, Action-Reaction and String Tension",
+    "template_name": "ModularUnit3Scene",
+    "status": "APPROVED",
+    "last_verified_at": "2026-10-27T17:03:17.749466",
+    "proofs": {
+      "beat_1": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T01-V03\\beat_1_intro.png",
+      "beat_2": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T01-V03\\beat_2_hero.png",
+      "beat_3": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T01-V03\\beat_3_scenarios.png",
+      "beat_4": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T01-V03\\beat_4_trap.png",
+      "beat_5": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T01-V03\\beat_5_teaser.png"
+    },
+    "ncert_citation": "NCERT Class 11 Physics, Chapter 4, Sec 4.5",
+    "typo_warnings_count": 0,
+    "approved_at": "2026-10-27T17:03:17.749466"
+  },
+  "P11-C03-T02-V04": {
+    "canonical_id": "P11-C03-T02-V04",
+    "concept_title": "Linear Momentum, Impulse and Area under F-t Curve",
+    "template_name": "ModularUnit3Scene",
+    "status": "APPROVED",
+    "last_verified_at": "2026-10-27T17:03:17.749466",
+    "proofs": {
+      "beat_1": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T02-V04\\beat_1_intro.png",
+      "beat_2": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T02-V04\\beat_2_hero.png",
+      "beat_3": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T02-V04\\beat_3_scenarios.png",
+      "beat_4": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T02-V04\\beat_4_trap.png",
+      "beat_5": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T02-V04\\beat_5_teaser.png"
+    },
+    "ncert_citation": "NCERT Class 11 Physics, Chapter 4, Sec 4.4.1",
+    "typo_warnings_count": 0,
+    "approved_at": "2026-10-27T17:03:17.749466"
+  },
+  "P11-C03-T02-V05": {
+    "canonical_id": "P11-C03-T02-V05",
+    "concept_title": "Conservation of Linear Momentum and Rocket Thrust",
+    "template_name": "ModularUnit3Scene",
+    "status": "APPROVED",
+    "last_verified_at": "2026-10-27T17:03:17.749466",
+    "proofs": {
+      "beat_1": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T02-V05\\beat_1_intro.png",
+      "beat_2": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T02-V05\\beat_2_hero.png",
+      "beat_3": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T02-V05\\beat_3_scenarios.png",
+      "beat_4": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T02-V05\\beat_4_trap.png",
+      "beat_5": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T02-V05\\beat_5_teaser.png"
+    },
+    "ncert_citation": "NCERT Class 11 Physics, Chapter 4, Sec 4.6",
+    "typo_warnings_count": 0,
+    "approved_at": "2026-10-27T17:03:17.749466"
+  },
+  "P11-C03-T02-V06": {
+    "canonical_id": "P11-C03-T02-V06",
+    "concept_title": "Equilibrium of Concurrent Forces and Lami's Theorem",
+    "template_name": "ModularUnit3Scene",
+    "status": "APPROVED",
+    "last_verified_at": "2026-10-27T17:03:17.749466",
+    "proofs": {
+      "beat_1": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T02-V06\\beat_1_intro.png",
+      "beat_2": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T02-V06\\beat_2_hero.png",
+      "beat_3": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T02-V06\\beat_3_scenarios.png",
+      "beat_4": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T02-V06\\beat_4_trap.png",
+      "beat_5": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T02-V06\\beat_5_teaser.png"
+    },
+    "ncert_citation": "NCERT Class 11 Physics, Chapter 4, Sec 4.7",
+    "typo_warnings_count": 0,
+    "approved_at": "2026-10-27T17:03:17.749466"
+  },
+  "P11-C03-T03-V07": {
+    "canonical_id": "P11-C03-T03-V07",
+    "concept_title": "Static vs Kinetic Friction, Limiting Value and Graphs",
+    "template_name": "ModularUnit3Scene",
+    "status": "APPROVED",
+    "last_verified_at": "2026-10-27T17:03:17.749466",
+    "proofs": {
+      "beat_1": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T03-V07\\beat_1_intro.png",
+      "beat_2": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T03-V07\\beat_2_hero.png",
+      "beat_3": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T03-V07\\beat_3_scenarios.png",
+      "beat_4": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T03-V07\\beat_4_trap.png",
+      "beat_5": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T03-V07\\beat_5_teaser.png"
+    },
+    "ncert_citation": "NCERT Class 11 Physics, Chapter 4, Sec 4.8",
+    "typo_warnings_count": 0,
+    "approved_at": "2026-10-27T17:03:17.749466"
+  },
+  "P11-C03-T03-V08": {
+    "canonical_id": "P11-C03-T03-V08",
+    "concept_title": "Rough Inclined Plane, Angle of Repose and Acceleration",
+    "template_name": "ModularUnit3Scene",
+    "status": "APPROVED",
+    "last_verified_at": "2026-10-27T17:03:17.749466",
+    "proofs": {
+      "beat_1": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T03-V08\\beat_1_intro.png",
+      "beat_2": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T03-V08\\beat_2_hero.png",
+      "beat_3": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T03-V08\\beat_3_scenarios.png",
+      "beat_4": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T03-V08\\beat_4_trap.png",
+      "beat_5": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T03-V08\\beat_5_teaser.png"
+    },
+    "ncert_citation": "NCERT Class 11 Physics, Chapter 4, Sec 4.8.1",
+    "typo_warnings_count": 0,
+    "approved_at": "2026-10-27T17:03:17.749466"
+  },
+  "P11-C03-T03-V09": {
+    "canonical_id": "P11-C03-T03-V09",
+    "concept_title": "Two-Block Friction Systems and Relative Motion Threshold",
+    "template_name": "ModularUnit3Scene",
+    "status": "APPROVED",
+    "last_verified_at": "2026-10-27T17:03:17.749466",
+    "proofs": {
+      "beat_1": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T03-V09\\beat_1_intro.png",
+      "beat_2": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T03-V09\\beat_2_hero.png",
+      "beat_3": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T03-V09\\beat_3_scenarios.png",
+      "beat_4": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T03-V09\\beat_4_trap.png",
+      "beat_5": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T03-V09\\beat_5_teaser.png"
+    },
+    "ncert_citation": "NCERT Class 11 Physics, Chapter 4, Sec 4.8.2",
+    "typo_warnings_count": 0,
+    "approved_at": "2026-10-27T17:03:17.749466"
+  },
+  "P11-C03-T04-V10": {
+    "canonical_id": "P11-C03-T04-V10",
+    "concept_title": "Centripetal Force and Level Curved Road Dynamics",
+    "template_name": "ModularUnit3Scene",
+    "status": "APPROVED",
+    "last_verified_at": "2026-10-27T17:03:17.749466",
+    "proofs": {
+      "beat_1": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T04-V10\\beat_1_intro.png",
+      "beat_2": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T04-V10\\beat_2_hero.png",
+      "beat_3": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T04-V10\\beat_3_scenarios.png",
+      "beat_4": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T04-V10\\beat_4_trap.png",
+      "beat_5": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T04-V10\\beat_5_teaser.png"
+    },
+    "ncert_citation": "NCERT Class 11 Physics, Chapter 4, Sec 4.9",
+    "typo_warnings_count": 0,
+    "approved_at": "2026-10-27T17:03:17.749466"
+  },
+  "P11-C03-T04-V11": {
+    "canonical_id": "P11-C03-T04-V11",
+    "concept_title": "Engineered Banking of Roads and Vertical Circles",
+    "template_name": "ModularUnit3Scene",
+    "status": "APPROVED",
+    "last_verified_at": "2026-10-27T17:03:17.749466",
+    "proofs": {
+      "beat_1": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T04-V11\\beat_1_intro.png",
+      "beat_2": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T04-V11\\beat_2_hero.png",
+      "beat_3": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T04-V11\\beat_3_scenarios.png",
+      "beat_4": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T04-V11\\beat_4_trap.png",
+      "beat_5": "C:\\Users\\DELL\\.gemini\\antigravity\\worktrees\\neet-video-pipeline_1\\optimize_token_usage\\brain\\d9fc2045-37b2-4535-b18a-d8358d69714d\\storyboards_unit3\\P11-C03-T04-V11\\beat_5_teaser.png"
+    },
+    "ncert_citation": "NCERT Class 11 Physics, Chapter 4, Sec 4.9.1",
+    "typo_warnings_count": 0,
+    "approved_at": "2026-10-27T17:03:17.749466"
   }
 }

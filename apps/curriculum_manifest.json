@@ -1455,9 +1455,13 @@
       "author_book_nuance": "Internal forces cancel out in action-reaction pairs; only external forces can accelerate the system.",
       "neet_trap_point": "Never include internal forces or forces exerted BY the body on other objects in its own FBD.",
       "pyq_years": "NEET 2021, 2017",
-      "has_secure_stream": false,
+      "has_secure_stream": true,
       "streams": {
-        "2d": {},
+        "2d": {
+          "en": "/api/stream/P11-C03-T01-V01_en-IN/master.m3u8",
+          "hi": "/api/stream/P11-C03-T01-V01_hi-IN/master.m3u8",
+          "ta": "/api/stream/P11-C03-T01-V01_ta-IN/master.m3u8"
+        },
         "3d": {}
       },
       "simulation": "/simulations/unit_03_laws_of_motion_lab.html?concept=P11-C03-T01-V01",
@@ -1516,9 +1520,13 @@
       "author_book_nuance": "Velocity direction does not matter; only the direction of acceleration determines apparent weight.",
       "neet_trap_point": "Confusing upward velocity with upward acceleration. An elevator moving upwards but slowing down has a downwards, so N = m(g - a)!",
       "pyq_years": "NEET 2023, 2020, 2018",
-      "has_secure_stream": false,
+      "has_secure_stream": true,
       "streams": {
-        "2d": {},
+        "2d": {
+          "en": "/api/stream/P11-C03-T01-V02_en-IN/master.m3u8",
+          "hi": "/api/stream/P11-C03-T01-V02_hi-IN/master.m3u8",
+          "ta": "/api/stream/P11-C03-T01-V02_ta-IN/master.m3u8"
+        },
         "3d": {}
       },
       "simulation": "/simulations/unit_03_laws_of_motion_lab.html?concept=P11-C03-T01-V02",
@@ -1577,9 +1585,13 @@
       "author_book_nuance": "Normal force and gravity on a resting book are NOT action-reaction pairs.",
       "neet_trap_point": "Assuming Normal force and gravity cancel because of Newton Third Law; they balance because of the First Law (equilibrium on a single body)!",
       "pyq_years": "NEET 2022, 2019, 2016",
-      "has_secure_stream": false,
+      "has_secure_stream": true,
       "streams": {
-        "2d": {},
+        "2d": {
+          "en": "/api/stream/P11-C03-T01-V03_en-IN/master.m3u8",
+          "hi": "/api/stream/P11-C03-T01-V03_hi-IN/master.m3u8",
+          "ta": "/api/stream/P11-C03-T01-V03_ta-IN/master.m3u8"
+        },
         "3d": {}
       },
       "simulation": "/simulations/unit_03_laws_of_motion_lab.html?concept=P11-C03-T01-V03",
@@ -1638,9 +1650,13 @@
       "author_book_nuance": "Momentum is a vector quantity; sign inversion upon reversal doubles the change in momentum.",
       "neet_trap_point": "Forgetting the negative sign of rebound velocity, calculating Delta p = mv - mv = 0 instead of 2mv.",
       "pyq_years": "NEET 2024, 2021, 2019",
-      "has_secure_stream": false,
+      "has_secure_stream": true,
       "streams": {
-        "2d": {},
+        "2d": {
+          "en": "/api/stream/P11-C03-T02-V04_en-IN/master.m3u8",
+          "hi": "/api/stream/P11-C03-T02-V04_hi-IN/master.m3u8",
+          "ta": "/api/stream/P11-C03-T02-V04_ta-IN/master.m3u8"
+        },
         "3d": {}
       },
       "simulation": "/simulations/unit_03_laws_of_motion_lab.html?concept=P11-C03-T02-V04",
@@ -1699,9 +1715,13 @@
       "author_book_nuance": "Momentum is conserved along each Cartesian coordinate independently (x, y, z).",
       "neet_trap_point": "Neglecting the mass of the bullet when computing total rifle+bullet mass after firing or using scalar speeds.",
       "pyq_years": "NEET 2022, 2018, 2015",
-      "has_secure_stream": false,
+      "has_secure_stream": true,
       "streams": {
-        "2d": {},
+        "2d": {
+          "en": "/api/stream/P11-C03-T02-V05_en-IN/master.m3u8",
+          "hi": "/api/stream/P11-C03-T02-V05_hi-IN/master.m3u8",
+          "ta": "/api/stream/P11-C03-T02-V05_ta-IN/master.m3u8"
+        },
         "3d": {}
       },
       "simulation": "/simulations/unit_03_laws_of_motion_lab.html?concept=P11-C03-T02-V05",
@@ -1760,9 +1780,13 @@
       "author_book_nuance": "Forces must act at the same single point (concurrent); Lami's theorem cannot be used for rotational equilibrium.",
       "neet_trap_point": "Taking the angle between the force and an axis rather than the interior angle between the other two forces.",
       "pyq_years": "NEET 2023, 2020",
-      "has_secure_stream": false,
+      "has_secure_stream": true,
       "streams": {
-        "2d": {},
+        "2d": {
+          "en": "/api/stream/P11-C03-T02-V06_en-IN/master.m3u8",
+          "hi": "/api/stream/P11-C03-T02-V06_hi-IN/master.m3u8",
+          "ta": "/api/stream/P11-C03-T02-V06_ta-IN/master.m3u8"
+        },
         "3d": {}
       },
       "simulation": "/simulations/unit_03_laws_of_motion_lab.html?concept=P11-C03-T02-V06",
@@ -1821,9 +1845,13 @@
       "author_book_nuance": "Friction opposes relative motion between surfaces in contact, NOT necessarily absolute motion.",
       "neet_trap_point": "Assuming static friction is always equal to mu_s * N even when applied force is small.",
       "pyq_years": "NEET 2024, 2021, 2017",
-      "has_secure_stream": false,
+      "has_secure_stream": true,
       "streams": {
-        "2d": {},
+        "2d": {
+          "en": "/api/stream/P11-C03-T03-V07_en-IN/master.m3u8",
+          "hi": "/api/stream/P11-C03-T03-V07_hi-IN/master.m3u8",
+          "ta": "/api/stream/P11-C03-T03-V07_ta-IN/master.m3u8"
+        },
         "3d": {}
       },
       "simulation": "/simulations/unit_03_laws_of_motion_lab.html?concept=P11-C03-T03-V07",
@@ -1882,9 +1910,13 @@
       "author_book_nuance": "Because upward deceleration is greater than downward acceleration, time of ascent is strictly less than time of descent on a rough incline.",
       "neet_trap_point": "Using the same acceleration for upward and downward motion on a rough incline.",
       "pyq_years": "NEET 2023, 2020, 2016",
-      "has_secure_stream": false,
+      "has_secure_stream": true,
       "streams": {
-        "2d": {},
+        "2d": {
+          "en": "/api/stream/P11-C03-T03-V08_en-IN/master.m3u8",
+          "hi": "/api/stream/P11-C03-T03-V08_hi-IN/master.m3u8",
+          "ta": "/api/stream/P11-C03-T03-V08_ta-IN/master.m3u8"
+        },
         "3d": {}
       },
       "simulation": "/simulations/unit_03_laws_of_motion_lab.html?concept=P11-C03-T03-V08",
@@ -1943,9 +1975,13 @@
       "author_book_nuance": "Identify which block is driven by friction alone; that block limiting friction dictates the maximum acceleration without slipping.",
       "neet_trap_point": "Assuming both blocks accelerate together regardless of how large the pulling force is.",
       "pyq_years": "NEET 2022, 2019, 2018",
-      "has_secure_stream": false,
+      "has_secure_stream": true,
       "streams": {
-        "2d": {},
+        "2d": {
+          "en": "/api/stream/P11-C03-T03-V09_en-IN/master.m3u8",
+          "hi": "/api/stream/P11-C03-T03-V09_hi-IN/master.m3u8",
+          "ta": "/api/stream/P11-C03-T03-V09_ta-IN/master.m3u8"
+        },
         "3d": {}
       },
       "simulation": "/simulations/unit_03_laws_of_motion_lab.html?concept=P11-C03-T03-V09",
@@ -2004,9 +2040,13 @@
       "author_book_nuance": "It is static friction that prevents skidding; if tires start skidding, kinetic friction takes over, drastically reducing steering control.",
       "neet_trap_point": "Assuming heavier vehicles have higher maximum turn speed on a level road. Mass cancels out!",
       "pyq_years": "NEET 2024, 2022, 2019",
-      "has_secure_stream": false,
+      "has_secure_stream": true,
       "streams": {
-        "2d": {},
+        "2d": {
+          "en": "/api/stream/P11-C03-T04-V10_en-IN/master.m3u8",
+          "hi": "/api/stream/P11-C03-T04-V10_hi-IN/master.m3u8",
+          "ta": "/api/stream/P11-C03-T04-V10_ta-IN/master.m3u8"
+        },
         "3d": {}
       },
       "simulation": "/simulations/unit_03_laws_of_motion_lab.html?concept=P11-C03-T04-V10",
@@ -2065,9 +2105,13 @@
       "author_book_nuance": "For a light rigid rod, speed at apex can reach 0, so v_bottom >= sqrt(4gr) = 2*sqrt(gr), whereas a string goes slack unless v_apex >= sqrt(gr).",
       "neet_trap_point": "Confusing string looping condition (v >= sqrt(5gr)) with light rigid rod condition (v >= sqrt(4gr) = 2sqrt(gr)).",
       "pyq_years": "NEET 2023, 2020, 2017",
-      "has_secure_stream": false,
+      "has_secure_stream": true,
       "streams": {
-        "2d": {},
+        "2d": {
+          "en": "/api/stream/P11-C03-T04-V11_en-IN/master.m3u8",
+          "hi": "/api/stream/P11-C03-T04-V11_hi-IN/master.m3u8",
+          "ta": "/api/stream/P11-C03-T04-V11_ta-IN/master.m3u8"
+        },
         "3d": {}
       },
       "simulation": "/simulations/unit_03_laws_of_motion_lab.html?concept=P11-C03-T04-V11",
