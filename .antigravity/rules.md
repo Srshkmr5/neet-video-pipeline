@@ -75,3 +75,32 @@ Derived from MASTER_BLUEPRINT.md v1.1
       - `loadTrapQuiz()` must dynamically render this card on every concept change or cleanly hide the container element if no formula is applicable, eliminating persistent stale formulas.
     - **Zero Filter Bias in Curriculum Navigation**: Filter dropdown functions (`populateUnits()`, `populateTopics()`) must initialize dynamically from the curriculum manifest without hardcoded unit/topic overrides (e.g. forcing `KINEMATICS` or `Projectile`), ensuring the syllabus always opens sequentially from the user's active unit.
 
+15. **Lossless Audio End-Padding (`apad`) for Zero Player Stalling**:
+    - When packaging multi-lingual MP4s and AES-128 HLS streams, browser HTML5 `<video>` and Video.js decoders stall and pause playback if the audio track terminates even milliseconds before the visual stream, freezing the player before Beat 5 end cards finish.
+    - **Enforcement**: Every packaging workflow must losslessly pad audio via FFmpeg `-af "apad"` with `-c:v copy -shortest` so that audio duration is guaranteed to equal or slightly exceed the video stream.
+
+16. **Dynamic Native WebVTT Subtitle Pipeline & CC State**:
+    - Every concept render in all languages (`en-IN`, `hi-IN`, `ta-IN`) must produce synchronized WebVTT (`.vtt`) files.
+    - Triad EdApp Player must dynamically update native `<track kind="subtitles">` elements on concept selection, featuring high-contrast backdrop styling and an interactive CC toggle button (`CC ON / CC OFF`).
+
+17. **Simulation Deep-Link Architecture & Lexical Initialization Order (TDZ Guard)**:
+    - In interactive simulation hubs (e.g., `unit_02_kinematics_lab.html`, `unit_03_laws_of_motion_lab.html`), deep-link URL parsing and initial mode/concept dispatch (`applyConceptOrMode()`) MUST be located at the very bottom of the `<script>` tag.
+    - Strictly prohibit executing preset switchers before DOM canvases (`gCanvas`, `vCanvas`, `pCanvas`, `cCanvas`) and physics engine functions are declared, eliminating fatal ES6 `ReferenceError` (Temporal Dead Zone) crashes on direct links.
+
+18. **Iframe Visibility & Tab-Switch Dynamic Resizing (`ResizeObserver` & `postMessage`)**:
+    - Simulation hubs embedded inside multi-tab interfaces (where tabs use `display: none` / `.hidden`) evaluate `getBoundingClientRect()` to $0 \times 0$ when initialized in the background.
+    - **Enforcement**:
+      1. Every simulation canvas must observe its parent container wrapper with a `ResizeObserver`, triggering an immediate redraw as soon as container dimensions become $> 0$.
+      2. The parent player's tab switcher (`switchTab('lab')`) must dispatch `postMessage({ type: 'REDRAW_SIMULATION', concept: currentConcept.canonical_id })` to child iframes to guarantee instant, crisp rendering without black/blank canvases.
+
+19. **Pure UTF-8 Encoding & Mathematical Notation Purity (Zero Mojibake)**:
+    - Web simulations and UI components must maintain pure UTF-8 encoding. Double-encoded characters (e.g. `Â°`, `vâ‚€Â²`, `ðŸŽ¯`) are strictly prohibited.
+    - Use standard HTML entities (`&deg;`, `&theta;`, `&mu;`, `&Delta;`, `&omega;`) or KaTeX notation for physics terms. Interactive labs must omit non-functional video export buttons or redundant controls that clutter mobile viewports.
+
+20. **Unit 3 (Laws of Motion) Simulation Hub Architecture**:
+    - Unit 3's interactive hub (`simulations/unit_03_laws_of_motion_lab.html`) will adopt the unified 4-engine architecture with direct deep-links for all concepts:
+      * **Engine 1**: Newton's Laws & Free-Body Diagrams (FBDs) with resolved orthogonal forces ($N$, $mg$, tension $T$, applied force $F$).
+      * **Engine 2**: Friction Lab (Static friction limit $f_s \le \mu_s N$, kinetic friction $f_k = \mu_k N$, Angle of Repose $\tan\theta = \mu_s$, block on variable incline).
+      * **Engine 3**: Connected Bodies & Pulley Systems (Atwood machine, 2-body horizontal/inclined plane with string tension and acceleration $a$).
+      * **Engine 4**: Circular Dynamics & Banking of Roads (Unbanked vs. Banked curve, optimum velocity $v_0 = \sqrt{rg \tan\theta}$, maximum safe speed with friction $v_{\max} = \sqrt{\frac{rg(\tan\theta + \mu)}{1 - \mu\tan\theta}}$).
+
