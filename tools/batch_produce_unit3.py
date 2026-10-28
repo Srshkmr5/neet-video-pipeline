@@ -98,16 +98,23 @@ def update_manifest_and_approval():
     print("   [+] Updated queue/approval_manifest.json with Unit 3 approval entries.")
 
 def main():
-    total = len(UNIT3_CONCEPTS)
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--force", action="store_true", help="Force re-rendering of all multilingual videos")
+    parser.add_argument("--concept", type=str, default=None, help="Render specific concept ID")
+    args = parser.parse_args()
+
+    targets = [c for c in UNIT3_CONCEPTS if c[0] == args.concept] if args.concept else UNIT3_CONCEPTS
+    total = len(targets)
     print("=" * 80)
     print(f"🎬 MASTER BATCH PRODUCTION PIPELINE: UNIT 3 LAWS OF MOTION ({total} CONCEPTS)")
     print(f"   Target Deliverables: {total * 3} Synchronized Multilingual Videos (en-IN, hi-IN, ta-IN)")
     print("=" * 80)
 
-    for idx, (cid, title) in enumerate(UNIT3_CONCEPTS, 1):
+    for idx, (cid, title) in enumerate(targets, 1):
         print(f"\n[{idx}/{total}] >>> INITIATING PRODUCTION: {cid} ({title})")
         # Step 1: Render Multilingual Videos
-        render_concept_multilingual_unit3(cid, ["en-IN", "hi-IN", "ta-IN"])
+        render_concept_multilingual_unit3(cid, ["en-IN", "hi-IN", "ta-IN"], force=args.force)
 
         # Step 2: Ensure Storyboard Proofs
         en_video = OUTPUT_DIR / f"{cid}_en-IN.mp4"

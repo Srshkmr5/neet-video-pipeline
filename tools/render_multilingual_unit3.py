@@ -349,7 +349,7 @@ def extract_storyboard_proofs(video_path: Path, canonical_id: str):
             subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     print(f"   [📸 Storyboard Proofs Captured -> {proof_dir.name}]")
 
-def render_concept_multilingual_unit3(canonical_id: str, languages: List[str] = None):
+def render_concept_multilingual_unit3(canonical_id: str, languages: List[str] = None, force: bool = False):
     if languages is None:
         languages = ["en-IN", "hi-IN", "ta-IN"]
 
@@ -372,7 +372,7 @@ def render_concept_multilingual_unit3(canonical_id: str, languages: List[str] = 
         lang_name = cfg["name"]
 
         final_mp4 = OUTPUT_DIR / f"{canonical_id}_{lang}.mp4"
-        cached = final_mp4.exists() and final_mp4.stat().st_size > 500000
+        cached = (not force) and final_mp4.exists() and final_mp4.stat().st_size > 500000
 
         if cached:
             print(f"\n-------------------------------------------------------------")
