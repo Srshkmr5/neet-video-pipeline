@@ -104,3 +104,9 @@ Derived from MASTER_BLUEPRINT.md v1.1
       * **Engine 3**: Connected Bodies & Pulley Systems (Atwood machine, 2-body horizontal/inclined plane with string tension and acceleration $a$).
       * **Engine 4**: Circular Dynamics & Banking of Roads (Unbanked vs. Banked curve, optimum velocity $v_0 = \sqrt{rg \tan\theta}$, maximum safe speed with friction $v_{\max} = \sqrt{\frac{rg(\tan\theta + \mu)}{1 - \mu\tan\theta}}$).
 
+21. **Interactive Physics Simulation Fidelity & Live Visual Parameter Coupling (Zero Decorative/Static Controls)**:
+    - **Live Geometric & Vector Coupling**: Every slider, toggle, or numerical input in an interactive simulation MUST trigger an immediate, mathematically proportional visual transformation on the canvas. Prohibit "decorative" or static placeholder diagrams where controls merely update text readouts.
+    - **Mass & Geometry Scaling**: All mass changes ($m, m_1, m_2$) must visibly scale mobject geometry ($W, H \propto \sqrt{m}$) and corresponding vector arrows (weight $W = mg$, normal reaction $N$, string tension $T$).
+    - **Angle & Kinematic Transformation**: Changing tilt or launch angles ($\theta$) must physically rotate the drawn surface (inclined plane, banked road wedge, pull vectors) in exact degrees. Changing friction coefficients ($\mu_s, \mu_k$) must visibly alter physical states (e.g. static stick vs sliding downhill with acceleration trails when $\theta > \theta_R = \arctan\mu_s$; common motion vs relative slipping between stacked blocks).
+    - **Bespoke Concept Renderers**: Every sub-concept mode (e.g. FBD vs Elevator vs Atwood; Impulse F-t vs Rocket Thrust vs Lami; Level Skidding vs Banked Road vs Vertical Loop) must execute its own dedicated, bespoke visual rendering routine. Sharing a generic or unresponsive canvas across distinct physical concepts is strictly prohibited.
+

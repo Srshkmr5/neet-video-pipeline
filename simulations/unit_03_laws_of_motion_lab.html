@@ -108,7 +108,7 @@
         </div>
 
         <!-- Canvas Container -->
-        <div class="flex-1 bg-slate-950/80 rounded-xl border border-slate-800 relative overflow-hidden min-h-0">
+        <div class="flex-1 bg-slate-950/80 rounded-xl border border-slate-800 relative overflow-hidden min-h-0" id="newtonCanvasContainer">
           <canvas id="newtonCanvas" class="w-full h-full block"></canvas>
         </div>
       </div>
@@ -125,10 +125,10 @@
         <div class="space-y-3 bg-slate-900/60 p-3 rounded-xl border border-slate-800">
           <div>
             <div class="flex justify-between text-xs font-mono text-slate-300 mb-1">
-              <span>Body Mass (m):</span>
+              <span id="newtonMassLabel">Body Mass (m):</span>
               <span id="newtonMassVal" class="text-sky-400 font-bold">5.0 kg</span>
             </div>
-            <input type="range" id="newtonMassSlider" min="1" max="20" step="0.5" value="5" oninput="updateNewton()" class="w-full">
+            <input type="range" id="newtonMassSlider" min="1" max="25" step="0.5" value="5" oninput="updateNewton()" class="w-full">
           </div>
 
           <div id="newtonForceBlock">
@@ -136,12 +136,12 @@
               <span id="newtonForceLabel">Pulling Force (F):</span>
               <span id="newtonForceVal" class="text-amber-400 font-bold">40 N</span>
             </div>
-            <input type="range" id="newtonForceSlider" min="0" max="100" step="2" value="40" oninput="updateNewton()" class="w-full">
+            <input type="range" id="newtonForceSlider" min="0" max="100" step="1" value="40" oninput="updateNewton()" class="w-full">
           </div>
 
           <div id="newtonAngleBlock">
             <div class="flex justify-between text-xs font-mono text-slate-300 mb-1">
-              <span>Pull Angle (θ):</span>
+              <span id="newtonAngleLabel">Pull Angle (θ):</span>
               <span id="newtonAngleVal" class="text-emerald-400 font-bold">30°</span>
             </div>
             <input type="range" id="newtonAngleSlider" min="0" max="80" step="1" value="30" oninput="updateNewton()" class="w-full">
@@ -150,14 +150,14 @@
           <!-- Elevator Specific Mode Slider -->
           <div id="newtonElevatorBlock" class="hidden">
             <div class="flex justify-between text-xs font-mono text-slate-300 mb-1">
-              <span>Elevator Acceleration (a):</span>
+              <span>Elevator Accel (a_frame):</span>
               <span id="newtonElevAccVal" class="text-rose-400 font-bold">+2.0 m/s² (Up)</span>
             </div>
-            <input type="range" id="newtonElevAccSlider" min="-8" max="8" step="0.5" value="2" oninput="updateNewton()" class="w-full">
+            <input type="range" id="newtonElevAccSlider" min="-9.8" max="8" step="0.2" value="2" oninput="updateNewton()" class="w-full">
             <div class="text-[10px] text-slate-400 mt-1 flex justify-between font-mono">
-              <span>Down (-8 m/s²)</span>
+              <span>Free Fall (-9.8)</span>
               <span>Rest (0)</span>
-              <span>Up (+8 m/s²)</span>
+              <span>Up (+8)</span>
             </div>
           </div>
         </div>
@@ -210,7 +210,7 @@
           </button>
         </div>
 
-        <div class="flex-1 bg-slate-950/80 rounded-xl border border-slate-800 relative overflow-hidden min-h-0">
+        <div class="flex-1 bg-slate-950/80 rounded-xl border border-slate-800 relative overflow-hidden min-h-0" id="frictionCanvasContainer">
           <canvas id="frictionCanvas" class="w-full h-full block"></canvas>
         </div>
       </div>
@@ -225,26 +225,26 @@
         <div class="space-y-3 bg-slate-900/60 p-3 rounded-xl border border-slate-800">
           <div>
             <div class="flex justify-between text-xs font-mono text-slate-300 mb-1">
-              <span>Static Coeff (μ_s):</span>
+              <span id="fricParam1Label">Static Coeff (μ_s):</span>
               <span id="fricMuSVal" class="text-amber-400 font-bold">0.60</span>
             </div>
             <input type="range" id="fricMuSSlider" min="0.1" max="0.9" step="0.05" value="0.60" oninput="updateFriction()" class="w-full">
           </div>
 
-          <div>
+          <div id="fricMuKBlock">
             <div class="flex justify-between text-xs font-mono text-slate-300 mb-1">
-              <span>Kinetic Coeff (μ_k):</span>
+              <span id="fricParam2Label">Kinetic Coeff (μ_k):</span>
               <span id="fricMuKVal" class="text-sky-400 font-bold">0.40</span>
             </div>
-            <input type="range" id="fricMuKSlider" min="0.05" max="0.8" step="0.05" value="0.40" oninput="updateFriction()" class="w-full">
+            <input type="range" id="fricMuKSlider" min="0.05" max="0.85" step="0.05" value="0.40" oninput="updateFriction()" class="w-full">
           </div>
 
           <div id="fricAppliedBlock">
             <div class="flex justify-between text-xs font-mono text-slate-300 mb-1">
-              <span>Applied Force (F):</span>
+              <span id="fricAppliedLabel">Applied Force (F):</span>
               <span id="fricAppliedVal" class="text-emerald-400 font-bold">20 N</span>
             </div>
-            <input type="range" id="fricAppliedSlider" min="0" max="60" step="1" value="20" oninput="updateFriction()" class="w-full">
+            <input type="range" id="fricAppliedSlider" min="0" max="100" step="1" value="20" oninput="updateFriction()" class="w-full">
           </div>
 
           <div id="fricInclineBlock" class="hidden">
@@ -252,18 +252,18 @@
               <span>Incline Angle (θ):</span>
               <span id="fricInclineVal" class="text-purple-400 font-bold">25°</span>
             </div>
-            <input type="range" id="fricInclineSlider" min="5" max="65" step="1" value="25" oninput="updateFriction()" class="w-full">
+            <input type="range" id="fricInclineSlider" min="0" max="75" step="1" value="25" oninput="updateFriction()" class="w-full">
           </div>
         </div>
 
         <div class="bg-slate-900/80 p-3 rounded-xl border border-amber-500/20 font-mono text-xs space-y-2">
           <div class="text-slate-400 text-[11px] font-bold border-b border-slate-800 pb-1">FRICTION FORCES & STATE</div>
           <div class="flex justify-between">
-            <span class="text-slate-400">Limiting Friction (f_s,max):</span>
+            <span class="text-slate-400" id="fricMet1Label">Limiting Friction (f_s,max):</span>
             <span id="fricLimitingVal" class="text-amber-400 font-bold">29.4 N</span>
           </div>
           <div class="flex justify-between">
-            <span class="text-slate-400">Actual Active Friction:</span>
+            <span class="text-slate-400" id="fricMet2Label">Actual Active Friction:</span>
             <span id="fricActualVal" class="text-emerald-400 font-bold">20.0 N (Static)</span>
           </div>
           <div class="flex justify-between">
@@ -295,14 +295,14 @@
             4. F-t Area & Rebound Doubling
           </button>
           <button id="subMomRocketBtn" onclick="setMomentumConcept('rocket')" class="sub-preset-btn px-3 py-1 rounded-lg border text-xs transition">
-            5. Conservation of Momentum & Rocket Thrust
+            5. Momentum Conservation & Rocket Thrust
           </button>
           <button id="subMomLamiBtn" onclick="setMomentumConcept('lami')" class="sub-preset-btn px-3 py-1 rounded-lg border text-xs transition">
             6. Lami's Theorem for Concurrent Equilibrium
           </button>
         </div>
 
-        <div class="flex-1 bg-slate-950/80 rounded-xl border border-slate-800 relative overflow-hidden min-h-0">
+        <div class="flex-1 bg-slate-950/80 rounded-xl border border-slate-800 relative overflow-hidden min-h-0" id="momentumCanvasContainer">
           <canvas id="momentumCanvas" class="w-full h-full block"></canvas>
         </div>
       </div>
@@ -317,7 +317,7 @@
         <div class="space-y-3 bg-slate-900/60 p-3 rounded-xl border border-slate-800">
           <div>
             <div class="flex justify-between text-xs font-mono text-slate-300 mb-1">
-              <span>Collision Speed (v):</span>
+              <span id="momParam1Label">Collision Speed (v):</span>
               <span id="momSpeedVal" class="text-sky-400 font-bold">15.0 m/s</span>
             </div>
             <input type="range" id="momSpeedSlider" min="5" max="30" step="1" value="15" oninput="updateMomentum()" class="w-full">
@@ -325,15 +325,15 @@
 
           <div>
             <div class="flex justify-between text-xs font-mono text-slate-300 mb-1">
-              <span>Ball Mass (m):</span>
-              <span id="momMassVal" class="text-amber-400 font-bold">0.20 kg</span>
+              <span id="momParam2Label">Ball Mass (m):</span>
+              <span id="momMassVal" class="text-amber-400 font-bold">0.50 kg</span>
             </div>
-            <input type="range" id="momMassSlider" min="0.05" max="1.0" step="0.05" value="0.20" oninput="updateMomentum()" class="w-full">
+            <input type="range" id="momMassSlider" min="0.1" max="2.0" step="0.05" value="0.50" oninput="updateMomentum()" class="w-full">
           </div>
 
           <div>
             <div class="flex justify-between text-xs font-mono text-slate-300 mb-1">
-              <span>Contact Duration (Δt):</span>
+              <span id="momParam3Label">Contact Duration (Δt):</span>
               <span id="momTimeVal" class="text-emerald-400 font-bold">0.020 s</span>
             </div>
             <input type="range" id="momTimeSlider" min="0.005" max="0.050" step="0.005" value="0.020" oninput="updateMomentum()" class="w-full">
@@ -341,31 +341,31 @@
         </div>
 
         <div class="bg-slate-900/80 p-3 rounded-xl border border-emerald-500/20 font-mono text-xs space-y-2">
-          <div class="text-slate-400 text-[11px] font-bold border-b border-slate-800 pb-1">COLLISION IMPACT READOUTS</div>
+          <div class="text-slate-400 text-[11px] font-bold border-b border-slate-800 pb-1">PHYSICS DIAGNOSTICS</div>
           <div class="flex justify-between">
-            <span class="text-slate-400">Initial Momentum (p_i):</span>
-            <span id="momInitP" class="text-slate-300 font-bold">+3.0 kg·m/s</span>
+            <span class="text-slate-400" id="momMet1Label">Initial Momentum (p_i):</span>
+            <span id="momInitP" class="text-slate-300 font-bold">+7.5 kg·m/s</span>
           </div>
           <div class="flex justify-between">
-            <span class="text-slate-400">Rebound Momentum (p_f):</span>
-            <span id="momFinalP" class="text-sky-400 font-bold">-3.0 kg·m/s</span>
+            <span class="text-slate-400" id="momMet2Label">Rebound Momentum (p_f):</span>
+            <span id="momFinalP" class="text-sky-400 font-bold">-7.5 kg·m/s</span>
           </div>
           <div class="flex justify-between">
-            <span class="text-slate-400">Total Impulse J = Δp:</span>
-            <span id="momTotalJ" class="text-emerald-400 font-bold">6.0 N·s (Doubled)</span>
+            <span class="text-slate-400" id="momMet3Label">Total Impulse J = Δp:</span>
+            <span id="momTotalJ" class="text-emerald-400 font-bold">15.0 N·s (Doubled)</span>
           </div>
           <div class="flex justify-between border-t border-slate-800/80 pt-1">
-            <span class="text-slate-400">Average Impact Force:</span>
-            <span id="momAvgF" class="text-rose-400 font-bold">300 N</span>
+            <span class="text-slate-400" id="momMet4Label">Average Impact Force:</span>
+            <span id="momAvgF" class="text-rose-400 font-bold">750 N</span>
           </div>
         </div>
 
         <div class="p-3 rounded-xl bg-rose-950/40 border border-rose-500/40 text-xs">
           <div class="flex items-center space-x-2 text-rose-400 font-bold mb-1">
             <i class="fa-solid fa-triangle-exclamation"></i>
-            <span>NEET TRAP: REBOUND VELOCITY SIGN</span>
+            <span id="momTrapTitle">NEET TRAP: REBOUND VELOCITY SIGN</span>
           </div>
-          <p class="text-slate-300 text-[11px] leading-relaxed">
+          <p id="momTrapBody" class="text-slate-300 text-[11px] leading-relaxed">
             During elastic rebound, direction flips! Δp = m·v - (-m·v) = <strong class="text-emerald-300">2·m·v</strong>. Never subtract magnitudes and write Δp = 0!
           </p>
         </div>
@@ -387,7 +387,7 @@
           </button>
         </div>
 
-        <div class="flex-1 bg-slate-950/80 rounded-xl border border-slate-800 relative overflow-hidden min-h-0">
+        <div class="flex-1 bg-slate-950/80 rounded-xl border border-slate-800 relative overflow-hidden min-h-0" id="circularCanvasContainer">
           <canvas id="circularCanvas" class="w-full h-full block"></canvas>
         </div>
       </div>
@@ -402,7 +402,7 @@
         <div class="space-y-3 bg-slate-900/60 p-3 rounded-xl border border-slate-800">
           <div>
             <div class="flex justify-between text-xs font-mono text-slate-300 mb-1">
-              <span>Turn Radius (r):</span>
+              <span id="circParam1Label">Turn Radius (r):</span>
               <span id="circRadiusVal" class="text-purple-400 font-bold">50 m</span>
             </div>
             <input type="range" id="circRadiusSlider" min="20" max="150" step="5" value="50" oninput="updateCircular()" class="w-full">
@@ -410,18 +410,18 @@
 
           <div>
             <div class="flex justify-between text-xs font-mono text-slate-300 mb-1">
-              <span>Road Friction (μ_s):</span>
+              <span id="circParam2Label">Road Friction (μ_s):</span>
               <span id="circMuVal" class="text-amber-400 font-bold">0.50</span>
             </div>
             <input type="range" id="circMuSlider" min="0.1" max="0.9" step="0.05" value="0.50" oninput="updateCircular()" class="w-full">
           </div>
 
-          <div id="circBankAngleBlock" class="hidden">
+          <div>
             <div class="flex justify-between text-xs font-mono text-slate-300 mb-1">
-              <span>Banking Angle (θ):</span>
-              <span id="circAngleVal" class="text-sky-400 font-bold">20°</span>
+              <span id="circParam3Label">Vehicle Speed (v):</span>
+              <span id="circAngleVal" class="text-sky-400 font-bold">50 km/h</span>
             </div>
-            <input type="range" id="circAngleSlider" min="5" max="45" step="1" value="20" oninput="updateCircular()" class="w-full">
+            <input type="range" id="circAngleSlider" min="10" max="120" step="2" value="50" oninput="updateCircular()" class="w-full">
           </div>
         </div>
 
@@ -436,8 +436,8 @@
             <span id="circOptVal" class="text-sky-400 font-bold">13.4 m/s (48.2 km/h)</span>
           </div>
           <div class="flex justify-between border-t border-slate-800/80 pt-1">
-            <span class="text-slate-400">Vertical Loop v_bottom:</span>
-            <span id="circVertLoopVal" class="text-purple-300 font-bold">≥ √(5gr) = 49.5 m/s</span>
+            <span class="text-slate-400">Cornering Status:</span>
+            <span id="circVertLoopVal" class="text-emerald-400 font-bold">SAFE (Grip Maintained)</span>
           </div>
         </div>
 
@@ -455,59 +455,101 @@
 
   </main>
 
-  <!-- JAVASCRIPT SIMULATION LOGIC -->
   <script>
+    // ========================================================
+    // GLOBAL STATE & NAVIGATION
+    // ========================================================
     let currentMode = 'newton';
     let currentNewtonConcept = 'fbd';
     let currentFrictionConcept = 'graph';
     let currentMomentumConcept = 'impulse';
     let currentCircConcept = 'flat';
 
-    // Mode Switcher for the 4 Engines
-    function switchMode(mode) {
-      currentMode = mode;
-      ['newton', 'friction', 'momentum', 'circular'].forEach(m => {
-        const tab = document.getElementById('tabEngine' + (m === 'newton' ? '1' : m === 'friction' ? '2' : m === 'momentum' ? '3' : '4'));
-        const sec = document.getElementById('engine' + m.charAt(0).toUpperCase() + m.slice(1));
-        if (m === mode) {
-          tab.className = 'engine-btn active px-3.5 py-1.5 rounded-xl border text-xs font-bold transition flex items-center space-x-2';
-          sec.classList.remove('hidden');
-        } else {
-          tab.className = 'engine-btn px-3.5 py-1.5 rounded-xl border text-xs font-bold transition flex items-center space-x-2';
-          sec.classList.add('hidden');
-        }
-      });
-      setTimeout(redrawActiveMode, 50);
-    }
-
-    // Canvas Elements & Drawing Contexts
+    // Canvas elements & contexts
     const nCanvas = document.getElementById('newtonCanvas');
     const nCtx = nCanvas.getContext('2d');
-
     const fCanvas = document.getElementById('frictionCanvas');
     const fCtx = fCanvas.getContext('2d');
-
     const mCanvas = document.getElementById('momentumCanvas');
     const mCtx = mCanvas.getContext('2d');
-
     const cCanvas = document.getElementById('circularCanvas');
     const cCtx = cCanvas.getContext('2d');
 
-    // Safe Canvas Resizing Helper
-    function resizeCanvas(c) {
-      if (!c) return;
-      const rect = c.parentElement ? c.parentElement.getBoundingClientRect() : { width: 0, height: 0 };
-      const w = rect.width > 0 ? rect.width : (c.parentElement ? c.parentElement.clientWidth : 0);
-      const h = rect.height > 0 ? rect.height : (c.parentElement ? c.parentElement.clientHeight : 0);
-      if (w > 0 && h > 0) {
-        c.width = Math.round(w);
-        c.height = Math.round(h);
+    // Dynamic High-DPI Canvas Resizing
+    function resizeCanvas(canvas) {
+      if (!canvas || !canvas.parentElement) return;
+      const rect = canvas.parentElement.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      if (rect.width > 0 && rect.height > 0) {
+        if (canvas.width !== Math.floor(rect.width * dpr) || canvas.height !== Math.floor(rect.height * dpr)) {
+          canvas.width = Math.floor(rect.width * dpr);
+          canvas.height = Math.floor(rect.height * dpr);
+          const ctx = canvas.getContext('2d');
+          ctx.resetTransform();
+          ctx.scale(dpr, dpr);
+        }
+      }
+    }
+
+    // Tab Switching
+    function switchMode(mode) {
+      currentMode = mode;
+      document.getElementById('engineNewton').classList.toggle('hidden', mode !== 'newton');
+      document.getElementById('engineFriction').classList.toggle('hidden', mode !== 'friction');
+      document.getElementById('engineMomentum').classList.toggle('hidden', mode !== 'momentum');
+      document.getElementById('engineCircular').classList.toggle('hidden', mode !== 'circular');
+
+      document.getElementById('tabEngine1').className = mode === 'newton' ? 'engine-btn active px-3.5 py-1.5 rounded-xl border text-xs font-bold transition flex items-center space-x-2' : 'engine-btn px-3.5 py-1.5 rounded-xl border text-xs font-bold transition flex items-center space-x-2';
+      document.getElementById('tabEngine2').className = mode === 'friction' ? 'engine-btn active px-3.5 py-1.5 rounded-xl border text-xs font-bold transition flex items-center space-x-2' : 'engine-btn px-3.5 py-1.5 rounded-xl border text-xs font-bold transition flex items-center space-x-2';
+      document.getElementById('tabEngine3').className = mode === 'momentum' ? 'engine-btn active px-3.5 py-1.5 rounded-xl border text-xs font-bold transition flex items-center space-x-2' : 'engine-btn px-3.5 py-1.5 rounded-xl border text-xs font-bold transition flex items-center space-x-2';
+      document.getElementById('tabEngine4').className = mode === 'circular' ? 'engine-btn active px-3.5 py-1.5 rounded-xl border text-xs font-bold transition flex items-center space-x-2' : 'engine-btn px-3.5 py-1.5 rounded-xl border text-xs font-bold transition flex items-center space-x-2';
+
+      setTimeout(() => {
+        if (mode === 'newton') updateNewton();
+        else if (mode === 'friction') updateFriction();
+        else if (mode === 'momentum') updateMomentum();
+        else if (mode === 'circular') updateCircular();
+      }, 50);
+    }
+
+    // Helper: Draw Arrow
+    function drawArrow(ctx, fromx, fromy, tox, toy, color, label, fontSize = 11) {
+      const dx = tox - fromx;
+      const dy = toy - fromy;
+      const len = Math.hypot(dx, dy);
+      if (len < 1) return;
+      ctx.strokeStyle = color;
+      ctx.fillStyle = color;
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.moveTo(fromx, fromy);
+      ctx.lineTo(tox, toy);
+      ctx.stroke();
+
+      const headlen = Math.min(10, Math.max(5, len * 0.25));
+      const angle = Math.atan2(dy, dx);
+      ctx.beginPath();
+      ctx.moveTo(tox, toy);
+      ctx.lineTo(tox - headlen * Math.cos(angle - Math.PI / 6), toy - headlen * Math.sin(angle - Math.PI / 6));
+      ctx.lineTo(tox - headlen * Math.cos(angle + Math.PI / 6), toy - headlen * Math.sin(angle + Math.PI / 6));
+      ctx.closePath();
+      ctx.fill();
+
+      if (label) {
+        ctx.font = `bold ${fontSize}px Consolas, monospace`;
+        const lx = tox + 8 * Math.cos(angle);
+        const ly = toy + 8 * Math.sin(angle);
+        ctx.fillText(label, lx, ly);
       }
     }
 
     // ========================================================
-    // ENGINE 1: NEWTON'S LAWS & FBD ENGINE
+    // ENGINE 1: NEWTON'S LAWS & FBD IMPLEMENTATION
     // ========================================================
+    let atwoodY = 0;
+    let atwoodSpeed = 0;
+    let elevatorY = 0;
+
     function setNewtonConcept(sub) {
       currentNewtonConcept = sub;
       document.getElementById('subNewtonFbdBtn').className = sub === 'fbd' ? 'sub-preset-btn active px-3 py-1 rounded-lg border text-xs transition' : 'sub-preset-btn px-3 py-1 rounded-lg border text-xs transition';
@@ -522,6 +564,9 @@
         document.getElementById('newtonHeader').innerText = "CONCEPT 1 • FREE-BODY DIAGRAM";
         document.getElementById('newtonTitle').innerText = "FBD Orthogonal Vector Resolver";
         document.getElementById('newtonFormula').innerText = "ΣF_x = m·a_x • ΣF_y = 0 • N = mg - F·sinθ";
+        document.getElementById('newtonMassLabel').innerText = "Body Mass (m):";
+        document.getElementById('newtonForceLabel').innerText = "Pulling Force (F):";
+        document.getElementById('newtonAngleLabel').innerText = "Pull Angle (θ):";
         document.getElementById('newtonMet1Label').innerText = "Normal Force (N):";
         document.getElementById('newtonMet2Label').innerText = "Horizontal Pull F_x:";
         document.getElementById('newtonMet3Label').innerText = "Net Acceleration (a):";
@@ -534,6 +579,7 @@
         document.getElementById('newtonHeader').innerText = "CONCEPT 2 • ELEVATORS & PSEUDO FORCE";
         document.getElementById('newtonTitle').innerText = "Apparent Weight Scale in Accelerated Frame";
         document.getElementById('newtonFormula').innerText = "F_pseudo = -m·a_frame • N_app = m(g ± a)";
+        document.getElementById('newtonMassLabel').innerText = "Body Mass (m):";
         document.getElementById('newtonMet1Label').innerText = "True Weight W = mg:";
         document.getElementById('newtonMet2Label').innerText = "Pseudo Force (-m·a):";
         document.getElementById('newtonMet3Label').innerText = "Scale Reading (N_app):";
@@ -545,12 +591,13 @@
       } else if (sub === 'tension') {
         document.getElementById('newtonHeader').innerText = "CONCEPT 3 • ATWOOD MACHINE & TENSION";
         document.getElementById('newtonTitle').innerText = "Two-Body Pulley System Equilibrium & String Tension";
-        document.getElementById('newtonFormula').innerText = "a = (m1 - m2)g / (m1 + m2) • T = 2m1·m2·g / (m1 + m2)";
+        document.getElementById('newtonFormula').innerText = "a = |m1 - m2|g / (m1 + m2) • T = 2m1·m2·g / (m1 + m2)";
+        document.getElementById('newtonMassLabel').innerText = "Body 1 Mass (m1):";
+        document.getElementById('newtonForceLabel').innerText = "Body 2 Mass (m2):";
         document.getElementById('newtonMet1Label').innerText = "System Acceleration (a):";
         document.getElementById('newtonMet2Label').innerText = "String Tension (T):";
         document.getElementById('newtonMet3Label').innerText = "Pulley Support Load (2T):";
         forceBlock.classList.remove('hidden');
-        document.getElementById('newtonForceLabel').innerText = "Second Mass m2 (kg):";
         angleBlock.classList.add('hidden');
         elevBlock.classList.add('hidden');
         document.getElementById('newtonTrapTitle').innerText = "NEET TRAP: ACTION-REACTION CANNOT CANCEL";
@@ -567,7 +614,7 @@
       const g = 9.8;
 
       document.getElementById('newtonMassVal').innerText = m.toFixed(1) + ' kg';
-      document.getElementById('newtonForceVal').innerText = F.toFixed(0) + ' N';
+      document.getElementById('newtonForceVal').innerText = (currentNewtonConcept === 'tension' ? F.toFixed(1) + ' kg' : F.toFixed(0) + ' N');
       document.getElementById('newtonAngleVal').innerText = theta.toFixed(0) + '°';
       document.getElementById('newtonElevAccVal').innerText = (aElev >= 0 ? '+' : '') + aElev.toFixed(1) + ' m/s² ' + (aElev > 0 ? '(Up)' : aElev < 0 ? '(Down)' : '(Rest)');
 
@@ -588,9 +635,11 @@
         document.getElementById('newtonMet2Val').innerText = (F_pseudo >= 0 ? '+' : '') + F_pseudo.toFixed(1) + ' N';
         document.getElementById('newtonMet3Val').innerText = N_app.toFixed(1) + ' N (' + (N_app / g).toFixed(1) + ' kg)';
       } else if (currentNewtonConcept === 'tension') {
-        const m2 = Math.max(1, F / 5); // Use slider 2 as m2
-        const a = Math.abs(m - m2) * g / (m + m2);
-        const T = (2 * m * m2 * g) / (m + m2);
+        const m1 = m;
+        const m2 = Math.max(0.5, F / 4); // F slider maps 0-100 to 0.5-25kg
+        document.getElementById('newtonForceVal').innerText = m2.toFixed(1) + ' kg';
+        const a = Math.abs(m1 - m2) * g / (m1 + m2);
+        const T = (2 * m1 * m2 * g) / (m1 + m2);
         document.getElementById('newtonMet1Val').innerText = a.toFixed(2) + ' m/s²';
         document.getElementById('newtonMet2Val').innerText = T.toFixed(1) + ' N';
         document.getElementById('newtonMet3Val').innerText = (2 * T).toFixed(1) + ' N';
@@ -600,181 +649,276 @@
 
     function drawNewtonCanvas() {
       resizeCanvas(nCanvas);
-      const w = nCanvas.width;
-      const h = nCanvas.height;
+      const w = nCanvas.width / (window.devicePixelRatio || 1);
+      const h = nCanvas.height / (window.devicePixelRatio || 1);
       if (!w || !h) return;
       nCtx.clearRect(0, 0, w, h);
 
       const cx = w / 2;
-      const cy = h / 2 + 30;
+      const cy = h / 2 + 20;
+      const g = 9.8;
 
       if (currentNewtonConcept === 'fbd') {
+        const m = parseFloat(document.getElementById('newtonMassSlider').value);
+        const F = parseFloat(document.getElementById('newtonForceSlider').value);
+        const theta = parseFloat(document.getElementById('newtonAngleSlider').value);
+        const rad = theta * Math.PI / 180;
+        const fy = F * Math.sin(rad);
+        const fx = F * Math.cos(rad);
+        const N = Math.max(0, m * g - fy);
+        const a = fx / m;
+
+        // Dynamic block size proportional to sqrt(m)
+        const side = 40 + Math.sqrt(m) * 8;
+
         // Floor line
         nCtx.strokeStyle = '#475569';
-        nCtx.lineWidth = 2;
+        nCtx.lineWidth = 2.5;
         nCtx.beginPath();
-        nCtx.moveTo(cx - 150, cy + 40);
-        nCtx.lineTo(cx + 180, cy + 40);
+        nCtx.moveTo(cx - 160, cy + side / 2);
+        nCtx.lineTo(cx + 180, cy + side / 2);
         nCtx.stroke();
+
+        // Floor hatching
+        nCtx.strokeStyle = '#334155';
+        nCtx.lineWidth = 1;
+        for (let x = cx - 150; x <= cx + 170; x += 15) {
+          nCtx.beginPath();
+          nCtx.moveTo(x, cy + side / 2);
+          nCtx.lineTo(x - 10, cy + side / 2 + 10);
+          nCtx.stroke();
+        }
 
         // Block
         nCtx.fillStyle = '#1e293b';
-        nCtx.strokeStyle = '#38bdf8';
-        nCtx.lineWidth = 2;
-        nCtx.fillRect(cx - 40, cy - 40, 80, 80);
-        nCtx.strokeRect(cx - 40, cy - 40, 80, 80);
-
-        nCtx.fillStyle = '#ffffff';
-        nCtx.font = 'bold 14px Consolas, monospace';
-        nCtx.fillText('m = ' + document.getElementById('newtonMassSlider').value + 'kg', cx - 35, cy + 5);
-
-        // Vector: mg (Downwards - Rose)
-        drawArrow(nCtx, cx, cy, cx, cy + 90, '#F43F5E', 'mg = W');
-
-        // Vector: Normal N (Upwards - Emerald)
-        const N_len = Math.max(10, parseFloat(document.getElementById('newtonMet1Val').innerText) * 1.5);
-        drawArrow(nCtx, cx, cy - 40, cx, cy - 40 - Math.min(100, N_len), '#4ADE80', 'N (Normal)');
-
-        // Vector: Pull F (Inclined - Gold)
-        const theta = parseFloat(document.getElementById('newtonAngleSlider').value);
-        const rad = theta * Math.PI / 180;
-        const F_len = Math.min(120, parseFloat(document.getElementById('newtonForceSlider').value) * 1.2 + 20);
-        const fx = cx + 40 + Math.cos(rad) * F_len;
-        const fy = cy - Math.sin(rad) * F_len;
-        drawArrow(nCtx, cx + 40, cy, fx, fy, '#FACC15', 'F (Pull)');
-
-        // Angle Arc
-        nCtx.strokeStyle = '#FACC15';
-        nCtx.lineWidth = 1.5;
-        nCtx.setLineDash([2, 2]);
-        nCtx.beginPath();
-        nCtx.moveTo(cx + 40, cy);
-        nCtx.lineTo(cx + 100, cy);
-        nCtx.stroke();
-        nCtx.setLineDash([]);
-        nCtx.beginPath();
-        nCtx.arc(cx + 40, cy, 25, 0, -rad, true);
-        nCtx.stroke();
-        nCtx.fillStyle = '#FACC15';
-        nCtx.fillText('θ=' + theta + '°', cx + 70, cy - 8);
-
-      } else if (currentNewtonConcept === 'elevator') {
-        // Elevator Cage
-        nCtx.strokeStyle = '#64748b';
-        nCtx.lineWidth = 3;
-        nCtx.strokeRect(cx - 90, cy - 130, 180, 200);
-
-        // Cable at top
-        nCtx.strokeStyle = '#94a3b8';
-        nCtx.lineWidth = 4;
-        nCtx.beginPath();
-        nCtx.moveTo(cx, cy - 130);
-        nCtx.lineTo(cx, cy - 180);
-        nCtx.stroke();
-
-        // Weighing Scale Platform
-        nCtx.fillStyle = '#0f172a';
-        nCtx.strokeStyle = '#38bdf8';
-        nCtx.lineWidth = 2;
-        nCtx.fillRect(cx - 50, cy + 50, 100, 15);
-        nCtx.strokeRect(cx - 50, cy + 50, 100, 15);
-
-        // Person / Mass Block on scale
-        nCtx.fillStyle = '#1e293b';
-        nCtx.strokeStyle = '#4ade80';
-        nCtx.fillRect(cx - 30, cy - 10, 60, 60);
-        nCtx.strokeRect(cx - 30, cy - 10, 60, 60);
+        nCtx.strokeStyle = N === 0 ? '#facc15' : '#38bdf8';
+        nCtx.lineWidth = 2.5;
+        nCtx.fillRect(cx - side / 2, cy - side / 2, side, side);
+        nCtx.strokeRect(cx - side / 2, cy - side / 2, side, side);
 
         nCtx.fillStyle = '#ffffff';
         nCtx.font = 'bold 12px Consolas, monospace';
-        nCtx.fillText('m', cx - 6, cy + 25);
+        nCtx.fillText(`m=${m.toFixed(1)}kg`, cx - 25, cy + 4);
 
-        // Weighing Scale Digital Display
-        nCtx.fillStyle = '#38bdf8';
-        nCtx.font = 'bold 13px Consolas, monospace';
-        const scaleReading = document.getElementById('newtonMet3Val').innerText;
-        nCtx.fillText('SCALE: ' + scaleReading, cx - 75, cy + 90);
+        if (N === 0) {
+          nCtx.fillStyle = '#facc15';
+          nCtx.font = 'bold 11px Consolas, monospace';
+          nCtx.fillText('★ LIFT-OFF (N=0)', cx - 45, cy - side / 2 - 25);
+        }
 
-        // Elevator acceleration vector on the side
+        // Vector 1: mg (Gravity Downward - Rose)
+        const mgLen = Math.min(110, 25 + m * 3.5);
+        drawArrow(nCtx, cx, cy, cx, cy + side / 2 + mgLen, '#F43F5E', `W = mg (${(m * g).toFixed(0)}N)`);
+
+        // Vector 2: Normal N (Upward - Emerald)
+        if (N > 0) {
+          const nLen = Math.min(110, (N / (m * g)) * mgLen);
+          drawArrow(nCtx, cx, cy - side / 2, cx, cy - side / 2 - nLen, '#4ADE80', `N = ${N.toFixed(0)}N`);
+        }
+
+        // Vector 3: Pull F at angle theta (Gold)
+        if (F > 0) {
+          const fLen = Math.min(120, 20 + F * 1.0);
+          const fEndx = cx + side / 2 + Math.cos(rad) * fLen;
+          const fEndy = cy - Math.sin(rad) * fLen;
+          drawArrow(nCtx, cx + side / 2, cy, fEndx, fEndy, '#FACC15', `F = ${F.toFixed(0)}N`);
+
+          // Angle arc
+          nCtx.strokeStyle = '#FACC15';
+          nCtx.lineWidth = 1.5;
+          nCtx.setLineDash([3, 3]);
+          nCtx.beginPath();
+          nCtx.moveTo(cx + side / 2, cy);
+          nCtx.lineTo(cx + side / 2 + 50, cy);
+          nCtx.stroke();
+          nCtx.setLineDash([]);
+          nCtx.beginPath();
+          nCtx.arc(cx + side / 2, cy, 28, 0, -rad, true);
+          nCtx.stroke();
+          nCtx.fillStyle = '#FACC15';
+          nCtx.fillText(`θ=${theta}°`, cx + side / 2 + 35, cy - 8);
+
+          // Orthogonal Components
+          nCtx.strokeStyle = '#38bdf8';
+          nCtx.setLineDash([2, 2]);
+          nCtx.beginPath();
+          nCtx.moveTo(fEndx, cy);
+          nCtx.lineTo(fEndx, fEndy);
+          nCtx.stroke();
+          nCtx.setLineDash([]);
+          drawArrow(nCtx, cx + side / 2, cy, fEndx, cy, '#38bdf8', `Fx=${fx.toFixed(0)}N`, 10);
+        }
+
+        // Acceleration Arrow on top
+        if (a > 0.05) {
+          const aLen = Math.min(70, a * 6 + 15);
+          drawArrow(nCtx, cx - side / 2, cy - side / 2 - 12, cx - side / 2 + aLen, cy - side / 2 - 12, '#38bdf8', `a = ${a.toFixed(1)} m/s²`, 11);
+        }
+
+      } else if (currentNewtonConcept === 'elevator') {
+        const m = parseFloat(document.getElementById('newtonMassSlider').value);
         const aElev = parseFloat(document.getElementById('newtonElevAccSlider').value);
+        const N_app = Math.max(0, m * (g + aElev));
+        const W = m * g;
+
+        // Elevator Frame
+        const cageW = 190;
+        const cageH = 220;
+        const cageTop = cy - cageH / 2;
+
+        nCtx.strokeStyle = '#64748b';
+        nCtx.lineWidth = 3;
+        nCtx.strokeRect(cx - cageW / 2, cageTop, cageW, cageH);
+
+        // Suspension Cable
+        nCtx.strokeStyle = '#94a3b8';
+        nCtx.lineWidth = 4;
+        nCtx.beginPath();
+        nCtx.moveTo(cx, cageTop);
+        nCtx.lineTo(cx, cageTop - 45);
+        nCtx.stroke();
+
+        // Weighing Scale Platform
+        const scaleY = cy + cageH / 2 - 35;
+        const scaleW = 120;
+        const scaleH = 18;
+
+        // Spring compression under scale
+        const springComp = Math.min(10, (N_app / (m * g)) * 6);
+        nCtx.fillStyle = '#0f172a';
+        nCtx.strokeStyle = '#38bdf8';
+        nCtx.lineWidth = 2;
+        nCtx.fillRect(cx - scaleW / 2, scaleY + springComp, scaleW, scaleH);
+        nCtx.strokeRect(cx - scaleW / 2, scaleY + springComp, scaleW, scaleH);
+
+        // Scale digital readout
+        nCtx.fillStyle = '#38bdf8';
+        nCtx.font = 'bold 12px Consolas, monospace';
+        nCtx.fillText(`SCALE: ${N_app.toFixed(1)} N (${(N_app / g).toFixed(1)} kg)`, cx - 65, scaleY + springComp + 13);
+
+        // Person / Mass Block on scale
+        const bW = 35 + Math.sqrt(m) * 5;
+        const bH = 45 + Math.sqrt(m) * 4;
+        const bY = (N_app === 0 ? scaleY - bH - 12 : scaleY + springComp - bH); // Floating if weightless!
+
+        nCtx.fillStyle = N_app === 0 ? '#1e1b4b' : '#1e293b';
+        nCtx.strokeStyle = N_app === 0 ? '#facc15' : '#4ade80';
+        nCtx.lineWidth = 2;
+        nCtx.fillRect(cx - bW / 2, bY, bW, bH);
+        nCtx.strokeRect(cx - bW / 2, bY, bW, bH);
+
+        nCtx.fillStyle = '#ffffff';
+        nCtx.font = 'bold 12px Consolas, monospace';
+        nCtx.fillText(`m=${m}kg`, cx - 22, bY + bH / 2 + 4);
+
+        if (N_app === 0) {
+          nCtx.fillStyle = '#facc15';
+          nCtx.font = 'bold 12px Consolas, monospace';
+          nCtx.fillText('★ WEIGHTLESS FLOAT ★', cx - 70, bY - 14);
+        }
+
+        // Vectors on the person
+        // 1. Gravity W = mg (Rose Downward)
+        const wLen = 30 + m * 1.5;
+        drawArrow(nCtx, cx, bY + bH / 2, cx, bY + bH / 2 + wLen, '#F43F5E', `W = mg (${W.toFixed(0)}N)`);
+
+        // 2. Normal reaction N_app (Emerald Upward)
+        if (N_app > 0) {
+          const nLen = Math.max(10, (N_app / W) * wLen);
+          drawArrow(nCtx, cx, bY + bH / 2, cx, bY + bH / 2 - nLen, '#4ADE80', `N = ${N_app.toFixed(0)}N`);
+        }
+
+        // Frame acceleration arrow on side
         if (aElev !== 0) {
-          const arrowDir = aElev > 0 ? -1 : 1;
-          const aLen = Math.abs(aElev) * 8;
-          drawArrow(nCtx, cx + 115, cy, cx + 115, cy + arrowDir * aLen, '#F43F5E', 'a_frame = ' + aElev.toFixed(1));
+          const aLen = Math.abs(aElev) * 10;
+          const aDir = aElev > 0 ? -1 : 1;
+          drawArrow(nCtx, cx + cageW / 2 + 25, cy, cx + cageW / 2 + 25, cy + aDir * aLen, aElev > 0 ? '#38bdf8' : '#F43F5E', `a = ${aElev.toFixed(1)}`);
         }
 
       } else if (currentNewtonConcept === 'tension') {
-        // Atwood Pulley Circle
+        const m1 = parseFloat(document.getElementById('newtonMassSlider').value);
+        const m2 = Math.max(0.5, parseFloat(document.getElementById('newtonForceSlider').value) / 4);
+        const a = Math.abs(m1 - m2) * g / (m1 + m2);
+        const T = (2 * m1 * m2 * g) / (m1 + m2);
+
+        // Pulley at top
+        const pulleyR = 32;
+        const pulleyY = cy - 100;
         nCtx.beginPath();
-        nCtx.arc(cx, cy - 100, 30, 0, Math.PI * 2);
+        nCtx.arc(cx, pulleyY, pulleyR, 0, Math.PI * 2);
         nCtx.fillStyle = '#334155';
         nCtx.fill();
         nCtx.strokeStyle = '#94a3b8';
         nCtx.lineWidth = 3;
         nCtx.stroke();
 
-        // String left & right
+        // Pulley Spokes
+        const spokeAngle = (atwoodY * 0.05);
+        for (let i = 0; i < 4; i++) {
+          const ang = spokeAngle + (i * Math.PI / 2);
+          nCtx.beginPath();
+          nCtx.moveTo(cx, pulleyY);
+          nCtx.lineTo(cx + pulleyR * Math.cos(ang), pulleyY + pulleyR * Math.sin(ang));
+          nCtx.strokeStyle = '#64748b';
+          nCtx.stroke();
+        }
+
+        // Dynamic Position
+        const leftH = cy - 20 + atwoodY;
+        const rightH = cy - 20 - atwoodY;
+
+        // String
         nCtx.strokeStyle = '#f8fafc';
         nCtx.lineWidth = 2;
         nCtx.beginPath();
-        nCtx.moveTo(cx - 30, cy - 100);
-        nCtx.lineTo(cx - 30, cy + 10);
-        nCtx.moveTo(cx + 30, cy - 100);
-        nCtx.lineTo(cx + 30, cy + 30);
+        nCtx.moveTo(cx - pulleyR, pulleyY);
+        nCtx.lineTo(cx - pulleyR, leftH);
+        nCtx.moveTo(cx + pulleyR, pulleyY);
+        nCtx.lineTo(cx + pulleyR, rightH);
         nCtx.stroke();
 
-        // Block m1 (left)
+        // Block 1 (Left - m1)
+        const b1Side = 32 + Math.sqrt(m1) * 7;
         nCtx.fillStyle = '#1e293b';
         nCtx.strokeStyle = '#38bdf8';
-        nCtx.fillRect(cx - 55, cy + 10, 50, 50);
-        nCtx.strokeRect(cx - 55, cy + 10, 50, 50);
+        nCtx.lineWidth = 2;
+        nCtx.fillRect(cx - pulleyR - b1Side / 2, leftH, b1Side, b1Side);
+        nCtx.strokeRect(cx - pulleyR - b1Side / 2, leftH, b1Side, b1Side);
         nCtx.fillStyle = '#ffffff';
         nCtx.font = 'bold 11px Consolas, monospace';
-        nCtx.fillText('m1', cx - 35, cy + 38);
+        nCtx.fillText(`m1=${m1.toFixed(1)}kg`, cx - pulleyR - b1Side / 2 + 4, leftH + b1Side / 2 + 4);
 
-        // Block m2 (right)
+        // Block 2 (Right - m2)
+        const b2Side = 32 + Math.sqrt(m2) * 7;
         nCtx.fillStyle = '#1e293b';
         nCtx.strokeStyle = '#facc15';
-        nCtx.fillRect(cx + 5, cy + 30, 50, 50);
-        nCtx.strokeRect(cx + 5, cy + 30, 50, 50);
+        nCtx.lineWidth = 2;
+        nCtx.fillRect(cx + pulleyR - b2Side / 2, rightH, b2Side, b2Side);
+        nCtx.strokeRect(cx + pulleyR - b2Side / 2, rightH, b2Side, b2Side);
         nCtx.fillStyle = '#ffffff';
-        nCtx.fillText('m2', cx + 25, cy + 58);
+        nCtx.fillText(`m2=${m2.toFixed(1)}kg`, cx + pulleyR - b2Side / 2 + 4, rightH + b2Side / 2 + 4);
 
-        // String Tension Labels
-        nCtx.fillStyle = '#4ade80';
-        nCtx.fillText('T', cx - 22, cy - 30);
-        nCtx.fillText('T', cx + 38, cy - 30);
-      }
-    }
+        // Tension Arrows (Upwards on both)
+        const tLen = Math.min(45, 15 + T * 0.35);
+        drawArrow(nCtx, cx - pulleyR, leftH, cx - pulleyR, leftH - tLen, '#4ADE80', `T=${T.toFixed(0)}N`, 10);
+        drawArrow(nCtx, cx + pulleyR, rightH, cx + pulleyR, rightH - tLen, '#4ADE80', `T=${T.toFixed(0)}N`, 10);
 
-    // Helper Arrow Drawing Routine
-    function drawArrow(ctx, fromx, fromy, tox, toy, color, label) {
-      ctx.strokeStyle = color;
-      ctx.fillStyle = color;
-      ctx.lineWidth = 2.5;
-      ctx.beginPath();
-      ctx.moveTo(fromx, fromy);
-      ctx.lineTo(tox, toy);
-      ctx.stroke();
-
-      const headlen = 8;
-      const angle = Math.atan2(toy - fromy, tox - fromx);
-      ctx.beginPath();
-      ctx.moveTo(tox, toy);
-      ctx.lineTo(tox - headlen * Math.cos(angle - Math.PI / 6), toy - headlen * Math.sin(angle - Math.PI / 6));
-      ctx.lineTo(tox - headlen * Math.cos(angle + Math.PI / 6), toy - headlen * Math.sin(angle + Math.PI / 6));
-      ctx.closePath();
-      ctx.fill();
-
-      if (label) {
-        ctx.font = 'bold 11px Consolas, monospace';
-        ctx.fillText(label, tox + 6, toy + (toy > fromy ? 12 : -6));
+        // Weight Arrows (Downwards)
+        const w1Len = Math.min(55, 15 + m1 * 1.8);
+        const w2Len = Math.min(55, 15 + m2 * 1.8);
+        drawArrow(nCtx, cx - pulleyR, leftH + b1Side, cx - pulleyR, leftH + b1Side + w1Len, '#F43F5E', `${(m1 * g).toFixed(0)}N`, 10);
+        drawArrow(nCtx, cx + pulleyR, rightH + b2Side, cx + pulleyR, rightH + b2Side + w2Len, '#F43F5E', `${(m2 * g).toFixed(0)}N`, 10);
       }
     }
 
     // ========================================================
-    // ENGINE 2: FRICTION, INCLINE & TWO-BLOCK ENGINE
+    // ENGINE 2: FRICTION, INCLINE & TWO-BLOCK IMPLEMENTATION
     // ========================================================
+    let slideX = 0;
+    let inclineBlockPos = 0;
+    let twoBlockX = 0;
+    let twoBlockRelSlip = 0;
+
     function setFrictionConcept(sub) {
       currentFrictionConcept = sub;
       document.getElementById('subFrictionGraphBtn').className = sub === 'graph' ? 'sub-preset-btn active px-3 py-1 rounded-lg border text-xs transition' : 'sub-preset-btn px-3 py-1 rounded-lg border text-xs transition';
@@ -788,18 +932,32 @@
         document.getElementById('frictionHeader').innerText = "CONCEPT 7 • FRICTION MECHANICS";
         document.getElementById('frictionTitle').innerText = "Self-Adjusting Static vs Constant Kinetic";
         document.getElementById('frictionFormula').innerText = "f_s ≤ μ_s·N • f_k = μ_k·N (μ_k < μ_s)";
+        document.getElementById('fricParam1Label').innerText = "Static Coeff (μ_s):";
+        document.getElementById('fricParam2Label').innerText = "Kinetic Coeff (μ_k):";
+        document.getElementById('fricAppliedLabel').innerText = "Applied Pull (F_app):";
+        document.getElementById('fricMet1Label').innerText = "Limiting Friction (f_s,max):";
+        document.getElementById('fricMet2Label').innerText = "Active Friction (f):";
         appliedBlock.classList.remove('hidden');
         inclineBlock.classList.add('hidden');
       } else if (sub === 'incline') {
         document.getElementById('frictionHeader').innerText = "CONCEPT 8 • ANGLE OF REPOSE";
         document.getElementById('frictionTitle').innerText = "Motion on Rough Incline & Time Asymmetry";
         document.getElementById('frictionFormula').innerText = "tan θ_R = μ_s • a_down = g(sinθ - μ_k·cosθ)";
+        document.getElementById('fricParam1Label').innerText = "Static Coeff (μ_s):";
+        document.getElementById('fricParam2Label').innerText = "Kinetic Coeff (μ_k):";
+        document.getElementById('fricMet1Label').innerText = "Angle of Repose (θ_R):";
+        document.getElementById('fricMet2Label').innerText = "Active Friction:";
         appliedBlock.classList.add('hidden');
         inclineBlock.classList.remove('hidden');
       } else if (sub === 'twoblock') {
         document.getElementById('frictionHeader').innerText = "CONCEPT 9 • TWO-BLOCK SYSTEM";
         document.getElementById('frictionTitle').innerText = "Relative Slipping Force Threshold";
         document.getElementById('frictionFormula').innerText = "a_max = μ_s·g • F_max = (m1 + m2)·μ_s·g";
+        document.getElementById('fricParam1Label').innerText = "Interface Friction (μ_s):";
+        document.getElementById('fricParam2Label').innerText = "Kinetic Coeff (μ_k):";
+        document.getElementById('fricAppliedLabel').innerText = "Pull on Bottom m2 (F):";
+        document.getElementById('fricMet1Label').innerText = "Slip Threshold (F_max):";
+        document.getElementById('fricMet2Label').innerText = "Interface Friction (f):";
         appliedBlock.classList.remove('hidden');
         inclineBlock.classList.add('hidden');
       }
@@ -822,38 +980,46 @@
 
       const f_s_max = muS * N;
       const f_k = muK * N;
-      document.getElementById('fricLimitingVal').innerText = f_s_max.toFixed(1) + ' N';
 
       if (currentFrictionConcept === 'graph') {
+        document.getElementById('fricLimitingVal').innerText = f_s_max.toFixed(1) + ' N';
         if (F_app <= f_s_max) {
           document.getElementById('fricActualVal').innerText = F_app.toFixed(1) + ' N (Static fs = F)';
           document.getElementById('fricStateVal').innerText = "STATIC REST (f_s = F_applied)";
         } else {
           document.getElementById('fricActualVal').innerText = f_k.toFixed(1) + ' N (Kinetic fk)';
-          document.getElementById('fricStateVal').innerText = "SLIDING FORWARD (a = " + ((F_app - f_k)/m).toFixed(2) + " m/s²)";
+          document.getElementById('fricStateVal').innerText = "SLIDING FORWARD (a = " + ((F_app - f_k) / m).toFixed(2) + " m/s²)";
         }
       } else if (currentFrictionConcept === 'incline') {
         const thetaRepose = Math.atan(muS) * 180 / Math.PI;
+        document.getElementById('fricLimitingVal').innerText = thetaRepose.toFixed(1) + '°';
         if (theta <= thetaRepose) {
-          document.getElementById('fricActualVal').innerText = (m * g * Math.sin(theta * Math.PI / 180)).toFixed(1) + ' N (Static mg·sinθ)';
-          document.getElementById('fricStateVal').innerText = "STATIONARY (θ ≤ θ_Repose = " + thetaRepose.toFixed(1) + "°)";
+          const fs = m * g * Math.sin(theta * Math.PI / 180);
+          document.getElementById('fricActualVal').innerText = fs.toFixed(1) + ' N (Static mg·sinθ)';
+          document.getElementById('fricStateVal').innerText = "STATIONARY (θ ≤ θ_Repose)";
         } else {
           const aDown = g * (Math.sin(theta * Math.PI / 180) - muK * Math.cos(theta * Math.PI / 180));
-          document.getElementById('fricActualVal').innerText = (muK * m * g * Math.cos(theta * Math.PI / 180)).toFixed(1) + ' N (Kinetic)';
-          document.getElementById('fricStateVal').innerText = "ACCELERATING DOWN (a = " + Math.max(0, aDown).toFixed(2) + " m/s²)";
+          const fk = muK * m * g * Math.cos(theta * Math.PI / 180);
+          document.getElementById('fricActualVal').innerText = fk.toFixed(1) + ' N (Kinetic fk)';
+          document.getElementById('fricStateVal').innerText = "SLIDING DOWN (a = " + Math.max(0, aDown).toFixed(2) + " m/s²)";
         }
       } else if (currentFrictionConcept === 'twoblock') {
         const m1 = 2.0;
         const m2 = 4.0;
         const a_max = muS * g;
         const F_max = (m1 + m2) * a_max;
-        document.getElementById('fricLimitingVal').innerText = "F_max = " + F_max.toFixed(1) + " N";
+        document.getElementById('fricLimitingVal').innerText = F_max.toFixed(1) + " N";
         if (F_app <= F_max) {
-          document.getElementById('fricActualVal').innerText = (m1 * (F_app / (m1 + m2))).toFixed(1) + ' N (Static)';
-          document.getElementById('fricStateVal').innerText = "MOVING TOGETHER (a = " + (F_app / (m1 + m2)).toFixed(2) + " m/s²)";
+          const a_com = F_app / (m1 + m2);
+          const f_int = m1 * a_com;
+          document.getElementById('fricActualVal').innerText = f_int.toFixed(1) + ' N (Static)';
+          document.getElementById('fricStateVal').innerText = "MOVING TOGETHER (a = " + a_com.toFixed(2) + " m/s²)";
         } else {
-          document.getElementById('fricActualVal').innerText = (muK * m1 * g).toFixed(1) + ' N (Kinetic Slip)';
-          document.getElementById('fricStateVal').innerText = "RELATIVE SLIPPING! (a1=" + (muK*g).toFixed(1) + ", a2=" + ((F_app - muK*m1*g)/m2).toFixed(1) + ")";
+          const fk_int = muK * m1 * g;
+          const a1 = fk_int / m1;
+          const a2 = (F_app - fk_int) / m2;
+          document.getElementById('fricActualVal').innerText = fk_int.toFixed(1) + ' N (Kinetic Slip)';
+          document.getElementById('fricStateVal').innerText = "RELATIVE SLIPPING! (a1=" + a1.toFixed(1) + ", a2=" + a2.toFixed(1) + ")";
         }
       }
       drawFrictionCanvas();
@@ -861,132 +1027,290 @@
 
     function drawFrictionCanvas() {
       resizeCanvas(fCanvas);
-      const w = fCanvas.width;
-      const h = fCanvas.height;
+      const w = fCanvas.width / (window.devicePixelRatio || 1);
+      const h = fCanvas.height / (window.devicePixelRatio || 1);
       if (!w || !h) return;
       fCtx.clearRect(0, 0, w, h);
 
       const cx = w / 2;
-      const cy = h / 2 + 20;
+      const cy = h / 2 + 10;
+      const muS = parseFloat(document.getElementById('fricMuSSlider').value);
+      const muK = parseFloat(document.getElementById('fricMuKSlider').value);
+      const g = 9.8;
 
       if (currentFrictionConcept === 'graph') {
-        // Friction vs Applied Force Chart
-        const originX = 80;
-        const originY = h - 60;
-        const graphW = w - 160;
-        const graphH = h - 120;
+        const F_app = parseFloat(document.getElementById('fricAppliedSlider').value);
+        const m = 5.0;
+        const N = m * g;
+        const fs_max = muS * N;
+        const fk = muK * N;
 
-        // Axes
+        // TOP HALF: Physical Sliding Block
+        const floorY = cy - 40;
         fCtx.strokeStyle = '#475569';
         fCtx.lineWidth = 2;
         fCtx.beginPath();
-        fCtx.moveTo(originX, originY);
-        fCtx.lineTo(originX + graphW, originY);
-        fCtx.moveTo(originX, originY);
-        fCtx.lineTo(originX, originY - graphH);
+        fCtx.moveTo(cx - 180, floorY);
+        fCtx.lineTo(cx + 180, floorY);
+        fCtx.stroke();
+
+        // Block with position slideX
+        const bx = cx - 35 + slideX;
+        fCtx.fillStyle = '#1e293b';
+        fCtx.strokeStyle = F_app > fs_max ? '#f59e0b' : '#38bdf8';
+        fCtx.lineWidth = 2;
+        fCtx.fillRect(bx, floorY - 50, 70, 50);
+        fCtx.strokeRect(bx, floorY - 50, 70, 50);
+        fCtx.fillStyle = '#ffffff';
+        fCtx.font = 'bold 12px Consolas, monospace';
+        fCtx.fillText(`m=5kg`, bx + 16, floorY - 22);
+
+        // Pull arrow (Gold)
+        if (F_app > 0) {
+          const pullLen = Math.min(80, 15 + F_app * 0.9);
+          drawArrow(fCtx, bx + 70, floorY - 25, bx + 70 + pullLen, floorY - 25, '#FACC15', `F=${F_app}N`, 10);
+        }
+
+        // Friction arrow (Red opposing to left)
+        const actFric = F_app <= fs_max ? F_app : fk;
+        if (actFric > 0) {
+          const fricLen = Math.min(80, 15 + actFric * 0.9);
+          drawArrow(fCtx, bx, floorY - 10, bx - fricLen, floorY - 10, '#F43F5E', `f=${actFric.toFixed(0)}N`, 10);
+        }
+
+        // BOTTOM HALF: Live Friction Curve Graph
+        const ox = 70;
+        const oy = h - 35;
+        const gw = w - 140;
+        const gh = 90;
+
+        fCtx.strokeStyle = '#475569';
+        fCtx.lineWidth = 2;
+        fCtx.beginPath();
+        fCtx.moveTo(ox, oy);
+        fCtx.lineTo(ox + gw, oy);
+        fCtx.moveTo(ox, oy);
+        fCtx.lineTo(ox, oy - gh);
         fCtx.stroke();
 
         fCtx.fillStyle = '#94a3b8';
-        fCtx.font = '11px Consolas, monospace';
-        fCtx.fillText('Applied Force F_applied →', originX + graphW - 140, originY + 25);
-        fCtx.fillText('Friction Force f ↑', originX - 40, originY - graphH - 10);
+        fCtx.font = '10px Consolas, monospace';
+        fCtx.fillText('F_applied →', ox + gw - 65, oy + 20);
+        fCtx.fillText('Friction f ↑', ox - 50, oy - gh + 10);
 
-        // Limiting & Kinetic lines
-        const muS = parseFloat(document.getElementById('fricMuSSlider').value);
-        const muK = parseFloat(document.getElementById('fricMuKSlider').value);
-        const peakX = originX + graphW * 0.45;
-        const peakY = originY - graphH * 0.75 * (muS / 0.9);
-        const dropY = originY - graphH * 0.75 * (muK / 0.9);
+        const peakX = ox + gw * 0.45;
+        const peakY = oy - gh * 0.85 * (muS / 0.9);
+        const dropY = oy - gh * 0.85 * (muK / 0.9);
 
-        // Static Region (Slope = 1)
+        // Static linear slope (fs = F)
         fCtx.strokeStyle = '#38bdf8';
         fCtx.lineWidth = 3;
         fCtx.beginPath();
-        fCtx.moveTo(originX, originY);
+        fCtx.moveTo(ox, oy);
         fCtx.lineTo(peakX, peakY);
         fCtx.stroke();
 
-        // Drop to Kinetic
+        // Kinetic drop and plateau
         fCtx.strokeStyle = '#f59e0b';
         fCtx.beginPath();
         fCtx.moveTo(peakX, peakY);
-        fCtx.lineTo(peakX + 15, dropY);
-        fCtx.lineTo(originX + graphW, dropY);
+        fCtx.lineTo(peakX + 12, dropY);
+        fCtx.lineTo(ox + gw, dropY);
         fCtx.stroke();
 
-        // Current Applied Force Marker
-        const F_app = parseFloat(document.getElementById('fricAppliedSlider').value);
-        const currNormX = originX + (F_app / 60) * graphW * 0.9;
-        let currNormY = originY;
+        // Active Marker on Graph
+        const currNormX = ox + (F_app / 60) * (peakX - ox);
+        let currNormY = oy;
         if (currNormX <= peakX) {
-          currNormY = originY - (currNormX - originX) * ((originY - peakY) / (peakX - originX));
+          currNormY = oy - (currNormX - ox) * ((oy - peakY) / (peakX - ox));
         } else {
           currNormY = dropY;
         }
 
         fCtx.fillStyle = '#4ade80';
         fCtx.beginPath();
-        fCtx.arc(currNormX, currNormY, 6, 0, Math.PI * 2);
+        fCtx.arc(Math.min(ox + gw, currNormX), currNormY, 6, 0, Math.PI * 2);
         fCtx.fill();
-        fCtx.fillText('Active Point', currNormX + 8, currNormY - 6);
 
       } else if (currentFrictionConcept === 'incline') {
         const theta = parseFloat(document.getElementById('fricInclineSlider').value);
         const rad = theta * Math.PI / 180;
-        const rampLen = Math.min(300, w * 0.5);
+        const thetaR = Math.atan(muS) * 180 / Math.PI;
+        const rampLen = Math.min(320, w * 0.55);
 
-        fCtx.strokeStyle = '#facc15';
+        // Ramp Base Point
+        const rx = cx - rampLen / 2;
+        const ry = cy + 70;
+
+        // Incline Triangle
+        fCtx.strokeStyle = '#38bdf8';
         fCtx.lineWidth = 3;
         fCtx.beginPath();
-        fCtx.moveTo(cx - 150, cy + 80);
-        fCtx.lineTo(cx - 150 + rampLen * Math.cos(rad), cy + 80 - rampLen * Math.sin(rad));
-        fCtx.lineTo(cx - 150 + rampLen * Math.cos(rad), cy + 80);
+        fCtx.moveTo(rx, ry);
+        fCtx.lineTo(rx + rampLen * Math.cos(rad), ry - rampLen * Math.sin(rad));
+        fCtx.lineTo(rx + rampLen * Math.cos(rad), ry);
         fCtx.closePath();
         fCtx.fillStyle = 'rgba(30, 41, 59, 0.4)';
         fCtx.fill();
         fCtx.stroke();
 
-        // Angle text
+        // Angle Arc θ
+        fCtx.strokeStyle = '#facc15';
+        fCtx.beginPath();
+        fCtx.arc(rx, ry, 35, 0, -rad, true);
+        fCtx.stroke();
         fCtx.fillStyle = '#facc15';
         fCtx.font = 'bold 12px Consolas, monospace';
-        fCtx.fillText('θ = ' + theta + '°', cx - 110, cy + 70);
+        fCtx.fillText(`θ=${theta}°`, rx + 45, ry - 8);
+
+        // Angle of Repose Threshold Dashed Line
+        fCtx.fillStyle = '#4ade80';
+        fCtx.fillText(`θ_Repose=${thetaR.toFixed(1)}°`, rx + rampLen * 0.4, ry + 20);
+
+        // Block on the Incline (with animated inclineBlockPos)
+        const d = (rampLen * 0.35) + inclineBlockPos;
+        const bx = rx + d * Math.cos(rad);
+        const by = ry - d * Math.sin(rad);
+
+        fCtx.save();
+        fCtx.translate(bx, by);
+        fCtx.rotate(-rad);
+        fCtx.fillStyle = theta > thetaR ? '#f59e0b' : '#1e293b';
+        fCtx.strokeStyle = theta > thetaR ? '#F43F5E' : '#4ade80';
+        fCtx.lineWidth = 2.5;
+        fCtx.fillRect(-25, -40, 50, 40);
+        fCtx.strokeRect(-25, -40, 50, 40);
+        fCtx.fillStyle = '#ffffff';
+        fCtx.font = 'bold 11px Consolas, monospace';
+        fCtx.fillText('m=5kg', -18, -16);
+
+        // Friction vector pointing up slope
+        const fLen = theta <= thetaR ? 25 : 35;
+        drawArrow(fCtx, 0, -20, -fLen, -20, '#F43F5E', 'f_friction', 10);
+        fCtx.restore();
+
+        // Normal Force N vector perpendicular to incline
+        const normAngle = rad + Math.PI / 2;
+        drawArrow(fCtx, bx, by, bx - Math.sin(rad) * 45, by - Math.cos(rad) * 45, '#4ADE80', 'N', 10);
+
+        // Gravity W = mg pointing straight down
+        drawArrow(fCtx, bx, by, bx, by + 50, '#F43F5E', 'mg', 10);
 
       } else if (currentFrictionConcept === 'twoblock') {
+        const F_app = parseFloat(document.getElementById('fricAppliedSlider').value);
+        const m1 = 2.0;
+        const m2 = 4.0;
+        const a_max = muS * g;
+        const F_max = (m1 + m2) * a_max;
+        const isSlipping = F_app > F_max;
+
         // Floor
         fCtx.strokeStyle = '#475569';
-        fCtx.lineWidth = 2;
+        fCtx.lineWidth = 2.5;
         fCtx.beginPath();
-        fCtx.moveTo(cx - 160, cy + 60);
-        fCtx.lineTo(cx + 160, cy + 60);
+        fCtx.moveTo(cx - 180, cy + 60);
+        fCtx.lineTo(cx + 180, cy + 60);
         fCtx.stroke();
 
-        // Bottom Block m2 (Blue)
+        // Bottom Block m2 (Blue) - moved by twoBlockX
+        const b2W = 140;
+        const b2H = 45;
+        const b2X = cx - b2W / 2 + twoBlockX;
+        const b2Y = cy + 15;
+
         fCtx.fillStyle = '#1e293b';
         fCtx.strokeStyle = '#38bdf8';
-        fCtx.lineWidth = 2;
-        fCtx.fillRect(cx - 70, cy + 10, 140, 50);
-        fCtx.strokeRect(cx - 70, cy + 10, 140, 50);
+        fCtx.lineWidth = 2.5;
+        fCtx.fillRect(b2X, b2Y, b2W, b2H);
+        fCtx.strokeRect(b2X, b2Y, b2W, b2H);
         fCtx.fillStyle = '#ffffff';
-        fCtx.fillText('Block B (m2 = 4kg)', cx - 55, cy + 40);
+        fCtx.font = 'bold 12px Consolas, monospace';
+        fCtx.fillText(`Bottom Block B (m2=4kg)`, b2X + 10, b2Y + 28);
 
-        // Top Block m1 (Gold)
+        // Pull Force F on bottom block
+        if (F_app > 0) {
+          const fLen = Math.min(80, 15 + F_app * 0.6);
+          drawArrow(fCtx, b2X + b2W, b2Y + b2H / 2, b2X + b2W + fLen, b2Y + b2H / 2, '#FACC15', `F=${F_app}N`, 11);
+        }
+
+        // Top Block m1 (Amber) - displaced backward by twoBlockRelSlip when slipping
+        const b1W = 80;
+        const b1H = 40;
+        const b1X = b2X + (b2W - b1W) / 2 - twoBlockRelSlip;
+        const b1Y = b2Y - b1H;
+
         fCtx.fillStyle = '#334155';
-        fCtx.strokeStyle = '#facc15';
-        fCtx.fillRect(cx - 45, cy - 35, 90, 45);
-        fCtx.strokeRect(cx - 45, cy - 35, 90, 45);
+        fCtx.strokeStyle = isSlipping ? '#F43F5E' : '#facc15';
+        fCtx.lineWidth = 2.5;
+        fCtx.fillRect(b1X, b1Y, b1W, b1H);
+        fCtx.strokeRect(b1X, b1Y, b1W, b1H);
         fCtx.fillStyle = '#ffffff';
-        fCtx.fillText('Block A (m1 = 2kg)', cx - 40, cy - 10);
+        fCtx.font = 'bold 11px Consolas, monospace';
+        fCtx.fillText(`Top A (m1=2kg)`, b1X + 8, b1Y + 24);
+
+        if (isSlipping) {
+          fCtx.fillStyle = '#F43F5E';
+          fCtx.font = 'bold 11px Consolas, monospace';
+          fCtx.fillText('★ SLIPPING ACTIVE! (F > F_max)', cx - 80, cy - 60);
+
+          // Friction vectors between blocks
+          drawArrow(fCtx, b1X + 20, b1Y + b1H, b1X + 60, b1Y + b1H, '#4ADE80', 'f_k on A', 9);
+          drawArrow(fCtx, b1X + 60, b2Y, b1X + 20, b2Y, '#F43F5E', 'f_k on B', 9);
+        } else {
+          fCtx.fillStyle = '#4ADE80';
+          fCtx.font = 'bold 11px Consolas, monospace';
+          fCtx.fillText('✓ LOCKED TOGETHER (F ≤ F_max)', cx - 75, cy - 60);
+        }
       }
     }
 
     // ========================================================
-    // ENGINE 3: MOMENTUM, IMPULSE & CONCURRENT ENGINE
+    // ENGINE 3: MOMENTUM, IMPULSE & CONCURRENT IMPLEMENTATION
     // ========================================================
+    let ballImpactX = 0;
+    let ballDir = -1;
+    let rocketH = 0;
+
     function setMomentumConcept(sub) {
       currentMomentumConcept = sub;
       document.getElementById('subMomImpulseBtn').className = sub === 'impulse' ? 'sub-preset-btn active px-3 py-1 rounded-lg border text-xs transition' : 'sub-preset-btn px-3 py-1 rounded-lg border text-xs transition';
       document.getElementById('subMomRocketBtn').className = sub === 'rocket' ? 'sub-preset-btn active px-3 py-1 rounded-lg border text-xs transition' : 'sub-preset-btn px-3 py-1 rounded-lg border text-xs transition';
       document.getElementById('subMomLamiBtn').className = sub === 'lami' ? 'sub-preset-btn active px-3 py-1 rounded-lg border text-xs transition' : 'sub-preset-btn px-3 py-1 rounded-lg border text-xs transition';
+
+      if (sub === 'impulse') {
+        document.getElementById('momHeader').innerText = "CONCEPT 4 • IMPULSE & MOMENTUM";
+        document.getElementById('momTitle').innerText = "Area Under F-t Curve = Δp";
+        document.getElementById('momFormula').innerText = "J = ∫F dt = Δp = m·(v_f - v_i) = 2mv";
+        document.getElementById('momParam1Label').innerText = "Collision Speed (v):";
+        document.getElementById('momParam2Label').innerText = "Ball Mass (m):";
+        document.getElementById('momParam3Label').innerText = "Contact Duration (Δt):";
+        document.getElementById('momMet1Label').innerText = "Initial Momentum (p_i):";
+        document.getElementById('momMet2Label').innerText = "Rebound Momentum (p_f):";
+        document.getElementById('momMet3Label').innerText = "Total Impulse J = Δp:";
+        document.getElementById('momMet4Label').innerText = "Average Impact Force:";
+      } else if (sub === 'rocket') {
+        document.getElementById('momHeader').innerText = "CONCEPT 5 • CONSERVATION OF MOMENTUM";
+        document.getElementById('momTitle').innerText = "Rocket Thrust & Recoil Dynamics";
+        document.getElementById('momFormula').innerText = "F_thrust = u·(dm/dt) • a = (u/m)(dm/dt) - g";
+        document.getElementById('momParam1Label').innerText = "Exhaust Velocity u (m/s):";
+        document.getElementById('momParam2Label').innerText = "Fuel Burn dm/dt (kg/s):";
+        document.getElementById('momParam3Label').innerText = "Rocket Mass M (x100kg):";
+        document.getElementById('momMet1Label').innerText = "Upward Thrust Force:";
+        document.getElementById('momMet2Label').innerText = "Rocket Gravity W:";
+        document.getElementById('momMet3Label').innerText = "Net Acceleration (a):";
+        document.getElementById('momMet4Label').innerText = "Recoil Velocity (V_rifle):";
+      } else if (sub === 'lami') {
+        document.getElementById('momHeader').innerText = "CONCEPT 6 • LAMI'S THEOREM";
+        document.getElementById('momTitle').innerText = "Equilibrium of Three Concurrent Forces";
+        document.getElementById('momFormula').innerText = "F1 / sin α = F2 / sin β = F3 / sin γ";
+        document.getElementById('momParam1Label').innerText = "Force F1 (N):";
+        document.getElementById('momParam2Label').innerText = "Angle α (between F2-F3):";
+        document.getElementById('momParam3Label').innerText = "Angle β (between F1-F3):";
+        document.getElementById('momMet1Label').innerText = "Computed Force F2:";
+        document.getElementById('momMet2Label').innerText = "Computed Force F3:";
+        document.getElementById('momMet3Label').innerText = "Third Angle γ:";
+        document.getElementById('momMet4Label').innerText = "Net Resultant Vector:";
+      }
       updateMomentum();
     }
 
@@ -995,87 +1319,267 @@
       const m = parseFloat(document.getElementById('momMassSlider').value);
       const dt = parseFloat(document.getElementById('momTimeSlider').value);
 
-      document.getElementById('momSpeedVal').innerText = v.toFixed(1) + ' m/s';
-      document.getElementById('momMassVal').innerText = m.toFixed(2) + ' kg';
-      document.getElementById('momTimeVal').innerText = dt.toFixed(3) + ' s';
+      document.getElementById('momSpeedVal').innerText = (currentMomentumConcept === 'rocket' ? (v * 100).toFixed(0) + ' m/s' : currentMomentumConcept === 'lami' ? v.toFixed(0) + ' N' : v.toFixed(1) + ' m/s');
+      document.getElementById('momMassVal').innerText = (currentMomentumConcept === 'rocket' ? (m * 25).toFixed(1) + ' kg/s' : currentMomentumConcept === 'lami' ? (100 + m * 30).toFixed(0) + '°' : m.toFixed(2) + ' kg');
+      document.getElementById('momTimeVal').innerText = (currentMomentumConcept === 'rocket' ? (dt * 15000).toFixed(0) + ' kg' : currentMomentumConcept === 'lami' ? (100 + dt * 1000).toFixed(0) + '°' : dt.toFixed(3) + ' s');
 
-      const p_i = m * v;
-      const p_f = -m * v;
-      const J = 2 * m * v;
-      const F_avg = J / dt;
-
-      document.getElementById('momInitP').innerText = '+' + p_i.toFixed(2) + ' kg·m/s';
-      document.getElementById('momFinalP').innerText = p_f.toFixed(2) + ' kg·m/s';
-      document.getElementById('momTotalJ').innerText = J.toFixed(2) + ' N·s (Doubled)';
-      document.getElementById('momAvgF').innerText = F_avg.toFixed(0) + ' N';
-
+      if (currentMomentumConcept === 'impulse') {
+        const p_i = m * v;
+        const p_f = -m * v;
+        const J = 2 * m * v;
+        const F_avg = J / dt;
+        document.getElementById('momInitP').innerText = '+' + p_i.toFixed(2) + ' kg·m/s';
+        document.getElementById('momFinalP').innerText = p_f.toFixed(2) + ' kg·m/s';
+        document.getElementById('momTotalJ').innerText = J.toFixed(2) + ' N·s (Doubled)';
+        document.getElementById('momAvgF').innerText = F_avg.toFixed(0) + ' N';
+      } else if (currentMomentumConcept === 'rocket') {
+        const u = v * 100;
+        const dmdt = m * 25;
+        const M = Math.max(100, dt * 15000);
+        const F_thrust = u * dmdt;
+        const W = M * 9.8;
+        const a_net = Math.max(0, (F_thrust - W) / M);
+        document.getElementById('momInitP').innerText = F_thrust.toFixed(0) + ' N';
+        document.getElementById('momFinalP').innerText = W.toFixed(0) + ' N';
+        document.getElementById('momTotalJ').innerText = a_net.toFixed(2) + ' m/s²';
+        document.getElementById('momAvgF').innerText = `V_recoil = -${((0.02 * 600) / 4).toFixed(1)} m/s`;
+      } else if (currentMomentumConcept === 'lami') {
+        const F1 = v;
+        const alpha = (100 + m * 30) * Math.PI / 180;
+        const beta = (100 + dt * 1000) * Math.PI / 180;
+        const gamma = 2 * Math.PI - (alpha + beta);
+        const F2 = F1 * Math.sin(beta) / Math.sin(alpha);
+        const F3 = F1 * Math.sin(gamma) / Math.sin(alpha);
+        document.getElementById('momInitP').innerText = Math.abs(F2).toFixed(1) + ' N';
+        document.getElementById('momFinalP').innerText = Math.abs(F3).toFixed(1) + ' N';
+        document.getElementById('momTotalJ').innerText = ((gamma * 180 / Math.PI)).toFixed(0) + '°';
+        document.getElementById('momAvgF').innerText = '0.00 N (Zero Net Loop)';
+      }
       drawMomentumCanvas();
     }
 
     function drawMomentumCanvas() {
       resizeCanvas(mCanvas);
-      const w = mCanvas.width;
-      const h = mCanvas.height;
+      const w = mCanvas.width / (window.devicePixelRatio || 1);
+      const h = mCanvas.height / (window.devicePixelRatio || 1);
       if (!w || !h) return;
       mCtx.clearRect(0, 0, w, h);
 
       const cx = w / 2;
       const cy = h / 2 + 10;
 
-      // F-t Triangular Force Pulse
-      const ox = 70;
-      const oy = h - 60;
-      const gw = w - 140;
-      const gh = h - 120;
+      if (currentMomentumConcept === 'impulse') {
+        const v = parseFloat(document.getElementById('momSpeedSlider').value);
+        const m = parseFloat(document.getElementById('momMassSlider').value);
+        const dt = parseFloat(document.getElementById('momTimeSlider').value);
+        const J = 2 * m * v;
+        const F_peak = Math.min(1000, J / dt);
 
-      mCtx.strokeStyle = '#475569';
-      mCtx.lineWidth = 2;
-      mCtx.beginPath();
-      mCtx.moveTo(ox, oy);
-      mCtx.lineTo(ox + gw, oy);
-      mCtx.moveTo(ox, oy);
-      mCtx.lineTo(ox, oy - gh);
-      mCtx.stroke();
+        // LEFT: Elastic Wall & Rebounding Ball
+        const wallX = 60;
+        mCtx.fillStyle = '#475569';
+        mCtx.fillRect(wallX - 15, cy - 80, 15, 160);
+        mCtx.strokeStyle = '#94a3b8';
+        mCtx.strokeRect(wallX - 15, cy - 80, 15, 160);
 
-      // Force Pulse Curve (Impulse Area)
-      mCtx.fillStyle = 'rgba(74, 222, 128, 0.25)';
-      mCtx.strokeStyle = '#4ade80';
-      mCtx.lineWidth = 3;
-      mCtx.beginPath();
-      mCtx.moveTo(ox + gw * 0.2, oy);
-      mCtx.lineTo(ox + gw * 0.5, oy - gh * 0.85);
-      mCtx.lineTo(ox + gw * 0.8, oy);
-      mCtx.closePath();
-      mCtx.fill();
-      mCtx.stroke();
+        // Moving Ball
+        const bRad = 15 + m * 10;
+        const ballPos = wallX + bRad + ballImpactX;
 
-      mCtx.fillStyle = '#4ade80';
-      mCtx.font = 'bold 12px Consolas, monospace';
-      mCtx.fillText('Area = Impulse J = Δp = 2mv', ox + gw * 0.35, oy - gh * 0.4);
+        mCtx.fillStyle = '#38bdf8';
+        mCtx.beginPath();
+        mCtx.arc(ballPos, cy, bRad, 0, Math.PI * 2);
+        mCtx.fill();
+        mCtx.strokeStyle = '#ffffff';
+        mCtx.lineWidth = 2;
+        mCtx.stroke();
+
+        // Vector arrow on ball
+        if (ballDir === -1) {
+          drawArrow(mCtx, ballPos, cy - bRad - 12, ballPos - 35, cy - bRad - 12, '#38bdf8', `+v (${v}m/s)`, 10);
+        } else {
+          drawArrow(mCtx, ballPos, cy - bRad - 12, ballPos + 35, cy - bRad - 12, '#F43F5E', `-v (Rebound)`, 10);
+        }
+
+        // RIGHT: Dynamic F-t Pulse Curve
+        const ox = cx + 20;
+        const oy = cy + 60;
+        const gw = w - ox - 35;
+        const gh = 120;
+
+        mCtx.strokeStyle = '#475569';
+        mCtx.lineWidth = 2;
+        mCtx.beginPath();
+        mCtx.moveTo(ox, oy);
+        mCtx.lineTo(ox + gw, oy);
+        mCtx.moveTo(ox, oy);
+        mCtx.lineTo(ox, oy - gh);
+        mCtx.stroke();
+
+        mCtx.fillStyle = '#94a3b8';
+        mCtx.font = '10px Consolas, monospace';
+        mCtx.fillText('Time (t) →', ox + gw - 60, oy + 18);
+        mCtx.fillText('Force F(t) ↑', ox - 20, oy - gh - 8);
+
+        // Pulse width proportional to dt, height proportional to F_peak
+        const pWidth = Math.min(gw * 0.7, (dt / 0.05) * gw * 0.6 + 25);
+        const pHeight = Math.min(gh * 0.85, (F_peak / 1000) * gh * 0.8 + 20);
+        const pStart = ox + gw * 0.15;
+        const pMid = pStart + pWidth / 2;
+        const pEnd = pStart + pWidth;
+
+        mCtx.fillStyle = 'rgba(74, 222, 128, 0.25)';
+        mCtx.strokeStyle = '#4ade80';
+        mCtx.lineWidth = 2.5;
+        mCtx.beginPath();
+        mCtx.moveTo(pStart, oy);
+        mCtx.lineTo(pMid, oy - pHeight);
+        mCtx.lineTo(pEnd, oy);
+        mCtx.closePath();
+        mCtx.fill();
+        mCtx.stroke();
+
+        mCtx.fillStyle = '#4ade80';
+        mCtx.font = 'bold 11px Consolas, monospace';
+        mCtx.fillText(`Area = J = Δp = ${J.toFixed(1)} N·s`, pMid - 40, oy - pHeight / 2);
+
+      } else if (currentMomentumConcept === 'rocket') {
+        // ROCKET ANIMATION
+        const rX = cx;
+        const rY = cy + 20 - rocketH;
+
+        // Exhaust flame
+        const flameLen = 30 + (Math.sin(Date.now() * 0.02) * 8) + 20;
+        mCtx.fillStyle = '#f59e0b';
+        mCtx.beginPath();
+        mCtx.moveTo(rX - 12, rY + 45);
+        mCtx.lineTo(rX + 12, rY + 45);
+        mCtx.lineTo(rX, rY + 45 + flameLen);
+        mCtx.closePath();
+        mCtx.fill();
+
+        // Inner blue flame core
+        mCtx.fillStyle = '#38bdf8';
+        mCtx.beginPath();
+        mCtx.moveTo(rX - 6, rY + 45);
+        mCtx.lineTo(rX + 6, rY + 45);
+        mCtx.lineTo(rX, rY + 45 + flameLen * 0.6);
+        mCtx.closePath();
+        mCtx.fill();
+
+        // Rocket Body
+        mCtx.fillStyle = '#1e293b';
+        mCtx.strokeStyle = '#38bdf8';
+        mCtx.lineWidth = 2.5;
+        mCtx.beginPath();
+        mCtx.moveTo(rX, rY - 45);
+        mCtx.lineTo(rX + 18, rY - 15);
+        mCtx.lineTo(rX + 18, rY + 45);
+        mCtx.lineTo(rX - 18, rY + 45);
+        mCtx.lineTo(rX - 18, rY - 15);
+        mCtx.closePath();
+        mCtx.fill();
+        mCtx.stroke();
+
+        // Fins
+        mCtx.fillStyle = '#475569';
+        mCtx.beginPath();
+        mCtx.moveTo(rX - 18, rY + 20);
+        mCtx.lineTo(rX - 32, rY + 45);
+        mCtx.lineTo(rX - 18, rY + 45);
+        mCtx.closePath();
+        mCtx.fill();
+
+        mCtx.beginPath();
+        mCtx.moveTo(rX + 18, rY + 20);
+        mCtx.lineTo(rX + 32, rY + 45);
+        mCtx.lineTo(rX + 18, rY + 45);
+        mCtx.closePath();
+        mCtx.fill();
+
+        // Thrust vector arrow (Up)
+        drawArrow(mCtx, rX + 45, rY, rX + 45, rY - 50, '#4ADE80', 'F_thrust = u(dm/dt)', 11);
+
+        // Exhaust velocity arrow (Down)
+        drawArrow(mCtx, rX - 45, rY + 45, rX - 45, rY + 45 + 40, '#f59e0b', 'u_exhaust', 10);
+
+      } else if (currentMomentumConcept === 'lami') {
+        const F1 = parseFloat(document.getElementById('momSpeedSlider').value);
+        const m = parseFloat(document.getElementById('momMassSlider').value);
+        const dt = parseFloat(document.getElementById('momTimeSlider').value);
+        const alpha = (100 + m * 30) * Math.PI / 180;
+        const beta = (100 + dt * 1000) * Math.PI / 180;
+        const gamma = 2 * Math.PI - (alpha + beta);
+        const F2 = Math.abs(F1 * Math.sin(beta) / Math.sin(alpha));
+        const F3 = Math.abs(F1 * Math.sin(gamma) / Math.sin(alpha));
+
+        // Knot at center
+        mCtx.fillStyle = '#ffffff';
+        mCtx.beginPath();
+        mCtx.arc(cx - 50, cy, 6, 0, Math.PI * 2);
+        mCtx.fill();
+
+        // Force 1 (Pointing Straight Up)
+        const l1 = Math.min(80, 20 + F1 * 0.7);
+        drawArrow(mCtx, cx - 50, cy, cx - 50, cy - l1, '#38bdf8', `F1=${F1.toFixed(0)}N`, 11);
+
+        // Force 2 (At angle alpha relative to F3, or beta from F1)
+        const ang2 = -Math.PI / 2 + beta;
+        const l2 = Math.min(80, 20 + F2 * 0.7);
+        drawArrow(mCtx, cx - 50, cy, cx - 50 + l2 * Math.cos(ang2), cy + l2 * Math.sin(ang2), '#facc15', `F2=${F2.toFixed(0)}N`, 11);
+
+        // Force 3
+        const ang3 = -Math.PI / 2 - (2 * Math.PI - (beta + alpha));
+        const l3 = Math.min(80, 20 + F3 * 0.7);
+        drawArrow(mCtx, cx - 50, cy, cx - 50 + l3 * Math.cos(ang3), cy + l3 * Math.sin(ang3), '#F43F5E', `F3=${F3.toFixed(0)}N`, 11);
+
+        // Closed Vector Triangle Proof on Right
+        const tx = cx + 80;
+        const ty = cy - 30;
+        mCtx.strokeStyle = '#4ade80';
+        mCtx.lineWidth = 2;
+        mCtx.beginPath();
+        mCtx.moveTo(tx, ty);
+        mCtx.lineTo(tx, ty + l1 * 0.7);
+        mCtx.lineTo(tx + 50, ty + l1 * 0.7 + 25);
+        mCtx.closePath();
+        mCtx.stroke();
+        mCtx.fillStyle = '#4ade80';
+        mCtx.font = 'bold 11px Consolas, monospace';
+        mCtx.fillText('Closed Vector Triangle', tx - 20, ty + l1 * 0.7 + 45);
+        mCtx.fillText('Σ F = 0', tx + 10, ty + l1 * 0.7 + 60);
+      }
     }
 
     // ========================================================
-    // ENGINE 4: CIRCULAR DYNAMICS & BANKING ENGINE
+    // ENGINE 4: CIRCULAR DYNAMICS & BANKING IMPLEMENTATION
     // ========================================================
+    let circCarAngle = 0;
+
     function setCircConcept(sub) {
       currentCircConcept = sub;
       document.getElementById('subCircFlatBtn').className = sub === 'flat' ? 'sub-preset-btn active px-3 py-1 rounded-lg border text-xs transition' : 'sub-preset-btn px-3 py-1 rounded-lg border text-xs transition';
       document.getElementById('subCircBankedBtn').className = sub === 'banked' ? 'sub-preset-btn active px-3 py-1 rounded-lg border text-xs transition' : 'sub-preset-btn px-3 py-1 rounded-lg border text-xs transition';
 
-      const bankBlock = document.getElementById('circBankAngleBlock');
       const optRow = document.getElementById('circOptRow');
 
       if (sub === 'flat') {
         document.getElementById('circHeader').innerText = "CONCEPT 10 • LEVEL CIRCULAR ROAD";
         document.getElementById('circTitle').innerText = "Static Friction Provides Centripetal Force";
-        document.getElementById('circFormula').innerText = "f_s = m·v²/r ≤ μ_s·mg => v_max = √(μ_s·r·g)";
-        bankBlock.classList.add('hidden');
+        document.getElementById('circFormula').innerText = "f_s = m·v²/r ≤ μ_s·m·g => v_max = √(μ_s·r·g)";
+        document.getElementById('circParam1Label').innerText = "Turn Radius (r):";
+        document.getElementById('circParam2Label').innerText = "Road Friction (μ_s):";
+        document.getElementById('circParam3Label').innerText = "Car Speed (v):";
+        document.getElementById('circSpeed1Label').innerText = "Max Safe Speed (v_max):";
         optRow.classList.add('hidden');
       } else {
         document.getElementById('circHeader').innerText = "CONCEPT 11 • ENGINEERED BANKED ROAD";
         document.getElementById('circTitle').innerText = "Optimal Speed & Vertical Circle Loop";
         document.getElementById('circFormula').innerText = "v_opt = √(rg·tanθ) • v_max = √[rg(tanθ+μ)/(1-μ·tanθ)]";
-        bankBlock.classList.remove('hidden');
+        document.getElementById('circParam1Label').innerText = "Turn Radius (r):";
+        document.getElementById('circParam2Label').innerText = "Road Friction (μ):";
+        document.getElementById('circParam3Label').innerText = "Banking Angle (θ):";
+        document.getElementById('circSpeed1Label').innerText = "Max Speed w/ Friction:";
         optRow.classList.remove('hidden');
       }
       updateCircular();
@@ -1084,159 +1588,333 @@
     function updateCircular() {
       const r = parseFloat(document.getElementById('circRadiusSlider').value);
       const mu = parseFloat(document.getElementById('circMuSlider').value);
-      const theta = parseFloat(document.getElementById('circAngleSlider').value);
+      const param3 = parseFloat(document.getElementById('circAngleSlider').value);
       const g = 9.8;
 
       document.getElementById('circRadiusVal').innerText = r.toFixed(0) + ' m';
       document.getElementById('circMuVal').innerText = mu.toFixed(2);
-      document.getElementById('circAngleVal').innerText = theta.toFixed(0) + '°';
 
-      const v_flat = Math.sqrt(mu * r * g);
-      document.getElementById('circSpeed1Val').innerText = v_flat.toFixed(1) + ' m/s (' + (v_flat * 3.6).toFixed(1) + ' km/h)';
+      if (currentCircConcept === 'flat') {
+        const v_car_kmh = param3;
+        const v_car_ms = v_car_kmh / 3.6;
+        document.getElementById('circAngleVal').innerText = v_car_kmh.toFixed(0) + ' km/h';
 
-      const rad = theta * Math.PI / 180;
-      const v_opt = Math.sqrt(r * g * Math.tan(rad));
-      document.getElementById('circOptVal').innerText = v_opt.toFixed(1) + ' m/s (' + (v_opt * 3.6).toFixed(1) + ' km/h)';
+        const v_max_ms = Math.sqrt(mu * r * g);
+        const v_max_kmh = v_max_ms * 3.6;
+        document.getElementById('circSpeed1Val').innerText = v_max_ms.toFixed(1) + ' m/s (' + v_max_kmh.toFixed(1) + ' km/h)';
 
-      const v_loop = Math.sqrt(5 * g * (r / 5)); // vertical circle of radius r/5
-      document.getElementById('circVertLoopVal').innerText = '≥ √(5gr) = ' + v_loop.toFixed(1) + ' m/s';
+        if (v_car_ms <= v_max_ms) {
+          document.getElementById('circVertLoopVal').innerText = "SAFE (Grip Maintained)";
+          document.getElementById('circVertLoopVal').className = "text-emerald-400 font-bold";
+        } else {
+          document.getElementById('circVertLoopVal').innerText = "SKIDDING HAZARD! (Exceeds v_max)";
+          document.getElementById('circVertLoopVal').className = "text-rose-400 font-bold animate-pulse";
+        }
+      } else {
+        const theta = param3;
+        const rad = theta * Math.PI / 180;
+        document.getElementById('circAngleVal').innerText = theta.toFixed(0) + '°';
 
+        const v_opt = Math.sqrt(r * g * Math.tan(rad));
+        document.getElementById('circOptVal').innerText = v_opt.toFixed(1) + ' m/s (' + (v_opt * 3.6).toFixed(1) + ' km/h)';
+
+        const num = Math.tan(rad) + mu;
+        const den = 1 - mu * Math.tan(rad);
+        const v_max = den > 0 ? Math.sqrt(r * g * (num / den)) : 999;
+        document.getElementById('circSpeed1Val').innerText = v_max.toFixed(1) + ' m/s (' + (v_max * 3.6).toFixed(1) + ' km/h)';
+
+        document.getElementById('circVertLoopVal').innerText = 'Loop Bottom ≥ √(5gr) = ' + Math.sqrt(5 * g * (r / 5)).toFixed(1) + ' m/s';
+      }
       drawCircularCanvas();
     }
 
     function drawCircularCanvas() {
       resizeCanvas(cCanvas);
-      const w = cCanvas.width;
-      const h = cCanvas.height;
+      const w = cCanvas.width / (window.devicePixelRatio || 1);
+      const h = cCanvas.height / (window.devicePixelRatio || 1);
       if (!w || !h) return;
       cCtx.clearRect(0, 0, w, h);
 
       const cx = w / 2;
       const cy = h / 2 + 10;
       const r = parseFloat(document.getElementById('circRadiusSlider').value);
-      const plotR = Math.min(w * 0.35, r * 1.5);
+      const mu = parseFloat(document.getElementById('circMuSlider').value);
+      const g = 9.8;
 
-      // Circular Track
-      cCtx.strokeStyle = '#334155';
-      cCtx.lineWidth = 14;
-      cCtx.beginPath();
-      cCtx.arc(cx, cy, plotR, 0, Math.PI * 2);
-      cCtx.stroke();
+      if (currentCircConcept === 'flat') {
+        const v_car_kmh = parseFloat(document.getElementById('circAngleSlider').value);
+        const v_car_ms = v_car_kmh / 3.6;
+        const v_max_ms = Math.sqrt(mu * r * g);
+        const isSkidding = v_car_ms > v_max_ms;
 
-      // Car Marker
-      const carAngle = Date.now() * 0.001;
-      const carX = cx + plotR * Math.cos(carAngle);
-      const carY = cy + plotR * Math.sin(carAngle);
+        // Circular Road
+        const plotR = Math.min(w * 0.38, 50 + r * 1.2);
+        cCtx.strokeStyle = '#334155';
+        cCtx.lineWidth = 26;
+        cCtx.beginPath();
+        cCtx.arc(cx, cy, plotR, 0, Math.PI * 2);
+        cCtx.stroke();
 
-      cCtx.fillStyle = '#38bdf8';
-      cCtx.beginPath();
-      cCtx.arc(carX, carY, 8, 0, Math.PI * 2);
-      cCtx.fill();
+        // Center line
+        cCtx.strokeStyle = '#64748b';
+        cCtx.lineWidth = 1.5;
+        cCtx.setLineDash([5, 5]);
+        cCtx.beginPath();
+        cCtx.arc(cx, cy, plotR, 0, Math.PI * 2);
+        cCtx.stroke();
+        cCtx.setLineDash([]);
 
-      // Centripetal Arrow
-      const inX = -Math.cos(carAngle) * 35;
-      const inY = -Math.sin(carAngle) * 35;
-      drawArrow(cCtx, carX, carY, carX + inX, carY + inY, '#F43F5E', 'f_s (Inward)');
-    }
+        // Car position (if skidding, drifts outward)
+        const drift = isSkidding ? 18 : 0;
+        const carR = plotR + drift;
+        const carX = cx + carR * Math.cos(circCarAngle);
+        const carY = cy + carR * Math.sin(circCarAngle);
 
-    // Animation Loop
-    function animationLoop() {
-      if (currentMode === 'circular') {
-        drawCircularCanvas();
+        // Car body
+        cCtx.fillStyle = isSkidding ? '#F43F5E' : '#38bdf8';
+        cCtx.beginPath();
+        cCtx.arc(carX, carY, 9, 0, Math.PI * 2);
+        cCtx.fill();
+        cCtx.strokeStyle = '#ffffff';
+        cCtx.lineWidth = 2;
+        cCtx.stroke();
+
+        // Centripetal friction vector arrow (toward center)
+        const inX = -Math.cos(circCarAngle);
+        const inY = -Math.sin(circCarAngle);
+        const arrowLen = Math.min(45, (v_car_ms / v_max_ms) * 35);
+        drawArrow(cCtx, carX, carY, carX + inX * arrowLen, carY + inY * arrowLen, isSkidding ? '#F43F5E' : '#4ADE80', isSkidding ? 'SLIP!' : 'f_s', 10);
+
+        if (isSkidding) {
+          cCtx.fillStyle = '#F43F5E';
+          cCtx.font = 'bold 12px Consolas, monospace';
+          cCtx.fillText('★ SKIDDING OUTWARD! (v > v_max)', cx - 90, cy - plotR - 25);
+        } else {
+          cCtx.fillStyle = '#4ADE80';
+          cCtx.font = 'bold 12px Consolas, monospace';
+          cCtx.fillText('✓ SAFE TIRE GRIP (f_s supplies mv²/r)', cx - 100, cy - plotR - 25);
+        }
+
+      } else if (currentCircConcept === 'banked') {
+        const theta = parseFloat(document.getElementById('circAngleSlider').value);
+        const rad = theta * Math.PI / 180;
+        const wedgeW = Math.min(280, w * 0.5);
+
+        // Banked Road Cross-Section Wedge
+        const wx = cx - wedgeW / 2;
+        const wy = cy + 60;
+        const wedgeH = wedgeW * Math.tan(rad);
+
+        cCtx.strokeStyle = '#a855f7';
+        cCtx.lineWidth = 3;
+        cCtx.beginPath();
+        cCtx.moveTo(wx, wy);
+        cCtx.lineTo(wx + wedgeW, wy - wedgeH);
+        cCtx.lineTo(wx + wedgeW, wy);
+        cCtx.closePath();
+        cCtx.fillStyle = 'rgba(168, 85, 247, 0.2)';
+        cCtx.fill();
+        cCtx.stroke();
+
+        // Bank Angle Arc
+        cCtx.strokeStyle = '#facc15';
+        cCtx.beginPath();
+        cCtx.arc(wx, wy, 40, 0, -rad, true);
+        cCtx.stroke();
+        cCtx.fillStyle = '#facc15';
+        cCtx.font = 'bold 12px Consolas, monospace';
+        cCtx.fillText(`θ = ${theta}°`, wx + 50, wy - 10);
+
+        // Vehicle on Banked Surface
+        const carMidX = wx + wedgeW * 0.5;
+        const carMidY = wy - wedgeH * 0.5;
+
+        cCtx.save();
+        cCtx.translate(carMidX, carMidY);
+        cCtx.rotate(-rad);
+        cCtx.fillStyle = '#1e293b';
+        cCtx.strokeStyle = '#38bdf8';
+        cCtx.lineWidth = 2.5;
+        cCtx.fillRect(-20, -30, 40, 30);
+        cCtx.strokeRect(-20, -30, 40, 30);
+        cCtx.fillStyle = '#ffffff';
+        cCtx.font = 'bold 10px Consolas, monospace';
+        cCtx.fillText('CAR', -10, -12);
+
+        // Normal reaction perpendicular to road
+        drawArrow(cCtx, 0, -15, 0, -65, '#4ADE80', 'N (Normal)', 10);
+        cCtx.restore();
+
+        // Normal Force Components (drawn in global space)
+        drawArrow(cCtx, carMidX, carMidY - 30, carMidX - 45, carMidY - 30, '#38bdf8', 'N·sinθ (Centripetal)', 10);
+        drawArrow(cCtx, carMidX, carMidY - 30, carMidX, carMidY - 70, '#4ADE80', 'N·cosθ = mg', 10);
       }
-      requestAnimationFrame(animationLoop);
     }
-    animationLoop();
 
-    // Redraw Active Mode Dispatcher
-    function redrawActiveMode() {
+    // ========================================================
+    // SMOOTH UNIFIED ANIMATION ENGINE
+    // ========================================================
+    let lastTime = performance.now();
+
+    function masterPhysicsLoop(now) {
+      const dt = Math.min(0.1, (now - lastTime) / 1000);
+      lastTime = now;
+
       if (currentMode === 'newton') {
-        resizeCanvas(nCanvas);
-        drawNewtonCanvas();
+        if (currentNewtonConcept === 'tension') {
+          const m1 = parseFloat(document.getElementById('newtonMassSlider').value);
+          const m2 = Math.max(0.5, parseFloat(document.getElementById('newtonForceSlider').value) / 4);
+          const a = (m1 - m2) * 9.8 / (m1 + m2);
+          atwoodSpeed += a * dt * 4;
+          atwoodY += atwoodSpeed * dt;
+          if (atwoodY > 40) { atwoodY = 40; atwoodSpeed = -atwoodSpeed * 0.6; }
+          if (atwoodY < -40) { atwoodY = -40; atwoodSpeed = -atwoodSpeed * 0.6; }
+          drawNewtonCanvas();
+        }
       } else if (currentMode === 'friction') {
-        resizeCanvas(fCanvas);
-        drawFrictionCanvas();
+        if (currentFrictionConcept === 'graph') {
+          const F_app = parseFloat(document.getElementById('fricAppliedSlider').value);
+          const muS = parseFloat(document.getElementById('fricMuSSlider').value);
+          const fs_max = muS * 5.0 * 9.8;
+          if (F_app > fs_max) {
+            slideX = (slideX + (F_app - fs_max) * dt * 3) % 120;
+          } else {
+            slideX = 0;
+          }
+          drawFrictionCanvas();
+        } else if (currentFrictionConcept === 'incline') {
+          const theta = parseFloat(document.getElementById('fricInclineSlider').value);
+          const muS = parseFloat(document.getElementById('fricMuSSlider').value);
+          const muK = parseFloat(document.getElementById('fricMuKSlider').value);
+          const thetaR = Math.atan(muS) * 180 / Math.PI;
+          if (theta > thetaR) {
+            const aDown = 9.8 * (Math.sin(theta * Math.PI / 180) - muK * Math.cos(theta * Math.PI / 180));
+            inclineBlockPos = (inclineBlockPos + Math.max(0.5, aDown) * dt * 18) % 100;
+          } else {
+            inclineBlockPos = 0;
+          }
+          drawFrictionCanvas();
+        } else if (currentFrictionConcept === 'twoblock') {
+          const F_app = parseFloat(document.getElementById('fricAppliedSlider').value);
+          const muS = parseFloat(document.getElementById('fricMuSSlider').value);
+          const F_max = 6.0 * muS * 9.8;
+          if (F_app > 0) {
+            twoBlockX = (twoBlockX + (F_app / 6.0) * dt * 2) % 100;
+            if (F_app > F_max) {
+              twoBlockRelSlip = Math.min(25, twoBlockRelSlip + dt * 15);
+            } else {
+              twoBlockRelSlip = Math.max(0, twoBlockRelSlip - dt * 20);
+            }
+          }
+          drawFrictionCanvas();
+        }
       } else if (currentMode === 'momentum') {
-        resizeCanvas(mCanvas);
-        drawMomentumCanvas();
+        if (currentMomentumConcept === 'impulse') {
+          const v = parseFloat(document.getElementById('momSpeedSlider').value);
+          ballImpactX += ballDir * v * dt * 8;
+          if (ballImpactX < -80) {
+            ballImpactX = -80;
+            ballDir = 1;
+          } else if (ballImpactX > 120) {
+            ballImpactX = 120;
+            ballDir = -1;
+          }
+          drawMomentumCanvas();
+        } else if (currentMomentumConcept === 'rocket') {
+          rocketH = (rocketH + dt * 25) % 120;
+          drawMomentumCanvas();
+        }
       } else if (currentMode === 'circular') {
-        resizeCanvas(cCanvas);
+        const v = parseFloat(document.getElementById('circAngleSlider').value);
+        circCarAngle = (circCarAngle + (v / 60) * dt * 3) % (Math.PI * 2);
         drawCircularCanvas();
       }
-    }
 
-    // Window Resize Event
-    window.addEventListener('resize', () => {
-      redrawActiveMode();
+      requestAnimationFrame(masterPhysicsLoop);
+    }
+    requestAnimationFrame(masterPhysicsLoop);
+
+    // ========================================================
+    // RESIZEOBSERVER & POSTMESSAGE (RULE 18)
+    // ========================================================
+    const containers = [
+      document.getElementById('newtonCanvasContainer'),
+      document.getElementById('frictionCanvasContainer'),
+      document.getElementById('momentumCanvasContainer'),
+      document.getElementById('circularCanvasContainer')
+    ];
+
+    const resizeObserver = new ResizeObserver(() => {
+      if (currentMode === 'newton') drawNewtonCanvas();
+      else if (currentMode === 'friction') drawFrictionCanvas();
+      else if (currentMode === 'momentum') drawMomentumCanvas();
+      else if (currentMode === 'circular') drawCircularCanvas();
     });
 
-    // ResizeObserver on Canvas Parent Wrappers (Rule 18)
-    try {
-      const resizeObserver = new ResizeObserver((entries) => {
-        let needsRedraw = false;
-        for (const entry of entries) {
-          if (entry.contentRect && entry.contentRect.width > 0 && entry.contentRect.height > 0) {
-            needsRedraw = true;
-          }
-        }
-        if (needsRedraw) {
-          redrawActiveMode();
-        }
-      });
-      [nCanvas, fCanvas, mCanvas, cCanvas].forEach(c => {
-        if (c && c.parentElement) {
-          resizeObserver.observe(c.parentElement);
-        }
-      });
-    } catch (e) {
-      console.warn('ResizeObserver setup:', e);
-    }
+    containers.forEach(c => { if (c) resizeObserver.observe(c); });
+
+    window.addEventListener('message', (e) => {
+      if (e.data && e.data.type === 'REDRAW_SIMULATION') {
+        if (currentMode === 'newton') drawNewtonCanvas();
+        else if (currentMode === 'friction') drawFrictionCanvas();
+        else if (currentMode === 'momentum') drawMomentumCanvas();
+        else if (currentMode === 'circular') drawCircularCanvas();
+      }
+    });
 
     // ========================================================
-    // CONCEPT DEEP-LINK ROUTER (RULE 17 - AT SCRIPT BOTTOM)
+    // DEEP-LINK URL ROUTER DISPATCH AT SCRIPT BOTTOM (RULE 17)
     // ========================================================
-    function applyConceptOrMode(concept, mode) {
-      if (concept) {
-        if (concept === 'P11-C03-T01-V01') { switchMode('newton'); setNewtonConcept('fbd'); }
-        else if (concept === 'P11-C03-T01-V02') { switchMode('newton'); setNewtonConcept('elevator'); }
-        else if (concept === 'P11-C03-T01-V03') { switchMode('newton'); setNewtonConcept('tension'); }
-        else if (concept === 'P11-C03-T02-V04') { switchMode('momentum'); setMomentumConcept('impulse'); }
-        else if (concept === 'P11-C03-T02-V05') { switchMode('momentum'); setMomentumConcept('rocket'); }
-        else if (concept === 'P11-C03-T02-V06') { switchMode('momentum'); setMomentumConcept('lami'); }
-        else if (concept === 'P11-C03-T03-V07') { switchMode('friction'); setFrictionConcept('graph'); }
-        else if (concept === 'P11-C03-T03-V08') { switchMode('friction'); setFrictionConcept('incline'); }
-        else if (concept === 'P11-C03-T03-V09') { switchMode('friction'); setFrictionConcept('twoblock'); }
-        else if (concept === 'P11-C03-T04-V10') { switchMode('circular'); setCircConcept('flat'); }
-        else if (concept === 'P11-C03-T04-V11') { switchMode('circular'); setCircConcept('banked'); }
-        else { switchMode('newton'); }
-      } else if (mode) {
-        switchMode(mode);
+    function applyConceptOrMode() {
+      const params = new URLSearchParams(window.location.search);
+      const conceptParam = params.get('concept');
+      const modeParam = params.get('mode');
+
+      if (conceptParam) {
+        if (conceptParam === 'P11-C03-T01-V01') {
+          switchMode('newton');
+          setNewtonConcept('fbd');
+        } else if (conceptParam === 'P11-C03-T01-V02') {
+          switchMode('newton');
+          setNewtonConcept('elevator');
+        } else if (conceptParam === 'P11-C03-T01-V03') {
+          switchMode('newton');
+          setNewtonConcept('tension');
+        } else if (conceptParam === 'P11-C03-T02-V04') {
+          switchMode('momentum');
+          setMomentumConcept('impulse');
+        } else if (conceptParam === 'P11-C03-T02-V05') {
+          switchMode('momentum');
+          setMomentumConcept('rocket');
+        } else if (conceptParam === 'P11-C03-T02-V06') {
+          switchMode('momentum');
+          setMomentumConcept('lami');
+        } else if (conceptParam === 'P11-C03-T03-V07') {
+          switchMode('friction');
+          setFrictionConcept('graph');
+        } else if (conceptParam === 'P11-C03-T03-V08') {
+          switchMode('friction');
+          setFrictionConcept('incline');
+        } else if (conceptParam === 'P11-C03-T03-V09') {
+          switchMode('friction');
+          setFrictionConcept('twoblock');
+        } else if (conceptParam === 'P11-C03-T04-V10') {
+          switchMode('circular');
+          setCircConcept('flat');
+        } else if (conceptParam === 'P11-C03-T04-V11') {
+          switchMode('circular');
+          setCircConcept('banked');
+        }
+      } else if (modeParam) {
+        switchMode(modeParam);
       } else {
         switchMode('newton');
+        setNewtonConcept('fbd');
       }
-      setTimeout(redrawActiveMode, 30);
-      setTimeout(redrawActiveMode, 100);
     }
 
-    // Inter-Frame postMessage Listener (Rule 18)
-    window.addEventListener('message', (event) => {
-      if (event.data && (event.data.type === 'REDRAW_SIMULATION' || event.data.type === 'SWITCH_CONCEPT')) {
-        if (event.data.concept) {
-          applyConceptOrMode(event.data.concept, null);
-        } else {
-          redrawActiveMode();
-        }
-        setTimeout(redrawActiveMode, 30);
-        setTimeout(redrawActiveMode, 120);
-      }
-    });
-
-    // Execute URL parameter routing at bottom of script once all declarations exist
-    const urlParams = new URLSearchParams(window.location.search);
-    const conceptParam = urlParams.get('concept');
-    const modeParam = urlParams.get('mode');
-    applyConceptOrMode(conceptParam, modeParam);
-
+    // Trigger router at initialization
+    applyConceptOrMode();
   </script>
 </body>
 </html>
