@@ -128,4 +128,13 @@ Derived from MASTER_BLUEPRINT.md v1.1
       - Kinetic loops must obey energy conservation: objects speeding up when descending and slowing down when climbing ($v = \sqrt{v_0^2 \pm 2gh}$).
       - Motion must never damp to zero and permanently lock at a clamp boundary; systems must smoothly oscillate or cycle continuously so user slider adjustments remain immediately visible.
 
+23. **Strict Audio-Visual Semantic Synchronization & Spoken Formula On-Screen Presence**:
+    - **Spoken Formula On-Screen Rule**: Every mathematical formula, equation, variable relation, or quantitative law spoken in the audio narration track MUST be simultaneously visible on the screen during that exact visual beat. Spoken audio must never reference, explain, or derive an equation while the visual slide displays unrelated or preceding content.
+    - **Beat-by-Beat Semantic Alignment**:
+      * **Beat 1 (NCERT Evergreen Intro)**: Spoken audio introduces the canonical topic and chapter sequence; visual slide displays the exact topic name, NCERT chapter/section citation, and canonical ID.
+      * **Beat 2 (Hero Stage & Core Physical Law)**: Spoken audio introduces the primary physical law and fundamental equation; visual slide MUST display that exact primary formula prominently in the central formula box alongside the physical diagram and core principles.
+      * **Beat 3 (Analytical Deep-Dive & Derivation)**: Spoken audio derives or analyzes specific cases (e.g. angle pull $N = mg - F\sin\theta$, elevator pseudo force $N = m(g \pm a)$, Atwood machine equations, rocket thrust $u(dm/dt)$, piecewise friction graph, two-block threshold $a_{\max} = \mu_s g$, banking/loop threshold); visual slide MUST display the exact derivations, case equations, and limiting cases being spoken.
+      * **Beat 4 (NEET Trap Card & NCERT Rule)**: Spoken audio warns of the fatal trap and states the NCERT correction rule; visual card MUST display the fatal trap callout and the NCERT rule equation in the green resolution box (with zero hardcoded PYQ exam years).
+      * **Beat 5 (Consolidation Hold & Next Video End Card)**: Beat 4 holds for a mandatory 3.0-second silent freeze after narration concludes, transitioning cleanly to a 3.5-second Beat 5 Next Video End Card directing students to the subsequent concept and interactive simulation lab.
+
 

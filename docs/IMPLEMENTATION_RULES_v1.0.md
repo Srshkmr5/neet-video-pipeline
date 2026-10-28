@@ -218,6 +218,12 @@
    - **Mux Truncation Guardrail**: FFmpeg muxing commands must never truncate via `-shortest` against subtitle streams.
 ---
 
+6. **Strict Audio-Visual Semantic Synchronization & Spoken Formula Presence (Rule 23)**:
+   - Every mathematical formula, equation, variable relation, or quantitative law spoken in the audio narration track MUST be simultaneously visible on the screen during that exact visual beat. Spoken audio must never reference, explain, or derive an equation while the visual slide displays unrelated or preceding content.
+   - Visual archetypes and narration scripts must maintain 1:1 semantic locking across all beats (Intro, Hero Law, Derivations, NEET Trap, and Next Video End Card).
+
+---
+
 ## Pillar 14: Pure Triad Dynamic Binding & Schema Completeness (Zero Cross-Unit Bleed)
 1. **Dynamic Triad Architecture (Watch • Lab • Solve)**:
    - Client viewing applications must never statically bake specific unit artifacts (such as formulas, warning cards, or simulations from other chapters) into template HTML.
