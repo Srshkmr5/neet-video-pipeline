@@ -1717,6 +1717,11 @@ def generate_html():
     let ballV = -15;
     let ballDeform = 1.0;
     let rocketAlt = 0;
+    let lamiPerturbX = 0;
+    let lamiPerturbY = 0;
+    let lamiPerturbVx = 0;
+    let lamiPerturbVy = 0;
+    let lamiFlowOffset = 0;
 
     function setMomentumConcept(sub) {
       currentMomentumConcept = sub;
@@ -1766,7 +1771,7 @@ def generate_html():
         document.getElementById('momMet1Label').innerText = "Computed Force F2:";
         document.getElementById('momMet2Label').innerText = "Computed Force F3:";
         document.getElementById('momMet3Label').innerText = "Third Angle γ:";
-        document.getElementById('momActionLabel').innerText = "Symmetric 120° Balance";
+        document.getElementById('momActionLabel').innerText = "Displace & Settle Ring";
         s1.min = 10; s1.max = 120; s1.step = 2; s1.value = 50;
         s2.min = 100; s2.max = 160; s2.step = 2; s2.value = 125;
         s3.min = 100; s3.max = 160; s3.step = 2; s3.value = 115;
@@ -1783,8 +1788,11 @@ def generate_html():
         document.getElementById('momSlider2').value = 45;
         updateMomentum();
       } else if (currentMomentumConcept === 'lami') {
-        document.getElementById('momSlider2').value = 120;
-        document.getElementById('momSlider3').value = 120;
+        // Displace the central ring so student sees restoring equilibrium forces in action!
+        lamiPerturbX = (Math.random() > 0.5 ? 1 : -1) * 38;
+        lamiPerturbY = (Math.random() > 0.5 ? 1 : -1) * 32;
+        lamiPerturbVx = (Math.random() - 0.5) * 45;
+        lamiPerturbVy = (Math.random() - 0.5) * 45;
         updateMomentum();
       }
     }
@@ -1836,6 +1844,8 @@ def generate_html():
           document.getElementById('momLiveBadge').innerText = "Rocket On Launchpad";
         }
       } else if (currentMomentumConcept === 'lami') {
+        lamiPerturbX += (Math.random() - 0.5) * 12;
+        lamiPerturbY += (Math.random() - 0.5) * 12;
         const F1 = s1;
         const alpha = s2 * Math.PI / 180;
         const beta = s3 * Math.PI / 180;
@@ -2050,51 +2060,166 @@ def generate_html():
         const F2 = Math.abs(F1 * Math.sin(beta) / Math.sin(alpha));
         const F3 = Math.abs(F1 * Math.sin(gamma) / Math.sin(alpha));
 
-        const knotX = cx - 75;
-        // Central Ring of Force Table
-        mCtx.strokeStyle = '#94a3b8';
-        mCtx.lineWidth = 1.5;
-        mCtx.setLineDash([4, 4]);
+        const knotX = cx - 85;
+        const tableR = 95;
+
+        // Force Table Circular Metallic Base
+        mCtx.strokeStyle = '#334155';
+        mCtx.lineWidth = 2;
         mCtx.beginPath();
-        mCtx.arc(knotX, cy, 75, 0, Math.PI * 2);
+        mCtx.arc(knotX, cy, tableR, 0, Math.PI * 2);
+        mCtx.stroke();
+        mCtx.fillStyle = 'rgba(15, 23, 42, 0.45)';
+        mCtx.fill();
+
+        // Degree Markings on Force Table
+        mCtx.strokeStyle = '#475569';
+        mCtx.lineWidth = 1;
+        for (let aDeg = 0; aDeg < 360; aDeg += 30) {
+          const aRad = aDeg * Math.PI / 180;
+          const x1 = knotX + (tableR - 6) * Math.cos(aRad);
+          const y1 = cy + (tableR - 6) * Math.sin(aRad);
+          const x2 = knotX + tableR * Math.cos(aRad);
+          const y2 = cy + tableR * Math.sin(aRad);
+          mCtx.beginPath();
+          mCtx.moveTo(x1, y1);
+          mCtx.lineTo(x2, y2);
+          mCtx.stroke();
+        }
+
+        // Center Pin
+        mCtx.fillStyle = '#64748b';
+        mCtx.beginPath();
+        mCtx.arc(knotX, cy, 3.5, 0, Math.PI * 2);
+        mCtx.fill();
+
+        // Dynamic Position of Central Ring: Ambient Breathing + Restoring Damped Oscillation
+        const ambX = Math.sin(lastT * 0.0025) * 1.5;
+        const ambY = Math.cos(lastT * 0.002) * 1.5;
+        const ringX = knotX + lamiPerturbX + ambX;
+        const ringY = cy + lamiPerturbY + ambY;
+
+        // Pulley Angles
+        const ang1 = -Math.PI / 2;
+        const ang2 = -Math.PI / 2 + beta;
+        const ang3 = -Math.PI / 2 - (2 * Math.PI - (beta + alpha));
+
+        // 3 Pulleys and Cords from Ring to Perimeter
+        [
+          { ang: ang1, F: F1, col: '#38bdf8', label: `F1=${F1.toFixed(0)}N` },
+          { ang: ang2, F: F2, col: '#facc15', label: `F2=${F2.toFixed(0)}N` },
+          { ang: ang3, F: F3, col: '#F43F5E', label: `F3=${F3.toFixed(0)}N` }
+        ].forEach((p, idx) => {
+          const px = knotX + tableR * Math.cos(p.ang);
+          const py = cy + tableR * Math.sin(p.ang);
+
+          // Pulley Wheel at Perimeter
+          mCtx.fillStyle = '#334155';
+          mCtx.beginPath();
+          mCtx.arc(px, py, 6, 0, Math.PI * 2);
+          mCtx.fill();
+          mCtx.strokeStyle = '#94a3b8';
+          mCtx.lineWidth = 1.5;
+          mCtx.stroke();
+
+          // Taut Cord from Central Ring to Pulley
+          mCtx.strokeStyle = '#f8fafc';
+          mCtx.lineWidth = 1.8;
+          mCtx.beginPath();
+          mCtx.moveTo(ringX, ringY);
+          mCtx.lineTo(px, py);
+          mCtx.stroke();
+
+          // Hanging Mass Pan Bobbing underneath Pulley
+          const dropY = py + 22 + Math.sin(lastT * 0.003 + idx * 2) * 2;
+          mCtx.strokeStyle = '#94a3b8';
+          mCtx.lineWidth = 1;
+          mCtx.beginPath();
+          mCtx.moveTo(px, py);
+          mCtx.lineTo(px, dropY);
+          mCtx.stroke();
+
+          // Weight pan
+          mCtx.fillStyle = p.col;
+          mCtx.fillRect(px - 10, dropY, 20, 10);
+          mCtx.strokeStyle = '#ffffff';
+          mCtx.lineWidth = 1;
+          mCtx.strokeRect(px - 10, dropY, 20, 10);
+
+          mCtx.fillStyle = '#ffffff';
+          mCtx.font = '8px Consolas, monospace';
+          mCtx.fillText(`${(p.F / 9.8).toFixed(1)}kg`, px - 11, dropY + 8);
+
+          // Force Vector Arrow along Cord
+          const vLen = Math.min(65, 18 + p.F * 0.5);
+          const vx = ringX + vLen * Math.cos(p.ang);
+          const vy = ringY + vLen * Math.sin(p.ang);
+          drawArrow(mCtx, ringX, ringY, vx, vy, p.col, p.label, 9);
+        });
+
+        // Central Brass Ring
+        const isCentered = Math.hypot(lamiPerturbX, lamiPerturbY) < 3.0;
+        mCtx.fillStyle = isCentered ? 'rgba(74, 222, 128, 0.4)' : 'rgba(250, 204, 21, 0.4)';
+        mCtx.beginPath();
+        mCtx.arc(ringX, ringY, 11, 0, Math.PI * 2);
+        mCtx.fill();
+        mCtx.strokeStyle = isCentered ? '#4ade80' : '#facc15';
+        mCtx.lineWidth = 2.5;
+        mCtx.stroke();
+
+        mCtx.beginPath();
+        mCtx.arc(ringX, ringY, 5, 0, Math.PI * 2);
+        mCtx.strokeStyle = '#ffffff';
+        mCtx.lineWidth = 1.5;
+        mCtx.stroke();
+
+        // Center Status Label
+        mCtx.fillStyle = isCentered ? '#4ade80' : '#facc15';
+        mCtx.font = 'bold 10px Consolas, monospace';
+        mCtx.fillText(isCentered ? '✓ CONCURRENT EQUILIBRIUM' : 'RESTORING TO CENTER PIN...', knotX - 70, cy + tableR + 22);
+
+        // RIGHT SIDE: Closed Vector Triangle with Animated Circulation Pulse!
+        const tx = cx + 80;
+        const ty = cy - 40;
+
+        const v1Len = Math.min(75, 15 + F1 * 0.65);
+        const v2Len = Math.min(75, 15 + F2 * 0.65);
+
+        // Vector 1 (Upward)
+        const p1x = tx;
+        const p1y = ty;
+        const p2x = tx;
+        const p2y = ty + v1Len;
+
+        // Vector 2
+        const p3x = p2x + v2Len * Math.sin(beta - Math.PI / 2);
+        const p3y = p2y - v2Len * Math.cos(beta - Math.PI / 2);
+
+        // Draw Triangle Edges with Animated Dash Pulse
+        mCtx.strokeStyle = '#4ade80';
+        mCtx.lineWidth = 3;
+        mCtx.setLineDash([8, 8]);
+        mCtx.lineDashOffset = -lamiFlowOffset;
+        mCtx.beginPath();
+        mCtx.moveTo(p1x, p1y);
+        mCtx.lineTo(p2x, p2y);
+        mCtx.lineTo(p3x, p3y);
+        mCtx.closePath();
         mCtx.stroke();
         mCtx.setLineDash([]);
 
-        mCtx.fillStyle = '#38bdf8';
-        mCtx.beginPath();
-        mCtx.arc(knotX, cy, 6, 0, Math.PI * 2);
-        mCtx.fill();
-
-        // F1 (Upward)
-        const l1 = Math.min(85, 20 + F1 * 0.65);
-        drawArrow(mCtx, knotX, cy, knotX, cy - l1, '#38bdf8', `F1=${F1.toFixed(0)}N`, 11);
-
-        // F2
-        const ang2 = -Math.PI / 2 + beta;
-        const l2 = Math.min(85, 20 + F2 * 0.65);
-        drawArrow(mCtx, knotX, cy, knotX + l2 * Math.cos(ang2), cy + l2 * Math.sin(ang2), '#facc15', `F2=${F2.toFixed(0)}N`, 11);
-
-        // F3
-        const ang3 = -Math.PI / 2 - (2 * Math.PI - (beta + alpha));
-        const l3 = Math.min(85, 20 + F3 * 0.65);
-        drawArrow(mCtx, knotX, cy, knotX + l3 * Math.cos(ang3), cy + l3 * Math.sin(ang3), '#F43F5E', `F3=${F3.toFixed(0)}N`, 11);
-
-        // Closed Vector Triangle on Right
-        const tx = cx + 70;
-        const ty = cy - 35;
-        mCtx.strokeStyle = '#4ade80';
-        mCtx.lineWidth = 2.5;
-        mCtx.beginPath();
-        mCtx.moveTo(tx, ty);
-        mCtx.lineTo(tx, ty + l1 * 0.65);
-        mCtx.lineTo(tx + 55, ty + l1 * 0.65 + 20);
-        mCtx.closePath();
-        mCtx.stroke();
+        // Vertices
+        [ [p1x, p1y], [p2x, p2y], [p3x, p3y] ].forEach(pt => {
+          mCtx.fillStyle = '#4ade80';
+          mCtx.beginPath();
+          mCtx.arc(pt[0], pt[1], 4, 0, Math.PI * 2);
+          mCtx.fill();
+        });
 
         mCtx.fillStyle = '#4ade80';
         mCtx.font = 'bold 11px Consolas, monospace';
-        mCtx.fillText('Closed Vector Triangle', tx - 20, ty + l1 * 0.65 + 40);
-        mCtx.fillText('Σ F = 0 (Equilibrium)', tx - 15, ty + l1 * 0.65 + 56);
+        mCtx.fillText('Closed Vector Triangle', tx - 25, ty + v1Len + 40);
+        mCtx.fillText('Σ F = 0 (Restoring Balance)', tx - 28, ty + v1Len + 56);
       }
     }
 
@@ -2770,6 +2895,19 @@ def generate_html():
           }
           drawMomentumCanvas();
         } else if (currentMomentumConcept === 'lami') {
+          lamiFlowOffset = (lamiFlowOffset + dt * 25) % 24;
+
+          // Restoring spring harmonic physics pulling ring to center pin:
+          const k = 22; // stiffness
+          const c = 4.2; // damping
+          const ax = -k * lamiPerturbX - c * lamiPerturbVx;
+          const ay = -k * lamiPerturbY - c * lamiPerturbVy;
+
+          lamiPerturbVx += ax * dt;
+          lamiPerturbVy += ay * dt;
+          lamiPerturbX += lamiPerturbVx * dt;
+          lamiPerturbY += lamiPerturbVy * dt;
+
           drawMomentumCanvas();
         }
       } else if (currentMode === 'circular') {
