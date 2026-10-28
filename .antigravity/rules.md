@@ -108,5 +108,24 @@ Derived from MASTER_BLUEPRINT.md v1.1
     - **Live Geometric & Vector Coupling**: Every slider, toggle, or numerical input in an interactive simulation MUST trigger an immediate, mathematically proportional visual transformation on the canvas. Prohibit "decorative" or static placeholder diagrams where controls merely update text readouts.
     - **Mass & Geometry Scaling**: All mass changes ($m, m_1, m_2$) must visibly scale mobject geometry ($W, H \propto \sqrt{m}$) and corresponding vector arrows (weight $W = mg$, normal reaction $N$, string tension $T$).
     - **Angle & Kinematic Transformation**: Changing tilt or launch angles ($\theta$) must physically rotate the drawn surface (inclined plane, banked road wedge, pull vectors) in exact degrees. Changing friction coefficients ($\mu_s, \mu_k$) must visibly alter physical states (e.g. static stick vs sliding downhill with acceleration trails when $\theta > \theta_R = \arctan\mu_s$; common motion vs relative slipping between stacked blocks).
+    - **Mathematical Coupling & Formula Audit (Zero Parameter Cancellation)**: Ensure formulas do not mathematically cancel out slider variables (e.g., computing spring compression as $N_{\text{app}}/W$ cancels mass $m$; it must be computed as $N_{\text{app}} / k$ so greater mass compresses springs deeper). Every slider input in the DOM must be read and used directly inside the canvas drawing function.
     - **Bespoke Concept Renderers**: Every sub-concept mode (e.g. FBD vs Elevator vs Atwood; Impulse F-t vs Rocket Thrust vs Lami; Level Skidding vs Banked Road vs Vertical Loop) must execute its own dedicated, bespoke visual rendering routine. Sharing a generic or unresponsive canvas across distinct physical concepts is strictly prohibited.
+
+22. **Pedagogical Simulation Layout & Dynamic Equilibrium Standard (The "Anti-Glitch" Rule)**:
+    - **Mandatory Dual-Panel Separation (Physical Stage vs. Analytical Graphs)**:
+      - Mathematical plots ($F\text{-}t$ impulse curves, $v\text{-}t$ kinematic plots, $P\text{-}V$ indicator diagrams, energy curves) must **NEVER** share an unbordered, ambiguous canvas space with physical objects (balls, cars, blocks). Non-expert students mistake abstract graphs for physical obstacles.
+      - **Enforcement**: Simulations presenting both physical motion and analytical curves must enforce a split-panel layout:
+        1. **Panel 1: Physical Experiment Stage**: Labeled stage with explicit physical boundaries (e.g., sensor wall on left, automated spring launcher on right). Physical objects must never reverse direction in empty mid-air without a visible physical rebounder or launcher.
+        2. **Panel 2: Analytical Data Graph Panel**: Distinct, bordered dashboard panel with gridlines, labeled axes with units (e.g. $F(t)$ in N, $t$ in ms), and an explanatory subtitle clarifying that the curve is an abstract data plot recorded by sensors during the physical event.
+      - **Live Synchronous Tracing**: Analytical curves must be dynamically synchronized with physical events. When a collision or cycle occurs, a glowing tracer dot and active curve pulse must trace in real time, visually linking the physical contact to the area under the curve.
+    - **Dynamic Equilibrium Standard (Zero Static Freeze)**:
+      - Physical systems in "static equilibrium" (e.g. Lami's concurrent forces $\Sigma \vec{F} = \vec{0}$, static friction grip, optimal banking speed) must **NEVER** appear as completely frozen, static graphics. Students assume a dead screen is a software crash.
+      - **Enforcement**:
+        1. **Ambient Suspension Float**: Systems suspended by cords, springs, or normal forces must incorporate subtle ambient harmonic breathing ($1\text{–}2\text{px}$) to demonstrate live tension.
+        2. **Restoring Perturbation Physics**: Dragging sliders or clicking dedicated "Perturb / Nudge" action buttons must visibly displace the system off-center and animate damped restoring forces returning it to equilibrium, visually demonstrating *stable equilibrium*.
+        3. **Active Motion Cues**: Vehicles traveling at constant or optimal velocity must display streaming road markings, rotating wheel spokes, or trail particles to clearly convey motion.
+    - **Conservation of Energy & Kinetic Continuity**:
+      - Kinetic loops must obey energy conservation: objects speeding up when descending and slowing down when climbing ($v = \sqrt{v_0^2 \pm 2gh}$).
+      - Motion must never damp to zero and permanently lock at a clamp boundary; systems must smoothly oscillate or cycle continuously so user slider adjustments remain immediately visible.
+
 
