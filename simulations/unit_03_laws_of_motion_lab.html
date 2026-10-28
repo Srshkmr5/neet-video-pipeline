@@ -2084,6 +2084,9 @@
     // ========================================================
     let circCarAngle = 0;
     let loopCarAngle = 0;
+    let bankedRoadScroll = 0;
+    let bankedWheelRot = 0;
+    let bankedDriftRatio = 0.5;
 
     function setCircConcept(sub) {
       currentCircConcept = sub;
@@ -2380,13 +2383,14 @@
         const v = parseFloat(document.getElementById('circSlider3').value);
         const theta = parseFloat(document.getElementById('circSlider4').value);
         const rad = theta * Math.PI / 180;
-        const wedgeW = Math.min(300, w * 0.52);
+        const wedgeW = Math.min(320, w * 0.52);
 
         // Banked Road Cross-Section Wedge
-        const wx = cx - wedgeW / 2;
-        const wy = cy + 65;
+        const wx = cx - wedgeW / 2 - 25;
+        const wy = cy + 70;
         const wedgeH = wedgeW * Math.tan(rad);
 
+        // Wedge Structure
         cCtx.strokeStyle = '#a855f7';
         cCtx.lineWidth = 3;
         cCtx.beginPath();
@@ -2394,12 +2398,36 @@
         cCtx.lineTo(wx + wedgeW, wy - wedgeH);
         cCtx.lineTo(wx + wedgeW, wy);
         cCtx.closePath();
-        cCtx.fillStyle = 'rgba(168, 85, 247, 0.2)';
+        cCtx.fillStyle = mu < 0.15 ? 'rgba(56, 189, 248, 0.22)' : 'rgba(168, 85, 247, 0.22)';
         cCtx.fill();
         cCtx.stroke();
 
-        // Bank Angle Arc
+        // Dynamic Streaming Lane Markings along Incline
+        const inclineLen = Math.hypot(wedgeW, wedgeH);
+        cCtx.save();
+        cCtx.translate(wx, wy);
+        cCtx.rotate(-rad);
+
+        // Road Surface Asphalt
+        cCtx.fillStyle = mu < 0.15 ? '#0c2340' : '#0f172a';
+        cCtx.fillRect(0, -6, inclineLen, 6);
+
+        // Streaming Dashed Center Line (shows real-time motion at speed v)
+        const stripeOffset = bankedRoadScroll % 36;
+        cCtx.strokeStyle = '#f8fafc';
+        cCtx.lineWidth = 2.5;
+        cCtx.setLineDash([14, 22]);
+        cCtx.lineDashOffset = -stripeOffset;
+        cCtx.beginPath();
+        cCtx.moveTo(0, -3);
+        cCtx.lineTo(inclineLen, -3);
+        cCtx.stroke();
+        cCtx.setLineDash([]);
+        cCtx.restore();
+
+        // Bank Angle Arc θ
         cCtx.strokeStyle = '#facc15';
+        cCtx.lineWidth = 2;
         cCtx.beginPath();
         cCtx.arc(wx, wy, 45, 0, -rad, true);
         cCtx.stroke();
@@ -2407,41 +2435,123 @@
         cCtx.font = 'bold 12px Consolas, monospace';
         cCtx.fillText(`θ = ${theta}°`, wx + 55, wy - 10);
 
-        // Vehicle on Banked Surface
-        const carMidX = wx + wedgeW * 0.5;
-        const carMidY = wy - wedgeH * 0.5;
+        // Speed Limits
+        const v_opt = Math.sqrt(r * g * Math.tan(rad)) * 3.6;
+        const num = Math.tan(rad) + mu;
+        const den = 1 - mu * Math.tan(rad);
+        const v_max = den > 0 ? Math.sqrt(r * g * (num / den)) * 3.6 : 999;
+        const isSkiddingOver = v > v_max;
 
+        // Dynamic Lateral Position: Car visibly drifts up or slips down based on speed v!
+        const curRatio = Math.max(0.12, Math.min(0.92, bankedDriftRatio));
+        const carMidX = wx + wedgeW * curRatio;
+        const carMidY = wy - wedgeH * curRatio;
+
+        // Vehicle on Banked Surface
         cCtx.save();
         cCtx.translate(carMidX, carMidY);
         cCtx.rotate(-rad);
-        cCtx.fillStyle = '#1e293b';
-        cCtx.strokeStyle = '#38bdf8';
-        cCtx.lineWidth = 2.5;
-        cCtx.fillRect(-22, -32, 44, 32);
-        cCtx.strokeRect(-22, -32, 44, 32);
+
+        // Sports Car Chassis with Wheels and Windshield
+        cCtx.fillStyle = isSkiddingOver ? '#F43F5E' : Math.abs(v - v_opt) < 3 ? '#10b981' : '#38bdf8';
+        cCtx.fillRect(-24, -30, 48, 28);
+        cCtx.strokeStyle = '#ffffff';
+        cCtx.lineWidth = 2;
+        cCtx.strokeRect(-24, -30, 48, 28);
+
+        // Windshield
+        cCtx.fillStyle = '#0f172a';
+        cCtx.fillRect(-18, -26, 36, 11);
+
+        // Spinning Wheels with Rotating Spokes
+        [-15, 15].forEach(wxWheel => {
+          cCtx.save();
+          cCtx.translate(wxWheel, -2);
+          cCtx.rotate(bankedWheelRot);
+          cCtx.fillStyle = '#334155';
+          cCtx.beginPath();
+          cCtx.arc(0, 0, 7, 0, Math.PI * 2);
+          cCtx.fill();
+          cCtx.strokeStyle = '#94a3b8';
+          cCtx.lineWidth = 2;
+          cCtx.stroke();
+          // Spoke
+          cCtx.beginPath();
+          cCtx.moveTo(-7, 0);
+          cCtx.lineTo(7, 0);
+          cCtx.stroke();
+          cCtx.restore();
+        });
+
+        // Speed Badge on Car
         cCtx.fillStyle = '#ffffff';
-        cCtx.font = 'bold 11px Consolas, monospace';
-        cCtx.fillText('CAR', -11, -12);
+        cCtx.font = 'bold 9px Consolas, monospace';
+        cCtx.fillText(`${v.toFixed(0)}km/h`, -16, -10);
 
         // Normal reaction perpendicular to road
-        drawArrow(cCtx, 0, -16, 0, -70, '#4ADE80', 'N', 10);
+        drawArrow(cCtx, 0, -16, 0, -85, '#4ADE80', 'N', 10);
 
         // Lateral Friction vector along incline: Shows whether f points UP or DOWN!
-        const v_opt = Math.sqrt(r * g * Math.tan(rad)) * 3.6;
-        if (Math.abs(v - v_opt) > 3) {
+        if (Math.abs(v - v_opt) >= 2) {
           const fDir = v > v_opt ? 1 : -1; // points down-slope if v > v_opt, up-slope if v < v_opt
-          drawArrow(cCtx, 0, -2, fDir * 45, -2, '#facc15', 'f_friction', 10);
+          const fLen = Math.min(65, 15 + Math.abs(v - v_opt) * 0.9);
+          drawArrow(cCtx, 0, -2, fDir * fLen, -2, '#facc15', 'f_friction', 10);
         }
         cCtx.restore();
 
         // Resolved Normal Components
-        drawArrow(cCtx, carMidX, carMidY - 30, carMidX - 45, carMidY - 30, '#38bdf8', 'N·sinθ', 10);
-        drawArrow(cCtx, carMidX, carMidY - 30, carMidX, carMidY - 75, '#4ADE80', 'N·cosθ=mg', 10);
+        drawArrow(cCtx, carMidX, carMidY - 30, carMidX - 50, carMidY - 30, '#38bdf8', 'N·sinθ', 10);
+        drawArrow(cCtx, carMidX, carMidY - 30, carMidX, carMidY - 80, '#4ADE80', 'N·cosθ=mg', 10);
+
+        // Status & Drift Effects
+        if (isSkiddingOver) {
+          cCtx.fillStyle = '#F43F5E';
+          cCtx.font = 'bold 12px Consolas, monospace';
+          cCtx.fillText('★ OVER-SPEED DRIFT! (v > v_max) Skid Over Outer Lip', cx - 130, wy - wedgeH - 25);
+          for (let p = 0; p < 8; p++) {
+            cCtx.fillStyle = '#facc15';
+            cCtx.fillRect(carMidX + Math.random() * 30 - 15, carMidY + Math.random() * 10 - 5, 3, 3);
+          }
+        } else if (Math.abs(v - v_opt) < 3) {
+          cCtx.fillStyle = '#4ADE80';
+          cCtx.font = 'bold 12px Consolas, monospace';
+          cCtx.fillText('★ PERFECT OPTIMAL SPEED: Zero Lateral Friction Required ★', cx - 160, wy - wedgeH - 25);
+        }
+
+        // Top-Right Inset: Mini Perspective Turn Radar
+        const radarX = w - 105;
+        const radarY = 70;
+        const radarR = 45;
+        cCtx.fillStyle = 'rgba(15, 23, 42, 0.85)';
+        cCtx.fillRect(radarX - radarR - 10, radarY - radarR - 15, radarR * 2 + 20, radarR * 2 + 30);
+        cCtx.strokeStyle = '#38bdf8';
+        cCtx.lineWidth = 1.5;
+        cCtx.strokeRect(radarX - radarR - 10, radarY - radarR - 15, radarR * 2 + 20, radarR * 2 + 30);
+
+        cCtx.fillStyle = '#38bdf8';
+        cCtx.font = '9px Consolas, monospace';
+        cCtx.fillText('TURN RADAR', radarX - 25, radarY - radarR - 4);
+
+        cCtx.strokeStyle = '#475569';
+        cCtx.lineWidth = 8;
+        cCtx.beginPath();
+        cCtx.arc(radarX, radarY, radarR * 0.8, -Math.PI * 0.8, Math.PI * 0.2);
+        cCtx.stroke();
+
+        const radarAngle = (bankedRoadScroll * 0.05) % (Math.PI);
+        const rCarX = radarX + radarR * 0.8 * Math.cos(-Math.PI * 0.8 + radarAngle);
+        const rCarY = radarY + radarR * 0.8 * Math.sin(-Math.PI * 0.8 + radarAngle);
+        cCtx.fillStyle = isSkiddingOver ? '#F43F5E' : '#4ADE80';
+        cCtx.beginPath();
+        cCtx.arc(rCarX, rCarY, 4, 0, Math.PI * 2);
+        cCtx.fill();
 
       } else if (currentCircConcept === 'loop') {
         const R = parseFloat(document.getElementById('circSlider1').value);
-        const v0 = parseFloat(document.getElementById('circSlider3').value);
-        const loopRadiusPx = Math.min(105, 40 + R * 1.5);
+        const m = parseFloat(document.getElementById('circSlider2').value); // VEHICLE MASS (m) FULLY CONNECTED!
+        const v0_kmh = parseFloat(document.getElementById('circSlider3').value);
+        const v0 = v0_kmh / 3.6;
+        const loopRadiusPx = Math.min(115, 45 + R * 1.4);
 
         // Vertical Loop Ring
         cCtx.strokeStyle = '#38bdf8';
@@ -2450,38 +2560,87 @@
         cCtx.arc(cx, cy, loopRadiusPx, 0, Math.PI * 2);
         cCtx.stroke();
 
-        // Track Entrance
+        // Track Entrance Track
         cCtx.strokeStyle = '#475569';
-        cCtx.lineWidth = 3;
+        cCtx.lineWidth = 3.5;
         cCtx.beginPath();
-        cCtx.moveTo(cx - 150, cy + loopRadiusPx);
+        cCtx.moveTo(cx - 160, cy + loopRadiusPx);
         cCtx.lineTo(cx - loopRadiusPx, cy + loopRadiusPx);
         cCtx.stroke();
 
-        // Car traversing loop
+        // Loop Dynamics & Height Calculations
         const carX = cx + loopRadiusPx * Math.cos(loopCarAngle);
         const carY = cy + loopRadiusPx * Math.sin(loopCarAngle);
+
+        const h_px = (cy + loopRadiusPx) - carY;
+        const h_real = (h_px / (2 * loopRadiusPx)) * (2 * R);
+        const v_cur = Math.sqrt(Math.max(0.1, v0 * v0 - 2 * g * h_real));
+        const v_crit_top = Math.sqrt(g * R);
+        const v_crit_bot = Math.sqrt(5 * g * R);
+        const completesLoop = v0 >= v_crit_bot;
+
+        const toCenterDx = (cx - carX) / loopRadiusPx;
+        const toCenterDy = (cy - carY) / loopRadiusPx;
+        const normN = Math.max(0, (m * v_cur * v_cur / R) + (m * g * toCenterDy));
+
+        // Vehicle Dimensions: Visibly scales with vehicle mass m (200 - 1200 kg)!
+        const carW = 20 + Math.sqrt(m) * 0.72; // 30px to 45px
+        const carH = 14 + Math.sqrt(m) * 0.52; // 21px to 32px
 
         cCtx.save();
         cCtx.translate(carX, carY);
         cCtx.rotate(loopCarAngle + Math.PI / 2);
-        cCtx.fillStyle = '#facc15';
-        cCtx.fillRect(-10, -8, 20, 16);
+
+        // Roller Coaster Cart
+        cCtx.fillStyle = completesLoop ? '#facc15' : '#F43F5E';
+        cCtx.fillRect(-carW / 2, -carH, carW, carH);
         cCtx.strokeStyle = '#ffffff';
         cCtx.lineWidth = 2;
-        cCtx.strokeRect(-10, -8, 20, 16);
+        cCtx.strokeRect(-carW / 2, -carH, carW, carH);
+
+        // Window & Wheels
+        cCtx.fillStyle = '#0f172a';
+        cCtx.fillRect(-carW / 3, -carH + 3, (carW * 2) / 3, carH * 0.4);
+
+        cCtx.fillStyle = '#334155';
+        cCtx.fillRect(-carW / 2 + 2, 0, 6, 3);
+        cCtx.fillRect(carW / 2 - 8, 0, 6, 3);
+
+        // Mass Readout right on the Vehicle!
+        cCtx.fillStyle = '#0f172a';
+        cCtx.font = 'bold 9px Consolas, monospace';
+        cCtx.fillText(`${m.toFixed(0)}kg`, -carW / 2 + 4, -carH / 2 + 2);
         cCtx.restore();
 
-        // Normal Force Vector towards center
-        const toCx = (cx - carX) / loopRadiusPx;
-        const toCy = (cy - carY) / loopRadiusPx;
-        drawArrow(cCtx, carX, carY, carX + toCx * 35, carY + toCy * 35, '#4ADE80', 'N', 10);
+        // Normal Force Vector towards Loop Center (Scales with N and Mass m!)
+        const nArrowLen = Math.min(85, 15 + (normN / (1200 * g * 5)) * 75);
+        if (normN > 5) {
+          drawArrow(cCtx, carX, carY, carX + toCenterDx * nArrowLen, carY + toCenterDy * nArrowLen, '#4ADE80', `N=${(normN / 1000).toFixed(1)}kN`, 10);
+        }
 
-        // Critical Speed indicators
-        cCtx.fillStyle = '#94a3b8';
+        // Weight Vector W = mg (Straight Down, Scales with Mass m!)
+        const wLen = 18 + (m / 1200) * 45;
+        drawArrow(cCtx, carX, carY, carX, carY + wLen, '#F43F5E', `W=${(m * g / 1000).toFixed(1)}kN`, 9);
+
+        // Critical Speed Indicators
+        cCtx.fillStyle = '#38bdf8';
+        cCtx.font = 'bold 11px Consolas, monospace';
+        cCtx.fillText(`v_top ≥ ${(v_crit_top * 3.6).toFixed(1)} km/h`, cx - 45, cy - loopRadiusPx - 14);
+        cCtx.fillText(`v_bot ≥ ${(v_crit_bot * 3.6).toFixed(1)} km/h`, cx - 45, cy + loopRadiusPx + 24);
+
+        cCtx.fillStyle = '#ffffff';
         cCtx.font = '10px Consolas, monospace';
-        cCtx.fillText('v_top ≥ √(gR)', cx - 35, cy - loopRadiusPx - 10);
-        cCtx.fillText('v_bot ≥ √(5gR)', cx - 40, cy + loopRadiusPx + 20);
+        cCtx.fillText(`v_local = ${(v_cur * 3.6).toFixed(1)} km/h • Mass = ${m.toFixed(0)} kg`, cx - 85, cy + loopRadiusPx + 42);
+
+        if (!completesLoop) {
+          cCtx.fillStyle = '#F43F5E';
+          cCtx.font = 'bold 12px Consolas, monospace';
+          cCtx.fillText('★ LOOP COLLAPSE: v_0 < √(5gR) => Vehicle Detaches! ★', cx - 140, cy - loopRadiusPx - 32);
+        } else {
+          cCtx.fillStyle = '#4ADE80';
+          cCtx.font = 'bold 12px Consolas, monospace';
+          cCtx.fillText('✓ COMPLETE 360° LOOP: Normal Force N > 0 at Apex', cx - 140, cy - loopRadiusPx - 32);
+        }
       }
     }
 
@@ -2600,10 +2759,46 @@
           circCarAngle = (circCarAngle + (v / 50) * dt * 2.8) % (Math.PI * 2);
           drawCircularCanvas();
         } else if (currentCircConcept === 'banked') {
+          const r = parseFloat(document.getElementById('circSlider1').value);
+          const mu = parseFloat(document.getElementById('circSlider2').value);
+          const v_kmh = parseFloat(document.getElementById('circSlider3').value);
+          const theta = parseFloat(document.getElementById('circSlider4').value);
+          const rad = theta * Math.PI / 180;
+          const v_opt = Math.sqrt(r * 9.8 * Math.tan(rad)) * 3.6;
+          const num = Math.tan(rad) + mu;
+          const den = 1 - mu * Math.tan(rad);
+          const v_max = den > 0 ? Math.sqrt(r * 9.8 * (num / den)) * 3.6 : 999;
+          const v_min = Math.tan(rad) > mu ? Math.sqrt(r * 9.8 * ((Math.tan(rad) - mu) / (1 + mu * Math.tan(rad)))) * 3.6 : 0;
+
+          // Road streams under car continuously at driving speed v!
+          bankedRoadScroll += (v_kmh / 25) * dt * 60;
+          bankedWheelRot += (v_kmh / 20) * dt * 10;
+
+          // Target lateral position:
+          let targetRatio = 0.5;
+          if (v_kmh > v_opt) {
+            const span = Math.max(1, v_max - v_opt);
+            targetRatio = 0.5 + Math.min(0.55, 0.45 * ((v_kmh - v_opt) / span));
+          } else {
+            const span = Math.max(1, v_opt - v_min);
+            targetRatio = 0.5 - Math.min(0.45, 0.42 * ((v_opt - v_kmh) / span));
+          }
+          // Smooth spring physics for lateral drift
+          bankedDriftRatio += (targetRatio - bankedDriftRatio) * dt * 4;
+
           drawCircularCanvas();
         } else if (currentCircConcept === 'loop') {
-          const v0 = parseFloat(document.getElementById('circSlider3').value);
-          loopCarAngle = (loopCarAngle + (v0 / 50) * dt * 3.2) % (Math.PI * 2);
+          const R = parseFloat(document.getElementById('circSlider1').value);
+          const v0_kmh = parseFloat(document.getElementById('circSlider3').value);
+          const v0 = v0_kmh / 3.6;
+          const g = 9.8;
+
+          // Height at current angle h = R(1 - cos(phi))
+          const phi = (loopCarAngle - 3 * Math.PI / 2 + Math.PI * 4) % (Math.PI * 2);
+          const v_cur = Math.sqrt(Math.max(1.0, v0 * v0 - 2 * g * R * (1 - Math.cos(phi))));
+          const omega = v_cur / Math.max(5, R);
+
+          loopCarAngle = (loopCarAngle + omega * dt * 2.5) % (Math.PI * 2);
           drawCircularCanvas();
         }
       }
