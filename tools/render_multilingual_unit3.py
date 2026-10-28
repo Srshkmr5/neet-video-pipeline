@@ -636,13 +636,15 @@ class {runner_scene_class}(u3.{base_class}):
             "-map", "2:s:0",
             "-c:v", "copy",
             "-c:a", "aac", "-b:a", "192k",
-            "-af", "apad",
             "-c:s", "mov_text",
             "-metadata:s:s:0", f"language={iso639}",
             "-metadata:s:s:0", f"title={lang_name}",
             str(final_mp4)
         ]
-        subprocess.run(cmd_mux, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        res_mux = subprocess.run(cmd_mux, capture_output=True, text=True)
+        if res_mux.returncode != 0:
+            print("FFMPEG MUX ERROR:", res_mux.stderr)
+            raise RuntimeError(f"FFmpeg muxing failed for {final_mp4.name}: {res_mux.stderr[-300:]}")
         f_size_mb = final_mp4.stat().st_size / (1024 * 1024)
         print(f"   ✨ FINAL BROADCAST PRODUCTION VIDEO: {final_mp4.name} ({f_size_mb:.2f} MB)")
 
