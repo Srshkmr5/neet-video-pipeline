@@ -1886,22 +1886,73 @@ def generate_html():
         const J = 2 * m * v;
         const F_peak = (2 * J) / dt;
 
-        // Rigid Wall on Left
-        const wallX = 75;
-        mCtx.fillStyle = '#334155';
-        mCtx.fillRect(wallX - 22, cy - 85, 22, 170);
+        // SPLIT CANVAS: DUAL-PANEL ARCHITECTURE
+        // PANEL 1: Physical Collision Chamber (Left)
+        // PANEL 2: Real-Time Force-Time (F-t) Graph Panel (Right)
+        const panelW = (w - 60) / 2;
+        const chamberX = 25;
+        const chamberY = cy - 90;
+        const chamberH = 180;
+
+        // Panel 1 Background (Chamber)
+        mCtx.fillStyle = 'rgba(15, 23, 42, 0.55)';
+        mCtx.fillRect(chamberX, chamberY, panelW, chamberH);
+        mCtx.strokeStyle = '#334155';
+        mCtx.lineWidth = 1.5;
+        mCtx.strokeRect(chamberX, chamberY, panelW, chamberH);
+
+        // Chamber Header
+        mCtx.fillStyle = '#38bdf8';
+        mCtx.font = 'bold 11px Consolas, monospace';
+        mCtx.fillText('① PHYSICAL IMPACT CHAMBER', chamberX + 12, chamberY + 18);
+
+        // Chamber Floor Track
+        const floorY = cy + 45;
+        mCtx.strokeStyle = '#475569';
+        mCtx.lineWidth = 2;
+        mCtx.beginPath();
+        mCtx.moveTo(chamberX + 10, floorY);
+        mCtx.lineTo(chamberX + panelW - 10, floorY);
+        mCtx.stroke();
+
+        // Left Rigid Sensor Wall
+        const wallX = chamberX + 35;
+        mCtx.fillStyle = '#1e293b';
+        mCtx.fillRect(wallX - 18, cy - 50, 18, 95);
         mCtx.strokeStyle = '#94a3b8';
-        mCtx.lineWidth = 2.5;
-        mCtx.strokeRect(wallX - 22, cy - 85, 22, 170);
+        mCtx.lineWidth = 2;
+        mCtx.strokeRect(wallX - 18, cy - 50, 18, 95);
 
-        // Elastic Cushion on Wall
-        mCtx.fillStyle = '#0ea5e9';
-        mCtx.fillRect(wallX - 4, cy - 75, 4, 150);
+        // Rubber Impact Pad on Wall
+        mCtx.fillStyle = ballDeform < 0.9 ? '#F43F5E' : '#38bdf8';
+        mCtx.fillRect(wallX - 3, cy - 45, 4, 85);
 
-        // Wall Pressure Gauge Needle
-        const gaugeR = 16;
-        const gx = wallX - 11;
-        const gy = cy - 50;
+        // Right Launcher / Rebound Wall (Explains why ball rebounds!)
+        const launcherX = chamberX + panelW - 35;
+        mCtx.fillStyle = '#1e293b';
+        mCtx.fillRect(launcherX, cy - 45, 16, 90);
+        mCtx.strokeStyle = '#64748b';
+        mCtx.strokeRect(launcherX, cy - 45, 16, 90);
+
+        // Spring coils on launcher
+        mCtx.strokeStyle = '#94a3b8';
+        mCtx.lineWidth = 2;
+        mCtx.beginPath();
+        mCtx.moveTo(launcherX, cy);
+        for (let sc = 0; sc < 3; sc++) {
+          mCtx.lineTo(launcherX - 4 * (sc + 1), cy + (sc % 2 === 0 ? 6 : -6));
+        }
+        mCtx.lineTo(launcherX - 16, cy);
+        mCtx.stroke();
+
+        mCtx.fillStyle = '#64748b';
+        mCtx.font = '9px Consolas, monospace';
+        mCtx.fillText('LAUNCHER', launcherX - 25, cy - 50);
+
+        // Pressure Gauge on Wall
+        const gaugeR = 14;
+        const gx = wallX - 9;
+        const gy = cy - 20;
         mCtx.fillStyle = '#0f172a';
         mCtx.beginPath();
         mCtx.arc(gx, gy, gaugeR, 0, Math.PI * 2);
@@ -1909,7 +1960,7 @@ def generate_html():
         mCtx.strokeStyle = '#64748b';
         mCtx.stroke();
 
-        const needleAngle = -Math.PI / 2 + (ballDeform < 0.9 ? 1.5 : 0.2);
+        const needleAngle = -Math.PI / 2 + (ballDeform < 0.9 ? 1.4 : 0.2);
         mCtx.strokeStyle = ballDeform < 0.9 ? '#F43F5E' : '#4ADE80';
         mCtx.lineWidth = 2;
         mCtx.beginPath();
@@ -1917,12 +1968,14 @@ def generate_html():
         mCtx.lineTo(gx + gaugeR * Math.cos(needleAngle), gy + gaugeR * Math.sin(needleAngle));
         mCtx.stroke();
 
-        // Elastic Ball with Squash: Radius scales with mass m!
-        const bRad = 15 + m * 11;
-        const ballActualX = wallX + bRad * ballDeform + ballX;
+        // Elastic Ball with Squash: Travels between wallX and launcherX
+        const travelSpan = (launcherX - 20) - (wallX + 25);
+        const bRad = 14 + m * 9;
+        const ballActualX = wallX + bRad * ballDeform + (ballX / 160) * travelSpan;
+        const ballActualY = floorY - bRad;
 
         mCtx.save();
-        mCtx.translate(ballActualX, cy);
+        mCtx.translate(ballActualX, ballActualY);
         mCtx.scale(ballDeform, 1 / Math.sqrt(ballDeform || 1));
         mCtx.fillStyle = ballDeform < 0.9 ? '#F43F5E' : '#38bdf8';
         mCtx.beginPath();
@@ -1931,56 +1984,104 @@ def generate_html():
         mCtx.strokeStyle = '#ffffff';
         mCtx.lineWidth = 2;
         mCtx.stroke();
+
+        // Mass text inside ball
+        mCtx.fillStyle = '#0f172a';
+        mCtx.font = 'bold 9px Consolas, monospace';
+        mCtx.fillText(`${m.toFixed(1)}kg`, -11, 3);
         mCtx.restore();
 
-        // Ball Velocity Vector
+        // Ball Velocity Vector Arrow
         if (ballV < 0) {
-          drawArrow(mCtx, ballActualX, cy - bRad - 12, ballActualX - 45, cy - bRad - 12, '#38bdf8', `+v (${v}m/s)`, 10);
+          drawArrow(mCtx, ballActualX, ballActualY - bRad - 12, ballActualX - 42, ballActualY - bRad - 12, '#38bdf8', `+v (${v}m/s)`, 9);
         } else {
-          drawArrow(mCtx, ballActualX, cy - bRad - 12, ballActualX + 45, cy - bRad - 12, '#F43F5E', `-v (Rebound)`, 10);
+          drawArrow(mCtx, ballActualX, ballActualY - bRad - 12, ballActualX + 42, ballActualY - bRad - 12, '#F43F5E', `-v (Rebound)`, 9);
         }
 
-        // F-t Curve on Right Side
-        const ox = cx + 25;
-        const oy = cy + 60;
-        const gw = w - ox - 35;
-        const gh = 115;
+        // PANEL 2: Analytical Data Graph Panel (Right)
+        const graphPanelX = chamberX + panelW + 15;
+        const graphPanelY = chamberY;
 
-        mCtx.strokeStyle = '#475569';
+        mCtx.fillStyle = 'rgba(15, 23, 42, 0.75)';
+        mCtx.fillRect(graphPanelX, graphPanelY, panelW, chamberH);
+        mCtx.strokeStyle = '#334155';
+        mCtx.lineWidth = 1.5;
+        mCtx.strokeRect(graphPanelX, graphPanelY, panelW, chamberH);
+
+        mCtx.fillStyle = '#4ade80';
+        mCtx.font = 'bold 11px Consolas, monospace';
+        mCtx.fillText('② REAL-TIME FORCE-TIME (F-t) GRAPH', graphPanelX + 12, graphPanelY + 18);
+
+        // F-t Graph Axes
+        const gox = graphPanelX + 45;
+        const goy = graphPanelY + chamberH - 35;
+        const ggw = panelW - 75;
+        const ggh = 105;
+
+        // Grid lines
+        mCtx.strokeStyle = 'rgba(71, 85, 105, 0.35)';
+        mCtx.lineWidth = 1;
+        for (let gl = 1; gl <= 3; gl++) {
+          mCtx.beginPath();
+          mCtx.moveTo(gox, goy - (ggh / 4) * gl);
+          mCtx.lineTo(gox + ggw, goy - (ggh / 4) * gl);
+          mCtx.stroke();
+        }
+
+        mCtx.strokeStyle = '#94a3b8';
         mCtx.lineWidth = 2;
         mCtx.beginPath();
-        mCtx.moveTo(ox, oy);
-        mCtx.lineTo(ox + gw, oy);
-        mCtx.moveTo(ox, oy);
-        mCtx.lineTo(ox, oy - gh);
+        mCtx.moveTo(gox, goy);
+        mCtx.lineTo(gox + ggw, goy);
+        mCtx.moveTo(gox, goy);
+        mCtx.lineTo(gox, goy - ggh);
         mCtx.stroke();
 
         mCtx.fillStyle = '#94a3b8';
         mCtx.font = '10px Consolas, monospace';
-        mCtx.fillText('Time (t) →', ox + gw - 60, oy + 18);
-        mCtx.fillText('Force F(t) ↑', ox - 20, oy - gh - 8);
+        mCtx.fillText('Time t (ms) →', gox + ggw - 75, goy + 18);
+        mCtx.fillText('Force F(t) ↑', gox - 40, goy - ggh + 10);
 
-        // Curve dimensions scale with dt and F_peak!
-        const pWidth = Math.min(gw * 0.75, (dt / 0.05) * gw * 0.65 + 25);
-        const pHeight = Math.min(gh * 0.85, (F_peak / 3000) * gh * 0.75 + 20);
-        const pStart = ox + gw * 0.15;
+        // Force-Time Curve Shape
+        const pWidth = Math.min(ggw * 0.7, (dt / 0.05) * ggw * 0.55 + 25);
+        const pHeight = Math.min(ggh * 0.85, (F_peak / 3000) * ggh * 0.75 + 20);
+        const pStart = gox + ggw * 0.15;
         const pMid = pStart + pWidth / 2;
         const pEnd = pStart + pWidth;
 
-        mCtx.fillStyle = ballDeform < 0.9 ? 'rgba(244, 63, 94, 0.45)' : 'rgba(74, 222, 128, 0.25)';
-        mCtx.strokeStyle = ballDeform < 0.9 ? '#F43F5E' : '#4ade80';
-        mCtx.lineWidth = 2.5;
+        // Synchronous Glow during Wall Impact:
+        const isImpactActive = ballDeform < 0.95;
+        mCtx.fillStyle = isImpactActive ? 'rgba(74, 222, 128, 0.4)' : 'rgba(74, 222, 128, 0.15)';
+        mCtx.strokeStyle = isImpactActive ? '#4ade80' : '#22c55e';
+        mCtx.lineWidth = isImpactActive ? 3 : 2;
         mCtx.beginPath();
-        mCtx.moveTo(pStart, oy);
-        mCtx.lineTo(pMid, oy - pHeight);
-        mCtx.lineTo(pEnd, oy);
+        mCtx.moveTo(pStart, goy);
+        mCtx.lineTo(pMid, goy - pHeight);
+        mCtx.lineTo(pEnd, goy);
         mCtx.closePath();
         mCtx.fill();
         mCtx.stroke();
 
+        // Area & Impulse Text inside Graph
         mCtx.fillStyle = '#4ade80';
         mCtx.font = 'bold 11px Consolas, monospace';
-        mCtx.fillText(`Area = J = Δp = ${J.toFixed(1)} N·s`, pMid - 55, oy - pHeight / 2);
+        mCtx.fillText(`Area = J = Δp = ${J.toFixed(1)} N·s`, pMid - 55, goy - pHeight / 2);
+
+        // Real-Time Tracer Dot on F-t Graph
+        if (isImpactActive) {
+          const tracerT = (1.0 - ballDeform) / 0.45; // 0 to 1
+          const tracerX = pStart + pWidth * Math.min(1.0, tracerT);
+          const tracerY = goy - pHeight * Math.sin(Math.min(Math.PI, tracerT * Math.PI));
+          mCtx.fillStyle = '#facc15';
+          mCtx.beginPath();
+          mCtx.arc(tracerX, tracerY, 5, 0, Math.PI * 2);
+          mCtx.fill();
+        }
+
+        // Explanatory Bottom Note
+        mCtx.fillStyle = '#64748b';
+        mCtx.font = '9px Consolas, monospace';
+        mCtx.fillText('Note: The triangle is the F-t data plot recorded at the left wall sensor during contact.', chamberX + 12, chamberY + chamberH + 16);
 
       } else if (currentMomentumConcept === 'rocket') {
         const u = parseFloat(document.getElementById('momSlider1').value);
