@@ -476,7 +476,7 @@ def render_concept_multilingual_unit3(canonical_id: str, languages: List[str] = 
             f"[1:a]adelay={int(offset_b2*1000)}|{int(offset_b2*1000)}[a2]; "
             f"[2:a]adelay={int(offset_b3*1000)}|{int(offset_b3*1000)}[a3]; "
             f"[3:a]adelay={int(offset_b4*1000)}|{int(offset_b4*1000)}[a4]; "
-            f"[a1][a2][a3][a4]amix=inputs=4:duration=longest:dropout_transition=0,volume=1.0,apad[outa]"
+            f"[a1][a2][a3][a4][4:a]amix=inputs=5:duration=longest:dropout_transition=0,volume=1.0[outa]"
         )
         cmd_audio = [
             "ffmpeg", "-y",
@@ -484,6 +484,7 @@ def render_concept_multilingual_unit3(canonical_id: str, languages: List[str] = 
             "-i", str(beat_dir / "beat_2.mp3"),
             "-i", str(beat_dir / "beat_3.mp3"),
             "-i", str(beat_dir / "beat_4.mp3"),
+            "-f", "lavfi", "-t", f"{total_video_time:.3f}", "-i", "anullsrc=r=44100:cl=stereo",
             "-filter_complex", filter_str,
             "-map", "[outa]",
             "-t", f"{total_video_time:.3f}",
@@ -561,8 +562,11 @@ class {runner_scene_class}(u3.{base_class}):
         self.wait({wait_b4:.3f})
         self.play(FadeOut(b4), run_time=0.6)
 
-        # Beat 5: Transition Teaser
-        self.render_release_teaser(duration=3.5)
+        # Beat 5: Next Video End Card
+        b5 = self.build_beat_5()
+        self.play(FadeIn(b5), run_time=0.8)
+        self.wait(1.9)
+        self.play(FadeOut(b5), run_time=0.8)
 '''
 
         runner_path = beat_dir / f"runner_{lang}.py"
@@ -634,7 +638,6 @@ class {runner_scene_class}(u3.{base_class}):
             "-c:a", "aac", "-b:a", "192k",
             "-af", "apad",
             "-c:s", "mov_text",
-            "-shortest",
             "-metadata:s:s:0", f"language={iso639}",
             "-metadata:s:s:0", f"title={lang_name}",
             str(final_mp4)
