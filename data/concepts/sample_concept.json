@@ -1,0 +1,14 @@
+{
+  "concept_id": "sample_concept_01",
+  "topic_name": "Work-Energy Theorem",
+  "headline": "Work-Energy Theorem",
+  "formula": "W = ΔK",
+  "bullets": [
+    "Work changes kinetic energy",
+    "Net work equals energy change",
+    "Use signs carefully"
+  ],
+  "trap": "Force and displacement must align",
+  "language": "en",
+  "duration_seconds": 20
+}

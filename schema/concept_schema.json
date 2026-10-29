@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/concept_schema.json",
+  "title": "Educational Concept",
+  "type": "object",
+  "required": [
+    "concept_id",
+    "topic_name",
+    "headline",
+    "formula",
+    "bullets",
+    "trap",
+    "language",
+    "duration_seconds"
+  ],
+  "properties": {
+    "concept_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "topic_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "headline": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80
+    },
+    "formula": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "bullets": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 60
+      }
+    },
+    "trap": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "language": {
+      "type": "string",
+      "enum": ["en", "hi", "bn"]
+    },
+    "duration_seconds": {
+      "type": "number",
+      "minimum": 5,
+      "maximum": 60
+    }
+  },
+  "additionalProperties": false
+}
