@@ -1,6 +1,6 @@
 """
 Master Batch Production Engine for Unit 3: Laws of Motion
-Executes sequential multilingual production (en-IN, hi-IN, ta-IN),
+Executes concurrent/sequential multilingual production (en-IN, hi-IN, ta-IN),
 AES-128 HLS stream packaging, storyboard proof extraction,
 and manifest registration for all 11 concepts.
 """
@@ -12,9 +12,11 @@ if hasattr(sys.stdout, "reconfigure"):
 
 import os
 import json
+import time
 import subprocess
 from pathlib import Path
 from datetime import datetime
+from concurrent.futures import ThreadPoolExecutor
 
 BASE_DIR = Path(r"C:\Users\DELL\.gemini\antigravity\worktrees\neet-video-pipeline_1\optimize_token_usage")
 sys.path.insert(0, str(BASE_DIR))
@@ -97,11 +99,28 @@ def update_manifest_and_approval():
         json.dump(approval_data, f, indent=2, ensure_ascii=False)
     print("   [+] Updated queue/approval_manifest.json with Unit 3 approval entries.")
 
+def produce_single_concept(item, force: bool):
+    cid, title = item
+    t0 = time.time()
+    print(f"\n>>> [START] Concept {cid}: {title}")
+    try:
+        render_concept_multilingual_unit3(cid, ["en-IN", "hi-IN", "ta-IN"], force=force)
+        en_video = OUTPUT_DIR / f"{cid}_en-IN.mp4"
+        if en_video.exists():
+            extract_storyboard_proofs(en_video, cid)
+        dt = time.time() - t0
+        print(f"\n✅ [COMPLETED] Concept {cid} in {dt:.1f}s")
+        return cid, True
+    except Exception as e:
+        print(f"\n❌ [ERROR] Concept {cid} failed: {e}")
+        return cid, False
+
 def main():
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("--force", action="store_true", help="Force re-rendering of all multilingual videos")
     parser.add_argument("--concept", type=str, default=None, help="Render specific concept ID")
+    parser.add_argument("--workers", type=int, default=3, help="Number of concurrent concept workers (default 3)")
     args = parser.parse_args()
 
     targets = [c for c in UNIT3_CONCEPTS if c[0] == args.concept] if args.concept else UNIT3_CONCEPTS
@@ -109,23 +128,37 @@ def main():
     print("=" * 80)
     print(f"🎬 MASTER BATCH PRODUCTION PIPELINE: UNIT 3 LAWS OF MOTION ({total} CONCEPTS)")
     print(f"   Target Deliverables: {total * 3} Synchronized Multilingual Videos (en-IN, hi-IN, ta-IN)")
+    print(f"   Force Overwrite: {args.force} | Concurrent Workers: {args.workers}")
     print("=" * 80)
 
-    for idx, (cid, title) in enumerate(targets, 1):
-        print(f"\n[{idx}/{total}] >>> INITIATING PRODUCTION: {cid} ({title})")
-        # Step 1: Render Multilingual Videos
-        render_concept_multilingual_unit3(cid, ["en-IN", "hi-IN", "ta-IN"], force=args.force)
+    total_start = time.time()
+    results = {}
 
-        # Step 2: Ensure Storyboard Proofs
-        en_video = OUTPUT_DIR / f"{cid}_en-IN.mp4"
-        if en_video.exists():
-            extract_storyboard_proofs(en_video, cid)
+    if total == 1 or args.workers <= 1:
+        for idx, item in enumerate(targets, 1):
+            print(f"\n[{idx}/{total}] Processing {item[0]}...")
+            cid, ok = produce_single_concept(item, force=args.force)
+            results[cid] = ok
+    else:
+        with ThreadPoolExecutor(max_workers=args.workers) as pool:
+            futures = [pool.submit(produce_single_concept, item, args.force) for item in targets]
+            for f in futures:
+                cid, ok = f.result()
+                results[cid] = ok
+
+    total_render_time = time.time() - total_start
+    print("\n" + "=" * 80)
+    print(f"🏁 ALL RENDERS COMPLETED IN {total_render_time:.1f}s")
+    for cid, ok in results.items():
+        status = "✅ PASS (3/3 Languages)" if ok else "❌ FAIL"
+        print(f"   {cid}: {status}")
+    print("=" * 80)
 
     # Step 3: Package All Unit 3 Videos into AES-128 HLS
     print("\n" + "=" * 80)
     print("🔒 PACKAGING ALL UNIT 3 VIDEOS INTO AES-128 HLS ENCRYPTED STREAMS...")
     print("=" * 80)
-    package_all_videos(force=False, input_dirs=[OUTPUT_DIR, FINAL_VIDEOS_DIR])
+    package_all_videos(force=args.force, input_dirs=[OUTPUT_DIR, FINAL_VIDEOS_DIR])
 
     # Step 4: Register Streams and Approvals in Manifests
     print("\n" + "=" * 80)
