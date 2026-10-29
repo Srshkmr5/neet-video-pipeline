@@ -2161,52 +2161,52 @@
       "topic_no": 1,
       "topic_name": "Work-Energy Theorem",
       "video_no": 1,
-      "title": "[Work, Energy, and Power] Concept 1",
+      "title": "Scalar Product and Work Done by Constant Force",
       "dimension_support": "2d",
-      "latex_formula": "",
-      "plain_formula": "",
-      "ncert_citation": "",
-      "ncert_core_rule": "",
-      "author_book_nuance": "",
-      "neet_trap_point": "",
-      "pyq_years": "",
+      "latex_formula": "W = \\vec{F} \\cdot \\vec{d} = F d \\cos\\theta",
+      "plain_formula": "W = F * d * cos(theta)",
+      "ncert_citation": "NCERT Class 11 Physics Part 1, Chapter 5, Section 5.2 - 5.3",
+      "ncert_core_rule": "Work is a scalar quantity equal to the dot product of force and displacement vectors. Work is zero if displacement is zero, force is zero, or angle is 90 degrees.",
+      "author_book_nuance": "Centripetal force and normal force on a horizontal surface do zero work because theta = 90 degrees (cos 90 = 0).",
+      "neet_trap_point": "Confusing the sign of work: work is negative when theta > 90 degrees (e.g. friction opposing displacement).",
+      "pyq_years": "NEET 2022, NEET 2019, AIPMT 2012",
       "has_secure_stream": false,
       "streams": {
         "2d": {},
         "3d": {}
       },
-      "simulation": null,
+      "simulation": "/simulations/unit_04_work_energy_power_lab.html",
       "trap_quiz": {
-        "title": "NEET Trap: [Work, Energy, and Power] Concept 1",
-        "warning": "Common exam pitfall in applying [Work, Energy, and Power] Concept 1.",
-        "pyq_year": "NEET High-Yield",
-        "question": "In a standard NEET problem on '[Work, Energy, and Power] Concept 1', which of the following statements represents the critical condition to prevent sign or angle errors?",
+        "title": "NEET Trap: Scalar Product and Work Done by Constant Force",
+        "warning": "Confusing the sign of work: work is negative when theta > 90 degrees (e.g. friction opposing displacement).",
+        "pyq_year": "NEET 2022",
+        "question": "In NEET Physics, what is the critical conceptual distinction when applying Scalar Product and Work Done by Constant Force?",
+        "formula_card": {
+          "incorrect": "Misapplying scalar approximations or ignoring directional/sign constraints",
+          "correct": "W = \\vec{F} \\cdot \\vec{d} = F d \\cos\\theta"
+        },
         "options": [
           {
             "id": 0,
-            "text": "A) Verify coordinate axes orientation and component reference angle before applying formula.",
-            "trap": "Correct: Prevents sine/cosine and +/- direction inversion.",
+            "text": "A) Work is a scalar quantity equal to the dot product of force and displacement vectors. Work is zero if displacement is ze...",
+            "trap": "Correct: Direct application of the verified NCERT foundational rule.",
             "correct": true
           },
           {
             "id": 1,
-            "text": "B) The textbook scalar equation applies universally in all reference frames.",
-            "trap": "Trap: Scalar equations fail when acceleration changes or frame is non-inertial."
-          },
-          {
-            "id": 2,
-            "text": "C) Gravitational acceleration g is always negative regardless of chosen axis.",
-            "trap": "Trap: Sign of g depends strictly on positive axis definition."
-          },
-          {
-            "id": 3,
-            "text": "D) Horizontal velocity component alters vertical flight duration.",
-            "trap": "Trap: Horizontal and vertical motions are strictly independent."
+            "text": "B) Confusing the sign of work: work is negative when theta > 90 degrees (e.g. friction opposing displacement)....",
+            "trap": "Fatal NEET Trap: Common sign, work, or vector confusion.",
+            "correct": false
           }
         ],
         "correct_index": 0,
-        "explanation": "Key Rule:  "
-      }
+        "explanation": "NCERT Rule: Work is a scalar quantity equal to the dot product of force and displacement vectors. Work is zero if displacement is zero, force is zero, or angle is 90 degrees."
+      },
+      "template_name": "ConstantWorkDotProductScene",
+      "chapter_seq": 1,
+      "total_chapter_videos": 11,
+      "next_video_id": "P11-C04-T01-V02",
+      "next_video_title": "Work Done by Variable Force & F-x Graph Area"
     },
     {
       "canonical_id": "P11-C04-T01-V02",
@@ -2218,52 +2218,52 @@
       "topic_no": 1,
       "topic_name": "Work-Energy Theorem",
       "video_no": 2,
-      "title": "[Work, Energy, and Power] Concept 2",
+      "title": "Work Done by Variable Force and Area Under F-x Curve",
       "dimension_support": "2d",
-      "latex_formula": "",
-      "plain_formula": "",
-      "ncert_citation": "",
-      "ncert_core_rule": "",
-      "author_book_nuance": "",
-      "neet_trap_point": "",
-      "pyq_years": "",
+      "latex_formula": "W = \\int_{x_i}^{x_f} F(x) \\, dx = \\text{Area under } F\\text{-}x \\text{ curve}",
+      "plain_formula": "W = integral(F(x) dx) = Area under F-x curve",
+      "ncert_citation": "NCERT Class 11 Physics Part 1, Chapter 5, Section 5.4 - 5.5",
+      "ncert_core_rule": "Work done by a position-dependent force is the definite integral of F with respect to x, geometrically represented by the signed area between the F-x curve and position axis.",
+      "author_book_nuance": "Areas below the displacement axis represent negative work done and must be subtracted algebraically from areas above.",
+      "neet_trap_point": "Adding negative area under position axis as positive magnitude instead of subtracting signed integral value.",
+      "pyq_years": "NEET 2021, NEET 2018, AIPMT 2015",
       "has_secure_stream": false,
       "streams": {
         "2d": {},
         "3d": {}
       },
-      "simulation": null,
+      "simulation": "/simulations/unit_04_work_energy_power_lab.html",
       "trap_quiz": {
-        "title": "NEET Trap: [Work, Energy, and Power] Concept 2",
-        "warning": "Common exam pitfall in applying [Work, Energy, and Power] Concept 2.",
-        "pyq_year": "NEET High-Yield",
-        "question": "In a standard NEET problem on '[Work, Energy, and Power] Concept 2', which of the following statements represents the critical condition to prevent sign or angle errors?",
+        "title": "NEET Trap: Work Done by Variable Force and Area Under F-x Curve",
+        "warning": "Adding negative area under position axis as positive magnitude instead of subtracting signed integral value.",
+        "pyq_year": "NEET 2021",
+        "question": "In NEET Physics, what is the critical conceptual distinction when applying Work Done by Variable Force and Area Under F-x Curve?",
+        "formula_card": {
+          "incorrect": "Misapplying scalar approximations or ignoring directional/sign constraints",
+          "correct": "W = \\int_{x_i}^{x_f} F(x) \\, dx = \\text{Area under } F\\text{-}x \\text{ curve}"
+        },
         "options": [
           {
             "id": 0,
-            "text": "A) Verify coordinate axes orientation and component reference angle before applying formula.",
-            "trap": "Correct: Prevents sine/cosine and +/- direction inversion.",
+            "text": "A) Work done by a position-dependent force is the definite integral of F with respect to x, geometrically represented by th...",
+            "trap": "Correct: Direct application of the verified NCERT foundational rule.",
             "correct": true
           },
           {
             "id": 1,
-            "text": "B) The textbook scalar equation applies universally in all reference frames.",
-            "trap": "Trap: Scalar equations fail when acceleration changes or frame is non-inertial."
-          },
-          {
-            "id": 2,
-            "text": "C) Gravitational acceleration g is always negative regardless of chosen axis.",
-            "trap": "Trap: Sign of g depends strictly on positive axis definition."
-          },
-          {
-            "id": 3,
-            "text": "D) Horizontal velocity component alters vertical flight duration.",
-            "trap": "Trap: Horizontal and vertical motions are strictly independent."
+            "text": "B) Adding negative area under position axis as positive magnitude instead of subtracting signed integral value....",
+            "trap": "Fatal NEET Trap: Common sign, work, or vector confusion.",
+            "correct": false
           }
         ],
         "correct_index": 0,
-        "explanation": "Key Rule:  "
-      }
+        "explanation": "NCERT Rule: Work done by a position-dependent force is the definite integral of F with respect to x, geometrically represented by the signed area between the F-x curve and position axis."
+      },
+      "template_name": "VariableForceWorkIntegralScene",
+      "chapter_seq": 2,
+      "total_chapter_videos": 11,
+      "next_video_id": "P11-C04-T01-V03",
+      "next_video_title": "Kinetic Energy & Work-Energy Theorem for Variable Force"
     },
     {
       "canonical_id": "P11-C04-T01-V03",
@@ -2275,52 +2275,52 @@
       "topic_no": 1,
       "topic_name": "Work-Energy Theorem",
       "video_no": 3,
-      "title": "[Work, Energy, and Power] Concept 3",
+      "title": "Work-Energy Theorem for Constant & Variable Forces",
       "dimension_support": "2d",
-      "latex_formula": "",
-      "plain_formula": "",
-      "ncert_citation": "",
-      "ncert_core_rule": "",
-      "author_book_nuance": "",
-      "neet_trap_point": "",
-      "pyq_years": "",
+      "latex_formula": "W_{\\text{net}} = \\Delta K = K_f - K_i = \\frac{1}{2}m v_f^2 - \\frac{1}{2}m v_i^2",
+      "plain_formula": "W_net = Delta K = 0.5*m*v_f^2 - 0.5*m*v_i^2",
+      "ncert_citation": "NCERT Class 11 Physics Part 1, Chapter 5, Section 5.3 & 5.5",
+      "ncert_core_rule": "The net work done by all forces (conservative, non-conservative, internal, and external) on a particle equals the change in its kinetic energy.",
+      "author_book_nuance": "Work-energy theorem is valid in non-inertial frames provided the work done by pseudo forces is also included in W_net.",
+      "neet_trap_point": "Considering only conservative forces in work-energy theorem; W_net includes friction, normal, tension, and applied forces.",
+      "pyq_years": "NEET 2023, NEET 2020, NEET 2016",
       "has_secure_stream": false,
       "streams": {
         "2d": {},
         "3d": {}
       },
-      "simulation": null,
+      "simulation": "/simulations/unit_04_work_energy_power_lab.html",
       "trap_quiz": {
-        "title": "NEET Trap: [Work, Energy, and Power] Concept 3",
-        "warning": "Common exam pitfall in applying [Work, Energy, and Power] Concept 3.",
-        "pyq_year": "NEET High-Yield",
-        "question": "In a standard NEET problem on '[Work, Energy, and Power] Concept 3', which of the following statements represents the critical condition to prevent sign or angle errors?",
+        "title": "NEET Trap: Work-Energy Theorem for Constant & Variable Forces",
+        "warning": "Considering only conservative forces in work-energy theorem; W_net includes friction, normal, tension, and applied forces.",
+        "pyq_year": "NEET 2023",
+        "question": "In NEET Physics, what is the critical conceptual distinction when applying Work-Energy Theorem for Constant & Variable Forces?",
+        "formula_card": {
+          "incorrect": "Misapplying scalar approximations or ignoring directional/sign constraints",
+          "correct": "W_{\\text{net}} = \\Delta K = K_f - K_i = \\frac{1}{2}m v_f^2 - \\frac{1}{2}m v_i^2"
+        },
         "options": [
           {
             "id": 0,
-            "text": "A) Verify coordinate axes orientation and component reference angle before applying formula.",
-            "trap": "Correct: Prevents sine/cosine and +/- direction inversion.",
+            "text": "A) The net work done by all forces (conservative, non-conservative, internal, and external) on a particle equals the change...",
+            "trap": "Correct: Direct application of the verified NCERT foundational rule.",
             "correct": true
           },
           {
             "id": 1,
-            "text": "B) The textbook scalar equation applies universally in all reference frames.",
-            "trap": "Trap: Scalar equations fail when acceleration changes or frame is non-inertial."
-          },
-          {
-            "id": 2,
-            "text": "C) Gravitational acceleration g is always negative regardless of chosen axis.",
-            "trap": "Trap: Sign of g depends strictly on positive axis definition."
-          },
-          {
-            "id": 3,
-            "text": "D) Horizontal velocity component alters vertical flight duration.",
-            "trap": "Trap: Horizontal and vertical motions are strictly independent."
+            "text": "B) Considering only conservative forces in work-energy theorem; W_net includes friction, normal, tension, and applied force...",
+            "trap": "Fatal NEET Trap: Common sign, work, or vector confusion.",
+            "correct": false
           }
         ],
         "correct_index": 0,
-        "explanation": "Key Rule:  "
-      }
+        "explanation": "NCERT Rule: The net work done by all forces (conservative, non-conservative, internal, and external) on a particle equals the change in its kinetic energy."
+      },
+      "template_name": "WorkEnergyTheoremScene",
+      "chapter_seq": 3,
+      "total_chapter_videos": 11,
+      "next_video_id": "P11-C04-T01-V04",
+      "next_video_title": "Conservative vs Non-Conservative Forces & Path Independence"
     },
     {
       "canonical_id": "P11-C04-T01-V04",
@@ -2332,52 +2332,52 @@
       "topic_no": 1,
       "topic_name": "Work-Energy Theorem",
       "video_no": 4,
-      "title": "[Work, Energy, and Power] Concept 4",
+      "title": "Conservative vs Non-Conservative Forces and Path Independence",
       "dimension_support": "2d",
-      "latex_formula": "",
-      "plain_formula": "",
-      "ncert_citation": "",
-      "ncert_core_rule": "",
-      "author_book_nuance": "",
-      "neet_trap_point": "",
-      "pyq_years": "",
+      "latex_formula": "\\oint \\vec{F}_c \\cdot d\\vec{r} = 0, \\quad W_{\\text{path 1}} = W_{\\text{path 2}}",
+      "plain_formula": "closed_integral(F_c dr) = 0; W_path1 = W_path2",
+      "ncert_citation": "NCERT Class 11 Physics Part 1, Chapter 5, Section 5.6",
+      "ncert_core_rule": "A force is conservative if work done around any closed loop is zero, or equivalently, work done between two points depends only on end points and is independent of path.",
+      "author_book_nuance": "Gravity, electrostatic, and spring forces are conservative. Friction, air resistance, and viscous drag are non-conservative (dissipative).",
+      "neet_trap_point": "Assuming friction work is zero in a round trip; friction always opposes instantaneous displacement, so W_friction < 0 over a closed loop.",
+      "pyq_years": "NEET 2022, NEET 2017, AIPMT 2014",
       "has_secure_stream": false,
       "streams": {
         "2d": {},
         "3d": {}
       },
-      "simulation": null,
+      "simulation": "/simulations/unit_04_work_energy_power_lab.html",
       "trap_quiz": {
-        "title": "NEET Trap: [Work, Energy, and Power] Concept 4",
-        "warning": "Common exam pitfall in applying [Work, Energy, and Power] Concept 4.",
-        "pyq_year": "NEET High-Yield",
-        "question": "In a standard NEET problem on '[Work, Energy, and Power] Concept 4', which of the following statements represents the critical condition to prevent sign or angle errors?",
+        "title": "NEET Trap: Conservative vs Non-Conservative Forces and Path Independence",
+        "warning": "Assuming friction work is zero in a round trip; friction always opposes instantaneous displacement, so W_friction < 0 over a closed loop.",
+        "pyq_year": "NEET 2022",
+        "question": "In NEET Physics, what is the critical conceptual distinction when applying Conservative vs Non-Conservative Forces and Path Independence?",
+        "formula_card": {
+          "incorrect": "Misapplying scalar approximations or ignoring directional/sign constraints",
+          "correct": "\\oint \\vec{F}_c \\cdot d\\vec{r} = 0, \\quad W_{\\text{path 1}} = W_{\\text{path 2}}"
+        },
         "options": [
           {
             "id": 0,
-            "text": "A) Verify coordinate axes orientation and component reference angle before applying formula.",
-            "trap": "Correct: Prevents sine/cosine and +/- direction inversion.",
+            "text": "A) A force is conservative if work done around any closed loop is zero, or equivalently, work done between two points depen...",
+            "trap": "Correct: Direct application of the verified NCERT foundational rule.",
             "correct": true
           },
           {
             "id": 1,
-            "text": "B) The textbook scalar equation applies universally in all reference frames.",
-            "trap": "Trap: Scalar equations fail when acceleration changes or frame is non-inertial."
-          },
-          {
-            "id": 2,
-            "text": "C) Gravitational acceleration g is always negative regardless of chosen axis.",
-            "trap": "Trap: Sign of g depends strictly on positive axis definition."
-          },
-          {
-            "id": 3,
-            "text": "D) Horizontal velocity component alters vertical flight duration.",
-            "trap": "Trap: Horizontal and vertical motions are strictly independent."
+            "text": "B) Assuming friction work is zero in a round trip; friction always opposes instantaneous displacement, so W_friction < 0 ov...",
+            "trap": "Fatal NEET Trap: Common sign, work, or vector confusion.",
+            "correct": false
           }
         ],
         "correct_index": 0,
-        "explanation": "Key Rule:  "
-      }
+        "explanation": "NCERT Rule: A force is conservative if work done around any closed loop is zero, or equivalently, work done between two points depends only on end points and is independent of path."
+      },
+      "template_name": "ConservativeForcesLoopScene",
+      "chapter_seq": 4,
+      "total_chapter_videos": 11,
+      "next_video_id": "P11-C04-T02-V05",
+      "next_video_title": "Potential Energy & Conservative Force Relation F = -dU/dx"
     },
     {
       "canonical_id": "P11-C04-T02-V05",
@@ -2389,52 +2389,52 @@
       "topic_no": 2,
       "topic_name": "Potential Energy of Spring",
       "video_no": 5,
-      "title": "[Work, Energy, and Power] Concept 5",
+      "title": "Potential Energy and Force Relation F = -dU/dx",
       "dimension_support": "2d",
-      "latex_formula": "",
-      "plain_formula": "",
-      "ncert_citation": "",
-      "ncert_core_rule": "",
-      "author_book_nuance": "",
-      "neet_trap_point": "",
-      "pyq_years": "",
+      "latex_formula": "F(x) = -\\frac{dU}{dx}, \\quad \\Delta U = -W_c = -\\int F_c \\, dx",
+      "plain_formula": "F(x) = -dU/dx, Delta U = -W_c",
+      "ncert_citation": "NCERT Class 11 Physics Part 1, Chapter 5, Section 5.6 - 5.7",
+      "ncert_core_rule": "Potential energy is defined only for conservative forces. The conservative force is the negative spatial gradient of the potential energy function.",
+      "author_book_nuance": "Equilibrium occurs where dU/dx = 0 (stable if d2U/dx2 > 0, unstable if d2U/dx2 < 0, neutral if d2U/dx2 = 0).",
+      "neet_trap_point": "Forgetting the negative sign in F = -dU/dx, which leads to inverting force direction and misidentifying equilibrium stability.",
+      "pyq_years": "NEET 2023, NEET 2019, AIPMT 2013",
       "has_secure_stream": false,
       "streams": {
         "2d": {},
         "3d": {}
       },
-      "simulation": null,
+      "simulation": "/simulations/unit_04_work_energy_power_lab.html",
       "trap_quiz": {
-        "title": "NEET Trap: [Work, Energy, and Power] Concept 5",
-        "warning": "Common exam pitfall in applying [Work, Energy, and Power] Concept 5.",
-        "pyq_year": "NEET High-Yield",
-        "question": "In a standard NEET problem on '[Work, Energy, and Power] Concept 5', which of the following statements represents the critical condition to prevent sign or angle errors?",
+        "title": "NEET Trap: Potential Energy and Force Relation F = -dU/dx",
+        "warning": "Forgetting the negative sign in F = -dU/dx, which leads to inverting force direction and misidentifying equilibrium stability.",
+        "pyq_year": "NEET 2023",
+        "question": "In NEET Physics, what is the critical conceptual distinction when applying Potential Energy and Force Relation F = -dU/dx?",
+        "formula_card": {
+          "incorrect": "Misapplying scalar approximations or ignoring directional/sign constraints",
+          "correct": "F(x) = -\\frac{dU}{dx}, \\quad \\Delta U = -W_c = -\\int F_c \\, dx"
+        },
         "options": [
           {
             "id": 0,
-            "text": "A) Verify coordinate axes orientation and component reference angle before applying formula.",
-            "trap": "Correct: Prevents sine/cosine and +/- direction inversion.",
+            "text": "A) Potential energy is defined only for conservative forces. The conservative force is the negative spatial gradient of the...",
+            "trap": "Correct: Direct application of the verified NCERT foundational rule.",
             "correct": true
           },
           {
             "id": 1,
-            "text": "B) The textbook scalar equation applies universally in all reference frames.",
-            "trap": "Trap: Scalar equations fail when acceleration changes or frame is non-inertial."
-          },
-          {
-            "id": 2,
-            "text": "C) Gravitational acceleration g is always negative regardless of chosen axis.",
-            "trap": "Trap: Sign of g depends strictly on positive axis definition."
-          },
-          {
-            "id": 3,
-            "text": "D) Horizontal velocity component alters vertical flight duration.",
-            "trap": "Trap: Horizontal and vertical motions are strictly independent."
+            "text": "B) Forgetting the negative sign in F = -dU/dx, which leads to inverting force direction and misidentifying equilibrium stab...",
+            "trap": "Fatal NEET Trap: Common sign, work, or vector confusion.",
+            "correct": false
           }
         ],
         "correct_index": 0,
-        "explanation": "Key Rule:  "
-      }
+        "explanation": "NCERT Rule: Potential energy is defined only for conservative forces. The conservative force is the negative spatial gradient of the potential energy function."
+      },
+      "template_name": "PotentialEnergyGradientScene",
+      "chapter_seq": 5,
+      "total_chapter_videos": 11,
+      "next_video_id": "P11-C04-T02-V06",
+      "next_video_title": "Conservation of Mechanical Energy & Free Fall Conversion"
     },
     {
       "canonical_id": "P11-C04-T02-V06",
@@ -2446,52 +2446,52 @@
       "topic_no": 2,
       "topic_name": "Potential Energy of Spring",
       "video_no": 6,
-      "title": "[Work, Energy, and Power] Concept 6",
+      "title": "Conservation of Mechanical Energy in Free Fall & Pendulums",
       "dimension_support": "2d",
-      "latex_formula": "",
-      "plain_formula": "",
-      "ncert_citation": "",
-      "ncert_core_rule": "",
-      "author_book_nuance": "",
-      "neet_trap_point": "",
-      "pyq_years": "",
+      "latex_formula": "E = K + U = \\text{constant}, \\quad K_i + U_i = K_f + U_f",
+      "plain_formula": "E = K + U = constant, K_i + U_i = K_f + U_f",
+      "ncert_citation": "NCERT Class 11 Physics Part 1, Chapter 5, Section 5.7",
+      "ncert_core_rule": "In an isolated system with only conservative internal forces doing work, total mechanical energy (sum of kinetic and potential energy) remains constant.",
+      "author_book_nuance": "In free fall from height h, at any height y: 0.5*m*v^2 + m*g*y = m*g*h = constant; velocity at bottom is v = sqrt(2gh).",
+      "neet_trap_point": "Applying mechanical energy conservation when non-conservative forces like friction or air drag do non-zero work.",
+      "pyq_years": "NEET 2021, NEET 2020, AIPMT 2011",
       "has_secure_stream": false,
       "streams": {
         "2d": {},
         "3d": {}
       },
-      "simulation": null,
+      "simulation": "/simulations/unit_04_work_energy_power_lab.html",
       "trap_quiz": {
-        "title": "NEET Trap: [Work, Energy, and Power] Concept 6",
-        "warning": "Common exam pitfall in applying [Work, Energy, and Power] Concept 6.",
-        "pyq_year": "NEET High-Yield",
-        "question": "In a standard NEET problem on '[Work, Energy, and Power] Concept 6', which of the following statements represents the critical condition to prevent sign or angle errors?",
+        "title": "NEET Trap: Conservation of Mechanical Energy in Free Fall & Pendulums",
+        "warning": "Applying mechanical energy conservation when non-conservative forces like friction or air drag do non-zero work.",
+        "pyq_year": "NEET 2021",
+        "question": "In NEET Physics, what is the critical conceptual distinction when applying Conservation of Mechanical Energy in Free Fall & Pendulums?",
+        "formula_card": {
+          "incorrect": "Misapplying scalar approximations or ignoring directional/sign constraints",
+          "correct": "E = K + U = \\text{constant}, \\quad K_i + U_i = K_f + U_f"
+        },
         "options": [
           {
             "id": 0,
-            "text": "A) Verify coordinate axes orientation and component reference angle before applying formula.",
-            "trap": "Correct: Prevents sine/cosine and +/- direction inversion.",
+            "text": "A) In an isolated system with only conservative internal forces doing work, total mechanical energy (sum of kinetic and pot...",
+            "trap": "Correct: Direct application of the verified NCERT foundational rule.",
             "correct": true
           },
           {
             "id": 1,
-            "text": "B) The textbook scalar equation applies universally in all reference frames.",
-            "trap": "Trap: Scalar equations fail when acceleration changes or frame is non-inertial."
-          },
-          {
-            "id": 2,
-            "text": "C) Gravitational acceleration g is always negative regardless of chosen axis.",
-            "trap": "Trap: Sign of g depends strictly on positive axis definition."
-          },
-          {
-            "id": 3,
-            "text": "D) Horizontal velocity component alters vertical flight duration.",
-            "trap": "Trap: Horizontal and vertical motions are strictly independent."
+            "text": "B) Applying mechanical energy conservation when non-conservative forces like friction or air drag do non-zero work....",
+            "trap": "Fatal NEET Trap: Common sign, work, or vector confusion.",
+            "correct": false
           }
         ],
         "correct_index": 0,
-        "explanation": "Key Rule:  "
-      }
+        "explanation": "NCERT Rule: In an isolated system with only conservative internal forces doing work, total mechanical energy (sum of kinetic and potential energy) remains constant."
+      },
+      "template_name": "MechanicalEnergyConservationScene",
+      "chapter_seq": 6,
+      "total_chapter_videos": 11,
+      "next_video_id": "P11-C04-T02-V07",
+      "next_video_title": "Hooke's Law & Elastic Potential Energy of Ideal Spring"
     },
     {
       "canonical_id": "P11-C04-T02-V07",
@@ -2503,52 +2503,52 @@
       "topic_no": 2,
       "topic_name": "Potential Energy of Spring",
       "video_no": 7,
-      "title": "[Work, Energy, and Power] Concept 7",
+      "title": "Hooke's Law and Elastic Potential Energy of an Ideal Spring",
       "dimension_support": "2d",
-      "latex_formula": "",
-      "plain_formula": "",
-      "ncert_citation": "",
-      "ncert_core_rule": "",
-      "author_book_nuance": "",
-      "neet_trap_point": "",
-      "pyq_years": "",
+      "latex_formula": "F_s = -k x, \\quad U_s = \\frac{1}{2} k x^2, \\quad W_s = -\\frac{1}{2}k(x_f^2 - x_i^2)",
+      "plain_formula": "F_s = -k*x, U_s = 0.5*k*x^2, W_s = -0.5*k*(x_f^2 - x_i^2)",
+      "ncert_citation": "NCERT Class 11 Physics Part 1, Chapter 5, Section 5.8",
+      "ncert_core_rule": "The restoring force of an ideal massless spring obeys Hooke's Law F_s = -k*x. The stored elastic potential energy is U_s = 0.5*k*x^2, which is always positive for both extension and compression.",
+      "author_book_nuance": "Work done by the spring is W_s = -Delta U_s = 0.5*k*(x_i^2 - x_f^2). When extended from equilibrium x=0 to x_m, W_s = -0.5*k*x_m^2.",
+      "neet_trap_point": "Thinking spring potential energy is negative during compression: U_s is proportional to x^2, so it is strictly positive whether extended or compressed.",
+      "pyq_years": "NEET 2023, NEET 2020, NEET 2017",
       "has_secure_stream": false,
       "streams": {
         "2d": {},
         "3d": {}
       },
-      "simulation": null,
+      "simulation": "/simulations/unit_04_work_energy_power_lab.html",
       "trap_quiz": {
-        "title": "NEET Trap: [Work, Energy, and Power] Concept 7",
-        "warning": "Common exam pitfall in applying [Work, Energy, and Power] Concept 7.",
-        "pyq_year": "NEET High-Yield",
-        "question": "In a standard NEET problem on '[Work, Energy, and Power] Concept 7', which of the following statements represents the critical condition to prevent sign or angle errors?",
+        "title": "NEET Trap: Hooke's Law and Elastic Potential Energy of an Ideal Spring",
+        "warning": "Thinking spring potential energy is negative during compression: U_s is proportional to x^2, so it is strictly positive whether extended or compressed.",
+        "pyq_year": "NEET 2023",
+        "question": "In NEET Physics, what is the critical conceptual distinction when applying Hooke's Law and Elastic Potential Energy of an Ideal Spring?",
+        "formula_card": {
+          "incorrect": "Misapplying scalar approximations or ignoring directional/sign constraints",
+          "correct": "F_s = -k x, \\quad U_s = \\frac{1}{2} k x^2, \\quad W_s = -\\frac{1}{2}k(x_f^2 - x_i^2)"
+        },
         "options": [
           {
             "id": 0,
-            "text": "A) Verify coordinate axes orientation and component reference angle before applying formula.",
-            "trap": "Correct: Prevents sine/cosine and +/- direction inversion.",
+            "text": "A) The restoring force of an ideal massless spring obeys Hooke's Law F_s = -k*x. The stored elastic potential energy is U_s...",
+            "trap": "Correct: Direct application of the verified NCERT foundational rule.",
             "correct": true
           },
           {
             "id": 1,
-            "text": "B) The textbook scalar equation applies universally in all reference frames.",
-            "trap": "Trap: Scalar equations fail when acceleration changes or frame is non-inertial."
-          },
-          {
-            "id": 2,
-            "text": "C) Gravitational acceleration g is always negative regardless of chosen axis.",
-            "trap": "Trap: Sign of g depends strictly on positive axis definition."
-          },
-          {
-            "id": 3,
-            "text": "D) Horizontal velocity component alters vertical flight duration.",
-            "trap": "Trap: Horizontal and vertical motions are strictly independent."
+            "text": "B) Thinking spring potential energy is negative during compression: U_s is proportional to x^2, so it is strictly positive ...",
+            "trap": "Fatal NEET Trap: Common sign, work, or vector confusion.",
+            "correct": false
           }
         ],
         "correct_index": 0,
-        "explanation": "Key Rule:  "
-      }
+        "explanation": "NCERT Rule: The restoring force of an ideal massless spring obeys Hooke's Law F_s = -k*x. The stored elastic potential energy is U_s = 0.5*k*x^2, which is always positive for both extension and compression."
+      },
+      "template_name": "SpringPotentialEnergyScene",
+      "chapter_seq": 7,
+      "total_chapter_videos": 11,
+      "next_video_id": "P11-C04-T02-V08",
+      "next_video_title": "Vertical Spring-Mass Oscillations & Maximum Compression"
     },
     {
       "canonical_id": "P11-C04-T02-V08",
@@ -2560,52 +2560,52 @@
       "topic_no": 2,
       "topic_name": "Potential Energy of Spring",
       "video_no": 8,
-      "title": "[Work, Energy, and Power] Concept 8",
+      "title": "Vertical Spring-Mass Dynamics and Maximum Extension",
       "dimension_support": "2d",
-      "latex_formula": "",
-      "plain_formula": "",
-      "ncert_citation": "",
-      "ncert_core_rule": "",
-      "author_book_nuance": "",
-      "neet_trap_point": "",
-      "pyq_years": "",
+      "latex_formula": "x_{\\text{eq}} = \\frac{mg}{k}, \\quad x_{\\max} = \\frac{2mg}{k}, \\quad v_{\\max} = g\\sqrt{\\frac{m}{k}}",
+      "plain_formula": "x_eq = mg/k, x_max = 2mg/k, v_max = g*sqrt(m/k)",
+      "ncert_citation": "NCERT Class 11 Physics Part 1, Chapter 5, Section 5.8 - 5.9",
+      "ncert_core_rule": "When a mass m is released from rest from an unstretched vertical spring, energy conservation m*g*x = 0.5*k*x^2 yields maximum extension x_max = 2mg/k, exactly twice the static equilibrium extension x_eq = mg/k.",
+      "author_book_nuance": "Maximum speed occurs at the equilibrium position x_eq = mg/k where net force is zero, NOT at maximum extension where velocity drops to zero.",
+      "neet_trap_point": "Confusing equilibrium extension x_eq = mg/k with maximum dynamic extension x_max = 2mg/k.",
+      "pyq_years": "NEET 2022, NEET 2019, AIPMT 2015",
       "has_secure_stream": false,
       "streams": {
         "2d": {},
         "3d": {}
       },
-      "simulation": null,
+      "simulation": "/simulations/unit_04_work_energy_power_lab.html",
       "trap_quiz": {
-        "title": "NEET Trap: [Work, Energy, and Power] Concept 8",
-        "warning": "Common exam pitfall in applying [Work, Energy, and Power] Concept 8.",
-        "pyq_year": "NEET High-Yield",
-        "question": "In a standard NEET problem on '[Work, Energy, and Power] Concept 8', which of the following statements represents the critical condition to prevent sign or angle errors?",
+        "title": "NEET Trap: Vertical Spring-Mass Dynamics and Maximum Extension",
+        "warning": "Confusing equilibrium extension x_eq = mg/k with maximum dynamic extension x_max = 2mg/k.",
+        "pyq_year": "NEET 2022",
+        "question": "In NEET Physics, what is the critical conceptual distinction when applying Vertical Spring-Mass Dynamics and Maximum Extension?",
+        "formula_card": {
+          "incorrect": "Misapplying scalar approximations or ignoring directional/sign constraints",
+          "correct": "x_{\\text{eq}} = \\frac{mg}{k}, \\quad x_{\\max} = \\frac{2mg}{k}, \\quad v_{\\max} = g\\sqrt{\\frac{m}{k}}"
+        },
         "options": [
           {
             "id": 0,
-            "text": "A) Verify coordinate axes orientation and component reference angle before applying formula.",
-            "trap": "Correct: Prevents sine/cosine and +/- direction inversion.",
+            "text": "A) When a mass m is released from rest from an unstretched vertical spring, energy conservation m*g*x = 0.5*k*x^2 yields ma...",
+            "trap": "Correct: Direct application of the verified NCERT foundational rule.",
             "correct": true
           },
           {
             "id": 1,
-            "text": "B) The textbook scalar equation applies universally in all reference frames.",
-            "trap": "Trap: Scalar equations fail when acceleration changes or frame is non-inertial."
-          },
-          {
-            "id": 2,
-            "text": "C) Gravitational acceleration g is always negative regardless of chosen axis.",
-            "trap": "Trap: Sign of g depends strictly on positive axis definition."
-          },
-          {
-            "id": 3,
-            "text": "D) Horizontal velocity component alters vertical flight duration.",
-            "trap": "Trap: Horizontal and vertical motions are strictly independent."
+            "text": "B) Confusing equilibrium extension x_eq = mg/k with maximum dynamic extension x_max = 2mg/k....",
+            "trap": "Fatal NEET Trap: Common sign, work, or vector confusion.",
+            "correct": false
           }
         ],
         "correct_index": 0,
-        "explanation": "Key Rule:  "
-      }
+        "explanation": "NCERT Rule: When a mass m is released from rest from an unstretched vertical spring, energy conservation m*g*x = 0.5*k*x^2 yields maximum extension x_max = 2mg/k, exactly twice the static equilibrium extension x_eq = mg/k."
+      },
+      "template_name": "VerticalSpringDynamicsScene",
+      "chapter_seq": 8,
+      "total_chapter_videos": 11,
+      "next_video_id": "P11-C04-T03-V09",
+      "next_video_title": "One-Dimensional Elastic Collisions & Velocity Relations"
     },
     {
       "canonical_id": "P11-C04-T03-V09",
@@ -2617,52 +2617,52 @@
       "topic_no": 3,
       "topic_name": "Collisions",
       "video_no": 9,
-      "title": "[Work, Energy, and Power] Concept 9",
+      "title": "One-Dimensional Elastic Collisions and Head-On Impact",
       "dimension_support": "2d",
-      "latex_formula": "",
-      "plain_formula": "",
-      "ncert_citation": "",
-      "ncert_core_rule": "",
-      "author_book_nuance": "",
-      "neet_trap_point": "",
-      "pyq_years": "",
+      "latex_formula": "v_1 = \\frac{m_1 - m_2}{m_1 + m_2}u_1 + \\frac{2m_2}{m_1 + m_2}u_2, \\quad e = 1",
+      "plain_formula": "v1 = ((m1-m2)/(m1+m2))*u1 + (2m2/(m1+m2))*u2, e = 1",
+      "ncert_citation": "NCERT Class 11 Physics Part 1, Chapter 5, Section 5.12",
+      "ncert_core_rule": "In an elastic collision, both total linear momentum and total kinetic energy are strictly conserved. For identical masses (m1 = m2), colliding bodies completely exchange their velocities.",
+      "author_book_nuance": "Relative velocity of approach equals relative velocity of separation: u1 - u2 = v2 - v1 (coefficient of restitution e = 1).",
+      "neet_trap_point": "Applying velocity exchange formula when masses are unequal; velocity exchange occurs ONLY when m1 = m2.",
+      "pyq_years": "NEET 2023, NEET 2021, NEET 2018",
       "has_secure_stream": false,
       "streams": {
         "2d": {},
         "3d": {}
       },
-      "simulation": null,
+      "simulation": "/simulations/unit_04_work_energy_power_lab.html",
       "trap_quiz": {
-        "title": "NEET Trap: [Work, Energy, and Power] Concept 9",
-        "warning": "Common exam pitfall in applying [Work, Energy, and Power] Concept 9.",
-        "pyq_year": "NEET High-Yield",
-        "question": "In a standard NEET problem on '[Work, Energy, and Power] Concept 9', which of the following statements represents the critical condition to prevent sign or angle errors?",
+        "title": "NEET Trap: One-Dimensional Elastic Collisions and Head-On Impact",
+        "warning": "Applying velocity exchange formula when masses are unequal; velocity exchange occurs ONLY when m1 = m2.",
+        "pyq_year": "NEET 2023",
+        "question": "In NEET Physics, what is the critical conceptual distinction when applying One-Dimensional Elastic Collisions and Head-On Impact?",
+        "formula_card": {
+          "incorrect": "Misapplying scalar approximations or ignoring directional/sign constraints",
+          "correct": "v_1 = \\frac{m_1 - m_2}{m_1 + m_2}u_1 + \\frac{2m_2}{m_1 + m_2}u_2, \\quad e = 1"
+        },
         "options": [
           {
             "id": 0,
-            "text": "A) Verify coordinate axes orientation and component reference angle before applying formula.",
-            "trap": "Correct: Prevents sine/cosine and +/- direction inversion.",
+            "text": "A) In an elastic collision, both total linear momentum and total kinetic energy are strictly conserved. For identical masse...",
+            "trap": "Correct: Direct application of the verified NCERT foundational rule.",
             "correct": true
           },
           {
             "id": 1,
-            "text": "B) The textbook scalar equation applies universally in all reference frames.",
-            "trap": "Trap: Scalar equations fail when acceleration changes or frame is non-inertial."
-          },
-          {
-            "id": 2,
-            "text": "C) Gravitational acceleration g is always negative regardless of chosen axis.",
-            "trap": "Trap: Sign of g depends strictly on positive axis definition."
-          },
-          {
-            "id": 3,
-            "text": "D) Horizontal velocity component alters vertical flight duration.",
-            "trap": "Trap: Horizontal and vertical motions are strictly independent."
+            "text": "B) Applying velocity exchange formula when masses are unequal; velocity exchange occurs ONLY when m1 = m2....",
+            "trap": "Fatal NEET Trap: Common sign, work, or vector confusion.",
+            "correct": false
           }
         ],
         "correct_index": 0,
-        "explanation": "Key Rule:  "
-      }
+        "explanation": "NCERT Rule: In an elastic collision, both total linear momentum and total kinetic energy are strictly conserved. For identical masses (m1 = m2), colliding bodies completely exchange their velocities."
+      },
+      "template_name": "ElasticCollision1DScene",
+      "chapter_seq": 9,
+      "total_chapter_videos": 11,
+      "next_video_id": "P11-C04-T03-V10",
+      "next_video_title": "Inelastic Collisions, Coefficient of Restitution & Kinetic Loss"
     },
     {
       "canonical_id": "P11-C04-T03-V10",
@@ -2674,52 +2674,52 @@
       "topic_no": 3,
       "topic_name": "Collisions",
       "video_no": 10,
-      "title": "[Work, Energy, and Power] Concept 10",
+      "title": "Inelastic Collisions, Coefficient of Restitution and Kinetic Energy Loss",
       "dimension_support": "2d",
-      "latex_formula": "",
-      "plain_formula": "",
-      "ncert_citation": "",
-      "ncert_core_rule": "",
-      "author_book_nuance": "",
-      "neet_trap_point": "",
-      "pyq_years": "",
+      "latex_formula": "e = \\frac{v_2 - v_1}{u_1 - u_2}, \\quad \\Delta K_{\\text{loss}} = \\frac{m_1 m_2}{2(m_1 + m_2)}(u_1 - u_2)^2 (1 - e^2)",
+      "plain_formula": "e = (v2 - v1)/(u1 - u2), Delta K_loss = (m1*m2)/(2*(m1+m2)) * (u1 - u2)^2 * (1 - e^2)",
+      "ncert_citation": "NCERT Class 11 Physics Part 1, Chapter 5, Section 5.12.2",
+      "ncert_core_rule": "In an inelastic collision (0 <= e < 1), total momentum is conserved but kinetic energy decreases as it converts to heat/sound/deformation. In a completely inelastic collision (e = 0), colliding bodies stick together with maximum fractional kinetic energy loss.",
+      "author_book_nuance": "Common velocity for completely inelastic collision: v = (m1*u1 + m2*u2) / (m1 + m2).",
+      "neet_trap_point": "Believing momentum is lost in an inelastic collision: momentum is strictly conserved in all collisions where F_ext = 0; only kinetic energy is lost.",
+      "pyq_years": "NEET 2022, NEET 2020, AIPMT 2014",
       "has_secure_stream": false,
       "streams": {
         "2d": {},
         "3d": {}
       },
-      "simulation": null,
+      "simulation": "/simulations/unit_04_work_energy_power_lab.html",
       "trap_quiz": {
-        "title": "NEET Trap: [Work, Energy, and Power] Concept 10",
-        "warning": "Common exam pitfall in applying [Work, Energy, and Power] Concept 10.",
-        "pyq_year": "NEET High-Yield",
-        "question": "In a standard NEET problem on '[Work, Energy, and Power] Concept 10', which of the following statements represents the critical condition to prevent sign or angle errors?",
+        "title": "NEET Trap: Inelastic Collisions, Coefficient of Restitution and Kinetic Energy Loss",
+        "warning": "Believing momentum is lost in an inelastic collision: momentum is strictly conserved in all collisions where F_ext = 0; only kinetic energy is lost.",
+        "pyq_year": "NEET 2022",
+        "question": "In NEET Physics, what is the critical conceptual distinction when applying Inelastic Collisions, Coefficient of Restitution and Kinetic Energy Loss?",
+        "formula_card": {
+          "incorrect": "Misapplying scalar approximations or ignoring directional/sign constraints",
+          "correct": "e = \\frac{v_2 - v_1}{u_1 - u_2}, \\quad \\Delta K_{\\text{loss}} = \\frac{m_1 m_2}{2(m_1 + m_2)}(u_1 - u_2)^2 (1 - e^2)"
+        },
         "options": [
           {
             "id": 0,
-            "text": "A) Verify coordinate axes orientation and component reference angle before applying formula.",
-            "trap": "Correct: Prevents sine/cosine and +/- direction inversion.",
+            "text": "A) In an inelastic collision (0 <= e < 1), total momentum is conserved but kinetic energy decreases as it converts to heat/...",
+            "trap": "Correct: Direct application of the verified NCERT foundational rule.",
             "correct": true
           },
           {
             "id": 1,
-            "text": "B) The textbook scalar equation applies universally in all reference frames.",
-            "trap": "Trap: Scalar equations fail when acceleration changes or frame is non-inertial."
-          },
-          {
-            "id": 2,
-            "text": "C) Gravitational acceleration g is always negative regardless of chosen axis.",
-            "trap": "Trap: Sign of g depends strictly on positive axis definition."
-          },
-          {
-            "id": 3,
-            "text": "D) Horizontal velocity component alters vertical flight duration.",
-            "trap": "Trap: Horizontal and vertical motions are strictly independent."
+            "text": "B) Believing momentum is lost in an inelastic collision: momentum is strictly conserved in all collisions where F_ext = 0; ...",
+            "trap": "Fatal NEET Trap: Common sign, work, or vector confusion.",
+            "correct": false
           }
         ],
         "correct_index": 0,
-        "explanation": "Key Rule:  "
-      }
+        "explanation": "NCERT Rule: In an inelastic collision (0 <= e < 1), total momentum is conserved but kinetic energy decreases as it converts to heat/sound/deformation. In a completely inelastic collision (e = 0), colliding bodies stick together with maximum fractional kinetic energy loss."
+      },
+      "template_name": "InelasticCollisionLossScene",
+      "chapter_seq": 10,
+      "total_chapter_videos": 11,
+      "next_video_id": "P11-C04-T03-V11",
+      "next_video_title": "Average & Instantaneous Power and Force-Velocity Relation"
     },
     {
       "canonical_id": "P11-C04-T03-V11",
@@ -2731,52 +2731,52 @@
       "topic_no": 3,
       "topic_name": "Collisions",
       "video_no": 11,
-      "title": "[Work, Energy, and Power] Concept 11",
+      "title": "Instantaneous Power, Average Power, and Force-Velocity Relation",
       "dimension_support": "2d",
-      "latex_formula": "",
-      "plain_formula": "",
-      "ncert_citation": "",
-      "ncert_core_rule": "",
-      "author_book_nuance": "",
-      "neet_trap_point": "",
-      "pyq_years": "",
+      "latex_formula": "P = \\frac{dW}{dt} = \\vec{F} \\cdot \\vec{v} = F v \\cos\\theta, \\quad P_{\\text{avg}} = \\frac{\\Delta W}{\\Delta t}",
+      "plain_formula": "P = dW/dt = F * v * cos(theta), P_avg = Delta W / Delta t",
+      "ncert_citation": "NCERT Class 11 Physics Part 1, Chapter 5, Section 5.11",
+      "ncert_core_rule": "Power is the time rate at which work is done or energy is transferred. Instantaneous power is the scalar dot product of force vector and instantaneous velocity vector: P = F . v.",
+      "author_book_nuance": "For a machine delivering constant power P, acceleration decreases as speed increases: a = P / (m * v); velocity scales as v proportional to t^(1/2) and distance s proportional to t^(3/2).",
+      "neet_trap_point": "Confusing constant power with constant force: constant power implies non-constant force and non-uniform acceleration (v proportional to sqrt(t), not t).",
+      "pyq_years": "NEET 2023, NEET 2021, NEET 2016",
       "has_secure_stream": false,
       "streams": {
         "2d": {},
         "3d": {}
       },
-      "simulation": null,
+      "simulation": "/simulations/unit_04_work_energy_power_lab.html",
       "trap_quiz": {
-        "title": "NEET Trap: [Work, Energy, and Power] Concept 11",
-        "warning": "Common exam pitfall in applying [Work, Energy, and Power] Concept 11.",
-        "pyq_year": "NEET High-Yield",
-        "question": "In a standard NEET problem on '[Work, Energy, and Power] Concept 11', which of the following statements represents the critical condition to prevent sign or angle errors?",
+        "title": "NEET Trap: Instantaneous Power, Average Power, and Force-Velocity Relation",
+        "warning": "Confusing constant power with constant force: constant power implies non-constant force and non-uniform acceleration (v proportional to sqrt(t), not t).",
+        "pyq_year": "NEET 2023",
+        "question": "In NEET Physics, what is the critical conceptual distinction when applying Instantaneous Power, Average Power, and Force-Velocity Relation?",
+        "formula_card": {
+          "incorrect": "Misapplying scalar approximations or ignoring directional/sign constraints",
+          "correct": "P = \\frac{dW}{dt} = \\vec{F} \\cdot \\vec{v} = F v \\cos\\theta, \\quad P_{\\text{avg}} = \\frac{\\Delta W}{\\Delta t}"
+        },
         "options": [
           {
             "id": 0,
-            "text": "A) Verify coordinate axes orientation and component reference angle before applying formula.",
-            "trap": "Correct: Prevents sine/cosine and +/- direction inversion.",
+            "text": "A) Power is the time rate at which work is done or energy is transferred. Instantaneous power is the scalar dot product of ...",
+            "trap": "Correct: Direct application of the verified NCERT foundational rule.",
             "correct": true
           },
           {
             "id": 1,
-            "text": "B) The textbook scalar equation applies universally in all reference frames.",
-            "trap": "Trap: Scalar equations fail when acceleration changes or frame is non-inertial."
-          },
-          {
-            "id": 2,
-            "text": "C) Gravitational acceleration g is always negative regardless of chosen axis.",
-            "trap": "Trap: Sign of g depends strictly on positive axis definition."
-          },
-          {
-            "id": 3,
-            "text": "D) Horizontal velocity component alters vertical flight duration.",
-            "trap": "Trap: Horizontal and vertical motions are strictly independent."
+            "text": "B) Confusing constant power with constant force: constant power implies non-constant force and non-uniform acceleration (v ...",
+            "trap": "Fatal NEET Trap: Common sign, work, or vector confusion.",
+            "correct": false
           }
         ],
         "correct_index": 0,
-        "explanation": "Key Rule:  "
-      }
+        "explanation": "NCERT Rule: Power is the time rate at which work is done or energy is transferred. Instantaneous power is the scalar dot product of force vector and instantaneous velocity vector: P = F . v."
+      },
+      "template_name": "PowerForceVelocityScene",
+      "chapter_seq": 11,
+      "total_chapter_videos": 11,
+      "next_video_id": "",
+      "next_video_title": ""
     },
     {
       "canonical_id": "P11-C05-T01-V01",

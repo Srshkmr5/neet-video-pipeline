@@ -13,3 +13,12 @@ render/_node_*.json
 audio/cache/
 output/raw_audio/
 
+# Artifacts, renders and temporary binaries
+media/
+output/
+brain/
+*.mp4
+*.png
+*.svg
+
+tools/cred_helper.py

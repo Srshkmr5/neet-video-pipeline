@@ -1,0 +1,13 @@
+{
+  "max_chars_per_line": 32,
+  "max_lines_per_card": 4,
+  "min_font_size_pt": 16,
+  "header_min_font_size_pt": 22,
+  "title_min_font_size_pt": 28,
+  "allowed_fonts": ["Segoe UI", "Arial", "Inter", "Verdana"],
+  "prohibit_fonts": ["Consolas"],
+  "max_bullets_per_card": 4,
+  "max_formula_length_chars": 120,
+  "max_headline_length_chars": 80,
+  "allowed_languages": ["en", "hi", "ta"]
+}

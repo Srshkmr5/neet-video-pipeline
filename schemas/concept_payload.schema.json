@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/concept_payload.schema.json",
+  "title": "Concept Payload",
+  "type": "object",
+  "required": [
+    "canonical_id",
+    "chapter_name",
+    "concept_title",
+    "template_name",
+    "dimension",
+    "latex_formula",
+    "plain_formula",
+    "ncert_citation",
+    "ncert_core_rule",
+    "author_book_nuance",
+    "neet_trap_point",
+    "pyq_years",
+    "status",
+    "audio_provider",
+    "voice_id"
+  ],
+  "properties": {
+    "canonical_id": { "type": "string", "minLength": 1 },
+    "chapter_name": { "type": "string", "minLength": 1 },
+    "concept_title": { "type": "string", "minLength": 1, "maxLength": 80 },
+    "template_name": { "type": "string", "minLength": 1 },
+    "dimension": { "type": "string", "enum": ["2d", "3d"] },
+    "latex_formula": { "type": "string", "minLength": 1, "maxLength": 120 },
+    "plain_formula": { "type": "string", "minLength": 1, "maxLength": 120 },
+    "ncert_citation": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "ncert_core_rule": { "type": "string", "minLength": 1, "maxLength": 240 },
+    "author_book_nuance": { "type": "string", "minLength": 1, "maxLength": 240 },
+    "neet_trap_point": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "pyq_years": { "type": "string", "minLength": 1, "maxLength": 120 },
+    "status": { "type": "string", "enum": ["APPROVED", "DRAFT"] },
+    "audio_provider": { "type": "string", "minLength": 1 },
+    "voice_id": { "type": "string", "minLength": 1 }
+  },
+  "additionalProperties": false
+}

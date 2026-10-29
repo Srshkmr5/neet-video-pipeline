@@ -137,4 +137,13 @@ Derived from MASTER_BLUEPRINT.md v1.1
       * **Beat 4 (NEET Trap Card & NCERT Rule)**: Spoken audio warns of the fatal trap and states the NCERT correction rule; visual card MUST display the fatal trap callout and the NCERT rule equation in the green resolution box (with zero hardcoded PYQ exam years).
       * **Beat 5 (Consolidation Hold & Next Video End Card)**: Beat 4 holds for a mandatory 3.0-second silent freeze after narration concludes, transitioning cleanly to a 3.5-second Beat 5 Next Video End Card directing students to the subsequent concept and interactive simulation lab.
 
+24. **Dual-Channel Multisensory Signaling & Cognitive Holds**:
+    - **Cognitive Pause Holds (Pacing Standard)**:
+      * To prevent cognitive overload and avoid the video "running away to the end", a mandatory **3.0-second silent cognitive hold** is enforced after Beat 2 (Hero Law), Beat 3 (Analytical Derivations), and Beat 4 (NEET Trap Card) after the voice narration finishes.
+      * During this 3.0-second hold, the complete visual apparatus (equations, vectors, diagram states, resolution rules) remains static and pristine on screen with zero distracting motion, allowing students to absorb and consolidate the concept.
+    - **Synchronous Breathing Glow Pulse & Climax Highlighting**:
+      * Crucial formulas and pivotal physical laws must be reinforced through coordinated visual-audio emphasis.
+      * At the precise audio narration climax where the core formula or rule is enunciated (or reiterated for emphasis), the formula container and key math symbols execute a synchronous subtle breathing glow pulse (`rate_func=there_and_back` or glowing neon border halo).
+      * The glow pulse visually stimulates attention simultaneously with the auditory climax, maximizing multisensory retention for NEET aspirants without obstructing readability.
+
 

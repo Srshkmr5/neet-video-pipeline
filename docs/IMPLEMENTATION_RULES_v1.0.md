@@ -222,6 +222,10 @@
    - Every mathematical formula, equation, variable relation, or quantitative law spoken in the audio narration track MUST be simultaneously visible on the screen during that exact visual beat. Spoken audio must never reference, explain, or derive an equation while the visual slide displays unrelated or preceding content.
    - Visual archetypes and narration scripts must maintain 1:1 semantic locking across all beats (Intro, Hero Law, Derivations, NEET Trap, and Next Video End Card).
 
+7. **Dual-Channel Multisensory Signaling & Cognitive Holds (Rule 24)**:
+   - **Cognitive Pause Holds (Pacing Standard)**: Mandatory 3.0-second silent cognitive hold after Beat 2 (Hero Law), Beat 3 (Analytical Derivations), and Beat 4 (NEET Trap Card) after the voice narration finishes. All equations, vectors, diagram states, and resolution rules remain static on screen to eliminate cognitive overload and prevent the video from rushing to the end.
+   - **Synchronous Breathing Glow Pulse & Climax Highlighting**: Core formulas and pivotal physical laws execute a synchronous subtle breathing glow pulse (`rate_func=there_and_back` or glowing neon border halo) at the precise audio speech climax where the formula or rule is enunciated (or reiterated for emphasis), stimulating attention simultaneously across visual and auditory channels for maximum multisensory retention.
+
 ---
 
 ## Pillar 14: Pure Triad Dynamic Binding & Schema Completeness (Zero Cross-Unit Bleed)

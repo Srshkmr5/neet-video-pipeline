@@ -1,0 +1,17 @@
+{
+  "canonical_id": "P11-C04-T01-V01",
+  "chapter_name": "Work, Energy, and Power",
+  "concept_title": "Scalar Product and Work Done\nby Constant Force",
+  "template_name": "ConstantWorkDotProductScene",
+  "dimension": "2d",
+  "latex_formula": "W = F · d = F d cos θ",
+  "plain_formula": "W = F * d * cos(theta)",
+  "ncert_citation": "NCERT Class 11 Physics Part 1\nChapter 5, Section 5.2 - 5.3",
+  "ncert_core_rule": "Work is a scalar quantity equal\nto dot product of force and\ndisplacement. Zero if force, d,\nor cos(theta) is zero.",
+  "author_book_nuance": "Normal and centripetal forces\ndo zero work on level ground\nbecause theta = 90 degrees.",
+  "neet_trap_point": "Confusing sign of work: work is\nnegative when theta > 90 deg\n(e.g. friction opposes motion).",
+  "pyq_years": "NEET 2022, NEET 2019, AIPMT 2012",
+  "status": "APPROVED",
+  "audio_provider": "edge_tts",
+  "voice_id": "en-IN-NeerjaExpressiveNeural"
+}
